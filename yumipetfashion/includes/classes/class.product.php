@@ -1519,13 +1519,13 @@
 				if (isId($product["prodvariationid"]) || trim($product["prodconfigfields"]) !== "" || $product["prodeventdaterequired"] == 1) {
 					$GLOBALS["ProductURL"] = ProdLink($product["prodname"]);
 					/* EDAZCOMMERCE */
-					$GLOBALS['ProductAddText'] = GetLang('ProductChooseOptionLink');
-					//$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/AddCartButton.gif" alt="Comprar" width="110"/>';
+					//$GLOBALS['ProductAddText'] = GetLang('ProductChooseOptionLink');
+					$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/ProductVariation.png" alt="Comprar" width="110" height="22"/>';
 				} else {
 					$GLOBALS["ProductURL"] = CartLink($product["productid"]);
 					//$GLOBALS["ProductAddText"] = GetLang("ProductAddToCartLink");
 					/* EDAZCOMMERCE */
-					$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/AddCartButton.gif" alt="Comprar" width="110"/>';
+					$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/AddCartButton.gif" alt="Comprar" width="110" height="22"/>';
 				}
 
 				if (CanAddToCart($product) && GetConfig("ShowAddToCartLink")) {
