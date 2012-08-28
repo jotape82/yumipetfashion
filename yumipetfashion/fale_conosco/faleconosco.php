@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="../templates/default/Styles/fale_conosco.css"/> 
 </HEAD>
 
-<BODY>
+<BODY> 
 <DIV align=center>
 	<div id="fale_conosco_div" style="width: 610px; border: 1px solid black;">
 		<div class="tituloDiv">Contato Yumi Pet Fashion.</div>
