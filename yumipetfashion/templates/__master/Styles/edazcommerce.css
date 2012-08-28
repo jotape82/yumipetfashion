@@ -441,7 +441,7 @@ li.separador_links_footer{
 }
 
 .fundoDegradeProduct{
-	bottom: -40px; clear: right; height: 220px; left: 3px; position: absolute; width: 172px; z-index: 0; display: none; border-radius: 8px; opacity: 0.4;
+	bottom: -40px; clear: right; height: 220px; left: 2px; position: absolute; width: 173px; z-index: 0; display: none; border-radius: 8px; opacity: 0.4;
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#fcc8ea)";
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#fcc8ea);
 	background: -moz-linear-gradient(top, #FFFFFF, #fcc8ea) repeat-X;
