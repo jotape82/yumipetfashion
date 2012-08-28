@@ -1,0 +1,128 @@
+%%GLOBAL_OptimizerLinkScript%%	
+
+<!--	
+<div id="TopMenu">
+	<ul style="display:%%GLOBAL_HidePurchasingOptions%%">
+		<li style="%%GLOBAL_LiveChatCodeEnabled%%" class="HeaderLiveChat">
+			%%GLOBAL_LiveChatCode%%
+		</li>
+		<li style="display:%%GLOBAL_HideAccountOptions%%" class="First"><a href="%%GLOBAL_ShopPath%%/account.php">%%LNG_YourAccount%%</a></li>
+		<li style="display:%%GLOBAL_HideAccountOptions%%"><a href="%%GLOBAL_ShopPath%%/orderstatus.php">%%LNG_OrderStatus%%</a></li>
+		<li style="display:%%GLOBAL_HideWishlist%%"><a href="%%GLOBAL_ShopPath%%/wishlist.php">%%LNG_YourWishList%%</a></li>
+		%%SNIPPET_TopMenuGiftCertificates%%
+		<li style="display:%%GLOBAL_HideCartOptions%%" class="CartLink"><a href="%%GLOBAL_ShopPathNormal%%/cart.php">%%LNG_ViewCart%% <span>%%GLOBAL_CartItems%%</span></a></li>
+		<li style="display:%%GLOBAL_HideAccountOptions%%">
+			<div>
+				%%GLOBAL_LoginOrLogoutText%%
+			</div>
+		</li>
+	</ul>
+	<br class="Clear" />
+</div>
+-->
+		
+<div class="TopMenuHeader">
+	<div class="header_div1">
+		<div class="header_div2">
+			<!--
+			<a href="%%GLOBAL_ShopPath%%">
+				<div class="header_logo"></div>
+			</a>
+			-->
+			<div class="float_left" style="width: 145px; margin-top: 3px;">
+				<div class="FloatLeft" style="width: 35px; text-align: right;">
+					SAC:<br>
+					ID:
+				</div>
+				<div class="FloatLeft" style="margin-left: 10px; text-align: left;">
+					(13) 3307-2645<br>
+					80*186939
+				</div>
+			</div>
+			<div class="header_links">
+				<div style="padding: 2px 0px;">
+					<div class="separador_menu"></div>
+					<a href="%%GLOBAL_ShopPath%%/account.php">
+						<div class="header_meu_cadastro">Meu<br>Cadastro</div>
+					</a>
+					<div class="separador_menu"></div>
+					<a href="%%GLOBAL_ShopPath%%/account.php?action=order_status">
+						<div class="header_meus_pedidos">Meus<br>Pedidos</div>
+					</a>
+					<div class="separador_menu"></div>
+					<a href="%%GLOBAL_ShopPathNormal%%/pages/Quem-Somos.html">
+						<div class="header_servicos">
+							<div class="margin_top_13">Serviços</div>
+						</div>
+					</a>
+					<div class="separador_menu"></div>
+					<a href="javascript:carregaUrl('%%GLOBAL_ShopPathNormal%%/fale_conosco/faleconosco.php', '900px');">
+						<div class="header_contato">
+							<div class="margin_top_13">Contato</div>
+						</div>
+					</a>
+					<div class="separador_menu"></div>
+				</div>
+				
+				<div class="header_carrinho">
+					<div style="margin: 13px 0 0 43px;">
+						<a href="%%GLOBAL_ShopPathNormal%%/cart.php">Seu carrinho</a>  <b>%%GLOBAL_CartItems%%</b>.
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="header_div3">
+			<div class="header_div4">
+				<div class="header_bem_vindo %%GLOBAL_ClassWelcomeMessageUser%%">
+					%%GLOBAL_LoginOrLogoutText%%
+				</div>
+				<div class="header_login %%GLOBAL_DisplayLoginHome%%">
+					<div class="float_left">
+						<form action="%%GLOBAL_ShopPath%%/login.php?action=check_login" method="post" id="formLoginTopMenu" onsubmit="return check_login_form(this)">
+							<input type="text" class="InputTexto InitialFocus" name="login_email" id="login_email" size="35" />
+							<input type="password" class="InputTexto" name="login_pass" id="login_pass" />
+							<input type="submit" id="id="LoginButton"" value="Entrar" />
+						</form>
+					</div>
+					<div class="header_cadastrar">
+						Ainda não sou cadastrado.<br>
+						<a href="%%GLOBAL_ShopPath%%/login.php?action=create_account">
+							<b>Clique aqui para se cadastrar</b>
+						</a>
+					</div>
+				</div>
+				<div style="clear: left;">
+					<p style="display: %%GLOBAL_HideLoginMessage%%" class="%%GLOBAL_MessageClass%%">
+						%%GLOBAL_LoginMessage%%
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	/*
+	$(document).ready(function() {
+		resizeFooter();
+		$('.header_div2').css('display','block');
+		$('.header_div4').css('display','block');
+		
+		$(window).resize(function() {                 
+			resizeFooter();
+		});
+	}); 
+	
+	function resizeFooter(){
+		var widthWindow,
+			marginWindowSide;
+			
+		widthWindow      = $(window).width();
+		//marginWindowSide = (widthWindow-1000)/2;
+		$('.header_div2').css('margin-left',(widthWindow-$('.header_div2').width())/2);
+		$('.header_div4').css('margin-left',(widthWindow-$('.header_div4').width())/2);
+	}
+	*/
+</script>

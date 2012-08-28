@@ -1,0 +1,21 @@
+	<div id="SearchForm">
+		<div class="SearchDivLeft">
+			<form action="%%GLOBAL_ShopPath%%/search.php" method="get" onsubmit="return check_small_search_form()">
+				<!--<label for="search_query">%%LNG_Search%%</label>-->
+				<input type="text" name="search_query" id="search_query" class="CampoBusca" value="%%GLOBAL_OriginalSearchQuery%%" onfocus="this.value = (this.value == 'O que você está procurando?') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'O que você está procurando?' : this.value;"/>
+				<input type="submit" class="BotaoBusca" value=""/>
+			</form>
+		</div>
+		
+		<div class="SearchDivRight">
+			<b>Pesquisa</b><br>
+			<a href="%%GLOBAL_ShopPathNormal%%/search.php?mode=advanced">%%LNG_AdvancedSearchHome%%</a>&nbsp;|&nbsp; <!--<strong>%%LNG_AdvancedSearch%%</strong>-->
+			<a href="%%GLOBAL_ShopPathNormal%%/search.php?action=Tips">%%LNG_SearchTipsHome%%</a> <!--%%LNG_SearchTips%%-->
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var QuickSearchAlignment = 'left';
+		var QuickSearchWidth 	 = '550px';
+		lang.EmptySmallSearch 	 = "%%LNG_EmptySmallSearch%%";
+	</script>

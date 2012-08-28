@@ -1,0 +1,90 @@
+<div class="divisor_footer"></div>
+<br class="Clear" />
+<!--<hr class="divisorFooterHR"/>--> 
+
+<div class="Footer" align="center">
+	<div class="FooterContent" align="left">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td align="center"><img src="%%GLOBAL_TPL_PATH%%/img/layout/metodos_pagamento_footer.png"/></td>
+			</tr>
+		    <tr>
+		    	<td align="center" class="MenuFooter">
+		    		<ul id="footerLinksCMS" style="margin: 12px 0px;">
+		    			%%Panel.PagesMenu%%
+		    		</ul>
+		    	</td>
+		    </tr>
+		    <tr>
+	        	<td>
+		      		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		        		<tr>
+		          			<td>
+		          				<!--
+		          				<table width="100%" border="0" cellspacing="20" cellpadding="0">
+		            				<tr>
+		              					<td width="53%">%%GLOBAL_HTMLFormas%% </td>
+		              					<td width="47%">%%GLOBAL_HTMLFormasE%%</td>
+		              				</tr>
+	              				</table>
+	              				-->
+		            			<table width="100%" border="0" cellspacing="20" cellpadding="0">
+		              				<tr>
+		              					<td width="25%">&nbsp;</td>
+		                				<td width="50%" align="center">
+	                						<img src="%%GLOBAL_TPL_PATH%%/img/layout/logo_rodape.png"/><br/>
+	                						<span class="texto" style="margin-top: 10px; display: block;">
+	                							<b>Contato:</b> (13) 3307-2645 / (13)7806-1231 / <b>ID:</b> 80*186939<br/>
+	                							<b>E-mail:</b> atendimento@yumipetfashion.com.br<br/>
+			                  					Copyright %%GLOBAL_Year%% %%GLOBAL_StoreName%%.<br/>
+			                  					<!--%%GLOBAL_AllPricesAreInCurrency%%-->
+												%%SNIPPET_SitemapLink%%
+												%%GLOBAL_MobileSiteLink%%
+												%%GLOBAL_PoweredBy%%
+                    						</span>
+	                    				</td>
+	                    				<td width="25%" align="right" valign="bottom">&nbsp;</td>
+	                  				</tr>
+	              				</table>
+	              			</td>
+	            		</tr>
+	          		</table>
+	      		</td>
+        	</tr>
+    	</table>
+	</div>
+	
+	<div style="float: right; margin: -15px 0; position: absolute; text-align: right; width: 950px;">
+		<span class="desenvolvido_por_edazcommerce">Desenvolvido por:</span>
+		<a href="http://www.edazcommerce.com.br" target="_blank"><img src="%%GLOBAL_TPL_PATH%%/img/layout/logo_edazcommerce.png" alt="EdazCommerce - Solução quando o assunto é lojas virtuais."  border="0"></a>
+	</div>
+</div>
+
+<script>
+	var qtdeWidthFooterCMS = 0;
+	$('#footerLinksCMS').find('ul').eq(0).children('li').each(function(){
+		qtdeWidthFooterCMS = eval(qtdeWidthFooterCMS + $(this).width());
+	});
+	qtdeWidthFooterCMS = eval(qtdeWidthFooterCMS + $('#footerLinksCMS').find('ul').eq(0).children('li').size() * 1);
+	$('#footerLinksCMS').css('width',qtdeWidthFooterCMS).css('margin','10px auto');
+</script>
+
+<!-- ORIGINAL - LOJA V6 -->
+<br class="Clear" />
+<div id="Footer">
+	%%GLOBAL_DebugDetails%%
+</div>
+</div>
+
+%%GLOBAL_DesignModeHTML%%
+%%GLOBAL_QueryList%%
+%%GLOBAL_DesignModeScriptTag%%
+%%GLOBAL_LiveChatFooterCode%%
+
+%%GLOBAL_OptimizerTrackingScript%%
+
+%%GLOBAL_OptimizerConversionScript%%
+
+%%GLOBAL_OptimizerSetCookieScript%%
+
+%%GLOBAL_FooterScripts%%

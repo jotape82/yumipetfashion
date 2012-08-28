@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /account.php
+Disallow: /cart.php
+Disallow: /checkout.php
+Disallow: /finishorder.php
+Disallow: /login.php
+Disallow: /orderstatus.php
+Disallow: /postreview.php
+Disallow: /productimage.php
+Disallow: /productupdates.php
+Disallow: /remote.php
+Disallow: /search.php
+Disallow: /viewfile.php
+Disallow: /wishlist.php
+Disallow: /admin/
+Disallow: /*sort=
+#Begin Attracta SEO Tools Sitemap. Do not remove
+sitemap: http://cdn.attracta.com/sitemap/2492462.xml.gz
+#End Attracta SEO Tools Sitemap. Do not remove

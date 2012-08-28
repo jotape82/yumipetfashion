@@ -1,0 +1,33 @@
+		</div>
+
+		%%GLOBAL_NewsletterBoxControlScript%%
+		
+		<div class="Block NewsletterSubscription Moveable Panel" id="SideNewsletterBox">
+			%%GLOBAL_NewsletterHeaderOptimizerScriptTag%%
+			
+			<div class="bg_newlettter_top"></div>
+				<div class="tituloDepartamento">
+					<h2>%%LNG_OurNewsletter%%</h2>
+				</div>
+				%%GLOBAL_NewsletterBoxOptimizerNoScriptTag%%
+				
+				<div class="newsletterContent">
+					<div class="BlockContent">
+						<form action="%%GLOBAL_ShopPath%%/subscribe.php" method="post" id="subscribe_form" name="subscribe_form">
+							<input type="hidden" name="action" value="subscribe" />
+							<!--<label for="nl_first_name">%%LNG_YourFirstName%%:</label>-->
+							<input type="text" class="Textbox" id="nl_first_name" name="nl_first_name" value="Digite seu nome" onfocus="this.value = (this.value == 'Digite seu nome') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'Digite seu nome' : this.value;"/>
+							<!--<label for="nl_email">%%LNG_YourEmailAddress%%:</label>-->
+							<input type="text" class="Textbox" id="nl_email" name="nl_email" value="Digite seu e-mail" onfocus="this.value = (this.value == 'Digite seu e-mail') ? '' : this.value;" onblur="this.value = (this.value == '') ? 'Digite seu e-mail' : this.value;"/><br />
+							%%GLOBAL_NewsletterButtonOptimizerScriptTag%%
+							<div class="newsletter_cadastrar">
+								<input type="image" src="%%GLOBAL_IMG_PATH%%/../img/layout/cadastrar.png" value="%%LNG_Subscribe%%" class="Button" />
+							</div>
+							%%GLOBAL_NewsletterBoxOptimizerNoScriptTag%%
+						</form>
+					</div>
+				</div>
+			<div class="bg_newlettter_bottom"></div>
+			
+		</div>
+		%%Panel.NewsletterJavaScript%%

@@ -1,0 +1,501 @@
+/* ===== PRODUCT REVIEWS ===== */
+.itemRatingForm {display:block;vertical-align:middle;line-height:35px;float:left;}
+.itemRatingLog {font-size:11px;margin:0;padding:0 0 0 4px;float:left;}
+div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-repeat left center;height:35px;padding:0 0 0 20px;}
+.itemRatingList,
+.itemRatingList a:hover,
+.itemRatingList .itemCurrentRating {background:url(../images/transparent_star.png) left -1000px repeat-x;}
+.itemRatingList {background-position: left top; clear: left; float: left; height: 40px; list-style: none outside none; padding: 0; position: relative; width: 180px;}
+.itemRatingList li {display:inline;background:none;padding:0;}
+.itemRatingList a,
+.itemRatingList .itemCurrentRating {position:absolute;top:0;left:0;text-indent:-1000px;height:35px;line-height:35px;outline:none;overflow:hidden;border:none;cursor:pointer;}
+.itemRatingList a:hover {background-position:left bottom;}
+.itemRatingList a.one-star {width:20%;z-index:6;}
+.itemRatingList a.two-stars {width:40%;z-index:5;}
+.itemRatingList a.three-stars {width:60%;z-index:4;}
+.itemRatingList a.four-stars {width:80%;z-index:3;}
+.itemRatingList a.five-stars {width:100%;z-index:2;}
+.itemRatingList .itemCurrentRating {z-index:1;background-position:0 center;margin:0;padding:0;}
+.VerticalFormContainer dt{ clear: left !important; }
+.itemRatingForm .itemRatingList { margin: 0px !important; }
+.selecionaOpiniaoProduto{ background:url(../images/transparent_star.png) left -1000px repeat-x; background-position:left bottom; }
+.Content .ProductList li { overflow: visible !important; }
+
+/********** CHECKOU CIELO **********/
+.checkout_cielo_parcelas_div{
+	width: 330px;
+	float: left;
+}
+
+.bandeirasLinks{
+	text-align: center;
+}
+
+.bandeirasLinks a{
+	padding: 2px;
+}
+
+.bandeirasLinks a:hover{
+	cursor: pointer;
+}
+
+#LoginButton{
+	cursor: pointer;
+}
+
+#LoginButton2{
+	cursor: pointer;
+}
+
+.checkou_cielo_payment_div{
+	width: 405px;
+	float: left;
+}
+
+#checkou_cielo_iframe{
+	display: none;
+}
+
+#checkou_cielo_iframe_ajax{
+	display: none;
+}
+
+.checkout_cielo_parcelas_div div #forma:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepBillingAddress input:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepBillingAddress label:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepShippingAddress input:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepShippingAddress label:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepShippingProvider input:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepShippingProvider label:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepConfirmation input:hover{
+	cursor: pointer;
+}
+
+#CheckoutStepConfirmation label:hover{
+	cursor: pointer;
+}
+
+.tituloGrupoMetodosPagamento{
+	background-color: #F5F5F5;
+    clear: left;
+    color: gray;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0 8px;
+    padding: 10px;
+    width: 405px;
+}
+
+.CheckoutRedeemCoupon { 
+	background: none repeat scroll 0 0 #DFEDF4;
+    border: 1px solid #C0DDEB;
+    float: left;
+    margin-left: 434px;
+    padding: 10px;
+    position: absolute;
+    width: 300px;
+}
+
+#provider_list ul li.opcoesGrupoMetodosPagamento{
+	padding: 10px;
+	margin: 0 10px 5px;
+    text-align: center;
+}
+
+#provider_list ul li.opcoesGrupoMetodosPagamento:hover{
+	cursor: pointer;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
+	background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;
+}
+
+#provider_list ul li.opcoesGrupoMetodosPagamento label{
+	display: block;
+}
+
+.itemMetodoPagamentoSelecionado{
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
+	background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;
+}
+
+.nomeMetodoPagamentoSelecionado{
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.imagemMetodoPagamento{
+	clear: left;
+	margin: 0 auto 7px;
+}
+
+.checkout_metodo_boletobradesco{
+	width: 35px;
+	height: 35px;
+	background: url(../img/bandeiras/banco_bradesco.png);
+}
+
+.checkout_metodo_boletobancodobrasil{
+	width: 35px;
+	height: 35px;
+	background: url(../img/bandeiras/banco_brasil.png);
+}
+
+.checkout_metodo_boletoitau{
+	width: 35px;
+	height: 35px;
+	background: url(../img/bandeiras/banco_itau.png);
+}
+
+/*
+.checkout_metodo_boletoreal{
+	width: 35px;
+	height: 35px;
+	background: url(../img/bandeiras/);
+}
+*/
+
+.checkout_metodo_cheque{
+	width: 90px;
+	height: 44px;
+	background: url(../img/bandeiras/cheque.png);
+}
+
+.checkout_metodo_cielo{
+	width: 40px;
+	height: 80px;
+	background: url(../img/bandeiras/cielo.png);
+}
+
+.checkout_metodo_deposito{
+	width: 70px;
+	height: 25px;
+	background: url(../img/bandeiras/deposito.png);
+}
+
+.checkout_metodo_dinheiromail{
+	width: 90px;
+	height: 25px;
+	background: url(../img/bandeiras/dinheiro_mail.png);
+}
+
+.checkout_metodo_f2b{
+	width: 40px;
+	height: 25px;
+	background: url(../img/bandeiras/f2b.png);
+}
+
+.checkout_metodo_mercadopago{
+	width: 70px;
+	height: 25px;
+	background: url(../img/bandeiras/mercado_pago.png);
+}
+
+.checkout_metodo_moip{
+	width: 70px;
+	height: 25px;
+	background: url(../img/bandeiras/moip.png);
+}
+
+.checkout_metodo_pagamentodigital{
+	width: 90px;
+	height: 25px;
+	background: url(../img/bandeiras/pagamento_digital.png);
+}
+
+.checkout_metodo_pagseguro{
+	width: 90px;
+	height: 25px;
+	background: url(../img/bandeiras/pagseguro.png);
+}
+
+.checkout_metodo_paypal{
+	width: 60px;
+	height: 20px;
+	margin-top: 5px;
+	background: url(../img/bandeiras/paypal.png);
+}
+
+li.itemVariationProduct {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid gray;
+    color: #000000;
+    float: left;
+    font-weight: bold;
+    margin: 10px 5px;
+    min-width: 15px;
+    padding: 7px;
+    text-align: center;
+}
+
+li.itemVariationProduct:hover {
+	cursor: pointer;
+	background-color: #e1e1e1;
+}
+
+li.itemVariationAttribute{
+	float: left;
+    border: 1px solid gray;
+    padding: 7px;
+	margin: 5px;
+}
+
+li.itemVariationAttribute:hover{
+	cursor: pointer;
+	background-color: #e1e1e1;
+}
+
+div.itemVariationImageProductDiv{
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+}
+
+div.itemVariationImageProductDiv span{
+	display: block;
+    margin-top: 5px;
+}
+
+.itemVariationProductSelected{
+	border: 1px solid #000000 !important;
+	border-right: 2px solid #000000 !important;
+	border-bottom: 2px solid #000000 !important;
+	background-color: #e1e1e1 !important;
+}
+
+.itemVariationProductDisabled{
+	cursor: default !important;
+	color: silver !important;
+	border: 1px solid #F5F5F5 !important;
+	background: url("../img/ico_x.png") no-repeat bottom right #F9F9F9 !important;
+}
+
+.labelAtributosProdutoDiv{
+	width: 100%;
+	padding: 10px 0 2px;
+	background-color: #F8F8F8;
+	color: #000000
+	font-weight: bold;
+}
+
+#atributosProdutoDiv{
+	padding: 5px 0;
+}
+
+#qtdeEstoqueAtributosDiv{
+	float: right;
+	color: #666666;
+	padding: 5px;
+	font-weight: bold;
+}
+
+li.separador_links_footer{
+	background-color: gray;
+    height: 15px;
+    margin-top: 5px !important;
+    width: 1px !important;
+}
+
+.desenvolvido_por_edazcommerce{
+	color: #000000;
+    font-family: Verdana;
+    font-size: 11px;
+    font-style: italic;
+    position: relative;
+    top: -6px;
+}
+
+/******* LISTAGEM DE PRODUTOS - VITRINE *******/
+.ProductDetails { margin-bottom: 10px; }
+.ProductList { margin:0; padding:22px;}
+.ProductList .ProductDetails a { color: #555555; font-family: Tahoma; font-size: 14px; font-weight: bold; text-decoration: none;}
+.ProductList li { list-style:none; float:left;  color:#484747; width:33%; text-align:center; height:auto; min-height: 250px; padding: 5px 0;}
+.ProductList li .price_old { color: #B2B2B2; float: left; font-family: Tahoma; font-size: 14px; font-weight: bold; width: 100%;}
+.ProductList li .price_old label { color: #B2B2B2; font-size: 11px; position: relative; }
+.ProductList li .price_current { color: #993366; float: left; font-family: Tahoma; font-size: 18px; font-weight: bold; width: 100%;}
+.ProductList li .price_current label { color: #993366; font-size: 11px; position: relative; }
+.ProductList li.categoriaList .price_current label { top: 0px; }
+.ProductList li em  { font-style:normal; font-weight:bold; font-size:11px; color:#C00; float:left; width:100% }
+.ProductList li em .YouSave { color: #D04AA3; font-size: 10px; font-style: normal; font-weight: bold; }
+.ProductList li em b { color:#ed3006}
+.ProductList li .Titulo a { color:#484747; text-decoration:none; font-weight:bold }
+.ProductPriceRating { margin: 5px 0; }
+.produto_indisponivel{ bottom: 0; color: #FF4748; font-weight: bold; margin: 15px auto; position: absolute; width: 200px; }
+.ProductList .parcelamento_label_produto{ color: gray;	font-family: Tahoma;	font-size: 12px; }
+.ProductList .parcelamento_label_produto destaque{	color: #D04AA3;	font-family: Tahoma;	font-size: 12px; font-weight: bold; }
+.PrimaryProductDetails .YouSave { font-weight: bold; margin-top: 3px; display: block; }
+.top_imagem_produto_div{ width: 177px; height: 18px; background: url(../images/top_imagem_produto.png) no-repeat; }
+.middle_imagem_produto_div{ width: 177px; height: auto;	position: relative; text-align: center; padding: 4px; background: url(../images/middle_imagem_produto.png) repeat-y; }
+.bottom_imagem_produto_div{	width: 177px; height: 40px;	background: url(../images/bottom_imagem_produto.png) no-repeat; }
+.ProductList .middle_imagem_produto_div .ProductDetails{ margin-bottom: 5px; }
+#SideCartContents .ProductList li { min-height: 0px; }
+
+#HomeFeaturedProducts .ProductList .middle_imagem_produto_div,
+#HomeNewProducts .ProductList .middle_imagem_produto_div,
+#CategoryContent .ProductList .middle_imagem_produto_div,
+#BrandContent .ProductList .middle_imagem_produto_div,
+#AccountRecentItems .ProductList .middle_imagem_produto_div,
+#SuggestiveCartContent .ProductList .middle_imagem_produto_div,
+#SimilarProductsByCustomerViews .ProductList .middle_imagem_produto_div
+{
+	min-height: 295px;
+}
+
+#HomeFeaturedProducts .ProductList .ProductActionAdd,
+#HomeNewProducts .ProductList .ProductActionAdd,
+#CategoryContent .ProductList .ProductActionAdd,
+#BrandContent .ProductList .ProductActionAdd,
+#AccountRecentItems .ProductList .ProductActionAdd,
+#SuggestiveCartContent .ProductList .ProductActionAdd,
+#SimilarProductsByCustomerViews .ProductList .ProductActionAdd
+{
+	left: 35px;
+	bottom: -25px;
+    display: block;
+	z-index: 1;
+    position: absolute;
+}
+
+#HomeFeaturedProducts .ProductList .ProductImage,
+#HomeNewProducts .ProductList .ProductImage,
+#CategoryContent .ProductList .ProductImage,
+#BrandContent .ProductList .ProductImage,
+#AccountRecentItems .ProductList .ProductImage,
+#SuggestiveCartContent .ProductList .ProductImage,
+#SimilarProductsByCustomerViews .ProductList .ProductImage
+{
+	width: 175px !important;
+}
+
+/******* PRE�O - TELA DE PRODUTO *******/
+#ProductDetails .ProductPrice .price_current label { display: none; }
+#ProductDetails .ProductPrice .price_current { color: #993366; float: left; font-family: Tahoma; font-size: 18px; font-weight: bold; width: 100%; margin-top: -5px; }
+#ProductDetails .ProductDetailsGrid div { margin-bottom: 3px; }
+#ProductDetails .RetailPrice strike { color: #B2B2B2; float: left; font-family: Tahoma; font-size: 14px; font-weight: bold; width: 100%; margin-top: -2px; }
+
+/******* DEGRADE NOS PRODUTOS - HOME *******/
+#HomeFeaturedProducts .ProductList .ProductImage,
+#HomeFeaturedProducts .ProductList .ProductDetails,
+#HomeFeaturedProducts .ProductList .ProductCompareButton,
+#HomeFeaturedProducts .ProductList .ProductPriceRating,
+#HomeFeaturedProducts .ProductList .parcelamentoProdutoDiv,
+#HomeNewProducts .ProductList .ProductImage,
+#HomeNewProducts .ProductList .ProductDetails,
+#HomeNewProducts .ProductList .ProductCompareButton,
+#HomeNewProducts .ProductList .ProductPriceRating,
+#HomeNewProducts .ProductList .parcelamentoProdutoDiv,
+#CategoryContent .ProductList .ProductImage,
+#CategoryContent .ProductList .ProductCompareButton, 
+#CategoryContent .ProductList .ProductPriceRating, 
+#CategoryContent .ProductList .ProductDetails,
+#CategoryContent .ProductList .parcelamentoProdutoDiv,
+#BrandContent .ProductList .ProductImage,
+#BrandContent .ProductList .ProductDetails,
+#BrandContent .ProductList .ProductCompareButton,
+#BrandContent .ProductList .ProductPriceRating,
+#BrandContent .ProductList .parcelamentoProdutoDiv,
+#AccountRecentItems .ProductList .ProductImage,
+#AccountRecentItems .ProductList .ProductDetails,
+#AccountRecentItems .ProductList .ProductCompareButton,
+#AccountRecentItems .ProductList .ProductPriceRating,
+#AccountRecentItems .ProductList .parcelamentoProdutoDiv,
+#SuggestiveCartContent .ProductList .ProductImage,
+#SuggestiveCartContent .ProductList .ProductDetails,
+#SuggestiveCartContent .ProductList .ProductCompareButton,
+#SuggestiveCartContent .ProductList .ProductPriceRating,
+#SuggestiveCartContent .ProductList .parcelamentoProdutoDiv,
+#SimilarProductsByCustomerViews .ProductList .ProductImage,
+#SimilarProductsByCustomerViews .ProductList .ProductDetails,
+#SimilarProductsByCustomerViews .ProductList .ProductCompareButton,
+#SimilarProductsByCustomerViews .ProductList .ProductPriceRating,
+#SimilarProductsByCustomerViews .ProductList .parcelamentoProdutoDiv
+{
+	z-index: 1; 
+	position: relative
+}
+
+.fundoDegradeProduct{
+	bottom: -40px; clear: right; height: 220px; left: 3px; position: absolute; width: 172px; z-index: 0; display: none; border-radius: 8px; opacity: 0.4;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#fcc8ea)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#fcc8ea);
+	background: -moz-linear-gradient(top, #FFFFFF, #fcc8ea) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#fcc8ea)) repeat-X;
+}
+#HomeFeaturedProducts .ProductList li:hover .fundoDegradeProduct { display: block; }
+#HomeNewProducts .ProductList li:hover .fundoDegradeProduct { display: block; }
+#CategoryContent .ProductList li:hover .fundoDegradeProduct { display: block; }
+#BrandContent .ProductList li:hover .fundoDegradeProduct { display: block; }
+#AccountRecentItems .ProductList li:hover .fundoDegradeProduct { display: block; }
+#SuggestiveCartContent .ProductList li:hover .fundoDegradeProduct { display: block; }
+#SimilarProductsByCustomerViews .ProductList li:hover .fundoDegradeProduct { display: block; }
+
+/******* P�GINA DO PRODUTO *******/
+#informacoesProdutoTD2 .YouSave{ color: #FF4748; display: inline; font-size: 12px; left: 5px; position: relative; top: 10px; }
+#informacoesProdutoTD2 .price_old { float: left; color: #B2B2B2; font-family: Tahoma; font-size: 18px; font-weight: normal; width: 100%;}
+#informacoesProdutoTD2 .price_old label { color: #B2B2B2; font-size: 13px; position: relative; top: 5px;}
+#informacoesProdutoTD2 .price_current { color: #D04AA3; float: left; font-family: Tahoma; font-size: 22px; font-weight: bold; width: auto;}
+#informacoesProdutoTD2 .price_current label { color: #D04AA3; font-size: 15px; position: relative; top: 6px;}
+
+/******* CADASTRO DO CLIENTE *******/
+#CreateAccountForm .FormContainer dd,
+#NewBillingAddress .FormContainer dd { margin-left: 140px !important; }
+
+#CreateAccountForm .FormContainer p.Submit { margin-left: 280px; margin-top: 0px; }
+
+#CreateAccountForm .FormContainer dl dt,
+#NewBillingAddress .FormContainer dl dt { margin-top: 12px; }
+
+#CreateAccountForm .FormContainer dl dd,
+#NewBillingAddress .FormContainer dl dd { margin-top: 3px; }
+
+/*#CreateAccountForm .FormContainer dl dt span { font-weight: bold; }*/
+
+#CreateAccountForm .FormContainer dl dd input.FormField,
+#NewBillingAddress .FormContainer dl dd input.FormField {
+	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 20px; padding: 2px 3px; width: 220px; margin-top: 2px;
+}
+
+#CreateAccountForm .FormContainer dl dd select,
+#NewBillingAddress .FormContainer dl dd select {
+	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 28px; padding: 2px 3px; width: 230px; margin-top: 2px;
+}
+
+#CreateAccountForm .FormContainer dl dd input:focus,
+#NewBillingAddress .FormContainer dl dd input:focus {
+	background-color: #EFD4E5;
+}
+
+#CreateAccountForm .FormContainer dl dd select:focus,
+#NewBillingAddress .FormContainer dl dd select:focus {
+	background-color: #EFD4E5;
+}
+
+.displayNone { display: none; }
+.width600 { width: 600px !important; }
+.ProductCompareButton input, label { cursor: pointer; }
