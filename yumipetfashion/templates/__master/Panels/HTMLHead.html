@@ -1,0 +1,100 @@
+<head>
+	<script>
+		var urlWebsite  = '%%GLOBAL_ShopPathNormal%%';
+		var urlTemplate = '%%GLOBAL_TPL_PATH%%'; 
+	</script>
+	
+	%%GLOBAL_OptimizerControlScript%%
+
+	<title>%%Page.WindowTitle%%</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=%%GLOBAL_CharacterSet%%" />
+	<meta name="description" content="%%Page.MetaDescription%%" />
+	<meta name="keywords" content="%%Page.MetaKeywords%%" />
+	%%GLOBAL_AdditionalMetaTags%%
+	%%Page.CanonicalLink%%
+	%%Page.Robots%%
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<link rel="shortcut icon" href="%%GLOBAL_Favicon%%" />
+
+	%%GLOBAL_Stylesheets%%
+
+	<!-- Tell the browsers about our RSS feeds -->
+	%%GLOBAL_HeadRSSLinks%%
+
+	<!-- Include visitor tracking code (if any) -->
+	%%GLOBAL_TrackingCode%%
+
+	%%GLOBAL_DesignModeStyleSheet%%
+
+	%%GLOBAL_HeaderImageStyle%%
+	
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/jquery.js?%%GLOBAL_JSCacheToken%%"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/menudrop.js?%%GLOBAL_JSCacheToken%%"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/common.js?%%GLOBAL_JSCacheToken%%"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/iselector.js?%%GLOBAL_JSCacheToken%%"></script>
+
+	<!-- MENU HORIZONTAL -->
+	<link rel="stylesheet" type="text/css" href="%%GLOBAL_TPL_PATH%%/Styles/ddsmoothmenu.css" />
+	<link rel="stylesheet" type="text/css" href="%%GLOBAL_TPL_PATH%%/Styles/ddsmoothmenu-v.css" />
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/ddsmoothmenu.js"></script>
+
+	<!-- INCLUDE'S EDAZCOMMERCE -->
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/edazcommerce.js?%%GLOBAL_JSCacheToken%%"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/javascript/jquery.maskedinput-1.1.4.pack.js?%%GLOBAL_JSCacheToken%%"></script>
+	
+	<!-- SLIDER TEXT-->
+	<link rel="stylesheet" type="text/css" media="all" href="%%GLOBAL_TPL_PATH%%/Styles/anythingslider.css"/>
+	<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.accordion.js"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.anythingslider.js"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.anythingslider.fx.js"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.ui.totop.js"></script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/font/cufon-yui.js"></script>
+	
+	<script type="text/javascript">
+	//<![CDATA[
+	config.ShopPath = '%%GLOBAL_ShopPath%%';
+	config.AppPath = '%%GLOBAL_AppPath%%';
+	var ThumbImageWidth = %%GLOBAL_ProductThumbImageWidth%%;
+	var ThumbImageHeight = %%GLOBAL_ProductThumbImageHeight%%;
+	//]]>
+	</script>
+	%%GLOBAL_AdditionalScriptTags%%
+	%%GLOBAL_QuickSearchJS%%
+	%%GLOBAL_RTLStyles%%
+	
+	
+	<!--modificacoes-->
+	<script type="text/javascript">
+		var Frete = {
+			Abrir: function(itemId)
+			{
+				$.iModal({
+					type: 'ajax',
+					url: '%%GLOBAL_ShopPath%%/remote.php?w=simularfrete&id='+itemId
+				});
+			}
+		};
+		var Parcelas = {
+			Abrir: function(itemId)
+			{
+				$.iModal({
+					type: 'ajax',
+					url: '%%GLOBAL_ShopPath%%/remote.php?w=simularparcelas&id='+itemId
+				});
+			}
+		};
+		var Indique = {
+			Abrir: function(itemId)
+			{
+				$.iModal({
+					type: 'ajax',
+					url: '%%GLOBAL_ShopPath%%/remote.php?w=recomendar&id='+itemId
+				});
+			}
+		};
+	</script>
+	<script type="text/javascript" src="%%GLOBAL_ShopPath%%/modificacoes/popups.js"></script>
+	
+</head>

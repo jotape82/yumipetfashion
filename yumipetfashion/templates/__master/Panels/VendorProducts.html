@@ -1,0 +1,25 @@
+<div class="Block Moveable Panel" id="VendorProducts">
+	%%SNIPPET_CategorySortBox%%
+	<h2>%%GLOBAL_VendorName%%</h2>
+	<div class="BlockContent">
+		%%SNIPPET_ProductPaging%%
+
+		<script type="text/javascript">
+		lang.CompareSelectMessage = '%%LNG_CompareSelectMessage%%';
+		</script>
+
+		<form name="frmCompare" id="frmCompare" action="javascript: return;" method="get">
+			<ul class="ProductList TaggedProductsList">
+				%%SNIPPET_VendorProducts%%
+			</ul>
+
+			<br class="Clear" />
+			<div class="CompareButton" style="display: %%GLOBAL_HideCompareItems%%">
+				<input type="image" value="%%LNG_CompareSelected%%" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/CompareButton.gif" onclick="return compareProducts('%%GLOBAL_CompareLink%%'); compareProductSubmit();"/>
+			</div>
+		</form>
+		<div class="PagingBottom">
+			%%SNIPPET_ProductPaging%%
+		</div>
+	</div>
+</div>

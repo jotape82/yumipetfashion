@@ -1,0 +1,57 @@
+<script type="text/javascript">
+//<![CDATA[
+	/* Make sure the login fields are filled in */
+	function check_login_form(form) {
+		var nomeInput,
+			login_email,
+			login_pass;
+		
+		$(form).find('input').each(function(){
+			nomeInput = $(this).attr('name');
+			switch(nomeInput){
+				case "login_email":
+					login_email = $(this);
+					break;
+				case "login_pass":
+					login_pass  = $(this);
+					break;
+			}
+		});
+		
+		if($(login_email).val().indexOf("@") == -1 || $(login_email).val().indexOf(".") == -1) {
+			alert("%%LNG_LoginEnterValidEmail%%");
+			$(login_email).focus();
+			$(login_email).select();
+			return false;
+		}
+
+		if($(login_pass).val().length == 0) {
+			alert("%%LNG_LoginEnterPassword%%");
+			$(login_pass).focus();
+			return false;
+		}
+
+		return true;
+
+		/*
+		var login_email = g("login_email");
+		var login_pass = g("login_pass");
+
+		if(login_email.value.indexOf("@") == -1 || login_email.value.indexOf(".") == -1) {
+			alert("%%LNG_LoginEnterValidEmail%%");
+			login_email.focus();
+			login_email.select();
+			return false;
+		}
+
+		if(login_pass.value == "") {
+			alert("%%LNG_LoginEnterPassword%%");
+			login_pass.focus();
+			return false;
+		}
+
+		return true;
+		*/
+	}
+//]]>
+</script>

@@ -1,0 +1,29 @@
+<ul id="newsslider">
+	<li>
+		<div class="bannerHomeWidth bannerHomeSlider1"></div>
+	</li>
+	<li>
+		<div class="bannerHomeWidth bannerHomeSlider2"></div>
+	</li>
+	<li>
+		<div class="bannerHomeWidth bannerHomeSlider3"></div>
+	</li>
+</ul>
+
+<script>
+	var $ = jQuery.noConflict();
+	
+	$(document).ready(function(){
+		$().UItoTop({easingType: 'easeOutQuart'});
+	});
+	
+	$(document).ready( function(){
+		$('#newsslider').anythingSlider({
+			enableArrows : true,
+			autoPlay : true,
+			autoPlayLocked : true,
+			pauseOnHover : true,
+			height: 380
+		});
+	});
+</script>

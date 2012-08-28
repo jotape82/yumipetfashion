@@ -1,0 +1,109 @@
+#menuVertical{
+	z-index: 2; 
+	margin-top: -20px;
+	position: relative; 
+}
+
+.subCategoriaMenuVertical{
+	top: -3px !important;
+	left: 167px !important;
+	/*left: 167px\9 !important;*/
+	width: auto !important;
+}
+
+.ddsmoothmenu-v ul{
+margin: 0px;
+padding: 0 !important;
+width: 167px; /* Main Menu Item widths */
+list-style-type: none;
+font: bold 12px Verdana;
+
+/*box-shadow: 5px 1px 17px -3px gray;
+box-shadow: none\9;
+border-bottom: 1px solid gray\9;
+*/
+}
+
+.ddsmoothmenu-v ul .separador_vertical{
+width: auto;
+height: 7px;
+background: url(../img/layout/menu/separador_menu_vertical.png) repeat-x;
+}
+
+.ddsmoothmenu-v ul li ul .separador_vertical{
+width: auto;
+}
+ 
+.ddsmoothmenu-v ul li{
+position: relative;
+width: 167px;
+}
+
+.ddsmoothmenu-v ul .separador_vertical{
+width: 161px;
+height: 3px;
+background: url(../img/layout/separador_menu_vertical.png) repeat-x;
+}
+
+.ddsmoothmenu-v ul li ul .separador_vertical{
+width: auto;
+}
+
+/* Top level menu links style */
+.ddsmoothmenu-v ul li a{
+display: block;
+overflow: auto; /*force hasLayout in IE7 */
+color: #fff !important;
+text-decoration: none;
+padding: 3px 0px;
+/*border-bottom: 1px solid #778;*/
+width: 167px;
+text-transform: capitalize;
+}
+
+.ddsmoothmenu-v ul li a:link, .ddsmoothmenu-v ul li a:visited, .ddsmoothmenu-v ul li a:active{
+background: #000000; /*background of menu items (default state)*/
+color: white;
+}
+
+.ddsmoothmenu-v ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+background: silver; 
+color: #000 !important;
+}
+
+.ddsmoothmenu-v ul li a:hover{
+background: silver; /*background of menu items during onmouseover (hover state)*/
+color: #000 !important;
+}
+
+.ddsmoothmenu-v ul li a .rightarrowclass{
+right: 6px;
+top: 5px;
+position: absolute;
+}
+
+/*Sub level menu items */
+.ddsmoothmenu-v ul li ul{
+position: absolute;
+width: 170px; /*Sub Menu Items width */
+top: 0;
+font-weight: normal;
+visibility: hidden;
+margin: 3px 0px 0px 0 !important;
+border-bottom: none;
+}
+
+.ddsmoothmenu-v ul li ul li{
+margin-left: 0px !important;
+}
+
+.ddsmoothmenu-v ul li ul li a{
+width: auto;
+min-width: 140px;
+padding-left: 6px;
+}
+ 
+/* Holly Hack for IE \*/
+* html .ddsmoothmenu-v ul li { float: left; height: 1%; }
+* html .ddsmoothmenu-v ul li a { height: 1%; }
+/* End */

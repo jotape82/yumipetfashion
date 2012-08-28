@@ -1,0 +1,42 @@
+<div class="Block Moveable Panel" id="AccountRecentItems">
+	<h2>%%LNG_YouRecentlyViewed%%</h2>
+	<div class="BlockContent">
+		<div style="display: %%GLOBAL_HideRecentItemList%%">
+			<p class="InfoMessage">
+				%%LNG_AccountRecentItemsIntro%%
+			</p>
+
+			<script type="text/javascript">
+				lang.CompareSelectMessage = '%%LNG_CompareSelectMessage%%';
+			</script>
+			<form name="frmCompare" id="frmCompare" action="javascript: return;" method="get">
+				<ul class="ProductList">
+					%%SNIPPET_AccountRecentItems%%
+				</ul>
+				<br class="Clear" />
+				<div class="CompareButton" style="display:%%GLOBAL_HideCompareItems%%">
+					<input type="image" value="%%LNG_CompareSelected%%" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/CompareButton.gif" onclick="return compareProducts('%%GLOBAL_CompareLink%%'); compareProductSubmit();"/>
+				</div>
+			</form>
+		</div>
+
+		<p class="InfoMessage" style="display: %%GLOBAL_HideNoRecentItemsMessage%%">
+			%%LNG_AccountNoRecentItems%%
+		</p>
+	</div>
+</div>
+
+<script>
+	$('[alt=Comprar]').click(function(){
+		window.location = $(this).parent().attr('href');
+		return false;
+	});
+
+	function compareProductSubmit(){
+		var form;
+		
+		form 		= document.frmCompare;
+		form.action = "%%GLOBAL_CompareLink%%";
+		form.submit();
+	}
+</script>
