@@ -19,7 +19,7 @@
 	$GLOBALS['ISC_CFG']["StoreAddress"] = 'Rua Dino Bueno';
 	$GLOBALS['ISC_CFG']["LogoType"] = 'text';
 	$GLOBALS['ISC_CFG']["StoreLogo"] = '';
-	$GLOBALS['ISC_CFG']["ShopPath"] = 'http://localhost/yumipetfashion';
+	$GLOBALS['ISC_CFG']["ShopPath"] = 'http://localhost/edazcommerce/yumipetfashion';
 	$GLOBALS['ISC_CFG']["CharacterSet"] = 'ISO-8859-1';
 	$GLOBALS['ISC_CFG']["HomePagePageTitle"] = 'Yumi Pet Fashion - O Shopping do seu cachorro!';
 	$GLOBALS['ISC_CFG']["MetaKeywords"] = 'Pet shop, petshop, pet, pets, ra��o, cachorro, cachorros, caes, gato, gatos, felino, loja virtual, petshop virtual, aquarios, aves';
