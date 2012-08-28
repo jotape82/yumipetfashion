@@ -95,8 +95,8 @@ class PRODUCTS_PANEL extends PANEL
 		if (isId($row['prodvariationid']) || trim($row['prodconfigfields'])!='' || $row['prodeventdaterequired'] == 1) {
 			$GLOBALS['ProductURL'] = ProdLink($row['prodname']);
 			/* EDAZCOMMERCE */
-			$GLOBALS['ProductAddText'] = GetLang('ProductChooseOptionLink');
-			//$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/AddCartButton.gif" alt="Comprar" width="110"/>';
+			//$GLOBALS['ProductAddText'] = GetLang('ProductChooseOptionLink');
+			$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/ProductVariation.png" alt="Comprar" width="110" height="22"/>';
 		} else {
 			$GLOBALS['ProductURL'] = CartLink($row['productid']);
 			if ($GLOBALS['ProductPreOrder']) {
@@ -105,7 +105,7 @@ class PRODUCTS_PANEL extends PANEL
 				$GLOBALS['ProductAddText'] = GetLang('ProductAddToCartLink');
 			}
 			/* EDAZCOMMERCE */
-			$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/AddCartButton.gif" alt="Comprar" width="110"/>';
+			$GLOBALS['ProductAddText'] = '<input type="image" src="%%GLOBAL_IMG_PATH%%/%%GLOBAL_SiteColor%%/AddCartButton.gif" alt="Comprar" width="110" height="22"/>';
 		}
 		
 		if (CanAddToCart($row) && GetConfig('ShowAddToCartLink')) {
