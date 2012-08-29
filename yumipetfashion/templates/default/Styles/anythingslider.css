@@ -94,9 +94,8 @@ div.anythingSlider .anythingWindow {
 	left: 0;
 	margin: 0;
 	padding: 0;
-	height: 392px;
+	height: 362px;
 	width: 975px;
-	margin-top: 15px;
 }
 /* all panels inside the slider */
 .anythingBase .panel {
@@ -135,6 +134,7 @@ div.anythingSlider .anythingControls {
 	outline: 0; 
 	display: none;
 	width: 100%;
+	height: 0;
 }
 #main div.anythingSlider .anythingControls ul.thumbNav { margin-bottom: 0 !important; padding: 0; float: right; }
 div.anythingSlider .anythingControls ul.thumbNav li {display:block;float:left;}
