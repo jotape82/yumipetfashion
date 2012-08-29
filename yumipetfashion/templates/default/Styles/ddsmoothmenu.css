@@ -1,6 +1,9 @@
 #menuHorizontal{
-position: absolute;
+position: relative;
 width: 975px;
+height: 35px;
+float: left;
+clear: left;
 
 /* DEGRADÊ CSS */
 -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#555555)";
