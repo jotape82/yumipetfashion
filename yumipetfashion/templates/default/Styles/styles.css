@@ -286,10 +286,16 @@ hr {
 /* Header */
 
 #Header {
-	height: 57px;
 	clear: both;
-	margin: 0 0 1px 0;
-	padding-bottom: 12px;
+    float: left;
+    height: auto;
+    margin: 5px auto;
+    width: 100%;
+}
+
+.HeaderHomeBanner {
+	float: none !important;
+    margin: 0 auto -5px !important;
 }
 
 /* Logo */
@@ -2309,4 +2315,8 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 
 .bannerHomeSlider3{
 	background: url(../img/layout/banner/banner3.jpg) no-repeat;
+}
+
+.marginTop40{
+	margin-top: 40px !important;
 }
