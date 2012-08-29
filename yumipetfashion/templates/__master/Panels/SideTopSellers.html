@@ -6,3 +6,13 @@
 						</ul>
 					</div>
 				</div>
+				
+				<script>
+					$(document).ready(function(){
+						$('#SideTopSellers .ProductList li').each(function(i){
+							if($(this).html() == ''){
+								$(this).remove();
+							}
+						});
+					});
+				</script>
