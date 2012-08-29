@@ -2007,10 +2007,10 @@ p.QuantityInput, p.AddCartButton {
 
 .header_div2{
 	clear: left; margin: auto; width: 965px; padding: 8px 0 3px 10px; overflow: auto; position: relative;
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#555555)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#555555);
-	background: -moz-linear-gradient(top, #000000, #555555) repeat-X;
-	background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#555555)) repeat-X;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#666666)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#666666);
+	background: -moz-linear-gradient(top, #000000, #666666) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#666666)) repeat-X;
 }
 
 .header_div3{
