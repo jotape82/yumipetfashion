@@ -2300,6 +2300,10 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 	height: 370px;
 }
 
+.bannerHomeSliderWrapper li{
+	list-style: none !important;
+}
+
 .bannerHomeWidth{
 	height: 362px;
     width: 975px;
