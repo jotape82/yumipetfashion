@@ -3178,6 +3178,22 @@
 			GetLib("class.redirects");
 			ISC_REDIRECTS::checkRedirect($originalUri);
 		}
+		
+		/* EDAZCOMMERCE - BANNER ROTATIVO NA HOME */
+		if(strtolower($className) == 'isc_index'){
+			$GLOBALS['InsertBannerHome']   	  = '<div class="bannerHomeSliderWrapper">%%Panel.BannerHomeSlider%%</div>';
+			$GLOBALS['HeaderBannerHomeClass'] = 'HeaderHomeBanner';
+			
+			$javaScriptBannerHome = '
+				<link rel="stylesheet" type="text/css" media="all" href="%%GLOBAL_TPL_PATH%%/Styles/anythingslider.css"/>
+				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.accordion.js"></script>
+				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.anythingslider.js"></script>
+				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.anythingslider.fx.js"></script>
+				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.ui.totop.js"></script>
+				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/font/cufon-yui.js"></script>
+			';
+			$GLOBALS['JavaScriptBannerHome'] = $javaScriptBannerHome;			
+		}
 
 		$GLOBALS[$globalName] = GetClass($className);
 		$GLOBALS[$globalName]->HandlePage();
