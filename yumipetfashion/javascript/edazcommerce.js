@@ -410,12 +410,12 @@ function carregaUrl(url, height){
 		$('#Header').hide();
 		$('#bannerDIV').append($('#Header').html()); //Movendo BANNER
 		$('#iframeURL').css('height', height);
-		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 70}, 1500);
+		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 55}, 1500);
 		$('#iframeURL').fadeIn(1500, function(){
 			$('#iframeURL').attr('src', url);
 		});
 	}else{
-		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 70}, 1500);
+		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 55}, 1500);
 		$('#iframeURL').attr('src', url);
 		$('#iframeURL').css('height', height);
 	}
