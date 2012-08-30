@@ -2298,6 +2298,7 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 
 .bannerHomeSliderWrapper{
 	height: 370px;
+	visibility: hidden;
 }
 
 .bannerHomeSliderWrapper li{
@@ -2319,8 +2320,4 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 
 .bannerHomeSlider3{
 	background: url(../img/layout/banner/banner3.jpg) no-repeat;
-}
-
-.marginTop40{
-	margin-top: 40px !important;
 }

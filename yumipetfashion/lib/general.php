@@ -3189,7 +3189,6 @@
 				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.accordion.js"></script>
 				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.anythingslider.js"></script>
 				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.anythingslider.fx.js"></script>
-				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/jquery.ui.totop.js"></script>
 				<script type="text/javascript" src="%%GLOBAL_ShopPathNormal%%/javascript/slider/font/cufon-yui.js"></script>
 			';
 			$GLOBALS['JavaScriptBannerHome'] = $javaScriptBannerHome;			
