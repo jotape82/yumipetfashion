@@ -2200,7 +2200,7 @@ p.QuantityInput, p.AddCartButton {
 .BuscaTop { background:url(../img/layout/barra_buscar_header.png) no-repeat; width: 968px; height:36px; text-align:center; margin-bottom: 10px; margin: auto; }
 .BuscaTop form { height: 28px; margin: auto; text-align: left; width: 760px; }
 .BuscaTop form #search_query { background: none repeat scroll 0 0 transparent; border: medium none; color: #D04AA3; float: left; font-size: 16px; font-weight: bold; height: 22px; margin-left: 11px; margin-top: 6px; padding-left: 5px; width: 560px; }
-.BuscaTop form .BotaoBusca { background: none repeat scroll 0 0 transparent; border: 0 none; cursor: pointer; height: 30px; margin-left: 37px; width: 50px; }
+.BuscaTop form .BotaoBusca { background: none repeat scroll 0 0 transparent; border: 0 none; cursor: pointer; height: 30px; margin: 2px 0 0 44px; width: 50px; }
 
 .bannerTopo {
     background-image: url("../img/layout/banner/banner_topo.jpg");
