@@ -24,7 +24,7 @@
 			controls: true, // show left and right navigation buttons.
 			pager: false, // is there a page number navigation present?
 			interval: true, // move to another block on intervals.
-			intervaltime: 4000, // interval time in milliseconds.
+			intervaltime: 6000, // interval time in milliseconds.
 			rewind: false, // If interval is true and rewind is true it will play in reverse if the last slide is reached.
 			animation: true, // false is instant, true is animate.
 			duration: 1000, // how fast must the animation move in ms?

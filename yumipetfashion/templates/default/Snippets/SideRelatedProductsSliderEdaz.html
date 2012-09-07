@@ -1,0 +1,26 @@
+<li>
+	<div class="thumb">
+		<div class="ProductImage">
+			%%GLOBAL_ProductThumb%%
+		</div>
+		<div>
+			<input type="hidden" name="ProductDetailsID" class="ProductDetailsID" value="%%GLOBAL_ProductId%%" />
+			<strong><a href="%%GLOBAL_ProductLink%%">%%GLOBAL_ProductName%%</a></strong>
+			
+			<div class="ProductPriceRating">
+				<em>%%GLOBAL_ProductPrice%%</em>
+				<span class="Rating Rating%%GLOBAL_ProductRating%%"><img src="%%GLOBAL_IMG_PATH%%/IcoRating%%GLOBAL_ProductRating%%.gif" alt="" style="%%GLOBAL_HideProductRating%%" /></span>
+										
+				<!-- Parcelamento -->
+				<div class="parcelamentoProdutoDiv">
+					%%GLOBAL_ProDestaques%%
+					%%GLOBAL_FreteDestaques%%
+				</div>
+			</div>
+			
+			<div class="ProductActionAdd" style="display:%%GLOBAL_HideActionAdd%%;">
+				<a href="%%GLOBAL_ProductURL%%">%%GLOBAL_ProductAddText%%</a>
+			</div>
+		</div>
+	</div>
+</li>

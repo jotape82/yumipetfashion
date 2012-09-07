@@ -2235,7 +2235,7 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 }
 #SideTopSellers .ProductList .ProductActionAdd{
 	position: absolute;
-	bottom: 25px;
+	bottom: 10px;
 	left: 15px;
 }
 
