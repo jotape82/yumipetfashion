@@ -388,7 +388,8 @@ li.separador_links_footer{
 #BrandContent .ProductList .ProductImage,
 #AccountRecentItems .ProductList .ProductImage,
 #SuggestiveCartContent .ProductList .ProductImage,
-#SimilarProductsByCustomerViews .ProductList .ProductImage
+#SimilarProductsByCustomerViews .ProductList .ProductImage,
+.sliderCarouselProdutosRelacionados .ProductList .ProductImage
 {
 	width: 175px !important;
 }
@@ -437,7 +438,7 @@ li.separador_links_footer{
 #SimilarProductsByCustomerViews .ProductList .parcelamentoProdutoDiv
 {
 	z-index: 1; 
-	position: relative
+	position: relative;
 }
 
 .fundoDegradeProduct{
@@ -455,7 +456,7 @@ li.separador_links_footer{
 #SuggestiveCartContent .ProductList li:hover .fundoDegradeProduct { display: block; }
 #SimilarProductsByCustomerViews .ProductList li:hover .fundoDegradeProduct { display: block; }
 
-/******* Pï¿½GINA DO PRODUTO *******/
+/******* PÁGINA DO PRODUTO *******/
 #informacoesProdutoTD2 .YouSave{ color: #FF4748; display: inline; font-size: 12px; left: 5px; position: relative; top: 10px; }
 #informacoesProdutoTD2 .price_old { float: left; color: #B2B2B2; font-family: Tahoma; font-size: 18px; font-weight: normal; width: 100%;}
 #informacoesProdutoTD2 .price_old label { color: #B2B2B2; font-size: 13px; position: relative; top: 5px;}
@@ -500,41 +501,28 @@ li.separador_links_footer{
 .width600 { width: 600px !important; }
 .ProductCompareButton input, label { cursor: pointer; }
 
-/* CAROUSEL (HORIZONTAL) */
-.sliderCarouselMarcas { /*height: 1%;*/ overflow:hidden; padding: 0 0 10px; float: left; clear: left;  }
-.sliderCarouselMarcas .viewport { float: left; width: 550px; height: 110px; overflow: hidden; position: relative; border-radius: 10px; /*background-color: #F7F7F7;*/
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
-	background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;	
- }
-.sliderCarouselMarcas .buttons { background:url("../images/carousel-buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 50px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
-.sliderCarouselMarcas .buttons:hover { background-image:url("../images/carousel-buttons-hover.png"); }
+.marginBottom20{
+	margin-bottom: 20px;
+}
+
+/* CAROUSEL - ATRIBUTOS GENÉRICOS */
+.sliderCarousel .viewport ul { position: relative; }
+.sliderCarousel { /*height: 1%;*/ overflow:hidden; padding: 0 0 10px; float: left; clear: left;  }
+.sliderCarousel .buttons { background:url("../images/carousel-buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 50px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+.sliderCarousel .buttons:hover { background-image:url("../images/carousel-buttons-hover.png"); }
+.sliderCarousel .disable { visibility: hidden; }
+
+/* CAROUSEL - SLIDER MARCAS */
+.sliderCarouselMarcas .viewport { float: left; width: 550px; height: 110px; overflow: hidden; position: relative; border-radius: 10px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)"; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1); background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X; background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X; }
 .sliderCarouselMarcas .prev { position: absolute; margin: 35px -15px; z-index: 10; }
 .sliderCarouselMarcas .next { position: absolute; margin: 35px 530px; background-position: 0 0;  }
-.sliderCarouselMarcas .disable { /*visibility: hidden;*/ }
+.sliderCarouselMarcas ul.sliderMarcas{ float: left; margin: 0; position: relative; padding: 5px 0; }
+.sliderCarouselMarcas ul.sliderMarcas li{ float: left; list-style: none; margin: 0 4px; text-align: center; width: 100px; border-radius: 10px; }
+.sliderCarouselMarcas ul.sliderMarcas li:hover{ border: 1px solid silver; margin: -1px 3px;	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#e1e1e1)"; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#e1e1e1); background: -moz-linear-gradient(top, #FFFFFF, #e1e1e1) repeat-X;	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#e1e1e1)) repeat-X; }
+.sliderCarouselMarcas ul.sliderMarcas li .imageMarcaDiv{ height: 63px; position: relative; }
+.sliderCarouselMarcas ul.sliderMarcas li .imageMarcaDiv img{ position: relative; width: 70px; min-height: 30px; max-height: 60px; }
 
-ul.sliderMarcas{
-	float: left; margin: 0; position: relative; padding: 5px 0;
-}
-
-ul.sliderMarcas li{
-	float: left; list-style: none; margin: 0 4px; text-align: center; width: 100px; border-radius: 10px;
-}
-
-ul.sliderMarcas li:hover{
-	border: 1px solid silver;
-	margin: -1px 3px;
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#e1e1e1)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#e1e1e1);
-	background: -moz-linear-gradient(top, #FFFFFF, #e1e1e1) repeat-X;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#e1e1e1)) repeat-X;
-}
-
-ul.sliderMarcas li .imageMarcaDiv{
-	height: 63px; position: relative;
-}
-
-ul.sliderMarcas li .imageMarcaDiv img{
-	position: relative; width: 70px; min-height: 30px; max-height: 60px;
-}
+/* CAROUSEL - SLIDER PRODUTOS RELACIONADOS */
+.sliderCarouselProdutosRelacionados .viewport { float: left; width: 560px; height: 310px; overflow: hidden; position: relative; border-radius: 10px; }
+.sliderCarouselProdutosRelacionados .prev { position: absolute; margin: 80px -15px; z-index: 10; }
+.sliderCarouselProdutosRelacionados .next { position: absolute; margin: 80px 530px; background-position: 0 0;  }

@@ -14,7 +14,8 @@ class ISC_SIDEPRODUCTRELATED_PANEL extends PRODUCTS_PANEL
 			return;
 		}
 
-		$output = "";
+		$output 		  = "";
+		$outputSliderEdaz = "";
 
 		if(!getProductReviewsEnabled()) {
 			$GLOBALS['HideProductRating'] = "display: none";
@@ -26,10 +27,17 @@ class ISC_SIDEPRODUCTRELATED_PANEL extends PRODUCTS_PANEL
 		$GLOBALS['AlternateClass'] = '';
 		while($row = $GLOBALS['ISC_CLASS_DB']->Fetch($result)) {
 			$this->setProductGlobals($row);
-			$output .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("SideRelatedProducts");
+			
+			//modificacao parcelamento
+			$GLOBALS['FreteDestaques'] = FreteTipo($row['productid']);
+			$GLOBALS['ProDestaques']   = simulador_de_rodape($row['productid']);
+			
+			$output 		  .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("SideRelatedProducts");
+			$outputSliderEdaz .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("SideRelatedProductsSliderEdaz");
 		}
 
-		$GLOBALS['SNIPPETS']['SideProductsRelated'] = $output;
+		$GLOBALS['SNIPPETS']['SideProductsRelated'] 		  = $output;
+		$GLOBALS['SNIPPETS']['SideProductsRelatedSliderEdaz'] = $outputSliderEdaz;
 
 		if(!$output) {
 			$this->DontDisplay = true;
