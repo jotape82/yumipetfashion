@@ -61,10 +61,11 @@
 		});
 		qtdeMenuWidthLI = qtdeMenuWidthLI + ($('.ddsmoothmenu ul').eq(0).children('li').size() * 9); // Somando a Largura dos Separadores das Categorias
 		if(!(qtdeMenuWidthLI > 1000)){
+			/* DESCOMENTAR QUANDO LOJA NO AR
 			if($.browser.msie)	 { complementoBrowser = -30; } //Se for IE
 			if($.browser.mozilla){ complementoBrowser = -50; } //Se for Mozzila
 			if($.browser.webkit) { complementoBrowser = 10;  } //Se for Webkit
-			
+			*/
 			$('#menuHorizontal ul').eq(0).css('margin','auto').css('width',qtdeMenuWidthLI+complementoBrowser);
 		}
 		
