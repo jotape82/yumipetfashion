@@ -172,6 +172,11 @@ $(document).ready(function() {
 		
 	});
 	
+	/* SLIDER */
+	if(jQuery('.sliderCarousel').length != 0){
+		jQuery('.sliderCarousel').tinycarousel({start: 2});
+	}
+	
 });
 
 /* ===== INICIO - BUSCA POR CEP ===== */
