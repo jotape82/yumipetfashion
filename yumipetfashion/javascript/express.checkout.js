@@ -106,7 +106,7 @@ var ExpressCheckout = {
 		});
 		
 		/* ===== INICIO - BUSCA POR CEP ===== */
-		$('#FormField_8').blur(function(event){
+		$('#FormField_9').blur(function(event){
 			var cep = $.trim($(this).val()).replace('-', '').replace('_', '');
 			if(cep != "" && cep.length == 8){
 				buscaCep($(this).val());

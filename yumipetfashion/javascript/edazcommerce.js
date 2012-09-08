@@ -75,7 +75,7 @@ $(document).ready(function() {
 	/* ===== FIM - CHECKOUT CIELO ===== */
 	
 	/* ===== INICIO - BUSCA POR CEP ===== */
-	$('#FormField_8').blur(function(event){
+	$('#FormField_9').blur(function(event){
 		var cep = $.trim($(this).val()).replace('-', '').replace('_', '');
 		if(cep != "" && cep.length == 8){
 			buscaCep($(this).val());
@@ -186,29 +186,29 @@ function buscaCep(cep){
 	var arrayEstados 	   = new Array();
 		arrayEstados['AC'] = 'Acre';
 		arrayEstados['AL'] = 'Alagoas';
-		arrayEstados['AP'] = 'Amapá';
+		arrayEstados['AP'] = 'Amapa';
 		arrayEstados['AM'] = 'Amazonas';
 		arrayEstados['BA'] = 'Bahia';
-		arrayEstados['CE'] = 'Ceará';
+		arrayEstados['CE'] = 'Ceara';
 		arrayEstados['DF'] = 'Distrito Federal';
-		arrayEstados['ES'] = 'Espírito Santo';
-		arrayEstados['GO'] = 'Goiás';
-		arrayEstados['MA'] = 'Maranhão';
+		arrayEstados['ES'] = 'Espirito Santo';
+		arrayEstados['GO'] = 'Goias';
+		arrayEstados['MA'] = 'Maranhao';
 		arrayEstados['MT'] = 'Mato Grosso';
 		arrayEstados['MS'] = 'Mato Grosso do Sul';
 		arrayEstados['MG'] = 'Minas Gerais';
-		arrayEstados['PA'] = 'Pará';
-		arrayEstados['PB'] = 'Paraíba';
-		arrayEstados['PR'] = 'Paraná';
+		arrayEstados['PA'] = 'Para';
+		arrayEstados['PB'] = 'Paraiba';
+		arrayEstados['PR'] = 'Parana';
 		arrayEstados['PE'] = 'Pernambuco';
-		arrayEstados['PI'] = 'Piauí';
+		arrayEstados['PI'] = 'Piaui';
 		arrayEstados['RJ'] = 'Rio de Janeiro';
 		arrayEstados['RN'] = 'Rio Grande do Norte';
 		arrayEstados['RS'] = 'Rio Grande do Sul';
-		arrayEstados['RO'] = 'Rondônia';
-		arrayEstados['RR'] = 'Rorâima';
+		arrayEstados['RO'] = 'Rondonia';
+		arrayEstados['RR'] = 'Roraima';
 		arrayEstados['SC'] = 'Santa Catarina';
-		arrayEstados['SP'] = 'São Paulo';
+		arrayEstados['SP'] = 'Sao Paulo';
 		arrayEstados['SE'] = 'Sergipe';
 		arrayEstados['TO'] = 'Tocantins';
 	
