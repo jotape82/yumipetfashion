@@ -65,8 +65,14 @@ function buildFieldData($addressId=0, $customerId=0)
 		if (isc_strtolower($fields[$fieldId]->record['formfieldprivateid']) == 'savethisaddress' || isc_strtolower($fields[$fieldId]->record['formfieldprivateid']) == 'shiptoaddress') {
 			continue;
 		}
-
-		$html .= $fields[$fieldId]->loadForFrontend();
+		
+		//	lowercase the formfieldprivateid for conditional matching below
+		$formFieldPrivateId = strtolower($fields[$fieldId]->record['formfieldprivateid']);
+		
+		/* EDAZCOMMERCE - Setando o Atributo no Campo Para Tratamento em Tela */
+		$fields[$fieldId]->setAttributePrivateId($formFieldPrivateId);
+		
+		$html .= $fields[$fieldId]->loadForFrontend(); 
 	}
 
 	return $html;
@@ -199,7 +205,7 @@ function parseFieldData($fields, $formSessionId='')
 			$stateFieldId = $fieldId;
 		}
 	}
-
+	
 	$savedata['shipcustomerid'] = $GLOBALS['ISC_CLASS_CUSTOMER']->GetCustomerId();
 
 	/**
@@ -212,7 +218,7 @@ function parseFieldData($fields, $formSessionId='')
 	} else {
 		$savedata['shipstateid'] = 0;
 	}
-
+	
 	/**
 	 * Now save the form session record
 	 */
@@ -257,17 +263,21 @@ function convertAddressFieldsToArray($formFields)
 function getAddressFormMapping()
 {
 	return array(
-		'EmailAddress' => 'email',
-		'FirstName' => 'firstname',
-		'LastName' => 'lastname',
-		'CompanyName' => 'company',
-		'AddressLine1' => 'address1',
-		'AddressLine2' => 'address2',
-		'City' => 'city',
-		'State' => 'state',
-		'Country' => 'country',
-		'Zip' => 'zip',
-		'Phone' => 'phone',
+		'EmailAddress' 		=> 'email',
+		'FirstName' 		=> 'firstname',
+		'LastName' 			=> 'lastname',
+		'DataNascimento' 	=> 'datanascimento',
+		'Phone' 			=> 'phone',
+		'Zip' 				=> 'zip',
+		'CompanyName' 		=> 'company',
+		'AddressLine1' 		=> 'address1',
+		'AddressLine2' 		=> 'address2',
+		'Numero'			=> 'numero',
+		'Complemento'		=> 'complemento',
+		'Bairro'			=> 'bairro',
+		'City' 				=> 'city',
+		'State' 			=> 'state',
+		'Country' 			=> 'country',
 	);
 }
 /**

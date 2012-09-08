@@ -148,7 +148,7 @@ class ISC_ENTITY_BASE
 		}
 
 		$parsed = array();
-
+		
 		foreach ($input as $column => $value) {
 			if (!array_key_exists($column, $this->schema)) {
 				continue;
@@ -356,9 +356,10 @@ class ISC_ENTITY_BASE
 		if (trim($whereClause) == "" || !is_array($input)) {
 			return false;
 		}
-
+		
+		// ASSOCIA OS VALORES DO ARRAY AO CAMPO ESPECÍFICO DA TABELA NO BANCO
 		$savedata = $this->parseInput($input);
-
+		
 		if (!is_array($savedata)) {
 			return false;
 		}

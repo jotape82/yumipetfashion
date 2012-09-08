@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 21st Aug 2012 @ 4:52 AM
+	// Last Updated: 8th Sep 2012 @ 9:01 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -11,18 +11,18 @@
 	$GLOBALS['ISC_CFG']["dbType"] = 'mysql';
 	$GLOBALS['ISC_CFG']["dbEncoding"] = 'latin1';
 	$GLOBALS['ISC_CFG']["dbServer"] = 'localhost';
-	$GLOBALS['ISC_CFG']["dbUser"] = 'edazc709_yumipet';
-	$GLOBALS['ISC_CFG']["dbPass"] = 'yumipet2012';
-	$GLOBALS['ISC_CFG']["dbDatabase"] = 'edazc709_yumipetfashion2';
+	$GLOBALS['ISC_CFG']["dbUser"] = 'root';
+	$GLOBALS['ISC_CFG']["dbPass"] = '';
+	$GLOBALS['ISC_CFG']["dbDatabase"] = 'yumipetfashion';
 	$GLOBALS['ISC_CFG']["tablePrefix"] = 'isc_';
 	$GLOBALS['ISC_CFG']["StoreName"] = 'Yumi Pet Fashion';
-	$GLOBALS['ISC_CFG']["StoreAddress"] = 'Av. Senador FeijÃ³, 43 - Vila Mathias - Santos/SP';
+	$GLOBALS['ISC_CFG']["StoreAddress"] = 'Rua Dino Bueno';
 	$GLOBALS['ISC_CFG']["LogoType"] = 'text';
 	$GLOBALS['ISC_CFG']["StoreLogo"] = '';
-	$GLOBALS['ISC_CFG']["ShopPath"] = 'http://www.yumipetfashion.com.br';
+	$GLOBALS['ISC_CFG']["ShopPath"] = 'http://localhost/edazcommerce/lojavirtual/yumipetfashion';
 	$GLOBALS['ISC_CFG']["CharacterSet"] = 'ISO-8859-1';
-	$GLOBALS['ISC_CFG']["HomePagePageTitle"] = '';
-	$GLOBALS['ISC_CFG']["MetaKeywords"] = '';
+	$GLOBALS['ISC_CFG']["HomePagePageTitle"] = 'Yumi Pet Fashion - O Shopping do seu cachorro!';
+	$GLOBALS['ISC_CFG']["MetaKeywords"] = 'Pet shop, petshop, pet, pets, raï¿½ï¿½o, cachorro, cachorros, caes, gato, gatos, felino, loja virtual, petshop virtual, aquarios, aves';
 	$GLOBALS['ISC_CFG']["MetaDesc"] = '';
 	$GLOBALS['ISC_CFG']["DownloadDirectory"] = 'product_downloads';
 	$GLOBALS['ISC_CFG']["ImageDirectory"] = 'product_images';
@@ -61,9 +61,9 @@
 	$GLOBALS['ISC_CFG']["ShowAddToCartQtyBox"] = 1;
 	$GLOBALS['ISC_CFG']["CaptchaEnabled"] = 0;
 	$GLOBALS['ISC_CFG']["ShowCartSuggestions"] = 1;
-	$GLOBALS['ISC_CFG']["AdminEmail"] = 'admin@edazcommerce.com.br';
-	$GLOBALS['ISC_CFG']["OrderEmail"] = 'admin@edazcommerce.com.br';
-	$GLOBALS['ISC_CFG']['LowInventoryNotificationAddress'] = '';
+	$GLOBALS['ISC_CFG']["AdminEmail"] = 'atendimento@yumipetfashion.com.br';
+	$GLOBALS['ISC_CFG']["OrderEmail"] = 'atendimento@yumipetfashion.com.br';
+	$GLOBALS['ISC_CFG']['LowInventoryNotificationAddress'] = 'atendimento@yumipetfashion.com.br';
 	$GLOBALS['ISC_CFG']["ShowThumbsInCart"] = 1;
 	$GLOBALS['ISC_CFG']["AutoApproveReviews"] = 0;
 	$GLOBALS['ISC_CFG']["SearchSuggest"] = 1;
@@ -71,14 +71,14 @@
 
 	// Shipping Settings
 	$GLOBALS['ISC_CFG']["CompanyName"] = 'Yumi Pet Fashion';
-	$GLOBALS['ISC_CFG']["CompanyAddress"] = 'Av. Senador Feijó, 43 - Vila Mathias';
+	$GLOBALS['ISC_CFG']["CompanyAddress"] = 'Av. Senador Feijï¿½, 43 - Vila Mathias';
 	$GLOBALS['ISC_CFG']["CompanyCity"] = 'Santos';
 	$GLOBALS['ISC_CFG']["CompanyCountry"] = 'Brazil';
 	$GLOBALS['ISC_CFG']["CompanyState"] = 'S';
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_deposito,checkout_pagseguro';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_deposito,checkout_pagseguro';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;
@@ -106,7 +106,7 @@
 	$GLOBALS['ISC_CFG']["RSSProductSearches"] = 0;
 	$GLOBALS['ISC_CFG']["RSSLatestBlogEntries"] = 0;
 	$GLOBALS['ISC_CFG']["RSSItemsLimit"] = 10;
-	$GLOBALS['ISC_CFG']["RSSCacheTime"] = 60;
+	$GLOBALS['ISC_CFG']["RSSCacheTime"] = 0;
 	$GLOBALS['ISC_CFG']["RSSSyndicationIcons"] = 0;
 
 	$GLOBALS['ISC_CFG']['BackupsLocal'] = 1;
@@ -279,6 +279,7 @@
   1 => 'shippingOptions',
   2 => 'products',
   3 => 'design',
+  4 => 'paymentMethods',
 );
 
 	// The favicon file
@@ -325,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 100;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 103;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';

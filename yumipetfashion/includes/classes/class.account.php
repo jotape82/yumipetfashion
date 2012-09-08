@@ -610,10 +610,11 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 				}
 
 				$ShippingAddress = parseFieldData($fields, $shippingData['shipformsessionid']);
-
+				
 				// Update the existing shipping address
 				$ShippingAddress['shipid'] = (int)$_POST['shipid'];
-
+				
+				// SALVA O REGISTRO PROPRIAMENTE DITO
 				if ($this->shippingEntity->edit($ShippingAddress)) {
 					if (isset($_SESSION['LOGIN_REDIR'])) {
 						// Take them to the page they wanted

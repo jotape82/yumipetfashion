@@ -71,6 +71,11 @@ class ISC_QUOTE_ADDRESS
 	 * @var string Customer's city.
 	 */
 	protected $city;
+	
+	protected $dataNascimento;
+	protected $numero;
+	protected $complemento;
+	protected $bairro;
 
 	/**
 	 * @var array Array containing ID, name and ISO of customer's state.
@@ -386,11 +391,15 @@ class ISC_QUOTE_ADDRESS
 			'shipstate' => null,
 			'shipcountry' => null,
 			'shipphone' => null,
+			'shipdatanascimento' => null,
+			'shipnumero' => null,
+			'shipcomplemento' => null,
+			'shipbairro' => null,
 			'shipemail' => null,
 			);
 
 		$address = array_merge($defaults, $address);
-
+		
 		$this
 			->setFirstName($address['shipfirstname'])
 			->setLastName($address['shiplastname'])
@@ -401,7 +410,11 @@ class ISC_QUOTE_ADDRESS
 			->setStateByName($address['shipstate'], $address['shipcountry'])
 			->setZip($address['shipzip'])
 			->setCountryByName($address['shipcountry'])
-			->setPhone($address['shipphone']);
+			->setPhone($address['shipphone'])
+			->setDataNascimento($address['shipdatanascimento'])
+			->setNumero($address['shipnumero'])
+			->setComplemento($address['shipcomplemento'])
+			->setBairro($address['shipbairro']);
 
 		if (isset($address['shipemail'])) {
 			$this->setEmail($address['shipemail']);
@@ -434,7 +447,11 @@ class ISC_QUOTE_ADDRESS
 			'shipzip'			=> $this->getZip(),
 			'shipcountry'		=> $this->getCountryName(),
 			'shipcountryid'		=> $this->getCountryId(),
-			'shipphone'			=> $this->getPhone()
+			'shipphone'			=> $this->getPhone(),
+			'shipdatanascimento'=> $this->getDataNascimento(),
+			'shipnumero'		=> $this->getNumero(),
+			'shipcomplemento'	=> $this->getComplemento(),
+			'shipbairro'		=> $this->getBairro()
 		);
 	}
 
@@ -495,6 +512,30 @@ class ISC_QUOTE_ADDRESS
 	public function setCity($city)
 	{
 		$this->city = $city;
+		return $this;
+	}
+	
+	public function setDataNascimento($dataNascimento)
+	{
+		$this->dataNascimento = $dataNascimento;
+		return $this;
+	}
+	
+	public function setNumero($numero)
+	{
+		$this->numero = $numero;
+		return $this;
+	}
+	
+	public function setComplemento($complemento)
+	{
+		$this->complemento = $complemento;
+		return $this;
+	}
+	
+	public function setBairro($bairro)
+	{
+		$this->bairro = $bairro;
 		return $this;
 	}
 
@@ -662,6 +703,26 @@ class ISC_QUOTE_ADDRESS
 	public function getCity()
 	{
 		return $this->city;
+	}
+	
+	public function getDataNascimento()
+	{
+		return $this->dataNascimento;
+	}
+	
+	public function getNumero()
+	{
+		return $this->numero;
+	}
+	
+	public function getComplemento()
+	{
+		return $this->complemento;
+	}
+	
+	public function getBairro()
+	{
+		return $this->bairro;
 	}
 
 	/**

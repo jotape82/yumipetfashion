@@ -496,11 +496,12 @@ class ISC_CHECKOUT
 				//continue;
 			}
 			
-			/* EDAZCOMMERCE - Tirando Campos da Tela */
+			/* EDAZCOMMERCE - Tamanho dos Campos do Cadastro */
 			if(isc_strtolower($formFieldPrivateId) == 'password' ||  isc_strtolower($formFieldPrivateId) == 'confirmpassword' || 
 					isc_strtolower($formFieldPrivateId) == 'phone' || isc_strtolower($formFieldPrivateId) == 'bairro' || 
 						isc_strtolower($formFieldPrivateId) == 'city' || isc_strtolower($formFieldPrivateId) == 'zip' ||
-							isc_strtolower($formFieldPrivateId) == 'complemento'){
+							isc_strtolower($formFieldPrivateId) == 'complemento' || isc_strtolower($formFieldPrivateId) == 'numero' ||
+								isc_strtolower($formFieldPrivateId) == 'datanascimento'){
 				$fields[$fieldId]->setFieldStyle('width: 130px;');
 			}
 			
@@ -1030,6 +1031,10 @@ class ISC_CHECKOUT
 			'Zip' => 'zip',
 			'Phone' => 'phone',
 			'Email' => 'email',
+			'DataNascimento' => 'datanascimento',
+			'Numero' => 'numero',
+			'Complemento' => 'complemento',
+			'Bairro' => 'bairro',
 		);
 
 		foreach($fields as $fieldId => $formField) {

@@ -67,7 +67,15 @@
 					$address['shipzip'],
 					$address['shipcountry']
 				);
-
+				
+				/* EDAZCOMMERCE - CAMPOS ADICIONAIS DE ENDEREÇO DE ENTREGA DO CLIENTE */
+				$GLOBALS['Nome'] 			= isc_html_escape($address['shipfirstname']);
+				$GLOBALS['Sobrenome'] 		= isc_html_escape($address['shiplastname']);
+				$GLOBALS['DataNascimento'] 	= isc_html_escape($address['shipdatanascimento']);
+				$GLOBALS['Numero'] 			= isc_html_escape($address['shipnumero']);
+				$GLOBALS['Complemento'] 	= isc_html_escape($address['shipcomplemento']);
+				$GLOBALS['Bairro'] 			= isc_html_escape($address['shipbairro']);
+				
 				// Please see self::GenerateShippingSelect below.
 				$splitAddressFields = array_filter($splitAddressFields, array($this, 'FilterAddressFields'));
 				$splitAddress = isc_html_escape(implode(', ', $splitAddressFields));

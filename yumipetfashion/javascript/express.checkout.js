@@ -93,6 +93,8 @@ var ExpressCheckout = {
 		$('.FormContainer').find('input').each(function(){
 			//Desabilita Campo Empresa
 			if($(this).attr('attributeprivateid') == 'companyname'){ $(this).hide(); $(this).parent().prev().hide(); }
+			// Mascara Data de Nascimento
+			if($(this).attr('attributeprivateid') == 'datanascimento'){ $(this).mask("99/99/9999"); }
 			//Mascara de Telefone
 			if($(this).attr('attributeprivateid') == 'phone'){ $(this).mask("(99) 9999-9999"); }
 			//Mascara de Cep

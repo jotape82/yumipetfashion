@@ -305,6 +305,7 @@ table.CartContents, table.General {
 
 .ExpressCheckoutBlockCompleted .ExpressCheckoutCompletedContent {
 	color: #888;
+	margin-left: 40px;
 }
 
 /* Tabbed Navigation */

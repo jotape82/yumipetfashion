@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 24th Aug 2012 @ 8:14 PM
+	// Last Updated: 8th Sep 2012 @ 9:09 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -71,14 +71,14 @@
 
 	// Shipping Settings
 	$GLOBALS['ISC_CFG']["CompanyName"] = 'Yumi Pet Fashion';
-	$GLOBALS['ISC_CFG']["CompanyAddress"] = 'Av. Senador Feijï¿½, 43 - Vila Mathias';
+	$GLOBALS['ISC_CFG']["CompanyAddress"] = 'Av. Senador Feijó, 43 - Vila Mathias';
 	$GLOBALS['ISC_CFG']["CompanyCity"] = 'Santos';
 	$GLOBALS['ISC_CFG']["CompanyCountry"] = 'Brazil';
-	$GLOBALS['ISC_CFG']["CompanyState"] = 'S';
+	$GLOBALS['ISC_CFG']["CompanyState"] = 'São Paulo';
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_deposito,checkout_pagseguro';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_deposito,checkout_pagseguro';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;
@@ -106,7 +106,7 @@
 	$GLOBALS['ISC_CFG']["RSSProductSearches"] = 0;
 	$GLOBALS['ISC_CFG']["RSSLatestBlogEntries"] = 0;
 	$GLOBALS['ISC_CFG']["RSSItemsLimit"] = 10;
-	$GLOBALS['ISC_CFG']["RSSCacheTime"] = 60;
+	$GLOBALS['ISC_CFG']["RSSCacheTime"] = 0;
 	$GLOBALS['ISC_CFG']["RSSSyndicationIcons"] = 0;
 
 	$GLOBALS['ISC_CFG']['BackupsLocal'] = 1;
@@ -279,6 +279,7 @@
   1 => 'shippingOptions',
   2 => 'products',
   3 => 'design',
+  4 => 'paymentMethods',
 );
 
 	// The favicon file
@@ -325,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 102;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 103;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';
