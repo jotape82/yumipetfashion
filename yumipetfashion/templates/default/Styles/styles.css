@@ -910,7 +910,6 @@ ul.ShippingAddressList, ul.ShippingAddressList li {
 
 ul.ShippingAddressList li {
 	width: 30%;
-	float: left;
 	margin-right: 10px;
 	margin-bottom: 20px;
 }
@@ -1368,6 +1367,7 @@ small {
 
 .ExpressCheckoutBlock {
 	padding-top: 6px;
+	cursor: default !important;
 }
 
 .ExpressCheckoutBlock .ExpressCheckoutCompletedContent {

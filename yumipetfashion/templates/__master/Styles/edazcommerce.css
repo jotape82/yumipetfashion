@@ -65,7 +65,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 }
 
 #CheckoutStepBillingAddress input:hover{
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 #CheckoutStepBillingAddress label:hover{
@@ -73,7 +73,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 }
 
 #CheckoutStepShippingAddress input:hover{
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 #CheckoutStepShippingAddress label:hover{
@@ -81,7 +81,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 }
 
 #CheckoutStepShippingProvider input:hover{
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 #CheckoutStepShippingProvider label:hover{
@@ -89,7 +89,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 }
 
 #CheckoutStepConfirmation input:hover{
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 #CheckoutStepConfirmation label:hover{
@@ -464,37 +464,60 @@ li.separador_links_footer{
 #informacoesProdutoTD2 .price_current label { color: #D04AA3; font-size: 15px; position: relative; top: 6px;}
 
 /******* CADASTRO DO CLIENTE *******/
+#EditAccountForm .FormContainer dd,
+#AddressEditForm .FormContainer dd,
 #CreateAccountForm .FormContainer dd,
 #NewBillingAddress .FormContainer dd { margin-left: 140px !important; }
 
+#EditAccountForm .FormContainer dl dd .LittleNotePassword { margin-left: 20px; }
+
+#EditAccountForm .FormContainer p.Submit { margin: 10px 266px; }
+#AddressEditForm .FormContainer p.Submit { margin: 10px 300px; }
 #CreateAccountForm .FormContainer p.Submit { margin-left: 280px; margin-top: 0px; }
 
+#EditAccountForm .FormContainer dl dt,
+#AddressEditForm .FormContainer dl dt,
 #CreateAccountForm .FormContainer dl dt,
 #NewBillingAddress .FormContainer dl dt { margin-top: 12px; }
 
+#EditAccountForm .FormContainer dl dd,
+#AddressEditForm .FormContainer dl dd,
 #CreateAccountForm .FormContainer dl dd,
 #NewBillingAddress .FormContainer dl dd { margin-top: 3px; }
 
-/*#CreateAccountForm .FormContainer dl dt span { font-weight: bold; }*/
+#EditAccountForm .FormContainer dl dt,
+#EditAccountForm .FormContainer dl dt span,
+#AddressEditForm .FormContainer dl dt span,
+#CreateAccountForm .FormContainer dl dt span,
+#NewBillingAddress .FormContainer dl dt span { font-weight: bold; }
 
+#EditAccountForm .FormContainer dl dd input.FormField,
+#EditAccountForm .FormContainer dl dd input.Textbox,
+#AddressEditForm .FormContainer dl dd input.FormField,
 #CreateAccountForm .FormContainer dl dd input.FormField,
 #NewBillingAddress .FormContainer dl dd input.FormField {
-	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 20px; padding: 2px 3px; width: 220px; margin-top: 2px;
+	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 17px; padding: 2px 3px; width: 220px; margin-top: 2px;
 }
 
+#EditAccountForm .FormContainer dl dd select,
+#AddressEditForm .FormContainer dl dd select,
 #CreateAccountForm .FormContainer dl dd select,
 #NewBillingAddress .FormContainer dl dd select {
 	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 28px; padding: 2px 3px; width: 230px; margin-top: 2px;
 }
 
+#EditAccountForm .FormContainer dl dd input:focus,
+#AddressEditForm .FormContainer dl dd input:focus,
 #CreateAccountForm .FormContainer dl dd input:focus,
 #NewBillingAddress .FormContainer dl dd input:focus {
-	background-color: #EFD4E5;
+	background-color: #DCF0F5;
 }
 
+#EditAccountForm .FormContainer dl dd select:focus,
+#AddressEditForm .FormContainer dl dd select:focus,
 #CreateAccountForm .FormContainer dl dd select:focus,
 #NewBillingAddress .FormContainer dl dd select:focus {
-	background-color: #EFD4E5;
+	background-color: #DCF0F5;
 }
 
 .displayNone { display: none; }
@@ -504,6 +527,11 @@ li.separador_links_footer{
 .marginBottom20{
 	margin-bottom: 20px;
 }
+
+#ShippingAddressTable { background-color: #f9f9f9; border-radius: 10px; padding: 5px 15px; width: 520px; -moz-box-shadow: 4px 4px 7px -5px #000000; -webkit-box-shadow: 4px 4px 7px -5px #000000; box-shadow: 4px 4px 7px -5px #000000; }
+#ShippingAddressTable td { padding: 5px 0; }
+#ShippingAddressTable td.label { width: 150px; font-weight: bold; }
+#ShippingAddressTable td.value { width: 370px; }
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
 .sliderCarousel .viewport ul { position: relative; }

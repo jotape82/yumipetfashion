@@ -88,6 +88,8 @@ $(document).ready(function() {
 		$('.FormContainer').find('input').each(function(){
 			/* Desabilita Campo Empresa */
 			if($(this).attr('attributeprivateid') == 'companyname'){ $(this).hide(); $(this).parent().prev().hide(); }
+			/* Mascara Data de Nascimento */
+			if($(this).attr('attributeprivateid') == 'datanascimento'){ $(this).mask("99/99/9999"); }
 			/* Mascara de Telefone */
 			if($(this).attr('attributeprivateid') == 'phone'){ $(this).mask("(99) 9999-9999"); }
 			/* Mascara de Cep */
@@ -222,7 +224,7 @@ function buscaCep(cep){
 				if($(this).attr('attributeprivateid') == 'city'){
 					$(this).val(unescape(resultadoCEP["cidade"]));
 				}
-				if($(this).attr('attributeprivateid') == 'complemento'){
+				if($(this).attr('attributeprivateid') == 'numero'){
 					$(this).focus();
 				}
 			});

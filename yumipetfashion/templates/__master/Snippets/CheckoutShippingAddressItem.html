@@ -3,13 +3,65 @@
 	<p class="UtilityLinks">
 		(<a href="%%GLOBAL_ShopPath%%/account.php?action=edit_shipping_address&amp;address_id=%%GLOBAL_ShippingAddressId%%&amp;from=%%GLOBAL_FromURL%%">%%LNG_Edit%%</a> / <a href="%%GLOBAL_ShopPath%%/account.php?action=delete_shipping_address&amp;address_id=%%GLOBAL_ShippingAddressId%%&amp;from=%%GLOBAL_FromURL%%" onclick="confirm_delete_shipping_address(%%GLOBAL_ShippingAddressId%%, '%%GLOBAL_FromURL%%'); return false;">%%LNG_Delete%%</a>)
 	</p>
-		<p class="NoMarginBottom">
-		%%GLOBAL_ShipCompany%%
-		%%GLOBAL_ShipAddressLine1%%<br />
-		%%GLOBAL_ShipAddressLine2%%<br />
-		%%GLOBAL_ShipSuburb%%, %%GLOBAL_ShipState%% %%GLOBAL_ShipZip%%<br/>
-		%%GLOBAL_ShipCountry%%<br />
-		%%GLOBAL_ShipPhone%%
+	<p class="NoMarginBottom">
+		<table id="ShippingAddressTable">
+			<tr>
+				<td class="label">Nome:</td>
+				<td class="value">%%GLOBAL_Nome%%</td>
+			</tr>
+			<tr>
+				<td class="label">Sobrenome:</td>
+				<td class="value">%%GLOBAL_Sobrenome%%</td>
+			</tr>
+			<!--
+			<tr>
+				<td class="label">Empresa:</td>
+				<td class="value">%%GLOBAL_ShipCompany%%</td>
+			</tr>
+			-->
+			<tr>
+				<td class="label">Data de Nascimento:</td>
+				<td class="value">%%GLOBAL_DataNascimento%%</td>
+			</tr>
+			<tr>
+				<td class="label">Telefone:</td>
+				<td class="value">%%GLOBAL_ShipPhone%%</td>
+			</tr>
+			<tr>
+				<td class="label">Cep:</td>
+				<td class="value">%%GLOBAL_ShipZip%%</td>
+			</tr>
+			<tr>
+				<td class="label">Endereço:</td>
+				<td class="value">%%GLOBAL_ShipAddressLine1%%</td>
+			</tr>
+			<tr>
+				<td class="label">Número:</td>
+				<td class="value">%%GLOBAL_Numero%%</td>
+			</tr>
+			<tr>
+				<td class="label">Complemento:</td>
+				<td class="value">%%GLOBAL_Complemento%%</td>
+			</tr>
+			<tr>
+				<td class="label">Bairro:</td>
+				<td class="value">%%GLOBAL_Bairro%%</td>
+			</tr>
+			<tr>
+				<td class="label">Cidade:</td>
+				<td class="value">%%GLOBAL_ShipSuburb%%</td>
+			</tr>
+			<tr>
+				<td class="label">Estado:</td>
+				<td class="value">%%GLOBAL_ShipState%%</td>
+			</tr>
+			<!--
+			<tr>
+				<td class="label">País:</td>
+				<td class="value">%%GLOBAL_ShipCountry%%</td>
+			</tr>
+			-->
+		</table>
 	</p>
 	<form style="display: %%GLOBAL_HideAddressButton%%" action="%%GLOBAL_ShopPath%%/checkout.php" method="get">
 		<input type="hidden" name="action" value="%%GLOBAL_ShippingFormAction%%" />
@@ -17,3 +69,5 @@
 		<input type="submit" value="%%GLOBAL_ShipAddressButtonText%%" class="MT10" />
 	</form>
 </li>
+
+<hr style="margin: 30px 0 25px;">

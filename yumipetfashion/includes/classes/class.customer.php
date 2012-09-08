@@ -254,7 +254,11 @@
 					'Country' => 'shipcountry',
 					'Zip' => 'shipzip',
 					'Phone' => 'shipphone',
-					'BuildingType' => 'shipdestination'
+					'BuildingType' => 'shipdestination',
+					'DataNascimento' => 'shipdatanascimento',
+					'Numero' => 'shipnumero',
+					'Complemento' => 'shipcomplemento',
+					'Bairro' => 'shipbairro'
 				)
 			);
 
@@ -530,12 +534,12 @@
 					//continue;
 				}
 				
-				/* EDAZCOMMERCE - Tirando Campos da Tela */
+				/* EDAZCOMMERCE - Tamanho dos Campos do Cadastro */
 				if(isc_strtolower($fieldPrivateId) == 'password' ||  isc_strtolower($fieldPrivateId) == 'confirmpassword' || 
 					isc_strtolower($fieldPrivateId) == 'phone' || isc_strtolower($fieldPrivateId) == 'bairro' || 
 						isc_strtolower($fieldPrivateId) == 'city' || isc_strtolower($fieldPrivateId) == 'zip' ||
-							isc_strtolower($fieldPrivateId) == 'complemento'){
-
+							isc_strtolower($fieldPrivateId) == 'complemento' || isc_strtolower($fieldPrivateId) == 'numero' ||
+								isc_strtolower($fieldPrivateId) == 'datanascimento'){
 					$fields[$fieldId]->setFieldStyle('width: 130px;');
 				}
 				
