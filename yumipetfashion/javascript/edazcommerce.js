@@ -213,7 +213,7 @@ function buscaCep(cep){
 		arrayEstados['TO'] = 'Tocantins';
 	
 	$.getScript(urlWebsite + "/modificacoes/buscacep.php?cep=" + cep, function(){
-		if(resultadoCEP["resultado"]){
+		if(resultadoCEP["resultado"] && resultadoCEP["resultado"] != 0){
 			$('.FormContainer').find('input').each(function(){
 				if($(this).attr('attributeprivateid') == 'addressline1'){
 					$(this).val(unescape(resultadoCEP["tipo_logradouro"])+": "+unescape(resultadoCEP["logradouro"]));
