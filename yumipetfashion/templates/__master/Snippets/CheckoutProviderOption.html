@@ -1,2 +1,9 @@
-<input type="radio" name="%%GLOBAL_PaymentFieldPrefix%%checkout_provider" id="%%GLOBAL_PaymentFieldPrefix%%checkout_provider_%%GLOBAL_ProviderId%%" value="%%GLOBAL_ProviderId%%" %%GLOBAL_ProviderChecked%% onclick="checkout_provider_changed(this)" class="%%GLOBAL_ProviderType%% %%GLOBAL_ProviderPaymentFormClass%%"  />
-<label for="%%GLOBAL_PaymentFieldPrefix%%checkout_provider_%%GLOBAL_ProviderId%%" class="ProviderName%%GLOBAL_ProviderId%%">%%GLOBAL_ProviderName%%</label><br />
+%%GLOBAL_TitleItemPayment%%
+<label for="%%GLOBAL_PaymentFieldPrefix%%checkout_provider_%%GLOBAL_ProviderId%%" class="ProviderName%%GLOBAL_ProviderId%%">
+	<!-- %%GLOBAL_ProviderName%% -->
+	<li class="opcoesGrupoMetodosPagamento FloatLeft %%GLOBAL_ClassItemPayment%%" nomeMetodoPagamento="%%GLOBAL_ProviderName%%" targetMetodoSelecionado="%%GLOBAL_TargetNameMethodSelected%%">
+		<div class="imagemMetodoPagamento %%GLOBAL_ClassImageItemPayment%%"></div>
+		<input type="radio" name="%%GLOBAL_PaymentFieldPrefix%%checkout_provider" id="%%GLOBAL_PaymentFieldPrefix%%checkout_provider_%%GLOBAL_ProviderId%%" value="%%GLOBAL_ProviderId%%" %%GLOBAL_ProviderChecked%% onclick="checkout_provider_changed(this)" class="%%GLOBAL_ProviderType%% %%GLOBAL_ProviderPaymentFormClass%%"  />
+		<div class="clearLeft">%%GLOBAL_ProviderName%%</div>
+	</li>
+</label>
