@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 8th Sep 2012 @ 9:01 PM
+	// Last Updated: 9th Sep 2012 @ 12:07 AM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -71,14 +71,14 @@
 
 	// Shipping Settings
 	$GLOBALS['ISC_CFG']["CompanyName"] = 'Yumi Pet Fashion';
-	$GLOBALS['ISC_CFG']["CompanyAddress"] = 'Av. Senador Feijï¿½, 43 - Vila Mathias';
+	$GLOBALS['ISC_CFG']["CompanyAddress"] = 'Av. Senador Feijó, 43 - Vila Mathias';
 	$GLOBALS['ISC_CFG']["CompanyCity"] = 'Santos';
 	$GLOBALS['ISC_CFG']["CompanyCountry"] = 'Brazil';
-	$GLOBALS['ISC_CFG']["CompanyState"] = 'S';
+	$GLOBALS['ISC_CFG']["CompanyState"] = 'São Paulo';
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_deposito,checkout_pagseguro';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_deposito,checkout_pagseguro';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;
