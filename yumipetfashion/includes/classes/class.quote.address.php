@@ -76,6 +76,7 @@ class ISC_QUOTE_ADDRESS
 	protected $numero;
 	protected $complemento;
 	protected $bairro;
+	protected $cpf;
 
 	/**
 	 * @var array Array containing ID, name and ISO of customer's state.
@@ -395,6 +396,7 @@ class ISC_QUOTE_ADDRESS
 			'shipnumero' => null,
 			'shipcomplemento' => null,
 			'shipbairro' => null,
+			'shipcpf' => null,
 			'shipemail' => null,
 			);
 
@@ -414,7 +416,8 @@ class ISC_QUOTE_ADDRESS
 			->setDataNascimento($address['shipdatanascimento'])
 			->setNumero($address['shipnumero'])
 			->setComplemento($address['shipcomplemento'])
-			->setBairro($address['shipbairro']);
+			->setBairro($address['shipbairro'])
+			->setCpf($address['shipcpf']);
 
 		if (isset($address['shipemail'])) {
 			$this->setEmail($address['shipemail']);
@@ -451,7 +454,8 @@ class ISC_QUOTE_ADDRESS
 			'shipdatanascimento'=> $this->getDataNascimento(),
 			'shipnumero'		=> $this->getNumero(),
 			'shipcomplemento'	=> $this->getComplemento(),
-			'shipbairro'		=> $this->getBairro()
+			'shipbairro'		=> $this->getBairro(),
+			'shipcpf'			=> $this->getCpf()
 		);
 	}
 
@@ -536,6 +540,12 @@ class ISC_QUOTE_ADDRESS
 	public function setBairro($bairro)
 	{
 		$this->bairro = $bairro;
+		return $this;
+	}
+	
+	public function setCpf($cpf)
+	{
+		$this->cpf = $cpf;
 		return $this;
 	}
 
@@ -723,6 +733,11 @@ class ISC_QUOTE_ADDRESS
 	public function getBairro()
 	{
 		return $this->bairro;
+	}
+	
+	public function getCpf()
+	{
+		return $this->cpf;
 	}
 
 	/**

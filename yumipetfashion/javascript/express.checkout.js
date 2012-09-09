@@ -89,31 +89,6 @@ var ExpressCheckout = {
 			});
 		}
 		
-		/* EDAZCOMMERCE */
-		$('.FormContainer').find('input').each(function(){
-			//Desabilita Campo Empresa
-			if($(this).attr('attributeprivateid') == 'companyname'){ $(this).hide(); $(this).parent().prev().hide(); }
-			// Mascara Data de Nascimento
-			if($(this).attr('attributeprivateid') == 'datanascimento'){ $(this).mask("99/99/9999"); }
-			//Mascara de Telefone
-			if($(this).attr('attributeprivateid') == 'phone'){ $(this).mask("(99) 9999-9999"); }
-			//Mascara de Cep
-			if($(this).attr('attributeprivateid') == 'zip'){ $(this).mask("99999-999"); }
-		});
-		$('.FormContainer').find('select').each(function(){
-			//Desabilita Campo País
-			if($(this).attr('attributeprivateid') == 'country'){ $(this).hide(); $(this).parent().prev().hide(); }
-		});
-		
-		/* ===== INICIO - BUSCA POR CEP ===== */
-		$('#FormField_9').blur(function(event){
-			var cep = $.trim($(this).val()).replace('-', '').replace('_', '');
-			if(cep != "" && cep.length == 8){
-				buscaCep($(this).val());
-			}
-		});
-		/* ===== FIM - BUSCA POR CEP ===== */
-
 		if(response.status == 0) {
 			if(response.errorContainer) {
 				$(response.errorContainer).html(response.errorMessage).show();

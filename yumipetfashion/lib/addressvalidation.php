@@ -266,6 +266,7 @@ function getAddressFormMapping()
 		'EmailAddress' 		=> 'email',
 		'FirstName' 		=> 'firstname',
 		'LastName' 			=> 'lastname',
+		'Cpf' 				=> 'cpf',
 		'DataNascimento' 	=> 'datanascimento',
 		'Phone' 			=> 'phone',
 		'Zip' 				=> 'zip',
