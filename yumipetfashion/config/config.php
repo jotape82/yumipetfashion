@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 9th Sep 2012 @ 12:08 AM
+	// Last Updated: 9th Sep 2012 @ 3:32 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -134,9 +134,9 @@
 	$GLOBALS['ISC_CFG']["AnalyticsMethods"] = '';
 
 	$GLOBALS['ISC_CFG']['SystemLogging'] = 1;
-	$GLOBALS['ISC_CFG']['HidePHPErrors'] = 1;
+	$GLOBALS['ISC_CFG']['HidePHPErrors'] = 0;
 	$GLOBALS['ISC_CFG']['SystemLogTypes'] = 'general,payment,shipping,notification,sql,php,accounting,emailintegration';
-	$GLOBALS['ISC_CFG']['SystemLogSeverity'] = 'errors';
+	$GLOBALS['ISC_CFG']['SystemLogSeverity'] = 'errors,notices';
 	$GLOBALS['ISC_CFG']['SystemLogMaxLength'] = 0;
 	$GLOBALS['ISC_CFG']['AdministratorLogging'] = 1;
 	$GLOBALS['ISC_CFG']['AdministratorLogMaxLength'] = 0;
@@ -326,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 103;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 107;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';

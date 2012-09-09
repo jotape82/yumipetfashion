@@ -807,6 +807,10 @@ hr {
 	clear: left;
 }
 
+.MarginLeft5{
+	margin-left: 5px;
+}
+
 .SortBox {
 	font-size: 0.95em;
 	color: #444;
@@ -909,7 +913,6 @@ ul.ShippingAddressList, ul.ShippingAddressList li {
 }
 
 ul.ShippingAddressList li {
-	width: 30%;
 	margin-right: 10px;
 	margin-bottom: 20px;
 }

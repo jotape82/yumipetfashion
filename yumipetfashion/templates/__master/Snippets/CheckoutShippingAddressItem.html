@@ -1,9 +1,11 @@
 <li>
-	<h4>%%GLOBAL_ShipFullName%%</h4>
-	<p class="UtilityLinks">
-		(<a href="%%GLOBAL_ShopPath%%/account.php?action=edit_shipping_address&amp;address_id=%%GLOBAL_ShippingAddressId%%&amp;from=%%GLOBAL_FromURL%%">%%LNG_Edit%%</a> / <a href="%%GLOBAL_ShopPath%%/account.php?action=delete_shipping_address&amp;address_id=%%GLOBAL_ShippingAddressId%%&amp;from=%%GLOBAL_FromURL%%" onclick="confirm_delete_shipping_address(%%GLOBAL_ShippingAddressId%%, '%%GLOBAL_FromURL%%'); return false;">%%LNG_Delete%%</a>)
-	</p>
-	<p class="NoMarginBottom">
+	<div>
+		<h4 class="FloatLeft">%%GLOBAL_ShipFullName%%</h4>
+		<p class="UtilityLinks FloatLeft MarginLeft5">
+			(<a href="%%GLOBAL_ShopPath%%/account.php?action=edit_shipping_address&amp;address_id=%%GLOBAL_ShippingAddressId%%&amp;from=%%GLOBAL_FromURL%%">%%LNG_Edit%%</a> / <a href="%%GLOBAL_ShopPath%%/account.php?action=delete_shipping_address&amp;address_id=%%GLOBAL_ShippingAddressId%%&amp;from=%%GLOBAL_FromURL%%" onclick="confirm_delete_shipping_address(%%GLOBAL_ShippingAddressId%%, '%%GLOBAL_FromURL%%'); return false;">%%LNG_Delete%%</a>)
+		</p>
+	</div>
+	<p class="NoMarginBottom ClearLeft">
 		<table id="ShippingAddressTable">
 			<tr>
 				<td class="label">Nome:</td>
