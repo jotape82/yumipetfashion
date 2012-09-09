@@ -25,17 +25,10 @@
 			%%SNIPPET_CartItems%%
 		</tbody>
 	</table>
-	<div class="FloatRight CheckoutRedeemCoupon" style="display: %%GLOBAL_HideUseCoupon%%">
-		<h4>%%GLOBAL_RedeemTitle%%</h4>
-		<p>%%GLOBAL_RedeemIntro%%</p>
-		<p>
-			<strong>%%LNG_CouponCode1%%:</strong>
-			<input type="text" name="couponcode" id="couponcode" style="width: 140px;" />
-			<input type="button" name="apply_code" id="apply_code" value="%%LNG_Apply%%" onclick="return ExpressCheckout.ApplyCouponCode();" />
-		</p>
-	</div>
-
-	<div style="display: %%GLOBAL_HidePaymentOptions%%" class="PaymentOptions" id="payment_options">
+	
+	<div style="float: left; width: 610px;">
+	
+	<div id="payment_options" style="display: %%GLOBAL_HidePaymentOptions%%" class="PaymentOptions">
 		<h3>%%LNG_HowWouldYouLikeToPay%%</h3>
 		<div style="display: %%GLOBAL_HideUseStoreCredit%%; width: 420px;">
 			<p class="MB10">
@@ -66,7 +59,7 @@
 
 				<div class="MB10" style="display: %%GLOBAL_HideLimitedCreditPaymentOption%%">
 					<p>%%LNG_CreditPaymentMethod%%</p>
-					<div class="PL20" id="credit_provider_list" style="display: %%GLOBAL_HideLimitedCreditWarning%%">
+					<div class="PL20 FloatLeft" id="credit_provider_list" style="margin-left: -20px; display: %%GLOBAL_HideLimitedCreditWarning%%">
 						%%GLOBAL_StoreCreditPaymentProviders%%
 						%%GLOBAL_CheckoutWith%%
 					</div>
@@ -78,9 +71,29 @@
 		</div>
 	</div>
 
-	<div class="PL20" id="provider_list" style="display:%%GLOBAL_HidePaymentProviderList%%">
-		%%GLOBAL_PaymentProviders%%
+	<div class="PL20" id="provider_list" style="float: left; width: 100%;"><!-- display:%%GLOBAL_HidePaymentProviderList%% -->
+		<ul style="margin: 0;">
+			%%GLOBAL_PaymentProviders%%
+		</ul>
 	</div>
+	
+	
+	
+	</div>
+	
+	
+	
+	
+	<div class="FloatRight CheckoutRedeemCoupon" style="display: %%GLOBAL_HideUseCoupon%%">
+		<h4>%%GLOBAL_RedeemTitle%%</h4>
+		<p>%%GLOBAL_RedeemIntro%%</p>
+		<p>
+			<strong>%%LNG_CouponCode1%%:</strong>
+			<input type="text" name="couponcode" id="couponcode" style="width: 140px;" />
+			<input type="button" name="apply_code" id="apply_code" value="%%LNG_Apply%%" onclick="return ExpressCheckout.ApplyCouponCode();" />
+		</p>
+	</div>
+	
 
 	<div style="display: %%GLOBAL_HideOrderComments%%" class="CheckoutOrderComments">
 		<hr class="Clear" />
@@ -115,7 +128,7 @@
 	</div>
 
 	<p class="PL20">
-		<input id="bottom_payment_button" style="display:%%GLOBAL_HideButtomPaymentButton%%" type="submit" value="%%LNG_ProceedToPayment%%" />
+		<input id="bottom_payment_button" style="display:%%GLOBAL_HideButtomPaymentButton%%" type="image" src="%%GLOBAL_TPL_PATH%%/img/pagaragora.gif" value="%%LNG_ProceedToPayment%%" />
 	</p>
 	%%Panel.ChooseCheckoutProviderJavaScript%%
 	<script type="text/javascript">
@@ -130,6 +143,16 @@
 			else {
 				$('#CheckoutStepPaymentDetails').show();
 			}
+		});
+		
+		$('li.opcoesGrupoMetodosPagamento').click(function(){
+			$('li.opcoesGrupoMetodosPagamento').each(function(){
+				$(this).removeClass("itemMetodoPagamentoSelecionado");
+			});
+			
+			$(this).addClass("itemMetodoPagamentoSelecionado");
+			$('#provider_list ul li.tituloGrupoMetodosPagamento span').html('');
+			$('#provider_list ul li.tituloGrupoMetodosPagamento span.metodo' + $(this).attr("targetMetodoSelecionado")).html($(this).attr("nomeMetodoPagamento"));
 		});
 	</script>
 </form>

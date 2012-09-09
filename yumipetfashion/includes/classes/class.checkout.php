@@ -2235,6 +2235,48 @@ class ISC_CHECKOUT
 
 		return $totalRows;
 	}
+	
+	/**
+	 * EDAZCOMMERCE - Retorna o Nome do Método de Pagamento para Apresentação
+	 */
+	public function getNomeMetodoPagamento($id){
+	    $arrayNomesMetodosPagamento = array("checkout_boletobradesco" 		=> "Bradesco",
+										 	"checkout_boletobancodobrasil"  => "Banco do Brasil",
+											"checkout_boletoitau" 			=> "Itaú",
+										 	"checkout_boletoreal" 			=> "Banco Real", 
+										 	"checkout_cielo" 				=> "Cartão de Crédito",
+										 	"checkout_deposito" 			=> "Depósito Bancário", 
+										 	"checkout_f2b" 					=> "F2b Cobrança Online",
+										 	"checkout_mercadopago" 			=> "MercadoPago",
+										 	"checkout_pagamentodigital" 	=> "Pagamento Digial",
+										 	"checkout_paypal" 				=> "Paypal");
+		
+		$nomeMetodoPagamento = (isset($arrayNomesMetodosPagamento[$id])) ? $arrayNomesMetodosPagamento[$id] : "-";
+		return $nomeMetodoPagamento;
+	}
+	
+	/**
+	 * EDAZCOMMERCE - Retorna a Imagem do Método de Pagamento para Apresentação
+	 */
+	public function getClassImagemMetodoPagamento($id){
+		$arrayClassImagemMetodosPagamento = array("checkout_boletobradesco"		=> "boletobradesco",
+											 	"checkout_boletobancodobrasil"	=> "boletobancodobrasil",
+											 	"checkout_boletoitau"			=> "boletoitau",
+											 	"checkout_boletoreal"			=> "boletoreal",
+											 	"checkout_cheque"				=> "cheque",
+											 	"checkout_cielo"				=> "cielo",
+											 	"checkout_deposito"				=> "deposito",
+											 	"checkout_dinheiromail"			=> "dinheiromail",
+											 	"checkout_f2b"					=> "f2b",
+											 	"checkout_mercadopago"			=> "mercadopago",
+											 	"checkout_moip"					=> "moip",
+											 	"checkout_pagamentodigital"		=> "pagamentodigital",
+											 	"checkout_pagseguro"			=> "pagseguro",
+											 	"checkout_paypal"				=> "paypal");
+											 
+		$classImagemMetodoPagamento = (isset($arrayClassImagemMetodosPagamento[$id])) ? "checkout_metodo_" . $arrayClassImagemMetodosPagamento[$id] : "";
+		return $classImagemMetodoPagamento;
+	}
 
 	/**
 	* Determines if the given code appears to be a gift certificate. This is a superficial check only and does not attempt to validate the certificate for use in an order.
@@ -2384,15 +2426,48 @@ class ISC_CHECKOUT
 				}
 				$GLOBALS['CheckoutWith'] = $provider['object']->GetDisplayName();
 			}
-
-			// Build the list of payment provider options
+			
+			/** EDAZCOMMERCE **/
+			$countItem = 0;
+			$qtdeItemPorLinha = 5;
+			$proximoGrupoAposBoletos = true;
 			$GLOBALS['PaymentProviders'] = $GLOBALS['StoreCreditPaymentProviders'] =  "";
+			
+			/** EDAZCOMMERCE **/
+			// Build the list of payment provider options
 			foreach ($checkoutProviders as $provider) {
+				$providerId = $provider['object']->GetId();
+				
 				$GLOBALS['ProviderChecked'] = '';
 				if(count($checkoutProviders) == 1) {
 					$GLOBALS['ProviderChecked'] = 'checked="checked"';
 				}
-				$GLOBALS['ProviderId'] = $provider['object']->GetId();
+				
+				$GLOBALS['ClassItemPayment'] 	  = "";
+				$GLOBALS['ClassImageItemPayment'] = $this->getClassImagemMetodoPagamento($providerId);
+				if(strpos($provider['object']->GetId(), "boleto")){
+					$GLOBALS['TargetNameMethodSelected'] = "Boleto";
+					$GLOBALS['TitleItemPayment'] = (!isset($GLOBALS['TitleItemPayment'])) ? "<li class='tituloGrupoMetodosPagamento'>Boleto Bancário: <span class='nomeMetodoPagamentoSelecionado metodoBoleto'></span></li>" : "";
+				}else{
+					$GLOBALS['TargetNameMethodSelected'] = "Outros";
+					$GLOBALS['TitleItemPayment'] = ($proximoGrupoAposBoletos) ? "<li class='tituloGrupoMetodosPagamento'>Cartão de Crétido / Outros: <span class='nomeMetodoPagamentoSelecionado metodoOutros'></span></li>" : "";
+					if($proximoGrupoAposBoletos || $countItem == $qtdeItemPorLinha){
+						$GLOBALS['ClassItemPayment'] = "clearLeft";
+						if($countItem == $qtdeItemPorLinha){
+							$countItem = 0;
+						}
+					}
+					$countItem++;
+					$proximoGrupoAposBoletos = false;
+				}
+				
+				/* Pega o Nome do Método de Pagamento */
+				$nomeMetodoPagamento = $this->getNomeMetodoPagamento($providerId);
+				if($nomeMetodoPagamento == '-'){
+					$nomeMetodoPagamento = $provider['object']->GetDisplayName();
+				}
+				 
+				$GLOBALS['ProviderId'] = $providerId;
 				$GLOBALS['ProviderName'] = isc_html_escape($provider['object']->GetDisplayName());
 				$GLOBALS['ProviderType'] = $provider['object']->GetPaymentType("text");
 				if(method_exists($provider['object'], 'ShowPaymentForm')) {
