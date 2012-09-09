@@ -258,7 +258,8 @@
 					'DataNascimento' => 'shipdatanascimento',
 					'Numero' => 'shipnumero',
 					'Complemento' => 'shipcomplemento',
-					'Bairro' => 'shipbairro'
+					'Bairro' => 'shipbairro',
+					'Cpf' => 'shipcpf'
 				)
 			);
 
@@ -531,7 +532,6 @@
 				/* EDAZCOMMERCE - Desabilitando Campos em Tela */
 				if (isc_strtolower($fieldPrivateId) == 'companyname' || isc_strtolower($fieldPrivateId) == 'country') {
 					$fields[$fieldId]->setRequired(false);
-					//continue;
 				}
 				
 				/* EDAZCOMMERCE - Tamanho dos Campos do Cadastro */
@@ -539,7 +539,7 @@
 					isc_strtolower($fieldPrivateId) == 'phone' || isc_strtolower($fieldPrivateId) == 'bairro' || 
 						isc_strtolower($fieldPrivateId) == 'city' || isc_strtolower($fieldPrivateId) == 'zip' ||
 							isc_strtolower($fieldPrivateId) == 'complemento' || isc_strtolower($fieldPrivateId) == 'numero' ||
-								isc_strtolower($fieldPrivateId) == 'datanascimento'){
+								isc_strtolower($fieldPrivateId) == 'datanascimento' || isc_strtolower($fieldPrivateId) == 'cpf'){
 					$fields[$fieldId]->setFieldStyle('width: 130px;');
 				}
 				
@@ -555,10 +555,6 @@
 					$phoneNo = $fields[$fieldId]->getValue();
 				}
 				
-				if (isc_strtolower($fieldPrivateId) == 'bairro') {
-					$fields[$fieldId]->setRequired(true);
-				}
-
 				if (isc_strtolower($fieldPrivateId) == 'country') {
 					$fields[$fieldId]->setOptions(array_values(GetCountryListAsIdValuePairs()));
 

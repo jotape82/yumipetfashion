@@ -501,16 +501,12 @@ class ISC_CHECKOUT
 					isc_strtolower($formFieldPrivateId) == 'phone' || isc_strtolower($formFieldPrivateId) == 'bairro' || 
 						isc_strtolower($formFieldPrivateId) == 'city' || isc_strtolower($formFieldPrivateId) == 'zip' ||
 							isc_strtolower($formFieldPrivateId) == 'complemento' || isc_strtolower($formFieldPrivateId) == 'numero' ||
-								isc_strtolower($formFieldPrivateId) == 'datanascimento'){
+								isc_strtolower($formFieldPrivateId) == 'datanascimento' || isc_strtolower($formFieldPrivateId) == 'cpf'){
 				$fields[$fieldId]->setFieldStyle('width: 130px;');
 			}
 			
 			if(isc_strtolower($formFieldPrivateId) == 'state' || isc_strtolower($formFieldPrivateId) == 'country'){
 				$fields[$fieldId]->setFieldStyle('width: 140px;');
-			}
-			
-			if (isc_strtolower($formFieldPrivateId) == 'bairro') {
-				$fields[$fieldId]->setRequired(true);
 			}
 			
 			if ($formFieldPrivateId == 'country') {
@@ -1035,6 +1031,7 @@ class ISC_CHECKOUT
 			'Numero' => 'numero',
 			'Complemento' => 'complemento',
 			'Bairro' => 'bairro',
+			'Cpf' => 'cpf',
 		);
 
 		foreach($fields as $fieldId => $formField) {

@@ -167,6 +167,7 @@ class ISC_FORM
 			'ConfirmPassword'=> 'Confirmar Senha',
 			'FirstName' 	 => 'Nome',
 			'LastName' 		 => 'Sobrenome',
+			'Cpf' 			 => 'Cpf',
 			'DataNascimento' => 'Data de Nascimento',
 			'CompanyName' 	 => 'Empresa',
 			'Phone' 		 => 'Telefone',

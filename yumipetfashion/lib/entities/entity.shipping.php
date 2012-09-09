@@ -18,6 +18,7 @@ class ISC_ENTITY_SHIPPING extends ISC_ENTITY_BASE
 				"shipcustomerid" => "int",
 				"shipfirstname" => "text",
 				"shiplastname" => "text",
+				"shipcpf" => "text",
 				"shipdatanascimento" => "text",
 				"shipcompany" => "text",
 				"shipaddress1" => "text",

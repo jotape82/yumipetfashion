@@ -75,6 +75,7 @@
 				$GLOBALS['Numero'] 			= isc_html_escape($address['shipnumero']);
 				$GLOBALS['Complemento'] 	= isc_html_escape($address['shipcomplemento']);
 				$GLOBALS['Bairro'] 			= isc_html_escape($address['shipbairro']);
+				$GLOBALS['Cpf'] 			= isc_html_escape($address['shipcpf']);
 				
 				// Please see self::GenerateShippingSelect below.
 				$splitAddressFields = array_filter($splitAddressFields, array($this, 'FilterAddressFields'));

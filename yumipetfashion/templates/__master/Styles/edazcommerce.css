@@ -464,6 +464,7 @@ li.separador_links_footer{
 #informacoesProdutoTD2 .price_current label { color: #D04AA3; font-size: 15px; position: relative; top: 6px;}
 
 /******* CADASTRO DO CLIENTE *******/
+#NewShippingAddress .FormContainer dd,
 #EditAccountForm .FormContainer dd,
 #AddressEditForm .FormContainer dd,
 #CreateAccountForm .FormContainer dd,
@@ -475,22 +476,26 @@ li.separador_links_footer{
 #AddressEditForm .FormContainer p.Submit { margin: 10px 300px; }
 #CreateAccountForm .FormContainer p.Submit { margin-left: 280px; margin-top: 0px; }
 
+#NewShippingAddress .FormContainer dl dt,
 #EditAccountForm .FormContainer dl dt,
 #AddressEditForm .FormContainer dl dt,
 #CreateAccountForm .FormContainer dl dt,
 #NewBillingAddress .FormContainer dl dt { margin-top: 12px; }
 
+#NewShippingAddress .FormContainer dl dd,
 #EditAccountForm .FormContainer dl dd,
 #AddressEditForm .FormContainer dl dd,
 #CreateAccountForm .FormContainer dl dd,
 #NewBillingAddress .FormContainer dl dd { margin-top: 3px; }
 
+#NewShippingAddress .FormContainer dl dt,
 #EditAccountForm .FormContainer dl dt,
 #EditAccountForm .FormContainer dl dt span,
 #AddressEditForm .FormContainer dl dt span,
 #CreateAccountForm .FormContainer dl dt span,
 #NewBillingAddress .FormContainer dl dt span { font-weight: bold; }
 
+#NewShippingAddress .FormContainer dl dd input.FormField,
 #EditAccountForm .FormContainer dl dd input.FormField,
 #EditAccountForm .FormContainer dl dd input.Textbox,
 #AddressEditForm .FormContainer dl dd input.FormField,
@@ -499,6 +504,7 @@ li.separador_links_footer{
 	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 17px; padding: 2px 3px; width: 220px; margin-top: 2px;
 }
 
+#NewShippingAddress .FormContainer dl dd select,
 #EditAccountForm .FormContainer dl dd select,
 #AddressEditForm .FormContainer dl dd select,
 #CreateAccountForm .FormContainer dl dd select,
@@ -506,6 +512,7 @@ li.separador_links_footer{
 	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 28px; padding: 2px 3px; width: 230px; margin-top: 2px;
 }
 
+#NewShippingAddress .FormContainer dl dd input:focus,
 #EditAccountForm .FormContainer dl dd input:focus,
 #AddressEditForm .FormContainer dl dd input:focus,
 #CreateAccountForm .FormContainer dl dd input:focus,
@@ -513,6 +520,7 @@ li.separador_links_footer{
 	background-color: #DCF0F5;
 }
 
+#NewShippingAddress .FormContainer dl dd select:focus,
 #EditAccountForm .FormContainer dl dd select:focus,
 #AddressEditForm .FormContainer dl dd select:focus,
 #CreateAccountForm .FormContainer dl dd select:focus,

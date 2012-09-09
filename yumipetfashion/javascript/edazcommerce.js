@@ -75,10 +75,12 @@ $(document).ready(function() {
 	/* ===== FIM - CHECKOUT CIELO ===== */
 	
 	/* ===== INICIO - BUSCA POR CEP ===== */
-	$('#FormField_9').blur(function(event){
-		var cep = $.trim($(this).val()).replace('-', '').replace('_', '');
+	$('.buscaCep').blur(function(event){
+		var cep  	   = $.trim($(this).val()).replace('-', '').replace('_', '');
+		var parentForm = $(this).parents('form');
+		
 		if(cep != "" && cep.length == 8){
-			buscaCep($(this).val());
+			buscaCep($(this).val(), parentForm);
 		}
 	});
 	/* ===== FIM - BUSCA POR CEP ===== */
@@ -86,13 +88,15 @@ $(document).ready(function() {
 	/* ===== INICIO - TRATAMENTO CAMPOS CADASTRO DO CLIENTE ===== */
 	if($('.FormContainer').length){
 		$('.FormContainer').find('input').each(function(){
-			/* Desabilita Campo Empresa */
+			// Desabilita Campo Empresa
 			if($(this).attr('attributeprivateid') == 'companyname'){ $(this).hide(); $(this).parent().prev().hide(); }
-			/* Mascara Data de Nascimento */
+			// Mascara Data de CPF
+			if($(this).attr('attributeprivateid') == 'cpf'){ $(this).mask("999.999.999-99"); }
+			// Mascara Data de Nascimento
 			if($(this).attr('attributeprivateid') == 'datanascimento'){ $(this).mask("99/99/9999"); }
-			/* Mascara de Telefone */
+			// Mascara de Telefone
 			if($(this).attr('attributeprivateid') == 'phone'){ $(this).mask("(99) 9999-9999"); }
-			/* Mascara de Cep */
+			// Mascara de Cep
 			if($(this).attr('attributeprivateid') == 'zip'){ $(this).mask("99999-999"); }
 		});
 		$('.FormContainer').find('select').each(function(){
@@ -182,7 +186,7 @@ $(document).ready(function() {
 });
 
 /* ===== INICIO - BUSCA POR CEP ===== */
-function buscaCep(cep){
+function buscaCep(cep, form){
 	var arrayEstados 	   = new Array();
 		arrayEstados['AC'] = 'Acre';
 		arrayEstados['AL'] = 'Alagoas';
@@ -214,7 +218,7 @@ function buscaCep(cep){
 	
 	$.getScript(urlWebsite + "/modificacoes/buscacep.php?cep=" + cep, function(){
 		if(resultadoCEP["resultado"] && resultadoCEP["resultado"] != 0){
-			$('.FormContainer').find('input').each(function(){
+			$(form).find('input').each(function(){
 				if($(this).attr('attributeprivateid') == 'addressline1'){
 					$(this).val(unescape(resultadoCEP["tipo_logradouro"])+": "+unescape(resultadoCEP["logradouro"]));
 				}
