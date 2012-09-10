@@ -105,6 +105,7 @@
 				
 				$GLOBALS['orderID'] 	  = $orderID;
 				$pedidoJaProcessado 	  = $this->verificaPedidoJaProcessado($orderID);
+				$GLOBALS['HideMenuRight'] = (!$pedidoJaProcessado) ? 'displayNone' : '';
 			}
 			
 			if($this->pendingData['storecreditamount'] > 0) {
@@ -220,9 +221,7 @@
 			}
 
 			// Show the order confirmation screen
-			$template 				  = (!$pedidoJaProcessado) ? 'order' : 'orderProcessedEdaz'; //EdazCommerce
-			$GLOBALS['HideMenuRight'] = (!$pedidoJaProcessado) ? 'displayNone' : ''; 			 //EdazCommerce
-			
+			$template = (!$pedidoJaProcessado) ? 'order' : 'orderProcessedEdaz'; //EdazCommerce
 			$GLOBALS['ISC_CLASS_TEMPLATE']->SetPageTitle(GetLang('ThanksForYourOrder'));
 			$GLOBALS['ISC_CLASS_TEMPLATE']->SetTemplate($template); //EdazCommerce
 			$GLOBALS['ISC_CLASS_TEMPLATE']->ParseTemplate();
