@@ -61,6 +61,16 @@
 				$this->paymentProvider->SetOrderData($this->pendingData);
 			}
 		}
+		
+		/**
+		 * EDAZCOMMERCE - Verifica se o pedido já foi gravado na tabela cielo 
+		 * afim de evitar duplicidade de pagamento caso apertar f5 na tela
+		 */
+		function verificaPedidoJaProcessado($orderID){
+			$sql = $GLOBALS['ISC_CLASS_DB']->Query("select * from [|PREFIX|]orders where orderid='".$orderID."'");
+			$fetch_order = $GLOBALS['ISC_CLASS_DB']->Fetch($sql);
+			return ($fetch_order) ? true : false;
+		}
 
 		/**
 		*	Show the "Thanks for Your Order" page and email an invoice to the customer.
@@ -80,7 +90,22 @@
 			$GLOBALS['HideAwaitingPayment'] = "none";
 
 			$GLOBALS['HideStoreCreditUse'] = 'none';
-
+			
+			/* EDAZCOMMERCE - BUG CIELO (PEGANDO O CÓDIGO DA ORDER ATRAVÉS DO TOKEN E PASSANDO POR PARÂMETRO AO MÓDULO DE PAGAMENTO) */
+			$orderID = '';
+			$pedidoJaProcessado = false;
+			if($this->pendingData['paymentmodule'] == 'checkout_cielo'){
+				foreach($this->pendingData['orders'] as $order) {
+					if($order['ordtoken'] == $this->orderToken){
+						$orderID = $order['orderid'];
+						break;
+					}
+				}
+				
+				$GLOBALS['orderID'] 	  = $orderID;
+				$pedidoJaProcessado 	  = $this->verificaPedidoJaProcessado($orderID);
+			}
+			
 			if($this->pendingData['storecreditamount'] > 0) {
 				$GLOBALS['HideStoreCreditUse'] = '';
 				$GLOBALS['StoreCreditUsed'] = CurrencyConvertFormatPrice($this->pendingData['storecreditamount']);
@@ -95,7 +120,7 @@
 				$GLOBALS['OrderTotal'] = FormatPrice($this->pendingData['gatewayamount'], false, true, false, $defaultCurrency, true);
 
 				$GLOBALS['HidePaidOrderConfirmation'] = "none";
-				$GLOBALS['PaymentMessage'] = $this->paymentProvider->GetOfflinePaymentMessage();
+				$GLOBALS['PaymentMessage'] = $this->paymentProvider->GetOfflinePaymentMessage($orderID); // EdazCommerce - $orderID passado por parâmetro para módulo CIELO
 				$GLOBALS['SNIPPETS']['OfflinePaymentMessage'] = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("OfflinePaymentMessage");
 			}
 			else {
@@ -194,8 +219,11 @@
 			}
 
 			// Show the order confirmation screen
+			$template 				  = (!$pedidoJaProcessado) ? 'order' : 'orderProcessedEdaz'; //EdazCommerce
+			$GLOBALS['HideMenuRight'] = (!$pedidoJaProcessado) ? 'displayNone' : ''; 			 //EdazCommerce
+			
 			$GLOBALS['ISC_CLASS_TEMPLATE']->SetPageTitle(GetLang('ThanksForYourOrder'));
-			$GLOBALS['ISC_CLASS_TEMPLATE']->SetTemplate("order");
+			$GLOBALS['ISC_CLASS_TEMPLATE']->SetTemplate($template); //EdazCommerce
 			$GLOBALS['ISC_CLASS_TEMPLATE']->ParseTemplate();
 		}
 

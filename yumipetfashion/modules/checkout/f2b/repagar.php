@@ -14,7 +14,7 @@ $tipotaxa	= corinthias("checkout_f2b","tipotaxa");
 $statusPedido = $fetch_order['ordstatus']; if($statusPedido=="2" || $statusPedido=="3" || $statusPedido=="4" || $statusPedido=="5" || $statusPedido=="6" || $statusPedido=="10") { return false; echo "<script language=javascript>window.location.href=\"processado.php\";</script>"; };
 
 
-	$total = $fetch_order['ordgatewayamount'];
+	$total = $fetch_order['total_inc_tax']; //OLD ordgatewayamount
 	$valorPa =number_format($total, 2, ',', '');
 
 $prazo = corinthias("checkout_f2b","comvencimento");

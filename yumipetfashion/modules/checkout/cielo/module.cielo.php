@@ -155,7 +155,7 @@ public function parcelar($valorTotal, $taxa, $nParcelas){
 }
 
 /*
-function parcelar($valor, $taxa, $parcelas) {
+function parcelar($valor, $taxa, $parcelas) { 
 	// EDAZCOMMERCE - Tratamento de Divisão por Zero (Juros não Setado no Admin)	
 	//if($taxa == 0){
 	//	return round($valorTotal/$nParcelas, 2);
@@ -169,7 +169,7 @@ function parcelar($valor, $taxa, $parcelas) {
 */
 
 /*
-function parcelar($valor, $taxa, $parcelas) {
+function parcelar($valor, $taxa, $parcelas) { 
     $taxa = $taxa / 100;
     $jurosComposto = 0;
     
@@ -202,7 +202,7 @@ if($orderid != ''){
 	$tokenOrder = $this->getTokenByOrderId($orderid);
 	$order = LoadPendingOrderByToken($tokenOrder);
 }else{
-	$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+	$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']); //$_COOKIE['SHOP_TOKEN']
 }
 
 //exite;
@@ -213,7 +213,7 @@ $meios =        $this->GetValue("meios");
 $minima =  $this->GetValue("parcelamin");
 $dividirem =      $this->GetValue("div");
 $semjuros =   $this->GetValue("jurosde");
-$valor =        $order['ordtotalamount'];
+$valor =        $order['total_inc_tax']; //OLD $order['ordtotalamount']
 $pedido =              $order['orderid']; 
 $juros =        $this->GetValue("juros");
 $desconto =  $this->GetValue("desconto");
@@ -303,13 +303,14 @@ $('#checkou_cielo_iframe').fadeOut('fast', function(){
 
 function redimenciona_div_mensagem_transacao(){
 	transacaoConcluida = true;
-	$('.checkout_cielo_parcelas_div').hide(function(){
-		$('.checkou_cielo_payment_div').css('width','100%');
-	});
+	$('.checkout_cielo_parcelas_div').hide();
+	$('.cieloPaymentRightDiv').css('margin-top','-10px');
 }
 </script>";	
 
 $help .= "&nbsp;&nbsp;&nbsp;<h3>".GetLang('SelCC')."</h3><br>"; 
+
+$help .= "<div class='cieloPaymentLeftDiv'>";
 
 $help .= "<div class='bandeirasLinks'>";
 if(is_array($meios)){
@@ -342,7 +343,18 @@ $help .= "<a onclick=\"javascript:carregaParcelas('ame');\"><img src='".$GLOBALS
 }
 $help .= "</div>";
  
+if($juros>0){
+$jurosmsg= sprintf(GetLang('Juros'),$juros);
+}else{
+$jurosmsg= "";
+}
+
 $help .= "<div class='checkout_cielo_parcelas_div'>";
+
+//mostra as formas de pagamento e a frase de valor minimo
+$help .= "<div class='clearLeft'>";
+$help .= 	"<br>".$jurosmsg."".sprintf(GetLang('MinCielo'),$minima);
+$help .= "</div>";
 
 //inicio do visa
 $par1 = "visa#".$pedido."#1#1#".md5($valor);
@@ -388,7 +400,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do visa
 
@@ -421,7 +433,7 @@ $help .= "<div id='debito' style='display:none;'>
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
 </a>
 </div>"; 
 //fim do debito
@@ -474,7 +486,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
 </a>
 </div>"; 
 //fim do mastercard
@@ -526,7 +538,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
 </a>
 </div>"; 
 //fim do elo
@@ -578,7 +590,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
 </a>
 </div>"; 
 //fim do diners
@@ -630,7 +642,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
 </a>
 </div>"; 
 //fim do discover
@@ -683,27 +695,23 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
+<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
 </a>
 </div>"; 
 //fim amex
 
 $help .= "</div>";
+
+$help .= "</div>";
+$help .= "<div class='cieloPaymentRightDiv'>";
+
 $help .= "<div class='checkou_cielo_payment_div'>";
-$help .= "	<iframe id='checkou_cielo_iframe_ajax' src='".$GLOBALS['ShopPath']."/templates/1x/carregandoAjax.html' width='100%' height='100%' frameborder='0'></iframe>";
+$help .= "	<iframe id='checkou_cielo_iframe_ajax' src='".$GLOBALS['ShopPathNormal']."/carregandoAjax.html' width='100%' height='100%' frameborder='0'></iframe>";
 $help .= "	<iframe id='checkou_cielo_iframe' width='100%' height='100%' frameborder='0'></iframe>";
 $help .= "</div>";
 
-if($juros>0){
-$jurosmsg= sprintf(GetLang('Juros'),$juros);
-}else{
-$jurosmsg= "";
-}
-
-//mostra as formas de pagamento e a frase de valor minimo
-$help .= "<div class='clearLeft'>";
-$help .= 	"<br>".$jurosmsg."".sprintf(GetLang('MinCielo'),$minima);
 $help .= "</div>";
+
 return $help;
 
 }else{

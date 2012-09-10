@@ -22,9 +22,13 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 .Content .ProductList li { overflow: visible !important; }
 
 /********** CHECKOU CIELO **********/
+.finalizacaoPedidoBlock blockquote{
+	margin: 0 !important;
+	margin-bottom: 20px;
+}
+
 .checkout_cielo_parcelas_div{
-	width: 330px;
-	float: left;
+
 }
 
 .bandeirasLinks{
@@ -54,6 +58,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 
 #checkou_cielo_iframe{
 	display: none;
+	width: 420px;
 }
 
 #checkou_cielo_iframe_ajax{
@@ -543,9 +548,20 @@ li.separador_links_footer{
 .width600 { width: 600px !important; }
 .ProductCompareButton input, label { cursor: pointer; }
 
-.marginBottom20{
-	margin-bottom: 20px;
+.clearLeft{
+	clear: left;
 }
+
+.floatLeft{
+	float: left;
+}
+
+.marginBottom20{
+	margin-bottom: 20px !important;
+}
+
+.cieloPaymentLeftDiv  { width: 340px; float: left; }
+.cieloPaymentRightDiv { float: left; width: 10px; margin-top: -90px; }
 
 #OrderConfirmationForm li { list-style: none; }
 

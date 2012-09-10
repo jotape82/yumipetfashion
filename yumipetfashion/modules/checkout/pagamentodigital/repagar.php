@@ -13,7 +13,7 @@ $statusPedido = $fetch_order['ordstatus']; if($statusPedido=="2" || $statusPedid
 
 $paymenturl = "https://www.pagamentodigital.com.br/checkout/pay/";
 
-	$total = $fetch_order['ordgatewayamount'];
+	$total = $fetch_order['total_inc_tax']; //OLD ordgatewayamount
 	$c = ($total/100)*$ac;
 	$valorpg = str_replace(",", ".",$total+$c);
 	$valorfinal = number_format($valorpg, 2, '.', '');

@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 9th Sep 2012 @ 7:04 PM
+	// Last Updated: 10th Sep 2012 @ 2:38 AM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -78,7 +78,7 @@
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_boletoreal,checkout_cheque,checkout_cielo,checkout_deposito,checkout_dinheiromail,checkout_f2b,checkout_mercadopago,checkout_moip,checkout_pagamentodigital,checkout_pagseguro,checkout_paypal';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_cielo,checkout_pagseguro';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;
@@ -106,7 +106,7 @@
 	$GLOBALS['ISC_CFG']["RSSProductSearches"] = 0;
 	$GLOBALS['ISC_CFG']["RSSLatestBlogEntries"] = 0;
 	$GLOBALS['ISC_CFG']["RSSItemsLimit"] = 10;
-	$GLOBALS['ISC_CFG']["RSSCacheTime"] = 0;
+	$GLOBALS['ISC_CFG']["RSSCacheTime"] = 60;
 	$GLOBALS['ISC_CFG']["RSSSyndicationIcons"] = 0;
 
 	$GLOBALS['ISC_CFG']['BackupsLocal'] = 1;
@@ -326,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 107;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 111;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';
