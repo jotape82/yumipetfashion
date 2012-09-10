@@ -20,7 +20,8 @@ class ISC_SIDETOPSELLERS_PANEL extends PRODUCTS_PANEL
 			$GLOBALS['HideProductRating'] = "display: none";
 		}
 
-		$output = "";
+		$output 		  = "";
+		$outputSliderEdaz = "";
 
 		$vendorRestriction = '';
 
@@ -46,19 +47,23 @@ class ISC_SIDETOPSELLERS_PANEL extends PRODUCTS_PANEL
 			else {
 				$snippet = "SideTopSellers";
 			}
+			
+			$snippetSliderEdaz = "SideTopSellersSliderEdaz";
 
 			$GLOBALS['ProductNumber'] = $count++;
 
 			$this->setProductGlobals($row);
 
-			$output .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet($snippet);
+			$output 		  .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet($snippet);
+			$outputSliderEdaz .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet($snippetSliderEdaz);
 		}
 
 		if ($count == 2) { // if only one product then we need to clear the list by adding an empty list item otherwise the layout can be broken
 			$output .= "<li></li>";
 		}
 
-		$GLOBALS['SNIPPETS']['SideTopSellers'] = $output;
+		$GLOBALS['SNIPPETS']['SideTopSellers'] 			 = $output;
+		$GLOBALS['SNIPPETS']['SideTopSellersSliderEdaz'] = $outputSliderEdaz;
 
 		if(!$output) {
 			$this->DontDisplay = true;
