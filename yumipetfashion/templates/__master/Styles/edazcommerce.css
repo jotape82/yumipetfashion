@@ -560,6 +560,8 @@ li.separador_links_footer{
 	margin-bottom: 20px !important;
 }
 
+#CartContent { margin-bottom: 25px; float: left; }
+
 .cieloPaymentLeftDiv  { width: 340px; float: left; }
 .cieloPaymentRightDiv { float: left; width: 10px; margin-top: -90px; }
 
@@ -590,5 +592,10 @@ li.separador_links_footer{
 
 /* CAROUSEL - SLIDER PRODUTOS RELACIONADOS */
 .sliderCarouselProdutosRelacionados .viewport { float: left; width: 560px; height: 310px; overflow: hidden; position: relative; border-radius: 10px; }
-.sliderCarouselProdutosRelacionados .prev { position: absolute; margin: 80px -15px; z-index: 10; }
-.sliderCarouselProdutosRelacionados .next { position: absolute; margin: 80px 530px; background-position: 0 0;  }
+.sliderCarouselProdutosRelacionados .prev 	  { position: absolute; margin: 80px -15px; z-index: 10; }
+.sliderCarouselProdutosRelacionados .next 	  { position: absolute; margin: 80px 530px; background-position: 0 0;  }
+
+/* CAROUSEL - SLIDER PRODUTOS RELACIONADOS */
+.sliderCarouselMaisVendidos .viewport { float: left; width: 560px; height: 310px; overflow: hidden; position: relative; border-radius: 10px; }
+.sliderCarouselMaisVendidos .prev 	  { position: absolute; margin: 80px -15px; z-index: 10; }
+.sliderCarouselMaisVendidos .next 	  { position: absolute; margin: 80px 530px; background-position: 0 0;  }
