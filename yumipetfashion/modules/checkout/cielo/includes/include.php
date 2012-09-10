@@ -66,7 +66,7 @@ function TotalPedidoCielo($itemId){
 //dados Pedido
 $sql = $GLOBALS['ISC_CLASS_DB']->Query("select * from [|PREFIX|]orders where orderid='".$itemId."'");
 $fetch_order = $GLOBALS['ISC_CLASS_DB']->Fetch($sql);
-return $fetch_order['ordgatewayamount'];
+return $fetch_order['total_inc_tax'];
 }
 
 // Envia requisição

@@ -12,7 +12,7 @@ $ac	= corinthias("checkout_mercadopago","acrecimo");
 
 $paymenturl = "https://www.mercadopago.com/mlb/buybutton";
 
-	$total = $fetch_order['ordgatewayamount'];
+	$total = $fetch_order['total_inc_tax']; //OLD ordgatewayamount
 	$c = ($total/100)*$ac;
 	$valorpg = str_replace(",", ".",$total+$c);
 	$valorfinal2 = number_format($valorpg, 2, '.', ',');

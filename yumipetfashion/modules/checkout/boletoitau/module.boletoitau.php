@@ -291,7 +291,7 @@
 			
 			$desc1 = $this->GetValue("desconto");
 
-	$total = $order['ordgatewayamount'];
+	$total = $order['total_inc_tax']; //OLD ordgatewayamount
 	$c = ($total/100)*$desc1;
 	$valorpg = str_replace(",", ".",$total-$c);
 	$valorfinal = number_format($valorpg, 2, '.', '');

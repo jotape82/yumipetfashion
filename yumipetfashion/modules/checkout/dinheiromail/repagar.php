@@ -13,7 +13,7 @@ $statusPedido = $fetch_order['ordstatus']; if($statusPedido=="2" || $statusPedid
 
 $paymenturl = "https://brasil.dineromail.com/dinero-tools/login/Shop/Shop_Ingreso.asp";
 
-	$valorfinal = number_format($fetch_order['ordgatewayamount'], 2, '.', '');
+	$valorfinal = number_format($fetch_order['total_inc_tax'], 2, '.', ''); //OLD ordgatewayamount
 
 echo "
 <form name='dinheiromail' action='".$paymenturl."' method='POST'>
