@@ -67,8 +67,14 @@
 		 * afim de evitar duplicidade de pagamento caso apertar f5 na tela
 		 */
 		function verificaPedidoJaProcessado($orderID){
-			$sql = $GLOBALS['ISC_CLASS_DB']->Query("select * from cielo where pedido = " . $orderID);
-			$fetch_order = $GLOBALS['ISC_CLASS_DB']->Fetch($sql);
+			$sql  = " SELECT c.pedido ";
+			$sql .= " FROM cielo c, [|PREFIX|]orders o ";
+			$sql .= " WHERE c.pedido   = " . $orderID;
+			$sql .= " AND o.orderid    = c.pedido ";
+			$sql .= " AND o.ordstatus <> 7 "; //Aguardando Pagamento
+			
+			$result = $GLOBALS['ISC_CLASS_DB']->Query($sql);
+			$fetch_order = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
 
 			return ($fetch_order) ? true : false;
 		}
