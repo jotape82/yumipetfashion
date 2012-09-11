@@ -37,7 +37,7 @@ $BoletoFNN 					= corinthias("checkout_boletobancodobrasil","boletobancodobrasil
 
 $statusPedido = $fetch_order['ordstatus']; if($statusPedido=="2" || $statusPedido=="3" || $statusPedido=="4" || $statusPedido=="5" || $statusPedido=="6" || $statusPedido=="10") { return false; echo "<script language=javascript>window.location.href=\"processado.php\";</script>"; };
 
-$valorBoleto = $fetch_order['ordtotalamount'];
+$valorBoleto = $fetch_order['total_inc_tax'];
 $sacadoBoleto = $fetch_order['ordbillfirstname']." ".$fetch_order['ordbilllastname'];
 $enderecoBoleto = $fetch_order['ordbillstreet1']." - ".$fetch_order['ordbillsuburb']." - ".$fetch_order['ordbillstate'].", CEP: ".$fetch_order['ordbillzip'];
 

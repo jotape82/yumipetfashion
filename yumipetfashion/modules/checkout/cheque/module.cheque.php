@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_CHEQUE extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -138,8 +140,15 @@
 		*	Return the delivery details needed to pay for the order
 		*/
 		function getofflinepaymentmessage($id) {
-		    $order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
-			$valorcerto = $order['ordtotalamount'];
+			if($id != ''){
+				$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+				$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+				$order = LoadPendingOrderByToken($tokenOrder);
+			}else{
+				$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+			}
+			
+			$valorcerto = $order['total_inc_tax'];
 		    $juros = trim($this->GetValue("juros"));
 			$dividir = trim($this->GetValue("dividir"));
 			$porcem = $valorcerto/100;

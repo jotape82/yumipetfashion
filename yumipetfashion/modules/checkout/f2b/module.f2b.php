@@ -1,4 +1,7 @@
 <?php
+
+require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+
 class CHECKOUT_F2B extends ISC_CHECKOUT_PROVIDER
 {
 
@@ -108,23 +111,28 @@ class CHECKOUT_F2B extends ISC_CHECKOUT_PROVIDER
 
 
 	function getofflinepaymentmessage($id){
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
+			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
 	
+		$billhtml = "
+		<div class='FloatLeft'><b>Pagamento Online F2b</b>
+		<br />
+		<a href=\"javascript:window.open('".$GLOBALS['ShopPath']."/modules/checkout/f2b/repagar.php?pedido=".$id."','popup','width=800,height=800,scrollbars=yes');void(0);\">
+		<img src='".$GLOBALS['ShopPath']."/modules/checkout/f2b/images/gerar_boleto.gif' border='0'></a>
+		</div><br>
+		<br /><br /><br /><br />
+		Link Direto:<br>
+		<a href='".$GLOBALS['ShopPath']."/modules/checkout/f2b/repagar.php?pedido=".$id."' target='_blank'>".$GLOBALS['ShopPath']."/modules/checkout/f2b/repagar.php?pedido=".$id."</a><br>
+		";
 	
-	$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
-$billhtml = "
-<div class='FloatLeft'><b>Pagamento Online F2b</b>
-<br />
-<a href=\"javascript:window.open('".$GLOBALS['ShopPath']."/modules/checkout/f2b/repagar.php?pedido=".$id."','popup','width=800,height=800,scrollbars=yes');void(0);\">
-<img src='".$GLOBALS['ShopPath']."/modules/checkout/f2b/images/gerar_boleto.gif' border='0'></a>
-</div><br>
-<br /><br /><br /><br />
-Link Direto:<br>
-<a href='".$GLOBALS['ShopPath']."/modules/checkout/f2b/repagar.php?pedido=".$id."' target='_blank'>".$GLOBALS['ShopPath']."/modules/checkout/f2b/repagar.php?pedido=".$id."</a><br>
-";
-	
-return $billhtml;
+		return $billhtml;
 
-}
+	}
 
 
 

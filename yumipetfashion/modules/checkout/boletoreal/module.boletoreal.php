@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_BOLETOREAL extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -267,11 +269,17 @@
 			
 		}
 
-	function getofflinepaymentmessage(){
-	
+	function getofflinepaymentmessage($id){
+		
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
 			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
-			//var_dump($order);
-			$id = $order['orderid'];
+		}
+		//var_dump($order);
+		$id = $order['orderid'];
 
 $billhtml = "
 <div class='FloatLeft'><b>Boleto Banco Real</b>

@@ -1175,8 +1175,14 @@ function VerifyPendingOrder($pendingOrderToken)
 			}
 			// Otherwise, use the VerifyOrderPayment method to validate the entire order
 			else {
+				//EDAZCOMMERCE - PASSANDO POR PARÂMETRO O CÓDIGO DA ORDER
+				$orderID = '';
+				if(isset($orderData['orders'])){
+					$orderID = $orderData['orders']['orderid'];
+				}
+				
 				// Order is invalid
-				if(!$provider->VerifyOrderPayment()) {
+				if(!$provider->VerifyOrderPayment($orderID)) {
 					return false;
 				}
 

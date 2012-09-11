@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_boletobradesco extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -279,12 +281,18 @@ $this->_variables['boletobradescoagenciadv'] = array("name" => "D&iacute;gito Ve
 			
 		}
 
-	function getofflinepaymentmessage(){
-	
+	function getofflinepaymentmessage($id){
+		
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
 			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
 
-			//var_dump($order);
-			$id = $order['orderid'];
+		//var_dump($order);
+		$id = $order['orderid'];
 
 
 

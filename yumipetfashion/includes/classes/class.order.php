@@ -98,17 +98,17 @@
 
 			$GLOBALS['HideStoreCreditUse'] = 'none';
 			
-			/* EDAZCOMMERCE - BUG CIELO (PEGANDO O CÓDIGO DA ORDER ATRAVÉS DO TOKEN E PASSANDO POR PARÂMETRO AO MÓDULO DE PAGAMENTO) */
+			/* EDAZCOMMERCE - BUG LOJA 6 (PEGANDO O CÓDIGO DA ORDER ATRAVÉS DO TOKEN E PASSANDO POR PARÂMETRO AO MÓDULO DE PAGAMENTO) */
 			$orderID = '';
-			$pedidoJaProcessado = false;
-			if($this->pendingData['paymentmodule'] == 'checkout_cielo'){
-				foreach($this->pendingData['orders'] as $order) {
-					if($order['ordtoken'] == $this->orderToken){
-						$orderID = $order['orderid'];
-						break;
-					}
+			foreach($this->pendingData['orders'] as $order) {
+				if($order['ordtoken'] == $this->orderToken){
+					$orderID = $order['orderid'];
+					break;
 				}
-				
+			}
+			
+			$pedidoJaProcessado = false;
+			if($this->pendingData['paymentmodule'] == 'checkout_cielo'){	
 				$GLOBALS['orderID'] 	  = $orderID;
 				$pedidoJaProcessado 	  = $this->verificaPedidoJaProcessado($orderID);
 				$GLOBALS['HideMenuRight'] = (!$pedidoJaProcessado) ? 'displayNone' : '';
@@ -128,7 +128,7 @@
 				$GLOBALS['OrderTotal'] = FormatPrice($this->pendingData['gatewayamount'], false, true, false, $defaultCurrency, true);
 
 				$GLOBALS['HidePaidOrderConfirmation'] = "none";
-				$GLOBALS['PaymentMessage'] = $this->paymentProvider->GetOfflinePaymentMessage($orderID); // EdazCommerce - $orderID passado por parâmetro para módulo CIELO
+				$GLOBALS['PaymentMessage'] = $this->paymentProvider->GetOfflinePaymentMessage($orderID); //Edazommerce - Passando o OrderID como parâmetro ao módulo de pagamento
 				$GLOBALS['SNIPPETS']['OfflinePaymentMessage'] = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("OfflinePaymentMessage");
 			}
 			else {

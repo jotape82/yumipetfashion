@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_DEPOSITO extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -117,16 +119,23 @@
 
 
 		}
-
-
+		
 		/**
 		*	Return the bank account details needed to pay for the order
 		*/
 		function getofflinepaymentmessage($id)
 		{
-		$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
-        $valorcerto = $order['ordtotalamount'];
-$ped = $order['orderid'];
+			
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
+			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
+			
+        $valorcerto = $order['total_inc_tax'];
+		$ped = $order['orderid'];
 
             $desconto = trim($this->GetValue("desconto"));
 

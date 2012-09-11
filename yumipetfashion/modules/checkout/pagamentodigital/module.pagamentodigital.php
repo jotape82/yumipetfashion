@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_PAGAMENTODIGITAL extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -144,26 +146,24 @@
 		);
 			
 			
-
-
-			
-			
-			
-		}
+	}
 
 	function getofflinepaymentmessage($id){
 	
-	// Load the pending order
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
 			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
 
+		$desc1 = $this->GetValue("acrecimo");
 
-			
-$desc1 = $this->GetValue("acrecimo");
-
-	$total = $order['total_inc_tax']; //OLD ordgatewayamount
-	$c = ($total/100)*$desc1;
-	$valorpg = str_replace(",", ".",$total+$c);
-	$valorfinal = number_format($valorpg, 2, '.', '');
+		$total = $order['total_inc_tax']; //OLD ordgatewayamount
+		$c = ($total/100)*$desc1;
+		$valorpg = str_replace(",", ".",$total+$c);
+		$valorfinal = number_format($valorpg, 2, '.', '');
 
 
 

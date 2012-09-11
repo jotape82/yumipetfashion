@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_boletobancodobrasil extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -300,9 +302,16 @@
 		}
 
 	function getofflinepaymentmessage($id){
-	
+		
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
 			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
-			$billhtml = "
+		}
+
+		$billhtml = "
 <div class='FloatLeft'><b>Boleto Banco de Brasil</b>
 </div>
 <br />
