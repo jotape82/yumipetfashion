@@ -52,11 +52,25 @@ CLASS ISC_TOPMENU_PANEL extends PANEL
 			$usuarioLogado = false;
 		}
 		
+		/* EDAZCOMMERCE - CRIAR OS CAMPOS DE LOGIN NO HEADER POR AQUI, PARA NÃO ENTRAR EM CONFLITO COM O LOGIN DO CHECKOUT */
+		$GLOBALS['FieldsLoginHeader'] = '<input type="text" class="InputTexto InitialFocus" name="login_email" id="login_email" size="35" />
+						<input type="password" class="InputTexto" name="login_pass" id="login_pass" />
+						<input type="submit" id="id="LoginButton"" value="Entrar" />';
+		
 		/* EDAZCOMMERCE - USUÁRIO DESLOGADO DO SISTEMA */
-		$GLOBALS['UsuarioLogado']    = $usuarioLogado;
+		$GLOBALS['UsuarioLogado'] = $usuarioLogado;
 		if($usuarioLogado){
 			$GLOBALS['DisplayLoginHome'] 		= "displayNone";
 			$GLOBALS['ClassWelcomeMessageUser'] = "width600";
+		}else{
+			/* DESABILITA OS CAMPOS PARA LOGIN NO HEADER QUANDO ESTIVER NO CHECKOUT */
+			if(!isset($GLOBALS['PanelLoginJavaScript']) || (isset($GLOBALS['PanelLoginJavaScript']) && $GLOBALS['PanelLoginJavaScript'] != 'desabilitadoCheckout')){
+				$GLOBALS['PanelLoginJavaScript'] = "%%Panel.LoginJavaScript%%";
+			}
+		}
+		if($GLOBALS['PanelLoginJavaScript'] == 'desabilitadoCheckout'){
+			$GLOBALS['FieldsLoginHeader']	 = "";
+			$GLOBALS['PanelLoginJavaScript'] = "";
 		}
 
 		// Display our currency flags. Has been disabled for the time being. Theory being that this will include the whole locale (text aswell)
