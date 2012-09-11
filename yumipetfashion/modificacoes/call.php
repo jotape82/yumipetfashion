@@ -3,9 +3,9 @@ include("../init.php");
 $qt 		  = $_POST['qtda'];
 $cep 		  = $_POST['cep'];
 $de 		  = $_POST['de'];
-$largura     = (isset($_POST['largura'])     && $_POST['largura']     != 0) ? $_POST['largura']     : 20; 
-$altura 	 = (isset($_POST['altura']) 	 && $_POST['altura'] 	  != 0) ? $_POST['altura'] 	    : 20;
-$comprimento = (isset($_POST['comprimento']) && $_POST['comprimento'] != 0) ? $_POST['comprimento'] : 20;
+$largura     = (isset($_POST['largura'])     && $_POST['largura']     < 20) ?  20 : $_POST['largura']; 
+$altura 	 = (isset($_POST['altura']) 	 && $_POST['altura'] 	  < 20) ?  20 : $_POST['altura'];
+$comprimento = (isset($_POST['comprimento']) && $_POST['comprimento'] < 20) ?  20 : $_POST['comprimento'];
 $arrayCodeErrors = array();
 
 $id_produto = $_POST['id_produto'];
