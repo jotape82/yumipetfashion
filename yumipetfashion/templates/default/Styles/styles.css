@@ -693,8 +693,10 @@ hr {
 
 /* Top Seller Block Specific */
 .Left .TopSellers .ProductDetails, .Right .TopSellers .ProductDetails { /* Contains the details of the item */
+	/*
 	margin-left: 14px;
 	width: 110px;
+	*/
 	padding: 3px 0 3px 0;
 }
 
@@ -960,10 +962,6 @@ ul.ShippingAddressList li {
 
 .SideRecentlyViewed .ProductList li {
 	margin-left: 0;
-}
-
-.SideRecentlyViewed .ProductDetails {
-	margin-left: 20px;
 }
 
 /* Product Comparisons */
