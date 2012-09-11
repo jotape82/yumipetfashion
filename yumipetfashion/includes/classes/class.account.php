@@ -1140,7 +1140,7 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 								'orders' => array($row['orderid'] => $row)
 							);
 							$checkout_object->SetOrderData($paymentData);
-							$GLOBALS['OrderInstructions'] = $checkout_object->GetOfflinePaymentMessage();
+							$GLOBALS['OrderInstructions'] = $checkout_object->GetOfflinePaymentMessage($row['orderid']); //Edazommerce - Passando o OrderID como parâmetro ao módulo de pagamento
 						}
 						else {
 							$GLOBALS['OrderInstructions'] = nl2br(GetModuleVariable($row['orderpaymentmodule'], "helptext"));

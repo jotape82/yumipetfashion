@@ -31,7 +31,7 @@ $BoletoConta 				= corinthias("checkout_boletoitau","boletoitauconta");
 $BoletoDV 				= corinthias("checkout_boletoitau","boletoitaudv");
 
 //Variaveis da compra.
-$valorBoleto = $fetch_order['ordtotalamount'];
+$valorBoleto = $fetch_order['total_inc_tax'];
 $sacadoBoleto = $fetch_order['ordbillfirstname']." ".$fetch_order['ordbilllastname'];
 $enderecoBoleto = $fetch_order['ordbillstreet1']." - ".$fetch_order['ordbillsuburb']." - ".$fetch_order['ordbillstate'].", CEP: ".$fetch_order['ordbillzip'];
 

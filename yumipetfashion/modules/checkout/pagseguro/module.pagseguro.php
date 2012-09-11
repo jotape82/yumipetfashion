@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_PAGSEGURO extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -169,17 +171,20 @@
 
 	function getofflinepaymentmessage($id){
 	
-	// Load the pending order
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
 			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
 
-			// Fetch the customer details
-			$query = sprintf("SELECT * FROM [|PREFIX|]customers WHERE customerid='%s'", $GLOBALS['ISC_CLASS_DB']->Quote($order['ordcustid']));
-			$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
-			$customer = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
+		// Fetch the customer details
+		$query = sprintf("SELECT * FROM [|PREFIX|]customers WHERE customerid='%s'", $GLOBALS['ISC_CLASS_DB']->Quote($order['ordcustid']));
+		$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
+		$customer = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
 	
-	
-	
-$desc1 = $this->GetValue("acrecimo");
+	$desc1 = $this->GetValue("acrecimo");
 
 	$total = $order['total_inc_tax']; //OLD ordgatewayamount
 	$c = ($total/100)*$desc1;

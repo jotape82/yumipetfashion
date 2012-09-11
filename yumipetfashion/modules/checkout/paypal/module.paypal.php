@@ -1,4 +1,7 @@
 <?php
+
+require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+
 class CHECKOUT_PAYPAL extends ISC_CHECKOUT_PROVIDER
 {
 
@@ -122,13 +125,16 @@ class CHECKOUT_PAYPAL extends ISC_CHECKOUT_PROVIDER
 
 		$orders = $this->GetOrders();
 		$orderIds = array();
+		$tokenID  = ''; //EdazCommerce
 		foreach($orders as $order) {
 			$orderIds[] = '#'.$order['orderid'];
+			$tokenID	= $order['ordtoken'];
 		}
+		
+		/* EDAZCOMMERCE - SUBSTITUINDO NESTA CLASSE TODAS AS ENTRADAS DE $_COOKIE['SHOP_TOKEN'] POR $tokenID */
+		
 		$orderIdAppend = '('.implode(', ', $orderIds).')';
-
 		$currency = GetDefaultCurrency();
-
 		$hiddenFields = array(
 			'cmd'			=> '_ext-enter',
 			'redirect_cmd'	=> '_xclick',
@@ -142,7 +148,7 @@ class CHECKOUT_PAYPAL extends ISC_CHECKOUT_PROVIDER
 			'no_note'		=> 1,
 			'currency_code'	=> $currency['currencycode'],
 			'item_name'		=> sprintf(GetLang('YourOrderFromX'), GetConfig('StoreName')).' '.$orderIdAppend,
-			'custom'		=> $_COOKIE['SHOP_TOKEN'] . '_' . $_COOKIE['SHOP_SESSION_TOKEN'],
+			'custom'		=> $tokenID . '_' . $_COOKIE['SHOP_SESSION_TOKEN'],
 
 			// Notification and return URLS
 			'return'		=> GetConfig('ShopPathSSL').'/concluir.php',
@@ -177,9 +183,17 @@ class CHECKOUT_PAYPAL extends ISC_CHECKOUT_PROVIDER
 	 *
 	 * @return boolean True if the order has been verified successfully or false if not.
 	 */
-	public function VerifyOrderPayment()
+	public function VerifyOrderPayment($orderID)
 	{
-		if(isset($_COOKIE['SHOP_TOKEN']) && isset($_COOKIE['SHOP_TOKEN'])) {
+		if($orderID != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($orderID);
+		}else{
+			$tokenOrder = $_COOKIE['SHOP_TOKEN'];
+		}
+		
+		//if(isset($_COOKIE['SHOP_TOKEN']) && isset($_COOKIE['SHOP_TOKEN'])) {
+		if(isset($tokenOrder)){
 			// This order is still incomplete, IPN notification hasn't been received yet, so the payment status is pending
 			if($this->GetOrderStatus() == ORDER_STATUS_INCOMPLETE) {
 				$this->SetPaymentStatus(PAYMENT_STATUS_PENDING);

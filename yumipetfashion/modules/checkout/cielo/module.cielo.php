@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+
 class CHECKOUT_CIELO extends ISC_CHECKOUT_PROVIDER
 {
 
@@ -183,26 +185,15 @@ function parcelar($valor, $taxa, $parcelas) {
 }
 */
 
-public function getTokenByOrderId($orderid){
-	$tokenOrder = '';
-	$query 		= "	SELECT ordtoken
-					FROM [|PREFIX|]orders
-					WHERE orderid=".$orderid;
-	
-	$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
-	$order  = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
-	$tokenOrder = $order['ordtoken'];
-	return $tokenOrder;
-}
-
 public function getofflinepaymentmessage($orderid=''){
 
 $order = '';
 if($orderid != ''){
-	$tokenOrder = $this->getTokenByOrderId($orderid);
+	$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+	$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($orderid);
 	$order = LoadPendingOrderByToken($tokenOrder);
 }else{
-	$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']); //$_COOKIE['SHOP_TOKEN']
+	$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
 }
 
 //exite;

@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_MERCADOPAGO extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -162,13 +164,18 @@
 
 	function getofflinepaymentmessage($id){
 	
-	// Load the pending order
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
 			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
 
-			// Fetch the customer details
-			$query = sprintf("SELECT * FROM [|PREFIX|]customers WHERE customerid='%s'", $GLOBALS['ISC_CLASS_DB']->Quote($order['ordcustid']));
-			$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
-			$customer = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
+		// Fetch the customer details
+		$query = sprintf("SELECT * FROM [|PREFIX|]customers WHERE customerid='%s'", $GLOBALS['ISC_CLASS_DB']->Quote($order['ordcustid']));
+		$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
+		$customer = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
 	
 	
 	
