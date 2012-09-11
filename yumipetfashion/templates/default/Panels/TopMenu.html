@@ -1,5 +1,7 @@
 %%GLOBAL_OptimizerLinkScript%%	
 
+%%GLOBAL_PanelLoginJavaScript%%
+
 <!--	
 <div id="TopMenu">
 	<ul style="display:%%GLOBAL_HidePurchasingOptions%%">
@@ -72,9 +74,7 @@
 				<div class="header_login %%GLOBAL_DisplayLoginHome%%">
 					<div class="float_left">
 						<form action="%%GLOBAL_ShopPath%%/login.php?action=check_login" method="post" id="formLoginTopMenu" onsubmit="return check_login_form(this)">
-							<input type="text" class="InputTexto InitialFocus" name="login_email" id="login_email" size="35" />
-							<input type="password" class="InputTexto" name="login_pass" id="login_pass" />
-							<input type="submit" id="id="LoginButton"" value="Entrar" />
+							%%GLOBAL_FieldsLoginHeader%%
 						</form>
 					</div>
 					<div class="header_cadastrar">

@@ -12,6 +12,9 @@ class ISC_CHECKOUT
 	public function HandlePage()
 	{
 		$action = "";
+		$GLOBALS['DisplayLoginHome'] 	 = "displayNone"; 		   // EdazCommerce
+		$GLOBALS['PanelLoginJavaScript'] = "desabilitadoCheckout"; // EdazCommerce
+		
 		if (isset($_REQUEST['action'])) {
 			$action = isc_strtolower($_REQUEST['action']);
 		}
