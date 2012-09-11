@@ -243,7 +243,7 @@ var QuickSearch = {
 			}
 			if($('#QuickSearch'))
 			{
-				$('#QuickSearch').remove();
+				//$('#QuickSearch').remove();
 			}
 			document.body.appendChild(popup_container);
 			popup_container.style.display = '';
@@ -252,7 +252,7 @@ var QuickSearch = {
 		{
 			if(document.getElementById('QuickSearch'))
 			{
-				$('#QuickSearch').remove();
+				//$('#QuickSearch').remove();
 			}
 		}
 	},
@@ -260,7 +260,7 @@ var QuickSearch = {
 
 	hide_popup: function()
 	{
-		$('#QuickSearch').remove();
+		//$('#QuickSearch').remove();
 		QuickSearch.selected = null;
 	},
 

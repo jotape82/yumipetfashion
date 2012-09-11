@@ -1070,22 +1070,7 @@ table.General tbody tr.First td {
 .CategoryPagination .PagingList li {
 	display: inline;
 	padding: 0 5px;
-}/* Quick Search */
-.QuickSearch { margin: 0; padding: 0; text-align: left; border-collapse: collapse; background: #fff; border: 1px solid #BFBFBF; z-index: 9999;  }
-.QuickSearchTitle td, .QuickSearchAllResults td { font-weight: bold; padding: 4px; font-size: 11px; }
-.QuickSearchResult td { font-size: 11px; padding:8px; cursor: pointer; }
-.QuickSearchResultImage { margin-left: 4px; margin-right: 10px; text-align: center; }
-.QuickSearchResultNoImage { padding-top: 10px; color: #777; }
-.QuickSearchResultName { margin: 0; padding: 0; padding-bottom: 5px; }
-.QuickSearchResultName a { font-weight: bold; text-decoration: none; }
-.QuickSearchResult .Price { font-size: 11px; }
-.QuickSearchHover td{ background: #FCC8EA; }
-.QuickSearchHover a { text-decoration: underline; font-weight:bold; }
-.QuickSearchAllResults td { text-align: right; height: 25px; }
-.QuickSearchAllResults a { text-decoration: underline; }
-.QuickSearchAllResults a:active, .QuickSearchAllResults a { outline: none; -moz-outline-style: none; }
-.QuickSearchTR1 { background-color: #f5f5f5; }
-.QuickSearchTR2 { background-color: #fffff; }
+}
 
 /* Brand Tag Clouds */
 .BrandCloud .smallest { font-size:12px; }
