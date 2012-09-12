@@ -290,7 +290,8 @@ $billhtml = "
 
 <input type='hidden' name='item_id' value='".$id."' />
 <input type='image' src='".$GLOBALS['ShopPath']."/modules/checkout/boletoreal/images/gerar_boleto.gif' value='submit'><br>
-URL DO BOLETO: <a href='".$GLOBALS['ShopPath']."/modules/checkout/boletoreal/boleto_real.php?boleto=".$id."'>".$GLOBALS['ShopPath']."/modules/checkout/boletoreal/boleto_real.php?boleto=".$id."</a><br><br><br>
+<br>URL DO BOLETO:<br>
+<a href='".$GLOBALS['ShopPath']."/modules/checkout/boletoreal/boleto_real.php?boleto=".$id."'>".$GLOBALS['ShopPath']."/modules/checkout/boletoreal/boleto_real.php?boleto=".$id."</a><br><br><br>
 
 
 </form>
