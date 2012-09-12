@@ -145,16 +145,23 @@
 			$valord =number_format($totalmenos, 2, ',', '');
 
 if($desconto != "0") {
-$msg = "<h2>Pedido total de $valord com $desconto% de Desconto!</h2>";
+$msg = "<h2>Pedido total de R$" . $valord . " com $desconto% de Desconto!</h2>";
 } else {
-$msg = "<h2>Pedido total de $valord!</h2>";
+$msg = "<h2>Pedido total de R$" . $valord . "</h2>";
 }
 
-$dados = $this->GetValue("helptext");
-$gerador = "$msg<br><br>$dados";
+$msg .= "<div class='tituloContaDeposito'>Conta para depósito:</div>";
 
-			return $gerador;
-		}
+$dados   = $this->GetValue("helptext");
+$dados	 = preg_replace("/(\\r)?\\n/i", "<br/>", $dados);
+
+$msg .= "<div class='dadosDeposito'>";
+$msg .= 	$dados;
+$msg .= "</div>";
+
+	return $msg;
+	
 	}
+}
 
 ?>
