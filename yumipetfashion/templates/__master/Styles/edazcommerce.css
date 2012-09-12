@@ -608,6 +608,24 @@ li.separador_links_footer{
 #ShippingAddressTable td.label { width: 150px; font-weight: bold; }
 #ShippingAddressTable td.value { width: 370px; }
 
+.tituloContaDeposito {
+	clear: left;
+    color: #666666;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 30px 0 0;
+    text-decoration: underline;
+}
+
+.dadosDeposito {
+	clear: left;
+    color: #333333;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 26px;
+    margin: 15px 20px 0;
+}
+
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
 .sliderCarousel .viewport ul { position: relative; }
 .sliderCarousel { /*height: 1%;*/ overflow:hidden; padding: 0 0 10px; float: left; clear: left;  }
