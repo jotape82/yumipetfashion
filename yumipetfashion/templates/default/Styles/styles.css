@@ -383,11 +383,7 @@ hr {
 }
 
 .Left a {
-	color: #000;
-}
-
-.Left li a:hover {
-	text-decoration: underline;
+	color: #D04AA3;
 }
 
 .Left .BlockContent {
@@ -416,10 +412,6 @@ hr {
 
 .Left li a {
 	text-decoration: none;
-}
-
-.Left li a:hover {
-	text-decoration: underline;
 }
 
 .Left #SideCategoryList li ul {

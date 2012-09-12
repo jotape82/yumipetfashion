@@ -5,6 +5,44 @@
 <link rel="stylesheet" type="text/css" href="../templates/default/Styles/fale_conosco.css"/> 
 </HEAD>
 
+<?php
+	$path = dirname(__FILE__);
+	$posUltimaBarra = strrpos($path, "\\");
+	$path = substr($path, 0, $posUltimaBarra);
+	//include($path."/init.php");
+	
+	require_once("connectDB.php");
+	
+	$nomeProduto;
+	$imagemProduto;
+	$orcamentoProduto = false;
+	$codprod 	= (isset($_REQUEST['codprod']) 	  && $_REQUEST['codprod'] 	 != '') ? $_REQUEST['codprod'] 	  : "";
+	$urlWebsite = (isset($_REQUEST['urlWebsite']) && $_REQUEST['urlWebsite'] != '') ? $_REQUEST['urlWebsite'] : "";
+	
+	if($codprod != ''){
+		$query  = " SELECT p.prodname, pi.imagefilestd ";
+		$query .= " FROM isc_products p, isc_product_images pi ";
+		$query .= " WHERE p.productid   = $codprod ";
+		$query .= " AND pi.imageprodid  = p.productid ";
+		$query .= " AND pi.imageisthumb = 1 ";
+		
+		$result = mysql_query($query) or print(mysql_error());
+		$row    = mysql_fetch_array($result);
+		
+		$orcamentoProduto = true;
+		$nomeProduto   	  = $row['prodname'];
+		/*
+		$pathSite		  = $_SERVER['HTTP_REFERER'];
+		$posUltimaBarra   = strrpos($pathSite, "/");
+		$pathSite 	      = substr($pathSite, 0, $posUltimaBarra);
+		*/
+		
+		$pathProductImages = $urlWebsite . "/product_images/";
+		$imagemProduto     = $pathProductImages . $row['imagefilestd'];
+	}
+	
+?>
+
 <BODY> 
 <DIV align=center>
 	<div id="fale_conosco_div" style="width: 610px; border: 1px solid black;">
@@ -34,6 +72,15 @@
 								</div>
 							</div>
 							
+							<!-- SOLICITAR ORÇAMENTO DE PRODUTO -->
+							<? if($orcamentoProduto): ?>
+							<div class="tituloDiv" style="clear: left; padding-top: 30px;">Solicite um orçamento para o produto abaixo:</div>
+							<div style="clear: left; float: left; margin-top: 20px;">
+								<div class="orcamentoImagemProduto"><img src="<? echo $imagemProduto ?>" width="150"></div>
+								<div class="orcamentoNomeProduto"><? echo $nomeProduto ?></div>
+							</div>
+							<? endif; ?>
+							
 							<!-- CAMPOS -->
 							<div style="clear: left; width: 330px; float: left; margin-top: 20px;">
 								<div id="emailForm">
@@ -54,7 +101,7 @@
 									<div class="divCampo">
 										<div class="label">Assunto</div>
 										<div class="clearLeft">
-											<input class="inputbox" type="text" id="assunto" name="assunto" value=""/>
+											<input class="inputbox" type="text" id="assunto" name="assunto" value="<? echo ($orcamentoProduto) ? "Avise-me quando chegar" : "" ?>"/>
 											<div class="left seta_obrigatorio"></div>
 										</div>	
 									</div>
@@ -75,7 +122,7 @@
 									<div class="divCampo">
 										<div class="label">Mensagem <span class="label_obrigatorio">*</span></div>
 										<div class="left area-bg">
-											<textarea class="textarea" id="mensagem" name="mensagem" style="width: 270px;"></textarea>
+											<textarea class="textarea" id="mensagem" name="mensagem" style="width: 270px;"><? echo ($orcamentoProduto) ? "Solicito informações de orçamento sobre o produto " . $nomeProduto . "." : "" ?></textarea>
 											<div class="left seta_obrigatorio"></div>
 										</div>
 									</div>
@@ -100,6 +147,7 @@
 
 <script>
 	
+	$('#nome').focus();
 	$('#telefone').mask("(99) 9999-9999");
 	
 	function enviaForm(){
