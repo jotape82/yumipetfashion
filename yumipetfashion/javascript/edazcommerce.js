@@ -433,6 +433,46 @@ function carregaUrl(url, height){
 	
 }
 
+/*
+	Avise-me Quando Chegar um Produto
+*/
+function avisemeQuandoChegar(codProd){
+var url,
+	height,
+	parametros,
+	novoElemento,
+	divPrincipal;
+	
+	divPrincipal = $('#Wrapper');
+	
+	if(!$('#iframeURL')[0]){
+		/* Cria IFRAME */
+		novoElemento  = "<div id='bannerDIV'></div>";
+		novoElemento += "<div id='iframeDIV'>";
+		novoElemento += "<iframe id='iframeURL' name='iframeURL' src='" + urlWebsite + "/carregandoAjax.html' width='100%' height='100%' frameborder='0' style='display: none;'></iframe>";
+		novoElemento += "</div>";
+		
+		url 	   = urlWebsite + '/fale_conosco/faleconosco.php';
+		parametros = '?codprod=' + codProd + '&urlWebsite=' + urlWebsite;
+		height	   = '1300px';
+		
+		$(divPrincipal).after(novoElemento);
+		$(divPrincipal).hide();
+		$('#Header').hide();
+		$('#bannerDIV').append($('#Header').html()); //Movendo BANNER
+		$('#iframeURL').css('height', height);
+		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 55}, 1500);
+		$('#iframeURL').fadeIn(1500, function(){
+			$('#iframeURL').attr('src', url+parametros);
+		});
+	}else{
+		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 55}, 1500);
+		$('#iframeURL').attr('src', url+parametros);
+		$('#iframeURL').css('height', height);
+	}
+
+}
+
 function mostraDivComentariosProduto(animation){
 	var codigoDivComentarioProdutos = 4;
 

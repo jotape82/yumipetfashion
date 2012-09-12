@@ -110,11 +110,16 @@ class PRODUCTS_PANEL extends PANEL
 		
 		if (CanAddToCart($row) && GetConfig('ShowAddToCartLink')) {
 			$GLOBALS['HideActionAdd'] = '';
+			/* EDAZCOMMERCE - Produto Insdisponível */
+			$GLOBALS['HideProdutoIndisponivel'] = 'displayNone';
 		} else {
 			$GLOBALS['HideActionAdd'] = 'none';
+			/* EDAZCOMMERCE - Produto Insdisponível */
+			if($row['prodcurrentinv'] == '0'){
+				$GLOBALS['HideProdutoIndisponivel'] = '';
+			}
 		}
-
-
+		
 		$GLOBALS['HideProductVendorName'] = 'display: none';
 		$GLOBALS['ProductVendor'] = '';
 		if(GetConfig('ShowProductVendorNames') && $row['prodvendorid'] > 0) {

@@ -125,8 +125,13 @@ h3 {
 	color: #D04AA3;
 }
 
+.Right li a:hover {
+	font-weight: bold;
+	text-decoration: none;
+}
+
 .Right a:hover, .Right a:hover strong {
-	color: #000000;
+	color: #D04AA3;
 }
 
 #Footer {

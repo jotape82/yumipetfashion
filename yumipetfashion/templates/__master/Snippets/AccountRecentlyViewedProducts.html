@@ -13,7 +13,6 @@
 			<input type="checkbox" class="CheckBox" name="compare_product_ids" id="compare_%%GLOBAL_ProductId%%" value="%%GLOBAL_ProductId%%" onclick="product_comparison_box_changed(this.checked)" /> <label for="compare_%%GLOBAL_ProductId%%">%%LNG_Compare%%</label>
 		</div>
 		
-		<!-- Parcelamento -->
 		<div class="parcelamentoProdutoDiv">
 			%%GLOBAL_ProDestaques%%
 			%%GLOBAL_FreteDestaques%%
@@ -23,7 +22,10 @@
 			<a href="%%GLOBAL_ProductURL%%">%%GLOBAL_ProductAddText%%</a>
 		</div>
 		
-		<!-- EDAZCOMMERCE -->
+		<div class="avisemeQuandoChegar %%GLOBAL_HideProdutoIndisponivel%%">
+			<a href="javascript: avisemeQuandoChegar(%%GLOBAL_ProductId%%);">Avise-me<br>quando chegar</a>
+		</div>
+		
 		<div class="fundoDegradeProduct"></div>
 	</div>
 	<div class="bottom_imagem_produto_div"></div>
