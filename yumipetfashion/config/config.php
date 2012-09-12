@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 12th Sep 2012 @ 2:34 AM
+	// Last Updated: 12th Sep 2012 @ 6:40 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -61,8 +61,8 @@
 	$GLOBALS['ISC_CFG']["ShowAddToCartQtyBox"] = 1;
 	$GLOBALS['ISC_CFG']["CaptchaEnabled"] = 0;
 	$GLOBALS['ISC_CFG']["ShowCartSuggestions"] = 1;
-	$GLOBALS['ISC_CFG']["AdminEmail"] = 'atendimento@yumipetfashion.com.br';
-	$GLOBALS['ISC_CFG']["OrderEmail"] = 'atendimento@yumipetfashion.com.br';
+	$GLOBALS['ISC_CFG']["AdminEmail"] = 'teste@teste.com.br';
+	$GLOBALS['ISC_CFG']["OrderEmail"] = 'teste@teste.com.br';
 	$GLOBALS['ISC_CFG']['LowInventoryNotificationAddress'] = 'atendimento@yumipetfashion.com.br';
 	$GLOBALS['ISC_CFG']["ShowThumbsInCart"] = 1;
 	$GLOBALS['ISC_CFG']["AutoApproveReviews"] = 0;
@@ -326,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 111;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 122;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';
