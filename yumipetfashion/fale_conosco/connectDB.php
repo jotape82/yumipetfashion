@@ -6,7 +6,7 @@
 //$senhaDB	= "";
 //$bancoDados = "yumipetfashion";
 
-$serverName = "108.179.223.49";
+$serverName = "localhost";
 $usuarioDB  = "edazc709_yumipet";
 $senhaDB	= "yumipet*";
 $bancoDados = "edazc709_yumipetfashion2";
