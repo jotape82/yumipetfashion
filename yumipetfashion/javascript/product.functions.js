@@ -20,6 +20,7 @@ function updateSelectedVariation(parent, variation, id) {
 		var stockMessageVisible = false;
 		if($('.OutOfStockMessage', parent).css('display') != 'none') {
 			stockMessageVisible = true;
+			$('.avisemeQuandoChegarTelaProduto').fadeIn(1000);
 		}
 
 		var price;

@@ -427,13 +427,6 @@ li.separador_links_footer{
     position: absolute;
 }
 
-.avisemeQuandoChegar{
-	bottom: -25px; 
-	left: 45px; 
-	position: absolute; 
-	z-index: 1;
-}
-
 #HomeFeaturedProducts .ProductList .ProductImage,
 #HomeNewProducts .ProductList .ProductImage,
 #CategoryContent .ProductList .ProductImage,
@@ -634,7 +627,14 @@ li.separador_links_footer{
 }
 
 .avisemeQuandoChegar{
-	
+	bottom: -25px; 
+	left: 45px; 
+	position: absolute; 
+	z-index: 1;
+}
+
+.avisemeQuandoChegarTelaProduto{
+	margin: 15px 0 25px;
 }
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
