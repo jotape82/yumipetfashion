@@ -1968,6 +1968,7 @@ p.QuantityInput, p.AddCartButton {
 
 #ProductDetails .ProductMain .OutOfStockMessage {
 	clear: left;
+	margin-top: 15px;
 }
 
 .carousel {
