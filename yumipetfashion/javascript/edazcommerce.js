@@ -525,3 +525,33 @@ function retiraCaracter(string, caracter) {
     }
     return final + string;
 }
+
+/*
+	Valida Form - Indique a um Amigo
+*/
+function validaIndiqueUmAmigoForm(){
+	var campo,
+	validado,
+	arrayCampos;
+		
+	validado 	= true;
+	arrayCampos = new Array("nomede", "emailde", "nomepara", "emailpara", "mensagempara");
+	
+	var tamanhoArray = arrayCampos.length;
+	for(var i=tamanhoArray-1; i>=0; i--){
+		campo = '#' + arrayCampos[i];
+		
+		/* Limpando os Campos */
+		$(campo).removeClass('campo_obrigatorio');
+		$(campo).next().css('visibility','hidden');
+		
+		/* Verificando Campos */
+		if($.trim($(campo).val()) == ''){
+			validado = false;
+			$(campo).addClass('campo_obrigatorio');
+			$(campo).next().css('visibility','visible');
+		}
+	}
+	
+	return validado;
+}

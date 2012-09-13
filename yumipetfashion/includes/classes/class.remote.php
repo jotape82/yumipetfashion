@@ -163,15 +163,15 @@
 			$im = $GLOBALS['ISC_CLASS_DB']->Query($image);
 			$img = $GLOBALS['ISC_CLASS_DB']->Fetch($im);
 			
-						$this->_message = 'Ola, <b>'.$paranome.'</b><br>Um amigo lhe recomendou o seguinte produto:<br><b>'.$linhas['prodname'].'<br><img src="'.GetConfig("ShopPath").'/product_images/'.$img['imagefile'].'" width="280" height="180" border="0">
+			$this->_message = 'Ola, <b>'.$paranome.'</b><br>Um amigo lhe recomendou o seguinte produto:<br><b>'.$linhas['prodname'].'<br><img src="'.GetConfig("ShopPath").'/product_images/'.$img['imagefile'].'" width="280" height="180" border="0">
 			<br>
 			<i>'.$men.'</i>
 			<br><br>
 			<a href="'.GetConfig("ShopPath").'/modificacoes/red.php?is='.$linhas['productid'].'" target="_blank">
 			'.$url.'/modificacoes/red.php?is='.$linhas['productid'].'
 			</a><br><b>'.$store_name.'</b>';
+			
 			$this->_email = $paraemail;
-
 			if (empty($this->_email)) {
 				return;
 			}
@@ -179,8 +179,6 @@
 			$emails = preg_split('#[,\s]+#si', $this->_email, -1, PREG_SPLIT_NO_EMPTY);
 
 			// Create a new email object through which to send the email
-			
-
 			require_once(ISC_BASE_PATH . "/lib/email.php");
 			$obj_email = GetEmailClass();
 			$obj_email->Set('CharSet', GetConfig('CharacterSet'));
@@ -228,12 +226,11 @@
 				$select = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet('Indique');
 				echo $GLOBALS['ISC_CLASS_TEMPLATE']->ParseSnippets($select, true);
 			}else{
-				//EmailRE($denome,$emailde,$paranome,$paraemail,$produto)
-				if(!empty($_REQUEST['nomede']) and !empty($_REQUEST['emailde']) and !empty($_REQUEST['nomepara']) and !empty($_REQUEST['emailpara']) and !empty($_REQUEST['mensagem'])) {
-					$dados = $this->EmailRE($_REQUEST['nomede'],$_REQUEST['emailde'],$_REQUEST['nomepara'],$_REQUEST['emailpara'],$_REQUEST['id'],$_REQUEST['mensagem']);
+				if(!empty($_REQUEST['nomede']) and !empty($_REQUEST['emailde']) and !empty($_REQUEST['nomepara']) and !empty($_REQUEST['emailpara']) and !empty($_REQUEST['mensagempara'])) {
+					$dados = $this->EmailRE($_REQUEST['nomede'],$_REQUEST['emailde'],$_REQUEST['nomepara'],$_REQUEST['emailpara'],$_REQUEST['id'],$_REQUEST['mensagempara']);
 					echo '<h1>'.$dados['message'].'</h1>';
 				} else {
-					echo '<h2><font color="red">Ponha todos os dados do formulario!</font></h2>';
+					echo 'Informe os campos acima corretamente!';
 				}
 			}
 		}
