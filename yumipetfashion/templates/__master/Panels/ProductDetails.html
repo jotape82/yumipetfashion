@@ -162,8 +162,9 @@ var productId = %%GLOBAL_ProductId%%;
 				
 				<!-- MODIFICAÇÕES -->
 				<div class="DetailRow">
-					<a href="#" onClick="Frete.Abrir(%%GLOBAL_ProductId%%);"><img src="%%GLOBAL_ShopPath%%/modificacoes/frete.gif" border="0" style="margin-bottom:5px;"></a><br />
-					<a href="#" onClick="Parcelas.Abrir(%%GLOBAL_ProductId%%);"><img src="%%GLOBAL_ShopPath%%/modificacoes/comopagar.gif" border="0"></a>
+					<a href="#" onClick="Frete.Abrir(%%GLOBAL_ProductId%%);"><img src="%%GLOBAL_ShopPath%%/modificacoes/frete.gif" alt="Calcular Frete" border="0" style="margin-bottom:5px;"></a><br />
+					<a href="#" onClick="Parcelas.Abrir(%%GLOBAL_ProductId%%);"><img src="%%GLOBAL_ShopPath%%/modificacoes/comopagar.gif" alt="Ver Parcelas" border="0"></a><br />
+					<a href="#" onClick="Indique.Abrir(%%GLOBAL_ProductId%%);"><img src="%%GLOBAL_ShopPath%%/modificacoes/comopagar.gif" alt="Indique o Produto" border="0"></a><br />
 				</div>
 			</div>
 			%%SNIPPET_ProductAddToCart%%
@@ -171,7 +172,11 @@ var productId = %%GLOBAL_ProductId%%;
 			%%GLOBAL_FacebookLikeButtonBelow%%
 		</div>
 		%%GLOBAL_AddThisLink%%
-
+		
+		<div class="formasPagamentoProduto" style="float: right;">
+			Formas de Pagamento:
+		</div>
+		
 		<br class="Clear" />
 		<hr />
 	</div>

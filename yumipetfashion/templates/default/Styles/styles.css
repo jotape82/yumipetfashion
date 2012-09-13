@@ -2300,3 +2300,18 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 .bannerHomeSlider3{
 	background: url(../img/layout/banner/banner3.jpg) no-repeat;
 }
+
+.seta_obrigatorio{
+	float: left;
+	width: 25px;
+	height: 20px;
+	margin-top: 2px;
+	visibility: hidden;
+	background: url('../img/fale_conosco/arrow_mandatory.png') no-repeat;
+}
+
+.campo_obrigatorio{
+	background-color: #fff7f6 !important;
+	border: 1px solid #fc978c !important;
+	/*border: none\9 !important;*/
+}
