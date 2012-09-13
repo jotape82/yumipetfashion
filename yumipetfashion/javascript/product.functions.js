@@ -20,7 +20,6 @@ function updateSelectedVariation(parent, variation, id) {
 		var stockMessageVisible = false;
 		if($('.OutOfStockMessage', parent).css('display') != 'none') {
 			stockMessageVisible = true;
-			$('.avisemeQuandoChegarTelaProduto').fadeIn(1000);
 		}
 
 		var price;
@@ -83,6 +82,7 @@ function updateSelectedVariation(parent, variation, id) {
 				.show()
 				.html(baseProduct.stockMessageText)
 			;
+			$('.avisemeQuandoChegarTelaProduto').fadeIn(1200);
 		}
 		else {
 			$('.OutOfStockMessage').hide();
@@ -127,6 +127,7 @@ function updateSelectedVariation(parent, variation, id) {
 			$('.AddCartButton, .QuantityInput', parent).hide();
 			$('.OutOfStockMessage', parent).html(lang.VariationSoldOutMessage);
 			$('.OutOfStockMessage', parent).show();
+			$('.avisemeQuandoChegarTelaProduto').fadeIn(1200);
 		}
 		if(variation.thumb != '') {
 			ShowVariationThumb = true;
