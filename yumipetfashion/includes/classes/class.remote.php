@@ -163,6 +163,12 @@
 			$im = $GLOBALS['ISC_CLASS_DB']->Query($image);
 			$img = $GLOBALS['ISC_CLASS_DB']->Fetch($im);
 			
+			if(strlen($linhas['proddesc']) > 400){
+				$descricaoProduto = substr($linhas['proddesc'], 0, 400) . "...&nbsp;<a href='".GetConfig("ShopPath").'/productRemote.php?is='.$linhas['productid']."' target='_blank'>Veja mais!</a>";
+			}else{
+				$descricaoProduto = $linhas['proddesc'];
+			}
+
 			$this->_message = "
 			<table width='700'>
 				<colgroup>
@@ -181,10 +187,10 @@
 							<img src='".GetConfig("ShopPath").'/product_images/'.$img['imagefile']."' width='280' height='180' border='0'>
 						</a>
 					</td>
-					<td style='font-family: Tahoma, Arial; font-size: 12px; vertical-align: top; padding-left: 15px; '>
+					<td style='font-family: Tahoma, Arial; font-size: 12px; vertical-align: top; padding-left: 15px; line-height: 20px; text-align: justify;'>
 						<span style='font-weight: bold; font-size: 18px; color: #666666;'>".$linhas['prodname']."</span>
 						<hr><p>
-						".$linhas['proddesc']."
+						".$descricaoProduto."
 					</td>
 				</tr>
 				<tr>
