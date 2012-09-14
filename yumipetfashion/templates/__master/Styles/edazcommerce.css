@@ -645,8 +645,9 @@ li.separador_links_footer{
 #indiqueEsteProduto input, textarea{ border: 1px solid #C0C0E0; border-radius: 5px 5px 5px 5px; font-size: 13px; width: 250px; float: left; }
 #indiqueEsteProduto .nome_produto { font-size:18px;padding:15px 0 15px 0; border-bottom:1px solid silver }
 #indiqueEsteProduto .linha { BORDER-BOTTOM:1px solid silver;PADDING-TOP:5px;PADDING-BOTTOM:5PX;PADDING-LEFT:5px;PADDING-RIGHT:5px; }
-#retornoDivIndiqueEsteProduto { border: 1px solid red; float: left; height: 24px; margin-left: 190px; width: 247px; }
-.botaoIndiqueEsteProduto { border:1px solid silver; color:#000; font-size:11px; padding:5px; font-family:tahoma; background:#F5F5F5; border-radius: 3px; cursor: pointer; }
+#retornoDivIndiqueEsteProduto { float: left; height: 18px; margin-left: 190px; margin-right: 3px; padding-top: 7px; width: 208px; }
+.idiqueProdutoEnvioOK { width: 18px; height: 26px; background: url(../images/idiqueProdutoEnvioOK.png) no-repeat; margin: -13px 9px; float: left; }
+.botaoIndiqueEsteProduto { border:1px solid silver; color:#000; font-size:11px; padding:5px; font-family:tahoma; background:#F3F6FF; border-radius: 3px; font-weight: bold; cursor: pointer; }
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
 .sliderCarousel .viewport ul { position: relative; }
