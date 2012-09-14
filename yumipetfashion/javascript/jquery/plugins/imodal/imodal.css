@@ -38,9 +38,13 @@
 
 #ModalContentContainer {
 	background: #fff;
-	background-image: url('background.gif');
+	/*background-image: url('background.gif');*/
 	background-repeat: repeat-x;
 	background-position: left bottom;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0C0C0, endColorstr=#F9F9F9)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#C0C0C0, endColorstr=#F9F9F9);
+	background: -moz-linear-gradient(top, #C0C0C0, #F9F9F9) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#C0C0C0), to(#F9F9F9)) repeat-X;
 }
 #ModalTitle, .ModalTitle {
 	background: #efefef;
@@ -55,7 +59,7 @@
 #ModalContent, .ModalContent {
 	margin: 0;
 	text-align: left;
-	color: #444;
+	color: #222;
 	margin: 14px;
 	margin-top: 8px;
 	margin-bottom: 0px;
