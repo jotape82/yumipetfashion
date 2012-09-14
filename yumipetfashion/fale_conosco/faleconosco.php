@@ -122,7 +122,7 @@
 									<div class="divCampo">
 										<div class="label">Mensagem <span class="label_obrigatorio">*</span></div>
 										<div class="left area-bg">
-											<textarea class="textarea" id="mensagem" name="mensagem" style="width: 270px;"><? echo ($avisemeQuandoChegar) ? "Desejo ser informado quando estiver em estoque o produto: " . $nomeProduto . "." : "" ?></textarea>
+											<textarea class="textarea" id="mensagem" name="mensagem" style="width: 270px;"><? echo ($avisemeQuandoChegar) ? "Desejo ser informado quando estiver em estoque o produto " . $nomeProduto . "." : "" ?></textarea>
 											<div class="left seta_obrigatorio"></div>
 										</div>
 									</div>
