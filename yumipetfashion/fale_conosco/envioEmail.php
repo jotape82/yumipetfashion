@@ -1,11 +1,12 @@
 <?php
 
-$nome 	  = (isset($_POST['nome']))     ? $_POST['nome']     : "";
-$empresa  = (isset($_POST['empresa']))  ? $_POST['empresa']  : "";
-$assunto  = (isset($_POST['assunto']))  ? $_POST['assunto']  : "";
-$email 	  = (isset($_POST['email']))    ? $_POST['email']    : "";
-$telefone = (isset($_POST['telefone'])) ? $_POST['telefone'] : "";
-$mensagem = (isset($_POST['mensagem'])) ? $_POST['mensagem'] : "";
+$nome 	    = (isset($_POST['nome']))       ? $_POST['nome']       : "";
+$empresa    = (isset($_POST['empresa']))    ? $_POST['empresa']    : "";
+$assunto    = (isset($_POST['assunto']))    ? $_POST['assunto']    : "";
+$email 	    = (isset($_POST['email']))      ? $_POST['email']      : "";
+$telefone   = (isset($_POST['telefone']))   ? $_POST['telefone']   : "";
+$mensagem   = (isset($_POST['mensagem']))   ? $_POST['mensagem']   : "";
+$urlWebsite = (isset($_POST['urlWebsite'])) ? $_POST['urlWebsite'] : "";
 
 $stylecss  = "<style>";
 $stylecss .= 	".classTD1{ width: 100px; height: 30px; font-family: Arial; font-size: 12px; color: #000000; font-weight: bold; text-transform: uppercase; }";
@@ -57,8 +58,8 @@ if ($enviou){
 $retorno  = "<div class='mensagem_envio_email'>";
 $retorno .= 	$mensagemRetorno;
 $retorno .= 	"<p style='margin-top: 20px;'>";
-$retorno .=		"<div class='underline' onclick='voltarMensagem(" . $resetForm . ");' style='width: 100%; float: left; font-size: 12px;'>"; 	
-$retorno .= 		"<img src='../templates/1x/img/fale_conosco/back_arrow.png' width='20' height='20'>&nbsp;Voltar";
+$retorno .=		"<div class='underline' onclick='voltarMensagem(" . $resetForm . ");' style='width: 100%; font-size: 12px;'>"; 	
+$retorno .= 		"<img src='".$urlWebsite."/templates/default/img/fale_conosco/back_arrow.png' width='20' height='20'>&nbsp;Voltar";
 $retorno .=		"</div>";
 $retorno .=		"</p>";
 $retorno .=	"</div>";

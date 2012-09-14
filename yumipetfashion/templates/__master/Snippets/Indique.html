@@ -8,7 +8,7 @@
 <div id="ModalBottomRightCorner"></div>
 <div id="ModalBottomBorder"></div>
 <div id="ModalContentContainer">
-<div class="ModalTitle">Recomendar um Produto:</div>
+<div class="ModalTitle">Indique a um Amigo:</div>
 <div class="ModalContent ModalContentWithButtons">
 	
 <script type="text/javascript">
@@ -50,10 +50,12 @@
          if (http_request.status == 200) {
             //alert(http_request.responseText);
             result = http_request.responseText;
-            document.getElementById('retornoDivIndiqueEsteProduto').innerHTML = result;
-       
+            loadingAjax("retornoDivIndiqueEsteProduto", result);
+            limpaCamposFormulario();
+            $('.carregandoAjax').hide();
+       		$('.botaoIndiqueEsteProduto').removeAttr('disabled');
          } else {
-            alert('Erro no pedido.');
+            alert('Erro ao enviar mensagem!');
          }
       }
    }
@@ -69,23 +71,78 @@
                         "&nomepara=" + encodeURI( document.getElementById("nomepara").value ) +
                         "&emailpara=" + encodeURI( document.getElementById("emailpara").value ) +
                         "&mensagempara=" + encodeURI( document.getElementById("mensagempara").value ) +
-					    "";      
-	      loadingAjax("retornoDivIndiqueEsteProduto","Procesando Envio de Mensagem...Aguarde!");
+					    "";
+		  $('.carregandoAjax').fadeIn(1000);
+		  $('.botaoIndiqueEsteProduto').attr('disabled','disabled');   
+	      loadingAjax("retornoDivIndiqueEsteProduto", "Enviando mensagem... Aguarde!");
           makePOSTRequest('%%GLOBAL_ShopPath%%/remote.php?w=recomendar&id=%%GLOBAL_ProdutoIdn%%&acao=enviar', poststr);
    	  }else{
-   	  	loadingAjax("retornoDivIndiqueEsteProduto","Informe os dados corretamente!");
+   	  	loadingAjax("retornoDivIndiqueEsteProduto", "Informe os dados corretamente!");
    	  }
       
    }
    
-   function loadingAjax(obj,msg,float){
-	 float = float || 'left';
-	 msg   = msg || "Calculando Taxas... Aguarde...";
-	 
- 	 if (document.getElementById(obj)){
-		document.getElementById(obj).innerHTML = "<div style='float:"+float+";'><font color=\'#000000\' face='Trebuchet MS, Arial' size=2>"+msg+"</font></div>";
-	 }
+   function loadingAjax(objID,msg){
+   	 $('#' + objID).hide();
+   	 $('#' + objID).html(msg);
+   	 $('#' + objID).fadeIn(1000);
    }
+   
+   function limpaCamposFormulario(){
+   	   var arrayCamposForm = new Array("nomede", "emailde", "nomepara", "emailpara", "mensagempara");
+   	   
+   	   for(var i=0; i<arrayCamposForm.length; i++){
+   	       $('#' + arrayCamposForm[i]).val('');
+   	   }
+   }
+   
+  /*
+    Valida Form - Indique a um Amigo
+  */
+  function validaIndiqueUmAmigoForm(){
+	var campo,
+	validado,
+	arrayCampos;
+		
+	validado 	= true;
+	arrayCampos = new Array("nomede", "emailde", "nomepara", "emailpara", "mensagempara");
+	
+	var tamanhoArray = arrayCampos.length;
+	for(var i=tamanhoArray-1; i>=0; i--){
+		campo = '#' + arrayCampos[i];
+		
+		/* Limpando os Campos */
+		$(campo).removeClass('campo_obrigatorio');
+		$(campo).next().css('visibility','hidden');
+		
+		/* Verificando Campos */
+		if($.trim($(campo).val()) == ''){
+			validado = false;
+			$(campo).addClass('campo_obrigatorio');
+			$(campo).next().css('visibility','visible');
+		}
+	}
+	
+	/* Valida Campo Email */
+	if(validado){
+		arrayCampos = new Array("emailde", "emailpara");
+		var tamanhoArray = arrayCampos.length;
+		for(var i=0; i<tamanhoArray; i++){
+			campo = '#' + arrayCampos[i];
+			
+			if(!validaEmail($(campo).val())){
+				alert('Digite um e-mail válido!');
+				$(campo).addClass('campo_obrigatorio');
+				$(campo).next().css('visibility','visible');
+				$(campo).focus();
+				validado = false;
+				break;
+			}
+		}
+	}
+	
+	return validado;
+  }
 
 </script>
   <table id="indiqueEsteProduto" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -105,23 +162,23 @@
       </tr>
       <tr>
         <td bgcolor="" class="linha">Seu Nome:</td>
-        <td bgcolor="" class="linha"><input name="nomede" id=nomede value="" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
+        <td bgcolor="" class="linha"><input name="nomede" id=nomede value="1" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
       </tr>
 	  <tr>
         <td bgcolor="" class="linha">Seu Email:</td>
-        <td bgcolor="" class="linha"><input name="emailde" id=emailde value="" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
+        <td bgcolor="" class="linha"><input name="emailde" id=emailde value="leonardo.sargo@gmail.com" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
       </tr>
 	  <tr>
         <td bgcolor="" class="linha">Nome do Amigo:</td>
-        <td bgcolor="" class="linha"><input name="nomepara" id=nomepara value="" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
+        <td bgcolor="" class="linha"><input name="nomepara" id=nomepara value="1" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
       </tr>
 	  <tr>
         <td bgcolor="" class="linha">Email do Amigo:</td>
-        <td bgcolor="" class="linha"><input name="emailpara" id=emailpara value="" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
+        <td bgcolor="" class="linha"><input name="emailpara" id=emailpara value="leonardo.sargo@gmail.com" size="30" type="text"><div class="left MarginLeft5 seta_obrigatorio"></div></td>
       </tr>
 	  <tr>
         <td bgcolor="" class="linha">Mensagem:</td>
-        <td bgcolor="" class="linha"><textarea rows="3" cols="30" name="mensagempara" id=mensagempara></textarea><div class="left MarginLeft5 seta_obrigatorio"></div></td>
+        <td bgcolor="" class="linha"><textarea rows="3" cols="30" name="mensagempara" id=mensagempara>1</textarea><div class="left MarginLeft5 seta_obrigatorio"></div></td>
       </tr>
         </table></td>
       </tr>
@@ -129,6 +186,7 @@
         <td height="50" colspan="2">
         <br>
         <div name="retornoDivIndiqueEsteProduto" id="retornoDivIndiqueEsteProduto"></div>
+        <div class="carregandoAjax" style="float: left; margin-top: 6px;"></div>
         
 		<div style="float: right; margin-right: 40px;">
 			<input type="button" name="button" value="Recomendar Produto" class="botaoIndiqueEsteProduto" onclick="get(this.parentNode);">

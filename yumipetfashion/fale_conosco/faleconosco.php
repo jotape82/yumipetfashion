@@ -128,10 +128,10 @@
 									</div>
 									<div class="espace"></div>
 									<div class="divCampo">
-										<div id="btnEnviar" class="button" type="submit" onclick="enviaForm();" style="float: left;">Enviar</div>
+										<input id="btnEnviar" type="submit" class="button" onclick="enviaForm();" style="float: left;" value="Enviar"/>
 										<div id="mensagemErro"></div>
 										<div id="carregandoAjaxDiv" style="display: none; float: right; margin-top: 5px; position: relative; right: 65px; text-align: right; width: 36%;">
-											<img src="../templates/1x/img/fale_conosco/ajax-loader.gif">
+											<img src="<?=$urlWebsite?>/templates/default/img/fale_conosco/ajax-loader.gif">
 										</div>
 									</div>
 								</div>
@@ -184,7 +184,8 @@
 				assunto:assunto,
 				email:email, 
 				telefone:telefone, 
-				mensagem:mensagem 
+				mensagem:mensagem,
+				urlWebsite:'<?=$urlWebsite?>'
 				}, function(data){
 					complete:
 						$(divForm).hide();
@@ -222,6 +223,15 @@
 			}
 		}
 		
+		/* Valida Campo Email */
+		if(validado && !validaEmail($('#email').val())){
+			alert('Digite um e-mail válido!');
+			$('#email').addClass('campo_obrigatorio');
+			$('#email').next().css('visibility','visible');
+			$('#email').focus();
+			return false;
+		}
+		
 		return validado;
 	}
 	
@@ -238,6 +248,19 @@
 		$('#retornoEnvioDiv').hide();
 		$('#btnEnviar').removeAttr('disabled');
 		$('#emailForm').fadeIn(1500);
+	}
+	
+	function validaEmail(email){
+	    var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/); 
+	    if(typeof(email) == "string"){ 
+	    	if(er.test(email)){ return true; } 
+	    }else if(typeof(email) == "object"){ 
+	    	if(er.test(email.value)){  
+	        	return true;  
+	    	} 
+	    }else{ 
+	    	return false; 
+	    } 
 	}
 	
 </script>

@@ -43,6 +43,7 @@
 	
 	$desenvolvimento = true;
 	if($desenvolvimento){
+		$GLOBALS['isDesenvolvimento']		= true;
 		$GLOBALS['DesenvolvimentoJS_Ini'] 	= '/*';
 		$GLOBALS['DesenvolvimentoJS_Fim'] 	= '*\\';
 		$GLOBALS['DesenvolvimentoHTML_Ini'] = '<!--';

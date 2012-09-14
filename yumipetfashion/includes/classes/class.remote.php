@@ -163,13 +163,52 @@
 			$im = $GLOBALS['ISC_CLASS_DB']->Query($image);
 			$img = $GLOBALS['ISC_CLASS_DB']->Fetch($im);
 			
-			$this->_message = 'Ola, <b>'.$paranome.'</b><br>Um amigo lhe recomendou o seguinte produto:<br><b>'.$linhas['prodname'].'<br><img src="'.GetConfig("ShopPath").'/product_images/'.$img['imagefile'].'" width="280" height="180" border="0">
-			<br>
-			<i>'.$men.'</i>
-			<br><br>
-			<a href="'.GetConfig("ShopPath").'/modificacoes/red.php?is='.$linhas['productid'].'" target="_blank">
-			'.$url.'/modificacoes/red.php?is='.$linhas['productid'].'
-			</a><br><b>'.$store_name.'</b>';
+			$this->_message = "
+			<table width='700'>
+				<colgroup>
+					<col width='150'></col>
+					<col width='550'></col>
+				</colgroup>
+				<tr>
+					<td colspan='2' style='font-family: Tahoma, Arial; font-size: 12px;'>
+						Olá, <b>".$paranome."!</b><p>
+						Um amigo lhe recomendou o seguinte produto:<p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href='".GetConfig("ShopPath").'/productRemote.php?is='.$linhas['productid']."' target='_blank'>
+							<img src='".GetConfig("ShopPath").'/product_images/'.$img['imagefile']."' width='280' height='180' border='0'>
+						</a>
+					</td>
+					<td style='font-family: Tahoma, Arial; font-size: 12px; vertical-align: top; padding-left: 15px; '>
+						<span style='font-weight: bold; font-size: 18px; color: #666666;'>".$linhas['prodname']."</span>
+						<hr><p>
+						".$linhas['proddesc']."
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2' style='font-family: Tahoma, Arial; font-size: 12px; padding: 10px 0;'>
+						<p><i>\"".$men."\"</i>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2' style='font-family: Tahoma, Arial; font-size: 12px; padding: 10px 0;'>
+						<p>
+						<b>Link do produto:</b><br>
+						<a href='".GetConfig("ShopPath").'/productRemote.php?is='.$linhas['productid']."' target='_blank'>
+							".$url."/productRemote.php?is=".$linhas['productid']."
+						</a>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2' align='right' style='padding: 10px 0;'>
+						<b>".$store_name."</b>&nbsp;&nbsp;
+						<a href='".GetConfig("ShopPath")."'><img src='".GetConfig("ShopPath")."/templates/default/img/layout/header/header_logo.jpg' width='150' border='0'></a>
+					</td>
+				</tr>
+			</table>";
 			
 			$this->_email = $paraemail;
 			if (empty($this->_email)) {
@@ -195,12 +234,12 @@
 
 			if($email_result['success']) {
 				$result = array("outcome" => "success",
-								"message" => '<font color="green">Mensagem enviada com sucesso!!!</font>'
+								"message" => '<div class="floatLeft">Obrigado!</div><div class="idiqueProdutoEnvioOK"></div>'
 				);
 			}
 			else {
 				$result = array("outcome" => "fail",
-								"message" => '<font color="red">Falha no envio da mensagem!!</font>'
+								"message" => 'Falha no envio da mensagem!'
 				);
 			}
 
@@ -228,7 +267,7 @@
 			}else{
 				if(!empty($_REQUEST['nomede']) and !empty($_REQUEST['emailde']) and !empty($_REQUEST['nomepara']) and !empty($_REQUEST['emailpara']) and !empty($_REQUEST['mensagempara'])) {
 					$dados = $this->EmailRE($_REQUEST['nomede'],$_REQUEST['emailde'],$_REQUEST['nomepara'],$_REQUEST['emailpara'],$_REQUEST['id'],$_REQUEST['mensagempara']);
-					echo '<h1>'.$dados['message'].'</h1>';
+					echo '<b>'.$dados['message'].'</b>';
 				} else {
 					echo 'Informe os campos acima corretamente!';
 				}

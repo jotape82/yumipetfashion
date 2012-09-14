@@ -1696,7 +1696,7 @@ p.QuantityInput, p.AddCartButton {
 /* Product Details */
 .ProductDetailsGrid .DetailRow {
 	clear: left;
-	margin-top: 7px;
+	margin-top: 5px;
 	padding-left: 110px;
 }
 
@@ -2314,4 +2314,16 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 	background-color: #fff7f6 !important;
 	border: 1px solid #fc978c !important;
 	/*border: none\9 !important;*/
+}
+
+.mensagem_envio_email{
+	border: 1px solid #C0C0C0;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.carregandoAjax{
+	width: 16px;
+	height: 16px;
+	display: none;
+	background: url(../images/ajax-loader.gif) no-repeat;
 }

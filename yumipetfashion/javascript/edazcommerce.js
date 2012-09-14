@@ -405,10 +405,12 @@ function selecionarImagemVariacaoProduto(obj, evento){
 */
 function carregaUrl(url, height){
 	var novoElemento,
-		divPrincipal;
+		divPrincipal,
+		parametros;
 	
 	divPrincipal = $('#Wrapper');
-	
+	parametros   = '?urlWebsite=' + urlWebsite;
+		
 	if(!$('#iframeURL')[0]){
 		/* Cria IFRAME */
 		novoElemento  = "<div id='bannerDIV'></div>";
@@ -423,11 +425,11 @@ function carregaUrl(url, height){
 		$('#iframeURL').css('height', height);
 		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 55}, 1500);
 		$('#iframeURL').fadeIn(1500, function(){
-			$('#iframeURL').attr('src', url);
+			$('#iframeURL').attr('src', url+parametros);
 		});
 	}else{
 		$('html,body').animate({scrollTop: $("#iframeDIV").offset().top - 55}, 1500);
-		$('#iframeURL').attr('src', url);
+		$('#iframeURL').attr('src', url+parametros);
 		$('#iframeURL').css('height', height);
 	}
 	
@@ -444,17 +446,16 @@ var url,
 	divPrincipal;
 	
 	divPrincipal = $('#Wrapper');
-	
+	url 	     = urlWebsite + '/fale_conosco/faleconosco.php';
+	parametros   = '?codprod=' + codProd + '&urlWebsite=' + urlWebsite;
+	height	     = '1300px';
+		
 	if(!$('#iframeURL')[0]){
 		/* Cria IFRAME */
 		novoElemento  = "<div id='bannerDIV'></div>";
 		novoElemento += "<div id='iframeDIV'>";
 		novoElemento += "<iframe id='iframeURL' name='iframeURL' src='" + urlWebsite + "/carregandoAjax.html' width='100%' height='100%' frameborder='0' style='display: none;'></iframe>";
 		novoElemento += "</div>";
-		
-		url 	   = urlWebsite + '/fale_conosco/faleconosco.php';
-		parametros = '?codprod=' + codProd + '&urlWebsite=' + urlWebsite;
-		height	   = '1300px';
 		
 		$(divPrincipal).after(novoElemento);
 		$(divPrincipal).hide();
@@ -526,32 +527,15 @@ function retiraCaracter(string, caracter) {
     return final + string;
 }
 
-/*
-	Valida Form - Indique a um Amigo
-*/
-function validaIndiqueUmAmigoForm(){
-	var campo,
-	validado,
-	arrayCampos;
-		
-	validado 	= true;
-	arrayCampos = new Array("nomede", "emailde", "nomepara", "emailpara", "mensagempara");
-	
-	var tamanhoArray = arrayCampos.length;
-	for(var i=tamanhoArray-1; i>=0; i--){
-		campo = '#' + arrayCampos[i];
-		
-		/* Limpando os Campos */
-		$(campo).removeClass('campo_obrigatorio');
-		$(campo).next().css('visibility','hidden');
-		
-		/* Verificando Campos */
-		if($.trim($(campo).val()) == ''){
-			validado = false;
-			$(campo).addClass('campo_obrigatorio');
-			$(campo).next().css('visibility','visible');
-		}
-	}
-	
-	return validado;
+function validaEmail(email){
+    var er = new RegExp(/^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/); 
+    if(typeof(email) == "string"){ 
+    	if(er.test(email)){ return true; } 
+    }else if(typeof(email) == "object"){ 
+    	if(er.test(email.value)){  
+        	return true;  
+    	} 
+    }else{ 
+    	return false; 
+    } 
 }

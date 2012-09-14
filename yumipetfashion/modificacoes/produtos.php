@@ -31,7 +31,7 @@ $imprimir .= "<td width='160'>&nbsp;&nbsp;&nbsp;<img src='miniatura.php?w=150&im
 <b>Preço:</b> ".$valorPa." R$<br>
 <b>Data do Preço:</b> ".date('d/m/Y')."<br>
 <b>Descrição:</b> <i>".$smallContent."</i><br>
-<b>URL:</b> <a href='".$url."' target='_blank'>".$loja."/modificacoes/red.php?is=".$row['productid']."</a><br>
+<b>URL:</b> <a href='".$url."' target='_blank'>".$loja."/productRemote.php?is=".$row['productid']."</a><br>
 <pre>Obs: Os preços e estoque poderam sobre modificações sem aviso previo no periodo.</pre>
 </td>
 ";
@@ -42,7 +42,7 @@ $imprimir .= "<td width='160'>&nbsp;&nbsp;&nbsp;<img src='miniatura.php?w=150&im
 <b>Preço:</b> ".$valorPa." R$<br>
 <b>Data do Preço:</b> ".date('d/m/Y')."<br>
 <b>Descrição:</b> <i>".$smallContent."</i><br>
-<b>URL:</b> <a href='".$url."' target='_blank'>".$loja."/red.php?id=".$row['productid']."</a><br>
+<b>URL:</b> <a href='".$url."' target='_blank'>".$loja."/productRemote.php?id=".$row['productid']."</a><br>
 <pre>Obs: Os preços e estoque poderam sobre modificações sem aviso previo no periodo.</pre>
 </td>
 ";
