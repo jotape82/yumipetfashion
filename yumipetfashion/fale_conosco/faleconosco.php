@@ -15,7 +15,7 @@
 	
 	$nomeProduto;
 	$imagemProduto;
-	$orcamentoProduto = false;
+	$avisemeQuandoChegar = false;
 	$codprod 	= (isset($_REQUEST['codprod']) 	  && $_REQUEST['codprod'] 	 != '') ? $_REQUEST['codprod'] 	  : "";
 	$urlWebsite = (isset($_REQUEST['urlWebsite']) && $_REQUEST['urlWebsite'] != '') ? $_REQUEST['urlWebsite'] : "";
 	
@@ -29,8 +29,8 @@
 		$result = mysql_query($query) or print(mysql_error());
 		$row    = mysql_fetch_array($result);
 		
-		$orcamentoProduto = true;
-		$nomeProduto   	  = $row['prodname'];
+		$avisemeQuandoChegar = true;
+		$nomeProduto   	  	 = $row['prodname'];
 		/*
 		$pathSite		  = $_SERVER['HTTP_REFERER'];
 		$posUltimaBarra   = strrpos($pathSite, "/");
@@ -73,7 +73,7 @@
 							</div>
 							
 							<!-- SOLICITAR ORÇAMENTO DE PRODUTO -->
-							<? if($orcamentoProduto): ?>
+							<? if($avisemeQuandoChegar): ?>
 							<div class="tituloDiv" style="clear: left; padding-top: 30px;">Solicite um orçamento para o produto abaixo:</div>
 							<div style="clear: left; float: left; margin-top: 20px;">
 								<div class="orcamentoImagemProduto"><img src="<? echo $imagemProduto ?>" width="150"></div>
@@ -101,7 +101,7 @@
 									<div class="divCampo">
 										<div class="label">Assunto</div>
 										<div class="clearLeft">
-											<input class="inputbox" type="text" id="assunto" name="assunto" value="<? echo ($orcamentoProduto) ? "Avise-me quando chegar" : "" ?>"/>
+											<input class="inputbox" type="text" id="assunto" name="assunto" value="<? echo ($avisemeQuandoChegar) ? "Avise-me quando o produto chegar!" : "" ?>"/>
 											<div class="left seta_obrigatorio"></div>
 										</div>	
 									</div>
@@ -122,7 +122,7 @@
 									<div class="divCampo">
 										<div class="label">Mensagem <span class="label_obrigatorio">*</span></div>
 										<div class="left area-bg">
-											<textarea class="textarea" id="mensagem" name="mensagem" style="width: 270px;"><? echo ($orcamentoProduto) ? "Solicito informações de orçamento sobre o produto " . $nomeProduto . "." : "" ?></textarea>
+											<textarea class="textarea" id="mensagem" name="mensagem" style="width: 270px;"><? echo ($avisemeQuandoChegar) ? "Desejo ser informado quando estiver em estoque o produto: " . $nomeProduto . "." : "" ?></textarea>
 											<div class="left seta_obrigatorio"></div>
 										</div>
 									</div>
