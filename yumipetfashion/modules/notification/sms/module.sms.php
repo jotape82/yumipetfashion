@@ -38,21 +38,21 @@
 		public function SetCustomVars()
 		{
 
-			$this->_variables['username'] = array("name" => "SMSGlobal Username",
+			$this->_variables['username'] = array("name" => "Usuário SMSGlobal",
 			   "type" => "textbox",
 			   "help" => GetLang('SMSGlobalUsernameHelp'),
 			   "default" => "",
 			   "required" => true
 			);
 
-			$this->_variables['password'] = array("name" => "SMSGlobal Password",
+			$this->_variables['password'] = array("name" => "Senha SMSGlobal",
 			   "type" => "password",
 			   "help" => GetLang('SMSGlobalPasswordHelp'),
 			   "default" => "",
 			   "required" => true
 			);
 
-			$this->_variables['cellnumber'] = array("name" => "Cell/Mobile Number",
+			$this->_variables['cellnumber'] = array("name" => "Número do Celular",
 			   "type" => "textbox",
 			   "help" => GetLang('SMSCellNumberHelp'),
 			   "default" => "",

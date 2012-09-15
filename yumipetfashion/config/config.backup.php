@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 12th Sep 2012 @ 2:34 AM
+	// Last Updated: 15th Sep 2012 @ 12:20 AM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -61,8 +61,8 @@
 	$GLOBALS['ISC_CFG']["ShowAddToCartQtyBox"] = 1;
 	$GLOBALS['ISC_CFG']["CaptchaEnabled"] = 0;
 	$GLOBALS['ISC_CFG']["ShowCartSuggestions"] = 1;
-	$GLOBALS['ISC_CFG']["AdminEmail"] = 'atendimento@yumipetfashion.com.br';
-	$GLOBALS['ISC_CFG']["OrderEmail"] = 'atendimento@yumipetfashion.com.br';
+	$GLOBALS['ISC_CFG']["AdminEmail"] = 'teste@teste.com.br';
+	$GLOBALS['ISC_CFG']["OrderEmail"] = 'teste@teste.com.br';
 	$GLOBALS['ISC_CFG']['LowInventoryNotificationAddress'] = 'atendimento@yumipetfashion.com.br';
 	$GLOBALS['ISC_CFG']["ShowThumbsInCart"] = 1;
 	$GLOBALS['ISC_CFG']["AutoApproveReviews"] = 0;
@@ -122,7 +122,7 @@
 	$GLOBALS['ISC_CFG']['BackupsAutomaticDownloads'] = 1;
 
 	$GLOBALS['ISC_CFG']["GoogleMapsAPIKey"] = '';
-	$GLOBALS['ISC_CFG']["NotificationMethods"] = '';
+	$GLOBALS['ISC_CFG']["NotificationMethods"] = 'notification_email,notification_sms';
 	$GLOBALS['ISC_CFG']["CurrencyMethods"] = 'currency_webservicex';
 	$GLOBALS['ISC_CFG']["DefaultCurrencyID"] = 1;
 	$GLOBALS['ISC_CFG']["DefaultCurrencyRate"] = 1;
@@ -326,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 111;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 122;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';
