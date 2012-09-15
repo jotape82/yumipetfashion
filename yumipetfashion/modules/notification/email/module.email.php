@@ -29,7 +29,7 @@
 		public function SetCustomVars()
 		{
 
-			$this->_variables['emailaddress'] = array("name" => "Email Address",
+			$this->_variables['emailaddress'] = array("name" => "E-mail",
 			   "type" => "textbox",
 			   "help" => GetLang('NEmailAddressHelp'),
 			   "default" => "",
