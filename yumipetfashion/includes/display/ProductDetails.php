@@ -67,7 +67,8 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 		$this->SetProductVariations();
 		$this->SetPreorderData();
 		$this->SetMinMaxQty();
-
+		$this->SetFormasPagamento();
+		
 		// Mobile devices don't support file uploads, so if this is a mobile device then don't show
 		// any configuration for the product and show a message that the product must be purchased
 		// on the full site.
@@ -1084,4 +1085,17 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 			}
 		}
 	}
+	
+	/**
+	 * Retorna os Métodos de Pagamento para Visualização na Tela do Produto 
+	 */
+	private function SetFormasPagamento(){
+		$formasPagamentoHtml = '';
+		$productId = $this->productClass->GetProductId();
+		
+		$obj = new ISC_REMOTE();
+		$formasPagamentoHtml 		= $obj->SimularParcelas('body', $productId);
+		$GLOBALS['FormasPagamentoBody'] = $formasPagamentoHtml;
+	}
+	
 }

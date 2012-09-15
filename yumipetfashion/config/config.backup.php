@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 15th Sep 2012 @ 5:03 PM
+	// Last Updated: 15th Sep 2012 @ 10:47 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -78,7 +78,7 @@
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_cielo,checkout_deposito,checkout_pagseguro';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_boletoreal,checkout_cheque,checkout_cielo,checkout_deposito,checkout_dinheiromail,checkout_f2b,checkout_mercadopago,checkout_moip,checkout_pagamentodigital,checkout_pagseguro,checkout_paypal';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;
@@ -122,7 +122,7 @@
 	$GLOBALS['ISC_CFG']['BackupsAutomaticDownloads'] = 1;
 
 	$GLOBALS['ISC_CFG']["GoogleMapsAPIKey"] = '';
-	$GLOBALS['ISC_CFG']["NotificationMethods"] = 'notification_email,notification_sms,notification_msn';
+	$GLOBALS['ISC_CFG']["NotificationMethods"] = '';
 	$GLOBALS['ISC_CFG']["CurrencyMethods"] = 'currency_webservicex';
 	$GLOBALS['ISC_CFG']["DefaultCurrencyID"] = 1;
 	$GLOBALS['ISC_CFG']["DefaultCurrencyRate"] = 1;

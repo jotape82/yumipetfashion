@@ -99,7 +99,7 @@
 					$this->SimularFrete();
 					break;
 				case 'simularparcelas':
-					$this->SimularParcelas();
+					$this->SimularParcelas('popup');
 					break;
 				case 'scroll':
 					$this->Scroll();
@@ -418,723 +418,668 @@
 		return $valParcela;
 		}
 				
-		public function SimularParcelas()
+		public function SimularParcelas($type, $productId='')
 		{
-		//inicio da funcao
-		$produto = $_GET['id'];
-		$ler = "select * from [|PREFIX|]module_vars where modulename = 'addon_parcelas' and variablename = 'tipos' order by variableval asc";
-		$resultado = $GLOBALS['ISC_CLASS_DB']->Query($ler);
-		$i = 1;
-		$GLOBALS['HTML'] = "";
-		while ($s = $GLOBALS['ISC_CLASS_DB']->Fetch($resultado)) {
-		//inicio do switch
-		switch($s['variableval']) {
-		
-		case 'deposito': //deposito
-		$ativo = GetModuleVariable('checkout_deposito','is_setup');
-		$desc = GetModuleVariable('checkout_deposito','desconto');
-		$nome = GetModuleVariable('checkout_deposito','displayname');
-		if(!empty($ativo)) {
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		if($desc<=0 OR empty($desc)){
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg = "<b> ".$preco." a vista.";
-		} else {
-		$valven = ($pro/100)*$desc;
-		$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
-		$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/deposito.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break; // fim deposito
-		
-		case 'cheque':
-		$ativo = GetModuleVariable('checkout_cheque','is_setup');
-		$juros = GetModuleVariable('checkout_cheque','juros');
-		$nome = GetModuleVariable('checkout_cheque','displayname');
-		$div = GetModuleVariable('checkout_cheque','dividir');
-		$jde = GetModuleVariable('checkout_cheque','jurosde');
-		$pmin = GetModuleVariable('checkout_cheque','parmin');
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		if($juros<=0 OR empty($juros)){
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg = "<b> ".$preco."</b> a vista.";
-		} else {
-		$msg = '';
-		$msg1 = '';
-		$splits = (int) ($pro/$pmin);
-		if($splits<=$div){
-		$div = $splits;
-		}else{
-		$div = $div;
-		}
-		for ($j=1;$j<=$div;$j++) {
-		if ($jde<=$j and $jde<='50') {
-		$valven = ($pro/100)*$juros;
-		$msg1 .= $j."x de <b>".CurrencyConvertFormatPrice(($pro+$valven)/$j, 1, 0)."</b> com juros.<br>";
-		}else{
-		$msg .= $j."x de <b>".CurrencyConvertFormatPrice($pro/$j, 1, 0)."</b> sem juros.<br>";
-		}
-		}
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/cheque.gif" /></td>
-		<td width="40%"><font size="2">'.$msg.'</font></td>
-		<td width="40%"><font size="2">'.$msg1.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'boleto': //boleto
-		$desc = GetModuleVariable('addon_parcelas','descboleto');
-		
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		if($desc<=0){
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg = "<b> ".$preco."</b> a vista.";
-		} else {
-		$valven = ($pro/100)*$desc;
-		$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
-		$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>Boleto Bancario</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/boleto.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		break; // fim boleto
-		
-		case 'pagseguro':
-		$ativo = GetModuleVariable('checkout_pagseguro','is_setup');
-		$juross = GetModuleVariable('checkout_pagseguro','acrecimo');
-		$nome = GetModuleVariable('checkout_pagseguro','displayname');
-		$taxa = 0.0199;
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/5);
-		if($splitss<=12){
-		$div = $splitss;
-		}else{
-		$div = 12;
-		}
-		//echo $div."<br>";
-		for($j=1; $j<=$div;$j++) {
-		$cf = pow((1 + $taxa), $j);
-		$cf = (1 / $cf);
-		$cf = (1 - $cf);
-		$cf = ($taxa / $cf);
-		//echo $cf."<br>";
-		$parcelas = ($valor*$cf);
-		//echo $parcela."<br>";
-		$parcelas = number_format($parcelas, 2, '.', '');
-		//echo $parcela."<br>";
-		$valors = number_format($valor, 2, '.', '');
-		$op = GetModuleVariable('checkout_pagseguro','jurosde');
-		if($j==1 OR $op>=$j) {
-		$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
-		}else{
-		$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/pagseguro.gif" /></td>
-		<td width="40%"><font size="2">'.$msg.'</font></td>
-		<td width="40%"><font size="2">'.$msg1.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'pagdigital':
-		$ativo = GetModuleVariable('checkout_pagamentodigital','is_setup');
-		$juross = GetModuleVariable('checkout_pagamentodigital','acrecimo');
-		$nome = GetModuleVariable('checkout_pagamentodigital','displayname');
-		$taxa = 0.0199;
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/5);
-		if($splitss<=12){
-		$div = $splitss;
-		}else{
-		$div = 12;
-		}
-		
-		for($j=1; $j<=$div;$j++) {
-		
-		
-		$parcelas = $this->jurosComposto($valor, 1.99, $j);
-		
-		$parcelas = number_format($parcelas, 2, '.', '');
-		$valors = number_format($valor, 2, '.', '');
-		
-		$op = GetModuleVariable('checkout_pagamentodigital','jurosde');
-		if($j==1 OR $op>=$j) {
-		$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
-		}else{
-		$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/pagdigital.gif" /></td>
-		<td width="40%"><font size="2">'.$msg.'</font></td>
-		<td width="40%"><font size="2">'.$msg1.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'moip':
-		$ativo = GetModuleVariable('checkout_moip','is_setup');
-		$juross = GetModuleVariable('checkout_moip','acrecimo');
-		$nome = GetModuleVariable('checkout_moip','displayname');
-		$taxa = 0.0199;
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/5);
-		if($splitss<=12){
-		$div = $splitss;
-		}else{
-		$div = 12;
-		}
-		//echo $div."<br>";
-		for($j=1; $j<=$div;$j++) {
-		$cf = pow((1 + $taxa), $j);
-		$cf = (1 / $cf);
-		$cf = (1 - $cf);
-		$cf = ($taxa / $cf);
-		//echo $cf."<br>";
-		$parcelas = ($valor*$cf);
-		//echo $parcela."<br>";
-		$parcelas = number_format($parcelas, 2, '.', '');
-		//echo $parcela."<br>";
-		$valors = number_format($valor, 2, '.', '');
-		$op = GetModuleVariable('checkout_moip','jurosde');
-		if($j==1 OR $op>=$j) {
-		$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
-		}else{
-		$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/moip.gif" /></td>
-		<td width="40%"><font size="2">'.$msg.'</font></td>
-		<td width="40%"><font size="2">'.$msg1.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'dinheiromail':
-		$ativo = GetModuleVariable('checkout_dinheiromail','is_setup');
-		$juross = GetModuleVariable('checkout_dinheiromail','acrecimo');
-		$nome = GetModuleVariable('checkout_dinheiromail','displayname');
-		$taxa = 0.0199;
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/5);
-		if($splitss<=12){
-		$div = $splitss;
-		}else{
-		$div = 12;
-		}
-		
-		for($j=1; $j<=$div;$j++) {
-		
-		
-		$parcelas = $this->jurosSimples($valor, 1.99, $j);
-		
-		$parcelas = number_format($parcelas, 2, '.', '');
-		$valors = number_format($valor, 2, '.', '');
-		
-		$op = GetModuleVariable('checkout_dinheiromail','jurosde');
-		if($j==1 OR $op>=$j) {
-		$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
-		}else{
-		$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/dinmail.png" /></td>
-		<td width="40%"><font size="2">'.$msg.'</font></td>
-		<td width="40%"><font size="2">'.$msg1.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'paypal':
-		$ativo = GetModuleVariable('checkout_paypal','is_setup');
-		$desc = GetModuleVariable('checkout_paypal','desconto');
-		$nome = GetModuleVariable('checkout_paypal','displayname');
-		if(!empty($ativo)) {
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		if($desc<=0 OR empty($desc)){
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg = "<b> ".$preco." a vista.";
-		} else {
-		$valven = ($pro/100)*$desc;
-		$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
-		$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/paypal.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'visacredito':
-		$ativo = GetModuleVariable('checkout_visanet','is_setup');
-		$nome = GetModuleVariable('checkout_visanet','displayname');
-		$div = GetModuleVariable('checkout_visanet','div');
-		$juross = '0';
-		$taxa = GetModuleVariable('checkout_visanet','juros');
-		$jt = GetModuleVariable('checkout_visanet','tipojuros');
-		
-		$pm = GetModuleVariable('checkout_visanet','parcelamin');
-		
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/$pm);
-		if($splitss<=$div){
-		$div = $splitss;
-		}else{
-		$div = $div;
-		}
-		
-		for($j=1; $j<=$div;$j++) {
-		
-		if($jt==0)
-		$parcelas = $this->jurosSimples($valor, $taxa, $j);
-		else
-		$parcelas = $this->jurosComposto($valor, $taxa, $j);
-		
-		$parcelas = number_format($parcelas, 2, '.', '');
-		$valors = number_format($valor, 2, '.', '');
-		
-		$op = GetModuleVariable('checkout_visanet','jurosde');
-		if($op>=$j) {
-		$msg .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.</font><br>";
-		}else{
-		$msg1 .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> (<u>".$parcelas*$j."</u>) com juros.</font><br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>Cartão Visa</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/cartao_visa.gif" /></td>
-		<td width="40%">'.$msg.'</td>
-		<td width="50%">'.$msg1.'</td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'visadebito':
-		$ativo = GetModuleVariable('checkout_visanet','is_setup');
-		$nome = GetModuleVariable('checkout_visanet','displayname');
-		$desc = GetModuleVariable('checkout_visanet','desconto');
-		
-		if(!empty($ativo)) {
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		if($desc<=0 OR empty($desc)){
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg = "<b> ".$preco." a vista.";
-		} else {
-		$valven = ($pro/100)*$desc;
-		$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
-		$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>Visa Electron</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/cartao_visa_electron.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'master':
-		$ativo = GetModuleVariable('checkout_mastercard','is_setup');
-		$nome = GetModuleVariable('checkout_mastercard','displayname');
-		$div = GetModuleVariable('checkout_mastercard','div');
-		$juross = '0';
-		$taxa = GetModuleVariable('checkout_mastercard','juros');
-		$jt = GetModuleVariable('checkout_mastercard','tipojuros');
-		
-		$pm = GetModuleVariable('checkout_mastercard','parcelamin');
-		
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/$pm);
-		if($splitss<=$div){
-		$div = $splitss;
-		}else{
-		$div = $div;
-		}
-		
-		for($j=1; $j<=$div;$j++) {
-		
-		if($jt==0)
-		$parcelas = $this->jurosSimples($valor, $taxa, $j);
-		else
-		$parcelas = $this->jurosComposto($valor, $taxa, $j);
-		
-		$parcelas = number_format($parcelas, 2, '.', '');
-		$valors = number_format($valor, 2, '.', '');
-		
-		$op = GetModuleVariable('checkout_mastercard','jurosde');
-		if($op>=$j) {
-		$msg .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.</font><br>";
-		}else{
-		$msg1 .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> (<u>".$parcelas*$j."</u>) com juros.</font><br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/cartao_mastercard.gif" /></td>
-		<td width="40%">'.$msg.'</td>
-		<td width="50%">'.$msg1.'</td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'dinners':
-		$ativo = GetModuleVariable('checkout_dinners','is_setup');
-		$nome = GetModuleVariable('checkout_dinners','displayname');
-		$div = GetModuleVariable('checkout_dinners','div');
-		$juross = '0';
-		$taxa = GetModuleVariable('checkout_dinners','juros');
-		$jt = GetModuleVariable('checkout_dinners','tipojuros');
-		
-		$pm = GetModuleVariable('checkout_dinners','parcelamin');
-		
-		if(!empty($ativo)) {
-		//verifica o juros
-		$pro = $this->ValorProduto($produto);
-		$valor = $pro;
-		if($juross<=0 OR empty($juross)){
-		$valor = $valor;
-		} else {
-		$valor = (($valor/100)*$juross)+$valor;
-		}
-		
-		$msg = '';
-		$msg1 = '';
-		$splitss = (int) ($valor/$pm);
-		if($splitss<=$div){
-		$div = $splitss;
-		}else{
-		$div = $div;
-		}
-		
-		for($j=1; $j<=$div;$j++) {
-		
-		if($jt==0)
-		$parcelas = $this->jurosSimples($valor, $taxa, $j);
-		else
-		$parcelas = $this->jurosComposto($valor, $taxa, $j);
-		
-		$parcelas = number_format($parcelas, 2, '.', '');
-		$valors = number_format($valor, 2, '.', '');
-		
-		$op = GetModuleVariable('checkout_dinners','jurosde');
-		if($op>=$j) {
-		$msg .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> s/sem juros.</font><br>";
-		}else{
-		$msg1 .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> (<u>".$parcelas*$j."</u>) com juros.</font><br>";
-		}
-		
-		}
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/cartao_diners.gif" /></td>
-		<td width="40%">'.$msg.'</td>
-		<td width="50%">'.$msg1.'</td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		case 'sps':
-		$ativo = GetModuleVariable('checkout_spsbradesco','is_setup');
-		$nome = GetModuleVariable('checkout_spsbradesco','displayname');
-		$boleto = GetModuleVariable('checkout_spsbradesco','pagboletos');
-		$facil = GetModuleVariable('checkout_spsbradesco','pagfacil');
-		$finan = GetModuleVariable('checkout_spsbradesco','pagfinan');
-		$trans = GetModuleVariable('checkout_spsbradesco','pagtrans');
-		if(!empty($ativo)) {
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		$msg = "";
-		if($boleto=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista no boleto.<br>";
-		}
-		if($facil=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista por cartão de debito.<br>";
-		}
-		if($finan=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> financiado em até <b>24x</b> (com juros do banco).<br>";
-		}
-		if($trans=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista por transferência bancaria.<br>";
-		}
-		
-		
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/spsbradesco.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		
-		case 'bbofice':
-		$ativo = GetModuleVariable('checkout_bbcomercio','is_setup');
-		$nome = GetModuleVariable('checkout_bbcomercio','displayname');
-		$boleto = '';
-		$facil = '';
-		$finan = '';
-		$trans = '';
-		if(!empty($ativo)) {
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		$msg = "";
-		if($boleto=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista no boleto.<br>";
-		}
-		if($facil=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista por cartão de debito.<br>";
-		}
-		if($trans=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista por transferência bancaria.<br>";
-		}
-		
-		
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/bb_commerce.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		
-		case 'shopline':
-		$ativo = GetModuleVariable('checkout_itaushopline','is_setup');
-		$nome = GetModuleVariable('checkout_itaushopline','displayname');
-		$boleto = '';
-		$facil = '';
-		$finan = '';
-		$trans = '';
-		if(!empty($ativo)) {
-		//verifica o desconto
-		$pro = $this->ValorProduto($produto);
-		$msg = "";
-		if($boleto=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista no boleto.<br>";
-		}
-		if($facil=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista por cartão de debito.<br>";
-		}
-		if($trans=="") {
-		$preco = CurrencyConvertFormatPrice($pro, 1, 0);
-		$msg .= "<b> ".$preco."</b> a vista por transferência bancaria.<br>";
-		}
-		
-		
-		//inicio do codigo do parcelamento
-		$GLOBALS['HTML'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="%%GLOBAL_ShopPath%%/modificacoes/minus.gif" /></span>'.$nome.'</div>
-		<div id="faq'.$i.'" class="icongroup1">
-		<table width="100%" border="0">
-		<tr>
-		<td width="10%"><img src="%%GLOBAL_ShopPath%%/modificacoes/itau_shopline.gif" /></td>
-		<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
-		</tr>
-		</table>
-		</div>';
-		//fim do codigo de parcelamento
-		}
-		break;
-		
-		}
-		$i++;
-		//fim do switch
-		}
-		//aplica no template
-		$select = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet('SimularParcela');
-		echo $GLOBALS['ISC_CLASS_TEMPLATE']->ParseSnippets($select, true);
-		}
+			//inicio da funcao
+			$produto = ($productId != '') ? $productId : $_GET['id'];
+			$ler = "select * from [|PREFIX|]module_vars where modulename = 'addon_parcelas' and variablename = 'tipos' order by variableval asc";
+			$resultado = $GLOBALS['ISC_CLASS_DB']->Query($ler);
+			$i = 1;
+			
+			$GLOBALS['HTMLPOPUP'] = "";
+			$GLOBALS['HTMLBODY']  = "";
+			$bandeirasFormasPagamentoHtml = '';
+			$parcelasFormasPagamentoHtml  = '';
 				
+			while ($s = $GLOBALS['ISC_CLASS_DB']->Fetch($resultado)) {
+				
+				//inicio do switch
+				switch($s['variableval']) {
+					case 'deposito': //deposito
+					$ativo = GetModuleVariable('checkout_deposito','is_setup');
+					$desc = GetModuleVariable('checkout_deposito','desconto');
+					$nome = GetModuleVariable('checkout_deposito','displayname');
+					if(!empty($ativo)) {
+					//verifica o desconto
+					$pro = $this->ValorProduto($produto);
+					if($desc<=0 OR empty($desc)){
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg = "<b> ".$preco." a vista.</b>";
+					} else {
+					$valven = ($pro/100)*$desc;
+					$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
+					$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/deposito.gif" /></td>
+					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/deposito.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break; // fim deposito
+					
+					case 'cheque':
+					$ativo = GetModuleVariable('checkout_cheque','is_setup');
+					$juros = GetModuleVariable('checkout_cheque','juros');
+					$nome = GetModuleVariable('checkout_cheque','displayname');
+					$div = GetModuleVariable('checkout_cheque','dividir');
+					$jde = GetModuleVariable('checkout_cheque','jurosde');
+					$pmin = GetModuleVariable('checkout_cheque','parmin');
+					if(!empty($ativo)) {
+					//verifica o juros
+					$pro = $this->ValorProduto($produto);
+					if($juros<=0 OR empty($juros)){
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg = "<b> ".$preco."</b> a vista.";
+					} else {
+					$msg = '';
+					$msg1 = '';
+					$splits = (int) ($pro/$pmin);
+					if($splits<=$div){
+					$div = $splits;
+					}else{
+					$div = $div;
+					}
+					for ($j=1;$j<=$div;$j++) {
+					if ($jde<=$j and $jde<='50') {
+					$valven = ($pro/100)*$juros;
+					$msg1 .= $j."x de <b>".CurrencyConvertFormatPrice(($pro+$valven)/$j, 1, 0)."</b> com juros.<br>";
+					}else{
+					$msg .= $j."x de <b>".CurrencyConvertFormatPrice($pro/$j, 1, 0)."</b> sem juros.<br>";
+					}
+					}
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/cheque.gif" /></td>
+					<td width="40%"><font size="2">'.$msg.'</font></td>
+					<td width="40%"><font size="2">'.$msg1.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/cheque.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+							<div class="label">'.$msg1.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'boleto': //boleto
+					$desc = GetModuleVariable('addon_parcelas','descboleto');
+					
+					//verifica o desconto
+					$pro = $this->ValorProduto($produto);
+					if($desc<=0){
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg = "<b> ".$preco."</b> a vista.";
+					} else {
+					$valven = ($pro/100)*$desc;
+					$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
+					$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>Boleto Bancario</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/boleto.gif" /></td>
+					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/boleto.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+						</div>
+					';
+					break; // fim boleto
+					
+					case 'pagseguro':
+					$ativo = GetModuleVariable('checkout_pagseguro','is_setup');
+					$juross = GetModuleVariable('checkout_pagseguro','acrecimo');
+					$nome = GetModuleVariable('checkout_pagseguro','displayname');
+					$taxa = 0.0199;
+					if(!empty($ativo)) {
+					//verifica o juros
+					$pro = $this->ValorProduto($produto);
+					$valor = $pro;
+					if($juross<=0 OR empty($juross)){
+					$valor = $valor;
+					} else {
+					$valor = (($valor/100)*$juross)+$valor;
+					}
+					
+					$msg = '';
+					$msg1 = '';
+					$splitss = (int) ($valor/5);
+					if($splitss<=12){
+					$div = $splitss;
+					}else{
+					$div = 12;
+					}
+					//echo $div."<br>";
+					for($j=1; $j<=$div;$j++) {
+					$cf = pow((1 + $taxa), $j);
+					$cf = (1 / $cf);
+					$cf = (1 - $cf);
+					$cf = ($taxa / $cf);
+					//echo $cf."<br>";
+					$parcelas = ($valor*$cf);
+					//echo $parcela."<br>";
+					$parcelas = number_format($parcelas, 2, '.', '');
+					//echo $parcela."<br>";
+					$valors = number_format($valor, 2, '.', '');
+					$op = GetModuleVariable('checkout_pagseguro','jurosde');
+					if($j==1 OR $op>=$j) {
+					$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
+					}else{
+					$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
+					}
+					
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagseguro.gif" /></td>
+					<td width="40%"><font size="2">'.$msg.'</font></td>
+					<td width="40%"><font size="2">'.$msg1.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagseguro.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+							<div class="label">'.$msg1.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'pagdigital':
+					$ativo = GetModuleVariable('checkout_pagamentodigital','is_setup');
+					$juross = GetModuleVariable('checkout_pagamentodigital','acrecimo');
+					$nome = GetModuleVariable('checkout_pagamentodigital','displayname');
+					$taxa = 0.0199;
+					if(!empty($ativo)) {
+					//verifica o juros
+					$pro = $this->ValorProduto($produto);
+					$valor = $pro;
+					if($juross<=0 OR empty($juross)){
+					$valor = $valor;
+					} else {
+					$valor = (($valor/100)*$juross)+$valor;
+					}
+					
+					$msg = '';
+					$msg1 = '';
+					$splitss = (int) ($valor/5);
+					if($splitss<=12){
+					$div = $splitss;
+					}else{
+					$div = 12;
+					}
+					
+					for($j=1; $j<=$div;$j++) {
+					
+					
+					$parcelas = $this->jurosComposto($valor, 1.99, $j);
+					
+					$parcelas = number_format($parcelas, 2, '.', '');
+					$valors = number_format($valor, 2, '.', '');
+					
+					$op = GetModuleVariable('checkout_pagamentodigital','jurosde');
+					if($j==1 OR $op>=$j) {
+					$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
+					}else{
+					$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
+					}
+					
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagdigital.gif" /></td>
+					<td width="40%"><font size="2">'.$msg.'</font></td>
+					<td width="40%"><font size="2">'.$msg1.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagdigital.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+							<div class="label">'.$msg1.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'moip':
+					$ativo = GetModuleVariable('checkout_moip','is_setup');
+					$juross = GetModuleVariable('checkout_moip','acrecimo');
+					$nome = GetModuleVariable('checkout_moip','displayname');
+					$taxa = 0.0199;
+					if(!empty($ativo)) {
+					//verifica o juros
+					$pro = $this->ValorProduto($produto);
+					$valor = $pro;
+					if($juross<=0 OR empty($juross)){
+					$valor = $valor;
+					} else {
+					$valor = (($valor/100)*$juross)+$valor;
+					}
+					
+					$msg = '';
+					$msg1 = '';
+					$splitss = (int) ($valor/5);
+					if($splitss<=12){
+					$div = $splitss;
+					}else{
+					$div = 12;
+					}
+					//echo $div."<br>";
+					for($j=1; $j<=$div;$j++) {
+					$cf = pow((1 + $taxa), $j);
+					$cf = (1 / $cf);
+					$cf = (1 - $cf);
+					$cf = ($taxa / $cf);
+					//echo $cf."<br>";
+					$parcelas = ($valor*$cf);
+					//echo $parcela."<br>";
+					$parcelas = number_format($parcelas, 2, '.', '');
+					//echo $parcela."<br>";
+					$valors = number_format($valor, 2, '.', '');
+					$op = GetModuleVariable('checkout_moip','jurosde');
+					if($j==1 OR $op>=$j) {
+					$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
+					}else{
+					$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
+					}
+					
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/moip.gif" /></td>
+					<td width="40%"><font size="2">'.$msg.'</font></td>
+					<td width="40%"><font size="2">'.$msg1.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/moip.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+							<div class="label">'.$msg1.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'dinheiromail':
+					$ativo = GetModuleVariable('checkout_dinheiromail','is_setup');
+					$juross = GetModuleVariable('checkout_dinheiromail','acrecimo');
+					$nome = GetModuleVariable('checkout_dinheiromail','displayname');
+					$taxa = 0.0199;
+					if(!empty($ativo)) {
+					//verifica o juros
+					$pro = $this->ValorProduto($produto);
+					$valor = $pro;
+					if($juross<=0 OR empty($juross)){
+					$valor = $valor;
+					} else {
+					$valor = (($valor/100)*$juross)+$valor;
+					}
+					
+					$msg = '';
+					$msg1 = '';
+					$splitss = (int) ($valor/5);
+					if($splitss<=12){
+					$div = $splitss;
+					}else{
+					$div = 12;
+					}
+					
+					for($j=1; $j<=$div;$j++) {
+					
+					
+					$parcelas = $this->jurosSimples($valor, 1.99, $j);
+					
+					$parcelas = number_format($parcelas, 2, '.', '');
+					$valors = number_format($valor, 2, '.', '');
+					
+					$op = GetModuleVariable('checkout_dinheiromail','jurosde');
+					if($j==1 OR $op>=$j) {
+					$msg .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.<br>";
+					}else{
+					$msg1 .="<b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> com juros.<br>";
+					}
+					
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/dinmail.png" /></td>
+					<td width="40%"><font size="2">'.$msg.'</font></td>
+					<td width="40%"><font size="2">'.$msg1.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/dinmail.png" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+							<div class="label">'.$msg1.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'paypal':
+					$ativo = GetModuleVariable('checkout_paypal','is_setup');
+					$desc = GetModuleVariable('checkout_paypal','desconto');
+					$nome = GetModuleVariable('checkout_paypal','displayname');
+					if(!empty($ativo)) {
+					//verifica o desconto
+					$pro = $this->ValorProduto($produto);
+					if($desc<=0 OR empty($desc)){
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg = "<b> ".$preco." a vista.</b>";
+					} else {
+					$valven = ($pro/100)*$desc;
+					$preco = CurrencyConvertFormatPrice($pro-$valven, 1, 0);
+					$msg = "<b> ".$preco."</b> a vista com <b>".$desc."%</b> de desconto.";
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/paypal.gif" /></td>
+					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/paypal.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'sps':
+					$ativo = GetModuleVariable('checkout_spsbradesco','is_setup');
+					$nome = GetModuleVariable('checkout_spsbradesco','displayname');
+					$boleto = GetModuleVariable('checkout_spsbradesco','pagboletos');
+					$facil = GetModuleVariable('checkout_spsbradesco','pagfacil');
+					$finan = GetModuleVariable('checkout_spsbradesco','pagfinan');
+					$trans = GetModuleVariable('checkout_spsbradesco','pagtrans');
+					if(!empty($ativo)) {
+					//verifica o desconto
+					$pro = $this->ValorProduto($produto);
+					$msg = "";
+					if($boleto=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista no boleto.<br>";
+					}
+					if($facil=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista por cartão de debito.<br>";
+					}
+					if($finan=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> financiado em até <b>24x</b> (com juros do banco).<br>";
+					}
+					if($trans=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista por transferência bancaria.<br>";
+					}
+					
+					
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/spsbradesco.gif" /></td>
+					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/spsbradesco.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					
+					case 'bbofice':
+					$ativo = GetModuleVariable('checkout_bbcomercio','is_setup');
+					$nome = GetModuleVariable('checkout_bbcomercio','displayname');
+					$boleto = '';
+					$facil = '';
+					$finan = '';
+					$trans = '';
+					if(!empty($ativo)) {
+					//verifica o desconto
+					$pro = $this->ValorProduto($produto);
+					$msg = "";
+					if($boleto=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista no boleto.<br>";
+					}
+					if($facil=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista por cartão de debito.<br>";
+					}
+					if($trans=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista por transferência bancaria.<br>";
+					}
+					
+					
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/bb_commerce.gif" /></td>
+					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/bb_commerce.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'shopline':
+					$ativo = GetModuleVariable('checkout_itaushopline','is_setup');
+					$nome = GetModuleVariable('checkout_itaushopline','displayname');
+					$boleto = '';
+					$facil = '';
+					$finan = '';
+					$trans = '';
+					if(!empty($ativo)) {
+					//verifica o desconto
+					$pro = $this->ValorProduto($produto);
+					$msg = "";
+					if($boleto=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista no boleto.<br>";
+					}
+					if($facil=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista por cartão de debito.<br>";
+					}
+					if($trans=="") {
+					$preco = CurrencyConvertFormatPrice($pro, 1, 0);
+					$msg .= "<b> ".$preco."</b> a vista por transferência bancaria.<br>";
+					}
+					
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>'.$nome.'</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/itau_shopline.gif" /></td>
+					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/itau_shopline.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+					
+					case 'zCielo':
+					$ativo = GetModuleVariable('checkout_cielo','is_setup');
+					$nome = GetModuleVariable('checkout_cielo','displayname');
+					$div = GetModuleVariable('checkout_cielo','div');
+					$juross = '0';
+					$taxa = GetModuleVariable('checkout_cielo','juros');
+					$jt = GetModuleVariable('checkout_cielo','tipojuros');
+					
+					$pm = GetModuleVariable('checkout_cielo','parcelamin');
+					
+					if(!empty($ativo)) {
+					//verifica o juros
+					$pro = $this->ValorProduto($produto);
+					$valor = $pro;
+					if($juross<=0 OR empty($juross)){
+					$valor = $valor;
+					} else {
+					$valor = (($valor/100)*$juross)+$valor;
+					}
+					
+					$msg = '';
+					$msg1 = '';
+					$splitss = (int) ($valor/$pm);
+					if($splitss<=$div){
+					$div = $splitss;
+					}else{
+					$div = $div;
+					}
+					
+					for($j=1; $j<=$div;$j++) {
+					
+					if($jt==0)
+					$parcelas = $this->jurosSimples($valor, $taxa, $j);
+					else
+					$parcelas = $this->jurosComposto($valor, $taxa, $j);
+					
+					$parcelas = number_format($parcelas, 2, '.', '');
+					$valors = number_format($valor, 2, '.', '');
+					
+					$op = GetModuleVariable('checkout_visanet','jurosde');
+					if($op>=$j) {
+					$msg .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</b> sem juros.</font><br>";
+					}else{
+					$msg1 .="<font size='2'><b>".$j."x</b> de <b>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</b> (<u>".$parcelas*$j."</u>) com juros.</font><br>";
+					}
+					
+					}
+					//inicio do codigo do parcelamento
+					$GLOBALS['HTMLPOPUP'] .= '<div class="eg-bar"><span id="faq'.$i.'-title" class="iconspan"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/minus.gif" /></span>Cartão Visa</div>
+					<div id="faq'.$i.'" class="icongroup1">
+					<table width="100%" border="0">
+					<tr>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/cartao_visa.gif" /></td>
+					<td width="40%">'.$msg.'</td>
+					<td width="50%">'.$msg1.'</td>
+					</tr>
+					</table>
+					</div>';
+					
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$i.'"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/cartao_visa.gif" /></li>';
+					$parcelasFormasPagamentoHtml  .= '
+						<div class="ConteudoFormaPagamento" count="'.$i.'">
+							<div class="label first">'.$msg.'</div>
+							<div class="label">'.$msg1.'</div>
+						</div>
+					';
+					//fim do codigo de parcelamento
+					}
+					break;
+				}
+				//fim do switch
+				
+				$i++;
+			}
+			
+			//aplica no template
+			if($type == 'popup'){
+				$template = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet('SimularParcelaPopup');
+				echo $GLOBALS['ISC_CLASS_TEMPLATE']->ParseSnippets($template, true);
+					
+			}else if($type == 'body'){
+				$GLOBALS['BandeirasFormasPagamento'] 		= $bandeirasFormasPagamentoHtml;
+				$GLOBALS['ParcelasFormasPagamento'] 		= $parcelasFormasPagamentoHtml;
+				$GLOBALS['SNIPPETS']['FormasPagamentoBody'] = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet('SimularParcelaBody');
+			} 
+		}
 		
-
 		public function DisableDesignMode()
 		{
 			isc_unsetCookie('designModeToken');
