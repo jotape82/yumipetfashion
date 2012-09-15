@@ -183,6 +183,41 @@ $(document).ready(function() {
 		jQuery('.sliderCarousel').tinycarousel({start: 2});
 	}
 	
+	/* FORMAS DE PAGAMENTO - PAG DE PRODUTO */
+	var cliqueHabilitado = true;
+	
+	/* Habilita o Primeiro Item */
+	$('#bandeirasFormasPagamento li').eq(0).addClass('bandeiraSelecionada');
+	$('#parcelasFormasPagamento div.ConteudoFormaPagamento').eq(0).addClass('formaPagamentoSelecionada').show();
+	
+	$('#bandeirasFormasPagamento li img').click(function(){
+		var countNumber = $(this).parent().attr('count');
+
+		if(cliqueHabilitado){
+			cliqueHabilitado = false;
+			
+			$('#bandeirasFormasPagamento li').each(function(){
+				if($(this).attr('count') == countNumber){
+					$(this).addClass('bandeiraSelecionada');
+				}else{
+					$(this).removeClass('bandeiraSelecionada');
+				}
+			});
+		
+			$('#parcelasFormasPagamento div.ConteudoFormaPagamento').each(function(){
+				if($(this).attr('count') == countNumber){
+					$(this).addClass('parcelaSelecionada');
+					$(this).slideDown('slow', function(){
+						cliqueHabilitado = true;
+					});
+				}else{
+					$(this).hide();
+					$(this).removeClass('parcelaSelecionada');
+				}
+			});
+		}
+	});
+	
 });
 
 /* ===== INICIO - BUSCA POR CEP ===== */
