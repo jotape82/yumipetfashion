@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 15th Sep 2012 @ 12:20 AM
+	// Last Updated: 15th Sep 2012 @ 5:03 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -122,7 +122,7 @@
 	$GLOBALS['ISC_CFG']['BackupsAutomaticDownloads'] = 1;
 
 	$GLOBALS['ISC_CFG']["GoogleMapsAPIKey"] = '';
-	$GLOBALS['ISC_CFG']["NotificationMethods"] = 'notification_email,notification_sms';
+	$GLOBALS['ISC_CFG']["NotificationMethods"] = 'notification_email,notification_sms,notification_msn';
 	$GLOBALS['ISC_CFG']["CurrencyMethods"] = 'currency_webservicex';
 	$GLOBALS['ISC_CFG']["DefaultCurrencyID"] = 1;
 	$GLOBALS['ISC_CFG']["DefaultCurrencyRate"] = 1;
