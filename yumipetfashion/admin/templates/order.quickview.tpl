@@ -56,7 +56,7 @@
 				<tr>
 					<td class="text" valign="top">{% lang 'IPAddress' %}:</td>
 					<td class="text">
-						<a href="http://ws.arin.net/cgi-bin/whois.pl?queryinput={{ IPAddress|safe }}" target="_blank">
+						<a href="http://whois.arin.net/ui/query.do?q={{ order.ordipaddress }}" target="_blank"><!--{{ IPAddress|safe }}-->
 							{{ order.ordipaddress }}
 						</a>
 					</td>
