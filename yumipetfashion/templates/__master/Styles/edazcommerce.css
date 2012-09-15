@@ -653,13 +653,13 @@ li.separador_links_footer{
 
 /* FORMAS DE PAGAMENTO NA TELA DE PRODUTO */
 .formasPagamentoProduto { -moz-box-shadow: 2px 2px 5px -1px #A1A1A1; -webkit-box-shadow: 2px 2px 5px -1px #A1A1A1; box-shadow: 2px 2px 5px -1px #A1A1A1; }
-.bandeiraSelecionada { /*border-left: 1px solid #e1e1e1; border-top: 1px solid #e1e1e1; border-right: 1px solid #e1e1e1;*/ background-color: #F1F1F1; }
+.bandeiraSelecionada { -moz-box-shadow: 2px -3px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -3px #A1A1A1; box-shadow: 2px -3px 5px -3px #A1A1A1;  background-color: #F1F1F1; }
 .parcelaSelecionada { background-color: #f9f9f9; }
 #bandeirasFormasPagamento, #parcelasFormasPagamento { clear: left; }
 #bandeirasFormasPagamento{ margin: 0px; }
 #bandeirasFormasPagamento li { float: left; list-style: none; padding: 0 2px; margin: 0; }
 #bandeirasFormasPagamento li img { cursor: pointer; }
-#parcelasFormasPagamento .ConteudoFormaPagamento { display: none; }
+#parcelasFormasPagamento .ConteudoFormaPagamento { display: none; padding: 10px; }
 
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
