@@ -158,33 +158,6 @@ class ISC_FORM
 	}
 	
 	/**
-	 * Retorna o Label em Português para o Cadastro de Cliente
-	 */
-	public function getLabelCampoCadastroClienteEmPortugues($codField){
-		$arrayCamposCadastroCliente = array(
-			'EmailAddress' 	 => 'E-mail',
-			'Password'		 => 'Senha',
-			'ConfirmPassword'=> 'Confirmar Senha',
-			'FirstName' 	 => 'Nome',
-			'LastName' 		 => 'Sobrenome',
-			'Cpf' 			 => 'Cpf',
-			'DataNascimento' => 'Data de Nascimento',
-			'CompanyName' 	 => 'Empresa',
-			'Phone' 		 => 'Telefone',
-			'AddressLine1' 	 => 'Endereço',
-			'Numero' 		 => 'Número',
-			'Complemento'    => 'Complemento',
-			'Bairro'	 	 => 'Bairro',
-			'City' 			 => 'Cidade',
-			'Country' 		 => 'País',
-			'State' 		 => 'Estado',
-			'Zip' 			 => 'Cep'
-		);
-		
-		return (isset($arrayCamposCadastroCliente[$codField])) ? $arrayCamposCadastroCliente[$codField] : "-"; 
-	}
-
-	/**
 	 * Get an instansiated formfield object
 	 *
 	 * Method will return the instansiated formfield object corresponding to either the form
@@ -255,9 +228,6 @@ class ISC_FORM
 				return false;
 			}
 			
-			/* EDAZCOMMERCE - Tradução dos Labels do Cadastro de Cliente */
-			$fieldData['formfieldlabel'] = $this->getLabelCampoCadastroClienteEmPortugues($fieldData['formfieldprivateid']);
-
 			$field = new $className($formId, $fieldData);
 
 			/**

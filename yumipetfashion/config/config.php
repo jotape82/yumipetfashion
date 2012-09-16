@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 15th Sep 2012 @ 10:52 PM
+	// Last Updated: 16th Sep 2012 @ 12:58 AM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';

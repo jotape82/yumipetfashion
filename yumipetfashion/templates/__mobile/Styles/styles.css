@@ -758,11 +758,20 @@ body.sitemap .Content ul:after
 .Field100 {
 	width: 100px;
 }
+.Field130 {
+	width: 130px;
+}
 .Field150 {
 	width: 150px;
 }
+.Field160 {
+	width: 160px;
+}
 .Field200 {
 	width: 200px;
+}
+.Field230 {
+	width: 230px;
 }
 .Field250 {
 	width: 250px;

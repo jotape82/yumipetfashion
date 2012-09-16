@@ -40,15 +40,6 @@
 	*/
 
 	include(dirname(__FILE__)."/init.php");
-	
-	$desenvolvimento = true;
-	if($desenvolvimento){
-		$GLOBALS['isDesenvolvimento']		= true;
-		$GLOBALS['DesenvolvimentoJS_Ini'] 	= '/*';
-		$GLOBALS['DesenvolvimentoJS_Fim'] 	= '*\\';
-		$GLOBALS['DesenvolvimentoHTML_Ini'] = '<!--';
-		$GLOBALS['DesenvolvimentoHTML_Fim'] = '-->';
-	}
 
 	// Visitor tracking Javascript
 	if(isset($_REQUEST['action'])) {

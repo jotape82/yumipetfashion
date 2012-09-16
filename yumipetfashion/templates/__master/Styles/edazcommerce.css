@@ -547,7 +547,7 @@ li.separador_links_footer{
 #AddressEditForm .FormContainer dl dd input.FormField,
 #CreateAccountForm .FormContainer dl dd input.FormField,
 #NewBillingAddress .FormContainer dl dd input.FormField {
-	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 17px; padding: 2px 3px; width: 220px; margin-top: 2px;
+	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 17px; padding: 2px 3px; margin-top: 2px;
 }
 
 #NewShippingAddress .FormContainer dl dd select,
@@ -555,7 +555,7 @@ li.separador_links_footer{
 #AddressEditForm .FormContainer dl dd select,
 #CreateAccountForm .FormContainer dl dd select,
 #NewBillingAddress .FormContainer dl dd select {
-	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 28px; padding: 2px 3px; width: 230px; margin-top: 2px;
+	border-radius: 4px; font-family: Tahoma; font-size: 13px; height: 28px; padding: 2px 3px; margin-top: 2px;
 }
 
 #NewShippingAddress .FormContainer dl dd input:focus,
@@ -652,6 +652,7 @@ li.separador_links_footer{
 .botaoIndiqueEsteProduto { border:1px solid silver; color:#000; font-size:11px; padding:5px; font-family:tahoma; background:#F3F6FF; border-radius: 3px; font-weight: bold; cursor: pointer; }
 
 /* FORMAS DE PAGAMENTO NA TELA DE PRODUTO */
+.wrapperFormasPagamento { float: left; margin: 0px 10px; }
 .formasPagamentoProduto { -moz-box-shadow: 2px 2px 5px -1px #A1A1A1; -webkit-box-shadow: 2px 2px 5px -1px #A1A1A1; box-shadow: 2px 2px 5px -1px #A1A1A1; }
 .bandeiraSelecionada { -moz-box-shadow: 2px -3px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -3px #A1A1A1; box-shadow: 2px -3px 5px -3px #A1A1A1;  background-color: #F1F1F1; }
 .parcelaSelecionada { background-color: #f9f9f9; }
