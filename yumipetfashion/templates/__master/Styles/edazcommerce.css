@@ -663,8 +663,8 @@ li.separador_links_footer{
 #metodoPagamentoSelecionado { float: left; font-weight: bold; margin: 1px 10px; color: #D04AA3; }
 .wrapperFormasPagamento { float: left; margin: 0px 10px; min-width: 400px; }
 .formasPagamentoProduto { clear: left; -moz-box-shadow: 2px 2px 5px -1px #A1A1A1; -webkit-box-shadow: 2px 2px 5px -1px #A1A1A1; box-shadow: 2px 2px 5px -1px #A1A1A1; }
-.bandeiraSelecionada { -moz-box-shadow: 2px -3px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -3px #A1A1A1; box-shadow: 2px -3px 5px -3px #A1A1A1;  background-color: #F1F1F1; }
-.parcelaSelecionada { background-color: #f9f9f9; }
+.bandeiraSelecionada { -moz-box-shadow: 2px -3px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -3px #A1A1A1; box-shadow: 2px -3px 5px -3px #A1A1A1;  background-color: #F7F7F7; }
+.parcelaSelecionada { background-color: #F7F7F7; }
 #bandeirasFormasPagamento, #parcelasFormasPagamento { clear: left; }
 #bandeirasFormasPagamento{ margin: 0px; }
 #bandeirasFormasPagamento li { float: left; list-style: none; padding: 0 5px; margin: 0; min-width: 40px; max-width: 70px; min-height: 30px; text-align: center; }
