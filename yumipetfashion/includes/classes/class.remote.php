@@ -462,7 +462,7 @@
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Deposito"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/deposito.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Depósito"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/deposito.gif" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>

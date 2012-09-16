@@ -188,7 +188,8 @@ $(document).ready(function() {
 	
 	/* Habilita o Primeiro Item */
 	$('#bandeirasFormasPagamento li').eq(0).addClass('bandeiraSelecionada');
-	$('#parcelasFormasPagamento div.ConteudoFormaPagamento').eq(0).addClass('formaPagamentoSelecionada').show();
+	$('#parcelasFormasPagamento div.ConteudoFormaPagamento').eq(0).addClass('parcelaSelecionada').show();
+	$('#metodoPagamentoSelecionado').html($('#bandeirasFormasPagamento li').eq(0).attr('descricao'));
 	
 	$('#bandeirasFormasPagamento li img').click(function(){
 		var countNumber     = $(this).parent().attr('count');
