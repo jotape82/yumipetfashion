@@ -500,17 +500,16 @@ class ISC_CHECKOUT
 			}
 			
 			/* EDAZCOMMERCE - Tamanho dos Campos do Cadastro */
-			if(isc_strtolower($formFieldPrivateId) == 'password' ||  isc_strtolower($formFieldPrivateId) == 'confirmpassword' || 
-					isc_strtolower($formFieldPrivateId) == 'phone' || isc_strtolower($formFieldPrivateId) == 'bairro' || 
-						isc_strtolower($formFieldPrivateId) == 'city' || isc_strtolower($formFieldPrivateId) == 'zip' ||
-							isc_strtolower($formFieldPrivateId) == 'complemento' || isc_strtolower($formFieldPrivateId) == 'numero' ||
-								isc_strtolower($formFieldPrivateId) == 'datanascimento' || isc_strtolower($formFieldPrivateId) == 'cpf'){
-				$fields[$fieldId]->setFieldStyle('width: 130px;');
-			}
-			
-			if(isc_strtolower($formFieldPrivateId) == 'state' || isc_strtolower($formFieldPrivateId) == 'country'){
-				$fields[$fieldId]->setFieldStyle('width: 140px;');
-			}
+//			if(isc_strtolower($formFieldPrivateId) == 'password' ||  isc_strtolower($formFieldPrivateId) == 'confirmpassword' || 
+//					isc_strtolower($formFieldPrivateId) == 'phone' || isc_strtolower($formFieldPrivateId) == 'bairro' || 
+//						isc_strtolower($formFieldPrivateId) == 'city' || isc_strtolower($formFieldPrivateId) == 'zip' ||
+//							isc_strtolower($formFieldPrivateId) == 'complemento' || isc_strtolower($formFieldPrivateId) == 'numero' ||
+//								isc_strtolower($formFieldPrivateId) == 'datanascimento' || isc_strtolower($formFieldPrivateId) == 'cpf'){
+//				$fields[$fieldId]->setFieldStyle('width: 130px;');
+//			}
+//			if(isc_strtolower($formFieldPrivateId) == 'state' || isc_strtolower($formFieldPrivateId) == 'country'){
+//				$fields[$fieldId]->setFieldStyle('width: 140px;');
+//			}
 			
 			if ($formFieldPrivateId == 'country') {
 				$formField->setOptions(GetCountryListAsIdValuePairs());
@@ -1019,16 +1018,15 @@ class ISC_CHECKOUT
 		}
 
 		$fieldMap = array(
-			'FirstName' => 'firstname',
-			'LastName' => 'lastname',
-			'CompanyName' => 'company',
-			'AddressLine1' => 'address1',
-			'AddressLine2' => 'address2',
-			'City' => 'city',
-			'State' => 'state',
-			'Country' => 'country',
-			'Zip' => 'zip',
-			'Phone' => 'phone',
+			'FirstName' => 'shipfirstname',
+			'LastName' => 'shiplastname',
+			'CompanyName' => 'shipcompany',
+			'AddressLine1' => 'shipaddress1',
+			'City' => 'shipcity',
+			'State' => 'shipstate',
+			'Country' => 'shipcountry',
+			'Zip' => 'shipzip',
+			'Phone' => 'shipphone',
 			'Email' => 'email',
 			'DataNascimento' => 'datanascimento',
 			'Numero' => 'numero',

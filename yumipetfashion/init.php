@@ -2,7 +2,6 @@
 require_once(dirname(__FILE__).'/lib/init.php');
 
 define("APP_ROOT", dirname(__FILE__));
-
 define("SEARCH_SIMPLE", 0);
 define("SEARCH_ADVANCED", 1);
 
@@ -11,8 +10,16 @@ if (GetConfig('isSetup') === false) {
 	die();
 }
 
-$GLOBALS['OriginalSearchQuery'] = "O que você está procurando?";
+$desenvolvimento = true;
+if($desenvolvimento){
+	$GLOBALS['isDesenvolvimento']		= true;
+	$GLOBALS['DesenvolvimentoJS_Ini'] 	= '/*';
+	$GLOBALS['DesenvolvimentoJS_Fim'] 	= '*\\';
+	$GLOBALS['DesenvolvimentoHTML_Ini'] = '<!--';
+	$GLOBALS['DesenvolvimentoHTML_Fim'] = '-->';
+}
 
+$GLOBALS['OriginalSearchQuery'] = "O que você está procurando?";
 $GLOBALS['PathInfo'] = array();
 $GLOBALS['RewriteRules'] = array(
 	"index" => array(
