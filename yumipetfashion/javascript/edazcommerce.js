@@ -191,10 +191,13 @@ $(document).ready(function() {
 	$('#parcelasFormasPagamento div.ConteudoFormaPagamento').eq(0).addClass('formaPagamentoSelecionada').show();
 	
 	$('#bandeirasFormasPagamento li img').click(function(){
-		var countNumber = $(this).parent().attr('count');
-
+		var countNumber     = $(this).parent().attr('count');
+		var descricaoMetodo = $(this).parent().attr('descricao');
+		
 		if(cliqueHabilitado){
 			cliqueHabilitado = false;
+			
+			$('#metodoPagamentoSelecionado').html(descricaoMetodo);
 			
 			$('#bandeirasFormasPagamento li').each(function(){
 				if($(this).attr('count') == countNumber){
