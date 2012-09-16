@@ -176,19 +176,19 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 .checkout_metodo_boletobradesco{
 	width: 35px;
 	height: 35px;
-	background: url(../images/bandeiras/banco_bradesco.png) no-repeat;
+	background: url(../images/bandeiras/boletobradesco.png) no-repeat;
 }
 
 .checkout_metodo_boletobancodobrasil{
 	width: 35px;
 	height: 35px;
-	background: url(../images/bandeiras/banco_brasil.png) no-repeat;
+	background: url(../images/bandeiras/boletobancodobrasil.png) no-repeat;
 }
 
 .checkout_metodo_boletoitau{
 	width: 35px;
 	height: 35px;
-	background: url(../images/bandeiras/banco_itau.png) no-repeat;
+	background: url(../images/bandeiras/boletoitau.png) no-repeat;
 }
 
 .checkout_metodo_boletoreal{
@@ -587,6 +587,14 @@ li.separador_links_footer{
 	float: left;
 }
 
+.height25{
+	height: 25px !important;
+}
+
+.height28{
+	height: 28px !important;
+}
+
 .marginTop30{
 	margin-top: 30px;
 }
@@ -652,15 +660,16 @@ li.separador_links_footer{
 .botaoIndiqueEsteProduto { border:1px solid silver; color:#000; font-size:11px; padding:5px; font-family:tahoma; background:#F3F6FF; border-radius: 3px; font-weight: bold; cursor: pointer; }
 
 /* FORMAS DE PAGAMENTO NA TELA DE PRODUTO */
+#metodoPagamentoSelecionado { float: left; font-weight: bold; margin: 1px 10px; color: #D04AA3; }
 .wrapperFormasPagamento { float: left; margin: 0px 10px; }
-.formasPagamentoProduto { -moz-box-shadow: 2px 2px 5px -1px #A1A1A1; -webkit-box-shadow: 2px 2px 5px -1px #A1A1A1; box-shadow: 2px 2px 5px -1px #A1A1A1; }
+.formasPagamentoProduto { clear: left; -moz-box-shadow: 2px 2px 5px -1px #A1A1A1; -webkit-box-shadow: 2px 2px 5px -1px #A1A1A1; box-shadow: 2px 2px 5px -1px #A1A1A1; }
 .bandeiraSelecionada { -moz-box-shadow: 2px -3px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -3px #A1A1A1; box-shadow: 2px -3px 5px -3px #A1A1A1;  background-color: #F1F1F1; }
 .parcelaSelecionada { background-color: #f9f9f9; }
 #bandeirasFormasPagamento, #parcelasFormasPagamento { clear: left; }
 #bandeirasFormasPagamento{ margin: 0px; }
-#bandeirasFormasPagamento li { float: left; list-style: none; padding: 0 2px; margin: 0; }
-#bandeirasFormasPagamento li img { cursor: pointer; }
-#parcelasFormasPagamento .ConteudoFormaPagamento { display: none; padding: 10px; }
+#bandeirasFormasPagamento li { float: left; list-style: none; padding: 0 5px; margin: 0; min-width: 40px; max-width: 70px; min-height: 30px; text-align: center; }
+#bandeirasFormasPagamento li img { cursor: pointer; height: 25px; }
+#parcelasFormasPagamento .ConteudoFormaPagamento { display: none; padding: 10px; color: #D04AA3; }
 
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
