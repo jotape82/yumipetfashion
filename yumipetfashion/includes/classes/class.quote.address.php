@@ -77,7 +77,7 @@ class ISC_QUOTE_ADDRESS
 	protected $complemento;
 	protected $bairro;
 	protected $cpf;
-
+	
 	/**
 	 * @var array Array containing ID, name and ISO of customer's state.
 	 */
@@ -548,7 +548,7 @@ class ISC_QUOTE_ADDRESS
 		$this->cpf = $cpf;
 		return $this;
 	}
-
+	
 	public function setCountryByName($name)
 	{
 		$country = getCountryInfoByName($name);

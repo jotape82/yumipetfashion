@@ -48,6 +48,22 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="text" valign="top">Data de Nascimento:</td>
+					<td class="text">
+						{% if billingAddress.datanascimento %}
+							{{ billingAddress.datanascimento }}
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
+					<td class="text" valign="top">CPF:</td>
+					<td class="text">
+						{% if billingAddress.cpf %}
+							{{ billingAddress.cpf }}
+						{% endif %}
+					</td>
+				</tr>
+				<tr>
 					<td class="text" valign="top">{% lang 'OrderDate1' %}:</td>
 					<td class="text">
 						{{ order.orddate|date('d M Y H:i:s') }}
