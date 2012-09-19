@@ -397,7 +397,7 @@ class ISC_QUOTE_ADDRESS
 			'shipcomplemento' => null,
 			'shipbairro' => null,
 			'shipcpf' => null,
-			'shipemail' => null,
+			'shipemail' => null
 			);
 
 		$address = array_merge($defaults, $address);
@@ -739,7 +739,7 @@ class ISC_QUOTE_ADDRESS
 	{
 		return $this->cpf;
 	}
-
+	
 	/**
 	 * Get the state name of this quote address.
 	 *

@@ -350,13 +350,14 @@ class ISC_CHECKOUT
 					'shipfullname',
 					'shipcompany',
 					'shipaddress1',
-					'shipaddress2',
+					'shipnumero',
+					'shipcomplemento',
+					'shipbairro',
 					'shipcity',
 					'shipstate',
-					'shipzip',
-					'shipcountry'
+					'shipzip'
 				);
-
+				
 				foreach($shippingAddresses as $address) {
 					$formattedAddress = '';
 					foreach($addressMap as $field) {
@@ -818,7 +819,10 @@ class ISC_CHECKOUT
 				$quoteBillingAddress->setCustomFields($address['customFormFields']);
 			}
 		}
-
+		
+		/* EDAZCOMMERCE - CÓDIGO DO ENDEREÇO DE FATURA */
+		$address['enderecoFaturaID'] = $address['shipid'];
+		
 		// Store the billing address in the quote
 		$quoteBillingAddress->setAddressByArray($address);
 
@@ -875,7 +879,10 @@ class ISC_CHECKOUT
 				$quoteShippingAddress->setCustomFields($address['customFormFields']);
 			}
 		}
-
+		
+		/* EDAZCOMMERCE - CÓDIGO DO ENDEREÇO DE ENVIO */
+		$address['enderecoEnvioID'] = $address['shipid'];
+		
 		// Store the billing address in the quote
 		$quoteShippingAddress->setAddressByArray($address);
 		return true;
