@@ -1935,7 +1935,7 @@
 			";
 			$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 			$order = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
-
+			
 			$orderStatuses = array();
 			$query = "
 				SELECT *
@@ -1954,7 +1954,7 @@
 				exit;
 			}
 			// If this user is a vendor, do they have permission to acess this order?
-			else if($GLOBALS['ISC_CLASS_ADMIN_AUTH']->GetVendorId() && $row['ordvendorid'] != $GLOBALS['ISC_CLASS_ADMIN_AUTH']->GetVendorId()) {
+			else if($GLOBALS['ISC_CLASS_ADMIN_AUTH']->GetVendorId() && $order['ordvendorid'] != $GLOBALS['ISC_CLASS_ADMIN_AUTH']->GetVendorId()) {
 				echo getLang('OrderDetailsNotFound');
 				exit;
 			}
@@ -1964,6 +1964,8 @@
 			);
 
 			// Build the address fields
+			/* CAMPOS ANTIGOS NA ORDEM PARA ENDEREÇO DE FATURA */
+			/*
 			foreach($addressTypes as $var => $dbKey) {
 				$address = array(
 					'firstname'	=> $order[$dbKey.'firstname'],
@@ -1980,7 +1982,40 @@
 					file_exists(ISC_BASE_PATH.'/lib/flags/'.strtolower($order[$dbKey.'countrycode']).'.gif')) {
 						$address['countryFlag'] = strtolower($order[$dbKey.'countrycode']);
 				}
+
 				$this->template->assign($var, $address);
+			}
+			*/
+			
+			/* EDAZCOMMERCE - NOVOS CAMPOS PARA ENDEREÇO DE FATURA */
+			if(isset($order['ordcustid'])){
+				$query = "SELECT * FROM [|PREFIX|]shipping_addresses WHERE shipcustomerid = " . $order['ordcustid'];
+				$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
+				$row = $GLOBALS['ISC_CLASS_DB']->fetch($result);
+				
+				$address = array(
+					'firstname' => $row['shipfirstname'],
+					'lastname' => $row['shiplastname'],
+					'companyname' => $row['shipcompany'],
+					'address1' => $row['shipaddress1'],
+					'city' => $row['shipcity'],
+					'state' => $row['shipstate'],
+					'country' => $row['shipcountry'],
+					'zip' => $row['shipzip'],
+					'phone' => $row['shipphone'],
+					'datanascimento' => $row['shipdatanascimento'],
+					'numero' => $row['shipnumero'],
+					'complemento' => $row['shipcomplemento'],
+					'bairro' => $row['shipbairro'],
+					'cpf' => $row['shipcpf']
+				);
+				
+				if($order['ordbillcountrycode'] &&
+					file_exists(ISC_BASE_PATH.'/lib/flags/'.strtolower($order['ordbillcountrycode']).'.gif')) {
+						$address['countryFlag'] = strtolower($order['ordbillcountrycode']);
+				}
+				
+				$this->template->assign('billingAddress', $address);
 			}
 
 			$itemTotalColumn = 'total_ex_tax';

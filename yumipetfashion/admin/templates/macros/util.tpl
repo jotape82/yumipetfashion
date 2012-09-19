@@ -135,27 +135,26 @@ dropDownMenu usage example (see the individual macros above for exact options av
 	{% endif %}
 
 	<div>{{ address.company }}</div>
-
-	{% if address.address1 or address.address2 %}
-		<div>{{ address.address1 }}</div>
-		<div>{{ address.address2 }}</div>
-	{% else %}
-		<div>{{ address.address_1 }}</div>
-		<div>{{ address.address_2 }}</div>
-	{% endif %}
-
+	<div>
+		{{ address.address1 }}
+		{% if address.numero %}, nº {% endif %}{{ address.numero }}
+		{% if address.complemento %} - Complemento {% endif %}{{ address.complemento }}
+	</div>
+	<div>Bairro: {{ address.bairro }}</div>
 	<div>
 		{% set state =  address.state|default(address.getStateName) %}
-		{{ address.city }}{% if address.city and (state or address.zip) %}, {% endif %}
-		{{ state }}{% if state and address.zip %}, {% endif %}{{ address.zip }}
+		{{ address.city }}
+		{% if state %} - {% endif %}{{ state }}
 	</div>
+	<div>Cep: {{ address.zip }}</div>
+	<!--
 	<div>
 		{{ address.country|default(address.getCountryName) }}
-
 		{% if address.countryFlag %}
 			<img src="../lib/flags/{{ address.countryFlag }}.gif" style="vertical-align: middle" alt="" />
 		{% endif %}
 	</div>
+	-->
 {% endmacro %}
 
 {#

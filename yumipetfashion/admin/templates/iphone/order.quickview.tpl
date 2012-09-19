@@ -19,26 +19,26 @@
 	{% endif %}
 
 	<div>{{ address.company }}</div>
-
-	{% if address.address1 or address.address2 %}
-		<div>{{ address.address1 }}</div>
-		<div>{{ address.address2 }}</div>
-	{% else %}
-		<div>{{ address.address_1 }}</div>
-		<div>{{ address.address_2 }}</div>
-	{% endif %}
-
 	<div>
-		{{ address.city }}{% if address.city and (address.state or address.zip) %}, {% endif %}
-		{{ address.state }}{% if address.state and address.zip %}, {% endif %}{{ address.zip }}
+		{{ address.address1 }}
+		{% if address.numero %}, nº {% endif %}{{ address.numero }}
+		{% if address.complemento %} - Complemento {% endif %}{{ address.complemento }}
 	</div>
+	<div>Bairro: {{ address.bairro }}</div>
+	<div>
+		{% set state =  address.state|default(address.getStateName) %}
+		{{ address.city }}
+		{% if state %} - {% endif %}{{ state }}
+	</div>
+	<div>Cep: {{ address.zip }}</div>
+	<!--
 	<div>
 		{{ address.country }}
-
 		{% if address.countryFlag %}
 			<img src="../lib/flags/{{ address.countryFlag }}.gif" style="vertical-align: middle" alt="" />
 		{% endif %}
 	</div>
+	-->
 {% endmacro %}
 
 <div class="toolbar">
@@ -207,6 +207,14 @@
 			{{ lang.NA }}
 		{% endif %}
 	</li>
+	{% if billingAddress.datanascimento %}
+		<li class="group">Data de Nascimento</li>
+		<li>{% billingAddress.datanascimento %}</li>
+	{% endif %}
+	{% if billingAddress.cpf %}
+		<li class="group">CPF</li>
+		<li>{% billingAddress.cpf %}</li>
+	{% endif %}
 	{% if order.ordbillphone or order.ordcustconphone %}
 		<li class="group">{% lang 'PhoneNumber' %}</li>
 		<li>

@@ -35,7 +35,8 @@
 				$GLOBALS['ShipCountry'] = isc_html_escape($address['shipcountry']);
 
 				if($address['shipphone'] != "") {
-					$GLOBALS['ShipPhone'] = isc_html_escape(sprintf("%s: %s", GetLang('Phone'), $address['shipphone']));
+					$GLOBALS['ShipPhone'] = $address['shipphone'];
+					//$GLOBALS['ShipPhone'] = isc_html_escape(sprintf("%s: %s", GetLang('Phone'), $address['shipphone']));
 				}
 				else {
 					$GLOBALS['ShipPhone'] = "";

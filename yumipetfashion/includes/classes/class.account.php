@@ -855,7 +855,8 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 			$GLOBALS['ShipCountry'] = isc_html_escape($address['shipcountry']);
 
 			if (isset($address['shipphone']) && $address['shipphone'] != "") {
-				$GLOBALS['ShipPhone'] = isc_html_escape(sprintf("%s: %s", GetLang('Phone'), $address['shipphone']));
+				$GLOBALS['ShipPhone'] =  $address['shipphone'];
+				//$GLOBALS['ShipPhone'] = isc_html_escape(sprintf("%s: %s", GetLang('Phone'), $address['shipphone']));
 			}
 			else {
 				$GLOBALS['ShipPhone'] = "";
