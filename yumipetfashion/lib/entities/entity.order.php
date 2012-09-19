@@ -85,6 +85,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 				"orddiscountamount" => "price",
 				'shipping_address_count' => 'int',
 				'coupon_discount' => 'price',
+				'billing_adress_id' => 'int',
 		);
 
 		$tableName = "orders";
@@ -118,6 +119,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 		/** @var ISC_QUOTE */
 		$quote = $input['quote'];
 		$billingAddress = $quote->getBillingAddress();
+		
 		$billingCustomFields = $billingAddress->getCustomFields();
 		$billingFormSessionId = 0;
 		if(!empty($billingCustomFields)) {
@@ -171,6 +173,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 			'ordbillphone'					=> $billingAddress->getPhone(),
 			'ordbillemail'					=> $billingAddress->getEmail(),
 			'ordformsessionid'				=> $billingFormSessionId,
+			'billing_adress_id' 			=> $billingAddress->getCustomerAddressId(),
 
 			'ordgiftcertificateamount'		=> $quote->getGiftCertificateTotal(),
 			'ordstorecreditamount'			=> $quote->getAppliedStoreCredit(),
@@ -795,7 +798,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 				if(!empty($customFormFields)) {
 					$formSessionId = $GLOBALS['ISC_CLASS_FORM']->saveFormSessionManual($customFormFields);
 				}
-
+				
 				$orderAddress = array(
 					'order_id'			=> $orderId,
 					'first_name'		=> $address->getFirstName(),
@@ -814,6 +817,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 					'phone'				=> $address->getPhone(),
 					'form_session_id'	=> $formSessionId,
 					'total_items'		=> $address->getNumItems(),
+					'shipping_adress_id'=> $address->getCustomerAddressId()
 				);
 
 				if (is_numeric($address->getId())) {
