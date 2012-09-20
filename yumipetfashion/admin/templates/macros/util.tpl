@@ -157,6 +157,33 @@ dropDownMenu usage example (see the individual macros above for exact options av
 	-->
 {% endmacro %}
 
+{% macro addressShipping(address) %}
+	{% if address.shipfirstname or address.shiplastname %}
+		<div>{{ address.shipfirstname}} {{ address.shiplastname }}</div>
+	{% endif %}
+
+	<div>
+		{{ address.shipaddress1 }}
+		{% if address.shipnumero %}, nº {% endif %}{{ address.shipnumero }}
+		{% if address.shipcomplemento %} - Complemento {% endif %}{{ address.shipcomplemento }}
+	</div>
+	<div>Bairro: {{ address.shipbairro }}</div>
+	<div>
+		{% set state =  address.shipstate %}
+		{{ address.shipcity }}
+		{% if state %} - {% endif %}{{ state }}
+	</div>
+	<div>Cep: {{ address.shipzip }}</div>
+	<!--
+	<div>
+		{{ address.shipcountry|default(address.getCountryName) }}
+		{% if address.countryFlag %}
+			<img src="../lib/flags/{{ address.countryFlag }}.gif" style="vertical-align: middle" alt="" />
+		{% endif %}
+	</div>
+	-->
+{% endmacro %}
+
 {#
 jslang outputs a list of language variables as lang.<var> = <text>; assignments
 

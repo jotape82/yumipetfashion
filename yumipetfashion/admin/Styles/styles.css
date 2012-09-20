@@ -2364,3 +2364,5 @@ dl.OrderProductEventDate {
 .accesskey {
 	text-decoration: underline;
 }
+
+.QuickViewPanel table tr td { padding: 3px 0; }

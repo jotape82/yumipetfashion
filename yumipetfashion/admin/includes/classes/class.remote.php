@@ -1987,9 +1987,9 @@
 			}
 			*/
 			
-			/* EDAZCOMMERCE - NOVOS CAMPOS PARA ENDEREÇO DE FATURA */
-			if(isset($order['ordcustid'])){
-				$query = "SELECT * FROM [|PREFIX|]shipping_addresses WHERE shipcustomerid = " . $order['ordcustid'];
+			/* EDAZCOMMERCE - PEGA OS NOVOS CAMPOS PARA ENDEREÇO DE FATURA */
+			if(isset($order['billing_adress_id'])){
+				$query = "SELECT * FROM [|PREFIX|]shipping_addresses WHERE shipid = " . $order['billing_adress_id'];
 				$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 				$row = $GLOBALS['ISC_CLASS_DB']->fetch($result);
 				
@@ -2041,12 +2041,25 @@
 			}
 
 			// Fetch all of the addresses in this order
-			$orderAddresses = array();
+			/* CAMPOS ANTIGOS NA ORDEM PARA ENDEREÇO DE FATURA */
+			/*
 			$query = "
 				SELECT *
 				FROM [|PREFIX|]order_addresses
 				WHERE order_id='".$order['orderid']."'
 			";
+			*/
+			
+			/* EDAZCOMMERCE - PEGA OS NOVOS CAMPOS PARA ENDEREÇO DE ENTREGA */
+			$query = "
+				SELECT oa.id, oa.country_iso2, sa.shipid, sa.shipcustomerid, sa.shipfirstname, sa.shiplastname,
+				sa.shipaddress1, sa.shipcity, sa.shipstate, sa.shipzip, sa.shipcountry,
+				sa.shipphone, sa.shipdatanascimento, sa.shipnumero, sa.shipcomplemento, sa.shipbairro, sa.shipcpf
+				FROM [|PREFIX|]order_addresses oa
+				LEFT JOIN [|PREFIX|]shipping_addresses sa ON (sa.shipid = oa.shipping_adress_id)
+				WHERE oa.order_id = " . $order['orderid'];
+			
+			$orderAddresses = array();
 			$result = $this->db->query($query);
 			while($address = $this->db->fetch($result)) {
 				if($address['country_iso2'] &&

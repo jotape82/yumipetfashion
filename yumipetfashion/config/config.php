@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 16th Sep 2012 @ 7:13 PM
+	// Last Updated: 20th Sep 2012 @ 1:10 AM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -94,7 +94,7 @@
 	$GLOBALS['ISC_CFG']['ShowInventory'] = 0;
 	$GLOBALS['ISC_CFG']['ShowPreOrderInventory'] = 0;
 	$GLOBALS['ISC_CFG']['DefaultPreOrderMessage'] = 'Expected release date is %%DATE%%';
-	$GLOBALS['ISC_CFG']['StoreTimeZone'] = '0';
+	$GLOBALS['ISC_CFG']['StoreTimeZone'] = '-3';
 	$GLOBALS['ISC_CFG']['StoreDSTCorrection'] = 0;
 	$GLOBALS['ISC_CFG']['ShowDownloadTemplates'] = '1';
 	$GLOBALS['ISC_CFG']['TagCartQuantityBoxes'] = 'dropdown';
@@ -326,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 122;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 130;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';

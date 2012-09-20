@@ -42,7 +42,10 @@ class __TwigTemplate_f8108225761bff2a21ef9fd2c852fcb7 extends Twig_Template
         // line 158
         echo "
 ";
-        // line 170
+        // line 185
+        echo "
+";
+        // line 197
         echo "
 ";
     }
@@ -653,7 +656,92 @@ class __TwigTemplate_f8108225761bff2a21ef9fd2c852fcb7 extends Twig_Template
 ";
     }
 
-    // line 171
+    // line 160
+    public function getaddressShipping($address = null)
+    {
+        $context = array(
+            "address" => $address,
+        );
+
+        echo "\t";
+        // line 161
+        if (($this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipfirstname", array(), "any")) || ($this->getAttribute((isset($context['address']) ? $context['address'] : null), "shiplastname", array(), "any"))) {
+            echo "\t\t<div>";
+            // line 162
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipfirstname", array(), "any"), "1");
+            echo " ";
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shiplastname", array(), "any"), "1");
+            echo "</div>
+\t";
+        }
+        // line 163
+        echo "
+\t<div>
+\t\t";
+        // line 166
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipaddress1", array(), "any"), "1");
+        echo "
+\t\t";
+        // line 167
+        if ($this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipnumero", array(), "any")) {
+            echo ", nº ";
+        }
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipnumero", array(), "any"), "1");
+        echo "
+\t\t";
+        // line 168
+        if ($this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipcomplemento", array(), "any")) {
+            echo " - Complemento ";
+        }
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipcomplemento", array(), "any"), "1");
+        echo "
+\t</div>
+\t<div>Bairro: ";
+        // line 170
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipbairro", array(), "any"), "1");
+        echo "</div>
+\t<div>
+\t\t";
+        // line 172
+        $context['state'] = $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipstate", array(), "any");
+        echo "\t\t";
+        // line 173
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipcity", array(), "any"), "1");
+        echo "
+\t\t";
+        // line 174
+        if ((isset($context['state']) ? $context['state'] : null)) {
+            echo " - ";
+        }
+        echo twig_escape_filter($this->env, (isset($context['state']) ? $context['state'] : null), "1");
+        echo "
+\t</div>
+\t<div>Cep: ";
+        // line 176
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipzip", array(), "any"), "1");
+        echo "</div>
+\t<!--
+\t<div>
+\t\t";
+        // line 179
+        echo twig_default_filter(twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "shipcountry", array(), "any"), "1"), twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "getCountryName", array(), "any"), "1"));
+        echo "
+\t\t";
+        // line 180
+        if ($this->getAttribute((isset($context['address']) ? $context['address'] : null), "countryFlag", array(), "any")) {
+            echo "\t\t\t<img src=\"../lib/flags/";
+            // line 181
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context['address']) ? $context['address'] : null), "countryFlag", array(), "any"), "1");
+            echo ".gif\" style=\"vertical-align: middle\" alt=\"\" />
+\t\t";
+        }
+        // line 182
+        echo "\t</div>
+\t-->
+";
+    }
+
+    // line 198
     public function getjslang($list = null)
     {
         $context = array(
@@ -661,7 +749,7 @@ class __TwigTemplate_f8108225761bff2a21ef9fd2c852fcb7 extends Twig_Template
         );
 
         echo "\t";
-        // line 172
+        // line 199
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_iterator_to_array((isset($context['list']) ? $context['list'] : null));
         $countable = is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable);
@@ -680,26 +768,26 @@ class __TwigTemplate_f8108225761bff2a21ef9fd2c852fcb7 extends Twig_Template
         }
         foreach ($context['_seq'] as $context['index'] => $context['lang']) {
             echo "\t\t";
-            // line 173
+            // line 200
             if (twig_length_filter($this->env, twig_get_array_keys_filter((isset($context['lang']) ? $context['lang'] : null)))) {
                 echo "\t\t\tlang[\"";
-                // line 174
+                // line 201
                 echo $this->getEnvironment()->getExtension('interspire')->jsFilter((isset($context['index']) ? $context['index'] : null));
                 echo "\"] = \"";
                 echo Interspire_Template_Extension::jsFilter(getLang((isset($context['index']) ? $context['index'] : null), (isset($context['lang']) ? $context['lang'] : null)), "'");
                 echo "\";
 \t\t";
             } else {
-                // line 175
+                // line 202
                 echo "\t\t\tlang[\"";
-                // line 176
+                // line 203
                 echo $this->getEnvironment()->getExtension('interspire')->jsFilter((isset($context['lang']) ? $context['lang'] : null));
                 echo "\"] = \"";
                 echo Interspire_Template_Extension::jsFilter(getLang((isset($context['lang']) ? $context['lang'] : null)), "'");
                 echo "\";
 \t\t";
             }
-            // line 177
+            // line 204
             echo "\t";
             ++$context['loop']['index0'];
             ++$context['loop']['index'];

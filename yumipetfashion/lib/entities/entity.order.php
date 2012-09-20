@@ -819,7 +819,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 					'total_items'		=> $address->getNumItems(),
 					'shipping_adress_id'=> $address->getCustomerAddressId()
 				);
-
+				
 				if (is_numeric($address->getId())) {
 					// numeric ids denote addresses which already exist in the db and should be updated instead
 					$addressId = (int)$address->getId();
