@@ -1700,7 +1700,7 @@
 				echo isc_json_encode($response);
 				exit;
 			}
-
+			
 			$this->getExpressCheckoutShippers();
 		}
 
@@ -1813,6 +1813,7 @@
 			}
 
 			$shippingAddress = $quote->getShippingAddress();
+			
 			if(!$shippingAddress->hasCompleteAddress()) {
 				$response = array(
 					'status' => 0,

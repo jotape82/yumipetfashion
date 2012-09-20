@@ -186,7 +186,7 @@
 								<tr>
 									<td class="text" valign="top" width="120">{% lang 'CustomerDetails' %}:</td>
 									<td class="text">
-										{{ util.address(orderAddress.address) }}
+										{{ util.addressShipping(orderAddress.address) }}
 									</td>
 								</tr>
 
@@ -206,8 +206,8 @@
 								<tr>
 									<td class="text" valign="top">{% lang 'PhoneNumber' %}:</td>
 									<td class="text">
-										{% if orderAddress.address.phone %}
-											{{ orderAddress.address.phone }}
+										{% if orderAddress.address.shipphone %}
+											{{ orderAddress.address.shipphone }}
 										{% elseif order.custconphone %}
 											{{ order.ordcustconphone }}
 										{% else %}
@@ -215,7 +215,24 @@
 										{% endif %}
 									</td>
 								</tr>
-
+								
+								<tr>
+									<td class="text" valign="top">Data de Nascimento:</td>
+									<td class="text">
+										{% if orderAddress.address.shipdatanascimento %}
+											{{ orderAddress.address.shipdatanascimento }}
+										{% endif %}
+									</td>
+								</tr>
+								<tr>
+									<td class="text" valign="top">CPF:</td>
+									<td class="text">
+										{% if orderAddress.address.shipcpf %}
+											{{ orderAddress.address.shipcpf }}
+										{% endif %}
+									</td>
+								</tr>
+								
 								{% if orderAddress.address.shipping_zone_name %}
 									<tr>
 										<td class="text" valign="top">{% lang 'ShippingZone' %}:</td>

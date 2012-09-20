@@ -1099,6 +1099,7 @@ CREATE TABLE IF NOT EXISTS `%%PREFIX%%orders` (
   `orddiscountamount` decimal(20, 4) NOT NULL default '0',
   `shipping_address_count` int unsigned NOT NULL default '1',
   `coupon_discount` decimal(20, 4) NOT NULL default '0',
+  `billing_adress_id` int(11) NOT NULL default '0',
   PRIMARY KEY  (`orderid`),
   KEY `i_orders_ordcustid` (`ordcustid`),
   KEY `i_orders_orderid_ordstatus` (`orderid`,`ordstatus`)
@@ -3207,6 +3208,7 @@ CREATE TABLE IF NOT EXISTS `[|PREFIX|]order_addresses` (
 	`phone` varchar(250) not null default '',
 	`form_session_id` int unsigned NOT NULL default '0',
 	`total_items` int unsigned NOT NULL default '0',
+	`shipping_adress_id` int unsigned NOT NULL default '0', 
 	PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
