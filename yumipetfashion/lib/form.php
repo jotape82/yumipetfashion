@@ -212,7 +212,7 @@ class ISC_FORM
 
 			$type = $fieldData['formfieldtype'];
 		}
-
+		
 		$className = $this->includeFormFieldCode($type);
 
 		if (!$className) {

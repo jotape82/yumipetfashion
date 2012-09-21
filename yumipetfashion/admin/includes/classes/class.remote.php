@@ -1988,8 +1988,8 @@
 			*/
 			
 			/* EDAZCOMMERCE - PEGA OS NOVOS CAMPOS PARA ENDEREÇO DE FATURA */
-			if(isset($order['billing_adress_id'])){
-				$query = "SELECT * FROM [|PREFIX|]shipping_addresses WHERE shipid = " . $order['billing_adress_id'];
+			if(isset($order['billing_address_id'])){
+				$query = "SELECT * FROM [|PREFIX|]shipping_addresses WHERE shipid = " . $order['billing_address_id'];
 				$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 				$row = $GLOBALS['ISC_CLASS_DB']->fetch($result);
 				
@@ -2056,7 +2056,7 @@
 				sa.shipaddress1, sa.shipcity, sa.shipstate, sa.shipzip, sa.shipcountry,
 				sa.shipphone, sa.shipdatanascimento, sa.shipnumero, sa.shipcomplemento, sa.shipbairro, sa.shipcpf
 				FROM [|PREFIX|]order_addresses oa
-				LEFT JOIN [|PREFIX|]shipping_addresses sa ON (sa.shipid = oa.shipping_adress_id)
+				LEFT JOIN [|PREFIX|]shipping_addresses sa ON (sa.shipid = oa.shipping_address_id)
 				WHERE oa.order_id = " . $order['orderid'];
 			
 			$orderAddresses = array();

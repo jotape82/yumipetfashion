@@ -180,12 +180,12 @@ function validateFieldData($fields, &$errmsg)
  * @param int $formSessionId The optional form session ID
  * @return array The parsed array on success, FALSE on failure
  */
-function parseFieldData($fields, $formSessionId='')
-{
+function parseFieldData($fields, $formSessionId='', $typeFormFields=FORMFIELDS_FORM_ADDRESS)
+{	
 	if (!is_array($fields)) {
 		return false;
 	}
-
+	
 	$fieldMap = getAddressFormMapping();
 	$savedata = array();
 	$countryFieldId = '';
@@ -206,8 +206,10 @@ function parseFieldData($fields, $formSessionId='')
 		}
 	}
 	
-	$savedata['shipcustomerid'] = $GLOBALS['ISC_CLASS_CUSTOMER']->GetCustomerId();
-
+	//$savedata['shipcustomerid'] = $GLOBALS['ISC_CLASS_CUSTOMER']->GetCustomerId();
+	$objCustomer = new ISC_CUSTOMER();
+	$savedata['shipcustomerid'] = $objCustomer->GetCustomerId();
+	
 	/**
 	 * Fill in the country and state IDs
 	 */
@@ -222,12 +224,12 @@ function parseFieldData($fields, $formSessionId='')
 	/**
 	 * Now save the form session record
 	 */
-	$formSessionId = $GLOBALS['ISC_CLASS_FORM']->saveFormSession(FORMFIELDS_FORM_ADDRESS, true, $formSessionId);
+	$formSessionId = $GLOBALS['ISC_CLASS_FORM']->saveFormSession($typeFormFields, true, $formSessionId);
 
 	if (isId($formSessionId)) {
 		$savedata['shipformsessionid'] = $formSessionId;
 	}
-
+	
 	return $savedata;
 }
 
@@ -272,7 +274,6 @@ function getAddressFormMapping()
 		'Zip' 				=> 'zip',
 		'CompanyName' 		=> 'company',
 		'AddressLine1' 		=> 'address1',
-		'AddressLine2' 		=> 'address2',
 		'Numero'			=> 'numero',
 		'Complemento'		=> 'complemento',
 		'Bairro'			=> 'bairro',
