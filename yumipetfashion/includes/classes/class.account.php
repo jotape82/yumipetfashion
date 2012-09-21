@@ -722,10 +722,10 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 			$GLOBALS['ISC_CLASS_TEMPLATE']->ParseTemplate();
 		}
 
-		private function SaveNewShippingAddress()
+		public function SaveNewShippingAddress($typeFormFields=FORMFIELDS_FORM_ADDRESS)
 		{
-			$fields = $GLOBALS['ISC_CLASS_FORM']->getFormFields(FORMFIELDS_FORM_ADDRESS, true);
-
+			$fields = $GLOBALS['ISC_CLASS_FORM']->getFormFields($typeFormFields, true);
+			
 			/**
 			 * Validate the field input
 			 */
@@ -733,28 +733,34 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 			if (!validateFieldData($fields, $errmsg)) {
 				return $this->AddShippingAddress($errmsg, MSG_ERROR);
 			}
-
-			$ShippingAddress = parseFieldData($fields);
-
+			
+			$ShippingAddress = parseFieldData($fields, '', $typeFormFields);
+			
 			if (isset($ShippingAddress['shipfirstname']) && isset($ShippingAddress['shipaddress1'])) {
 				$shippingid = $this->shippingEntity->add($ShippingAddress);
-				if (isId($shippingid)) {
-					if (isset($_SESSION['LOGIN_REDIR'])) {
-						// Take them to the page they wanted
-						$page = $_SESSION['LOGIN_REDIR'];
-						unset($_SESSION['LOGIN_REDIR']);
-						header(sprintf("Location: %s", $page));
+				
+				if($typeFormFields == FORMFIELDS_FORM_SHIPPING){
+					return $shippingid;
+					
+				}else if($typeFormFields == FORMFIELDS_FORM_ADDRESS){
+					if (isId($shippingid)) {
+						if (isset($_SESSION['LOGIN_REDIR'])) {
+							// Take them to the page they wanted
+							$page = $_SESSION['LOGIN_REDIR'];
+							unset($_SESSION['LOGIN_REDIR']);
+							header(sprintf("Location: %s", $page));
+						}
+						else {
+							// Take them to the my account page
+							header(sprintf("Location: %s/account.php", $GLOBALS['ShopPath']));
+						}
 					}
 					else {
-						// Take them to the my account page
-						header(sprintf("Location: %s/account.php", $GLOBALS['ShopPath']));
+						// Database error
+						ob_end_clean();
+						header(sprintf("location:%s/%s", $GLOBALS['ShopPath'], 'account.php?action=add_shipping_address'));
+						die();
 					}
-				}
-				else {
-					// Database error
-					ob_end_clean();
-					header(sprintf("location:%s/%s", $GLOBALS['ShopPath'], 'account.php?action=add_shipping_address'));
-					die();
 				}
 			}
 			else {
