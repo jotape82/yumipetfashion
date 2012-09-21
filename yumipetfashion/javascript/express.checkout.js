@@ -102,7 +102,10 @@ var ExpressCheckout = {
 			ExpressCheckout.ChangeStep(response.changeStep);
 			ExpressCheckout.ResetNextSteps();
 		}
-
+		
+		// Aplica Máscaras e Oculta Campos do Cadastro de Clientes
+		mascaraCamposCadastroCliente();
+		
 		// Set focus to a particular field
 		if(response.focus) {
 			try {

@@ -825,8 +825,8 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 					$newAddressID = $this->shipping->add($addressArray);
 					$address->setCustomerAddressId($newAddressID);
 					
-					var_dump("AKI 02!");
-					var_dump($address->getType());
+//					var_dump("AKI 02!");
+//					var_dump($address->getType());
 					
 					/* EDAZCOMMERCE - APÓS INSERIR O NOVO ENDEREÇO DE FATURA, ATUALIZA O ID DO ENDEREÇO DE FATURA NA ORDER, CASO O EDEREÇO SEJA NOVO A SER CADASTRADO */
 					if($address->getType() == ISC_QUOTE_ADDRESS::TYPE_BILLING) {
@@ -837,7 +837,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 								  AND shipfirstname    = '" . $address->getFirstName() . "'
 								  AND shiplastname     = '" . $address->getLastName() . "'
 								  AND shipzip		   = '" . $address->getZip() . "' ";
-						var_dump($query);
+						//var_dump($query);
 						$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 						if($result){
 							$arrayAddress 	  = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
@@ -852,7 +852,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 					}
 				}
 				
-				die();
+				//die();
 			}
 			
 			// Billing addresses are still inserted into the orders table.
