@@ -777,24 +777,37 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 		private function DeleteShippingAddress()
 		{
 			if (isset($_GET['address_id'])) {
+				
+				/* EDAZCOMMERCE - NÃO PERMITE DELETAR CASO O ENDEREÇO JÁ TENHA SIDO UTILIZADO EM ALGUM PEDIDO REALIZADO NA LOJA.
+				  (EVITA QUE OS PEDIDOS NO ADMIN PERCAM A REFERENCIA E FIQUEM SEM O ENDEREÇO NA TELA) 
+				*/
+				if(!$this->verificaEnderecoUtilizadoPedido($_GET['address_id'])){
 
-				if ($this->shippingEntity->delete($_GET['address_id'], $GLOBALS['ISC_CLASS_CUSTOMER']->GetCustomerId())) {
-					if (isset($_SESSION['LOGIN_REDIR'])) {
-						// Take them to the page they wanted
-						$page = $_SESSION['LOGIN_REDIR'];
-						unset($_SESSION['LOGIN_REDIR']);
-						header(sprintf("Location: %s", $page));
+					if ($this->shippingEntity->delete($_GET['address_id'], $GLOBALS['ISC_CLASS_CUSTOMER']->GetCustomerId())) {
+						if (isset($_SESSION['LOGIN_REDIR'])) {
+							// Take them to the page they wanted
+							$page = $_SESSION['LOGIN_REDIR'];
+							unset($_SESSION['LOGIN_REDIR']);
+							header(sprintf("Location: %s", $page));
+						}
+						else {
+							// Take them to the my account page
+							header(sprintf("Location: %s/account.php", $GLOBALS['ShopPath']));
+						}
 					}
 					else {
-						// Take them to the my account page
-						header(sprintf("Location: %s/account.php", $GLOBALS['ShopPath']));
+						// Database error
+						ob_end_clean();
+						header(sprintf("location:%s/account.php", $GLOBALS['ShopPath']));
+						die();
 					}
-				}
-				else {
-					// Database error
-					ob_end_clean();
-					header(sprintf("location:%s/account.php", $GLOBALS['ShopPath']));
-					die();
+					
+				}else{
+					// Erro ao Deletar - Endereço já utilizado
+					$GLOBALS['ErrorEnderecoUtilizadoPedido'] = GetLang('AddressIsUsedInOrder');
+					$GLOBALS['DisplayAccountErrorMessage']   = "block";
+					$this->AddressBook();
+					//header(sprintf("Location: %s/%s", $GLOBALS['ShopPath'], 'account.php?action=address_book'));
 				}
 			}
 			else {
@@ -803,6 +816,27 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 				header(sprintf("location:%s/account.php", $GLOBALS['ShopPath']));
 				die();
 			}
+		}
+		
+		/**
+		 * Verifica se o Endereço já foi utilizado em algum pedido realizado na loja
+		 */
+		public function verificaEnderecoUtilizadoPedido($addressId){
+			$jaUtilizado = false;
+			
+			$query  = "SELECT orderid FROM [|PREFIX|]orders WHERE billing_address_id = " . (int)$addressId;
+			$result = $GLOBALS['ISC_CLASS_DB']->query($query);
+			$array1 = $GLOBALS['ISC_CLASS_DB']->fetch($result);
+			
+			$query  = "SELECT order_id FROM [|PREFIX|]order_addresses WHERE shipping_address_id = " . (int)$addressId;
+			$result = $GLOBALS['ISC_CLASS_DB']->query($query);
+			$array2 = $GLOBALS['ISC_CLASS_DB']->fetch($result);
+			
+			if($array1 || $array2){
+				$jaUtilizado = true;
+			}
+			
+			return $jaUtilizado;
 		}
 
 		/**

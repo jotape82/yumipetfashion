@@ -104,7 +104,7 @@ var ExpressCheckout = {
 		}
 		
 		// Aplica Máscaras e Oculta Campos do Cadastro de Clientes
-		mascaraCamposCadastroCliente();
+		//mascaraCamposCadastroCliente();
 		
 		// Set focus to a particular field
 		if(response.focus) {
