@@ -1378,11 +1378,17 @@ function CompletePendingOrder($pendingOrderToken, $status, $sendInvoice=true)
 			createOrderCustomerAccount($order, $extraInfo['createAccount']);
 			unset($extraInfo['createAccount']);
 		}
-
+		
+		/* EDAZCOMMERCE - Pega o ID do Endereço de Fatura no Quote e Atualiza a Order */
+		$quote 			  = getCustomerQuote();
+		$billingAddress   = $quote->getBillingAddress();
+		$billingAddressID = $billingAddress->getCustomerAddressId();
+		
 		// Now update the order and set the status
 		$updatedOrder = array(
 			"ordstatus" => $newStatus,
-			"extrainfo" => serialize($extraInfo)
+			"extrainfo" => serialize($extraInfo),
+			"billing_address_id" => "$billingAddressID" // EDAZCOMMERCE - Atual
 		);
 		$GLOBALS['ISC_CLASS_DB']->UpdateQuery("orders", $updatedOrder, "orderid='".$order['orderid']."'");
 	}

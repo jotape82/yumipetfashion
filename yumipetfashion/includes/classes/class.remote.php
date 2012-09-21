@@ -1681,11 +1681,6 @@
 					);
 					echo isc_json_encode($response);
 					exit;
-				}else{
-					/* EDAZCOMMERCE - SALVANDO O NOVO ENDEREÇO NO LIVRO DE ENDEREÇOS DO CLIENTE */
-					$obj = new ISC_ACCOUNT();
-					$shippingid = $obj->SaveNewShippingAddress(FORMFIELDS_FORM_SHIPPING);
-					$addressDetails['shipid'] = $shippingid;
 				}
 			}
 			else {

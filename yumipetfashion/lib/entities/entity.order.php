@@ -126,22 +126,6 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 			$billingFormSessionId = $GLOBALS['ISC_CLASS_FORM']->saveFormSessionManual($billingCustomFields);
 		}
 		
-		$billingAddressID = $billingAddress->getCustomerAddressId();
-//		/* EDAZCOMMERCE - PEGA O ID DO ENDEREÇO DE FATURA DO PEDIDO PELOS CAMPOS PRINCIPAIS */
-//		if(!isset($billingAddressID) || $billingAddressID == 0){
-//			$query = "SELECT shipid FROM [|PREFIX|]shipping_addresses
-//					  WHERE shipcustomerid = " . $billingAddress->getQuote()->getCustomerId() . "
-//					  AND shipfirstname    = '" . $billingAddress->getFirstName() . "'
-//					  AND shiplastname     = '" . $billingAddress->getLastName() . "'
-//					  AND shipzip		   = '" . $billingAddress->getZip() . "' ";
-//			var_dump($query);
-//			$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
-//			if($result){
-//				$arrayAddress 	  = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
-//				$billingAddressID = $arrayAddress['shipid'];
-//			}
-//		}
-		
 		$order = array(
 			'ordcustid'						=> $quote->getCustomerId(),
 			'ordtotalqty'					=> $quote->getNumItems(),
@@ -189,7 +173,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 			'ordbillphone'					=> $billingAddress->getPhone(),
 			'ordbillemail'					=> $billingAddress->getEmail(),
 			'ordformsessionid'				=> $billingFormSessionId,
-			'billing_address_id' 			=> $billingAddressID,
+			'billing_address_id' 			=> $billingAddress->getCustomerAddressId(),
 
 			'ordgiftcertificateamount'		=> $quote->getGiftCertificateTotal(),
 			'ordstorecreditamount'			=> $quote->getAppliedStoreCredit(),
@@ -798,7 +782,8 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 		$quote = $rawInput['quote'];
 		$addresses = $quote->getAllAddresses();
 		$itemAddressMap = array();
-
+		$arrayEnderecosNovos = array(); //EdazCommerce
+		
 		if($existingOrder) {
 			// Remove all existing taxes
 			$GLOBALS['ISC_CLASS_DB']->deleteQuery('order_taxes', "WHERE order_id='".(int)$orderId."'");
@@ -806,54 +791,6 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 		}
 		
 		foreach($addresses as /** @var ISC_QUOTE_ADDRESS */$address) {
-			
-			/* EDAZCOMMERCE - INSERE OS ENDEREÇOS DE FATURA E ENTREGA (CASO SELECIONADOS PARA SEREM SALVOS) 
-			  (TRECHO DE CÓDIGO MOVIDO PARA CÁ PARA PODER SALVAR OS ENDEREÇOS NOVOS DE FATURA TAMBÉM. ANTES, DENTRO DO FOR ABAIXO, SÓ SALVAVA O ENDEREÇO DE ENTREGA) */
-			if($address->getCustomerAddressId() && $quote->getCustomerId()) {
-				$updatedAddress = array(
-					'shiplastused' => time()
-				);
-				$GLOBALS['ISC_CLASS_DB']->updateQuery('shipping_addresses', $updatedAddress, 'shipid='.$address->getCustomerAddressId());
-			}
-			// Should this address be saved? This can only be done for quotes belonging to a customer
-			else if(($address->getSaveAddress() || getCustomerQuote()->getBillingAddress()->getSaveAddress())
-					 && $quote->getCustomerId()) {
-				$addressArray = $address->getAsArray();
-				$addressArray['shipcustomerid'] = $quote->getCustomerId();
-				
-				if(!$this->shipping->basicSearch($addressArray)) {
-					$newAddressID = $this->shipping->add($addressArray);
-					$address->setCustomerAddressId($newAddressID);
-					
-//					var_dump("AKI 02!");
-//					var_dump($address->getType());
-					
-					/* EDAZCOMMERCE - APÓS INSERIR O NOVO ENDEREÇO DE FATURA, ATUALIZA O ID DO ENDEREÇO DE FATURA NA ORDER, CASO O EDEREÇO SEJA NOVO A SER CADASTRADO */
-					if($address->getType() == ISC_QUOTE_ADDRESS::TYPE_BILLING) {
-		
-						/* EDAZCOMMERCE - PEGA O ID DO ENDEREÇO DE FATURA DO PEDIDO PELOS CAMPOS PRINCIPAIS */
-						$query = "SELECT shipid FROM [|PREFIX|]shipping_addresses
-								  WHERE shipcustomerid = " . $address->getQuote()->getCustomerId() . "
-								  AND shipfirstname    = '" . $address->getFirstName() . "'
-								  AND shiplastname     = '" . $address->getLastName() . "'
-								  AND shipzip		   = '" . $address->getZip() . "' ";
-						//var_dump($query);
-						$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
-						if($result){
-							$arrayAddress 	  = $GLOBALS['ISC_CLASS_DB']->Fetch($result);
-							$billingAddressID = $arrayAddress['shipid'];
-							
-							/* ALTUALIZA O ID DO NOVO ENDEREÇO DE FATURA NA ORDER */
-							$query  = "UPDATE [|PREFIX|]orders SET
-									   billing_address_id = " . $billingAddressID . " 
-									   WHERE orderid = " . $orderId;
-							$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
-						}
-					}
-				}
-				
-				//die();
-			}
 			
 			// Billing addresses are still inserted into the orders table.
 			if($address->getType() != ISC_QUOTE_ADDRESS::TYPE_BILLING) {
@@ -961,8 +898,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 				}
 			}
 			
-			/* EDAZCOMMERCE - TRECHO DE CÓDIGO MOVIDO PARA CIMA (NO COMEÇO DO FOR E ANTES DA CONDIÇÃO '!= ISC_QUOTE_ADDRESS::TYPE_BILLING') */
-			/*
+			/* EDAZCOMMERCE - INSERE OS ENDEREÇOS DE FATURA E ENTREGA (CASO SELECIONADOS PARA SEREM SALVOS) */ 
 			if($address->getCustomerAddressId() && $quote->getCustomerId()) {
 				$updatedAddress = array(
 					'shiplastused' => time()
@@ -970,20 +906,34 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 				$GLOBALS['ISC_CLASS_DB']->updateQuery('shipping_addresses', $updatedAddress, 'shipid='.$address->getCustomerAddressId());
 			}
 			// Should this address be saved? This can only be done for quotes belonging to a customer
-			else if($address->getSaveAddress() && $quote->getCustomerId()) {
+			else if(($address->getSaveAddress() || getCustomerQuote()->getBillingAddress()->getSaveAddress())
+					 && $quote->getCustomerId()) {
 				$addressArray = $address->getAsArray();
 				$addressArray['shipcustomerid'] = $quote->getCustomerId();
 				
-				if(!$this->shipping->basicSearch($addressArray)) {
-					$this->shipping->add($addressArray);
+				/* CRIANDO O ENDEREÇO NA TABELA 'shipping_addresses' */
+				if(!($newAddressID = $this->shipping->basicSearch($addressArray))) {
+					$newAddressID = $this->shipping->add($addressArray);
 				}
 				
+				/* ATUALIZA O ENDEREÇO NO QUOTE */
+				$address->setCustomerAddressId($newAddressID);
+				if($address->getType() == ISC_QUOTE_ADDRESS::TYPE_BILLING) {
+					$quote->setBillingAddress($address);
+					
+				}else if($address->getType() == ISC_QUOTE_ADDRESS::TYPE_SHIPPING) {
+					$quote->setShippingAddress($address);
+					
+					/* ALTUALIZA O ID DO NOVO ENDEREÇO DE FATURA NA ORDER */
+					$arrayQuery = array("shipping_address_id" => $newAddressID);
+					$GLOBALS['ISC_CLASS_DB']->updateQuery('order_addresses', $arrayQuery, 'order_id='.$orderId);
+				}
 			}
-			*/
 		}
 		
 		return $itemAddressMap;
 	}
+	
 	protected function addPosthook($orderId, $savedata, $rawInput)
 	{
 		$itemAddressMap = $this->commitAddresses($orderId, $rawInput, false);

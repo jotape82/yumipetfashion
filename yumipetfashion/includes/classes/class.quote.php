@@ -163,6 +163,14 @@ class ISC_QUOTE
 		$this->addresses[$address->getId()] = $address;
 		return $this;
 	}
+	
+	public function setShippingAddress(ISC_QUOTE_ADDRESS $address)
+	{
+		$address->setQuote($this);
+		$address->setType(ISC_QUOTE_ADDRESS::TYPE_SHIPPING);
+		$this->addresses[$address->getId()] = $address;
+		return $this;
+	}
 
 	/**
 	 * Get the single shipping address for this order, in the case of
