@@ -160,7 +160,7 @@
 			{% endif %}
 		</td>
 
-		<td valign="top" width="67%" class="QuickViewPanel" style="border: 0; padding-left: 15px; border-left: 3px solid #B8E6A6;">
+		<td valign="top" width="67%" class="QuickViewPanel" style="border: 0; padding-left: 15px; border-left: 3px solid #E9E9E9;">
 			{% for addressId, orderAddress in orderAddresses %}
 				<div class="orderQuickViewShippingBlock">
 					{% if addressId == 0 %}

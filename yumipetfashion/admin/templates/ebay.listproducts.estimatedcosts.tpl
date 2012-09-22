@@ -16,7 +16,7 @@
 		</tr>
 	{% endfor %}
 	<tr class="GridRow" style="font-weight: bold;">
-		<td style="background-color: #dbf3d1;">{% lang 'EbayListingEstimatedCostsTotal' with ['count': itemCount] %}</td>
-		<td align="right" style="background-color: #dbf3d1;">{{ grandTotal }}</td>
+		<td style="background-color: #E9E9E9;">{% lang 'EbayListingEstimatedCostsTotal' with ['count': itemCount] %}</td>
+		<td align="right" style="background-color: #E9E9E9;">{{ grandTotal }}</td>
 	</tr>
 </table>

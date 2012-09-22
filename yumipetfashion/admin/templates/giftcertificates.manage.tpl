@@ -117,7 +117,7 @@
 				for(i = 0; i < tr.childNodes.length; i++)
 				{
 					if(tr.childNodes[i].style != null)
-						tr.childNodes[i].style.backgroundColor = "#dbf3d1";
+						tr.childNodes[i].style.backgroundColor = "#E9E9E9";
 				}
 
 				$(trQ).find('.QuickView').load('remote.php?w=giftCertificateQuickView&giftCertificateId='+id, {}, function() {

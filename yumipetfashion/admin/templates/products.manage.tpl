@@ -178,7 +178,7 @@
 
 			for (i = 0; i < tr.childNodes.length; i++) {
 				if (tr.childNodes[i].style != null) {
-					tr.childNodes[i].style.backgroundColor = "#dbf3d1";
+					tr.childNodes[i].style.backgroundColor = "#E9E9E9";
 				}
 			}
 

@@ -572,20 +572,20 @@ label.Disabled {
 }
 
 td.QuickView {
-	background-color: #dbf3d1;
+	background-color: #F7F7F7;
 	padding: 10pt;
 }
 
 tr.QuickView td {
-	background-color: #dbf3d1;
+	background-color: #F7F7F7;
 }
 
 .QuickViewPanel {
-	border-right: solid 3px #b8e6a6;
+	border-right: solid 3px #E9E9E9;
 }
 
 .ProductQuickView {
-	background-color: #DBF3D1;
+	background-color: #F7F7F7;
 	padding: 10px;
 }
 
@@ -594,7 +594,7 @@ tr.QuickView td {
 }
 
 .QuickTotal {
-	background-color: #b8e6a6;
+	background-color: #E9E9E9;
 }
 
 .plain {
@@ -702,7 +702,7 @@ td.Heading2, tr.Heading2 td {
 }
 
 .QuickView {
-	background-color: #dbf3d1;
+	background-color: #F7F7F7;
 	padding: 10pt;
 }
 
@@ -1166,7 +1166,7 @@ h3 {
 }
 
 tr td.SortHighlight {
-	background: #F4F3F3;
+	/*background: #F4F3F3;*/
 }
 
 tr.GridRowSel td {
@@ -1405,7 +1405,7 @@ a.HasNotes, a.HasCustomFields {
 }
 
 table tr.QuickViewExpanded td {
-	background: #dbf3d1;
+	background: #F7F7F7;
 }
 
 .CartGrid thead td {

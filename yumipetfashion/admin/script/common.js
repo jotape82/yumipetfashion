@@ -183,7 +183,7 @@ function QuickView(id) {
 		for(i = 0; i < tr.childNodes.length; i++)
 		{
 			if(tr.childNodes[i].style != null)
-				tr.childNodes[i].style.backgroundColor = "#dbf3d1";
+				tr.childNodes[i].style.backgroundColor = "#E9E9E9";
 		}
 
 		$(trQ).find('.QuickView').load('remote.php?w=orderQuickView&o='+id, {'cache': false}, function() {
@@ -216,7 +216,7 @@ function OrderView(id)
 		for(i = 0; i < tr.childNodes.length; i++)
 		{
 			if(tr.childNodes[i].style != null)
-				tr.childNodes[i].style.backgroundColor = "#dbf3d1";
+				tr.childNodes[i].style.backgroundColor = "#E9E9E9";
 		}
 		$(trQ).find('.QuickView').load('remote.php?w=customerOrders&c='+id, {}, function() {
 			trQ.style.display = "";

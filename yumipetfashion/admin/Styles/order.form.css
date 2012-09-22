@@ -322,11 +322,11 @@
 }
 
 div.greenFormContainer {
-	background: #DBF3D1;
+	background: #F7F7F7;
 }
 
 div.greenFormContainer .header {
-	background: #B8E6A6 url(../images/table_bg_green.png) top left repeat-x;
+	background: #E9E9E9 url(../images/table_bg_green.png) top left repeat-x;
 }
 
 .orderFormSummaryTable {

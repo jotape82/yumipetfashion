@@ -778,7 +778,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 	}
 
 	protected function commitAddresses($orderId, $rawInput, $existingOrder = false)
-	{
+	{	
 		$quote = $rawInput['quote'];
 		$addresses = $quote->getAllAddresses();
 		$itemAddressMap = array();
@@ -908,6 +908,7 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 			// Should this address be saved? This can only be done for quotes belonging to a customer
 			else if(($address->getSaveAddress() || getCustomerQuote()->getBillingAddress()->getSaveAddress())
 					 && $quote->getCustomerId()) {
+					 	
 				$addressArray = $address->getAsArray();
 				$addressArray['shipcustomerid'] = $quote->getCustomerId();
 				
@@ -921,10 +922,14 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 				if($address->getType() == ISC_QUOTE_ADDRESS::TYPE_BILLING) {
 					$quote->setBillingAddress($address);
 					
+					/* ALTUALIZA O ID DO NOVO ENDEREÇO DE FATURA NA ORDER */
+					$arrayQuery = array("billing_address_id" => $newAddressID);
+					$GLOBALS['ISC_CLASS_DB']->updateQuery('orders', $arrayQuery, 'orderid='.$orderId);
+					
 				}else if($address->getType() == ISC_QUOTE_ADDRESS::TYPE_SHIPPING) {
 					$quote->setShippingAddress($address);
 					
-					/* ALTUALIZA O ID DO NOVO ENDEREÇO DE FATURA NA ORDER */
+					/* ALTUALIZA O ID DO NOVO ENDEREÇO DE ENTREGA NA ORDER */
 					$arrayQuery = array("shipping_address_id" => $newAddressID);
 					$GLOBALS['ISC_CLASS_DB']->updateQuery('order_addresses', $arrayQuery, 'order_id='.$orderId);
 				}

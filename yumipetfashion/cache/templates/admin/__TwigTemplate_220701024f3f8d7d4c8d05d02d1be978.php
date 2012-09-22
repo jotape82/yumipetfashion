@@ -369,7 +369,7 @@ class __TwigTemplate_220701024f3f8d7d4c8d05d02d1be978 extends Twig_Template
         // line 160
         echo "\t\t</td>
 
-\t\t<td valign=\"top\" width=\"67%\" class=\"QuickViewPanel\" style=\"border: 0; padding-left: 15px; border-left: 3px solid #B8E6A6;\">
+\t\t<td valign=\"top\" width=\"67%\" class=\"QuickViewPanel\" style=\"border: 0; padding-left: 15px; border-left: 3px solid #E9E9E9;\">
 \t\t\t";
         // line 164
         $context['_parent'] = (array) $context;
