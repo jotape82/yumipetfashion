@@ -274,6 +274,7 @@ function getAddressFormMapping()
 		'Zip' 				=> 'zip',
 		'CompanyName' 		=> 'company',
 		'AddressLine1' 		=> 'address1',
+		'AddressLine2' 		=> 'address2',
 		'Numero'			=> 'numero',
 		'Complemento'		=> 'complemento',
 		'Bairro'			=> 'bairro',

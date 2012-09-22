@@ -1023,6 +1023,7 @@ class ISC_CHECKOUT
 			'LastName' => 'lastname',
 			'CompanyName' => 'company',
 			'AddressLine1' => 'address1',
+			'AddressLine2' => 'address2',
 			'City' => 'city',
 			'State' => 'state',
 			'Country' => 'country',

@@ -274,8 +274,6 @@ class ISC_ADMIN_UPGRADE extends ISC_ADMIN_BASE
 		// Run the current module in the upgrade stack, if it returns true then we're done, skip to a new page and run the next
 		$this->LoadUpgradeSession();
 		
-		var_dump("AKIIIIIIIIIII!");
-
 		$module = $step = '';
 
 		// Still in the middle of a module, we need to run that one
