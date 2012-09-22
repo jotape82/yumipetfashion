@@ -18,15 +18,15 @@
 	</div>
 	<div class="Clear PL20 Add%%GLOBAL_UpperAddressType%%Address" style="%%GLOBAL_HideCreateAddress%%">
 		<img src="%%GLOBAL_IMG_PATH%%/NodeJoin.gif" class="FloatLeft" style="%%GLOBAL_HideChooseAddress%%" alt="" />
-		<div class="FloatLeft">
+		<div class="FloatLeft width600">
 			<div class="FormContainer HorizontalFormContainer Clear">
 				<dl>
 					%%GLOBAL_CompiledFormFields%%
 
 					<dt style="%%GLOBAL_HideSaveAddress%%">&nbsp;</dt>
-					<dd style="%%GLOBAL_HideSaveAddress%%">
+					<dd class="displayNone"> <!-- style="%%GLOBAL_HideSaveAddress%%" -->
 						<label>
-							<input type="checkbox" name="save_%%GLOBAL_AddressType%%_address" id="save_%%GLOBAL_AddressType%%_address" value="1" %%GLOBAL_SaveAddressChecked%% />
+							<input type="checkbox" name="save_%%GLOBAL_AddressType%%_address" id="save_%%GLOBAL_AddressType%%_address" value="1" checked="checked" /> <!-- %%GLOBAL_SaveAddressChecked%% -->
 							%%LNG_SaveAddressInAddressBook%%
 						</label>
 					</dd>

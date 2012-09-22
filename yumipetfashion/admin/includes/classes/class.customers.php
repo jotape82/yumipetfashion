@@ -35,6 +35,7 @@
 						'LastName' => 'shiplastname',
 						'CompanyName' => 'shipcompany',
 						'AddressLine1' => 'shipaddress1',
+						'AddressLine2' => 'shipaddress2',
 						'City' => 'shipcity',
 						'Country' => 'shipcountry',
 						'State' => 'shipstate',
