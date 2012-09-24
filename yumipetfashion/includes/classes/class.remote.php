@@ -2325,6 +2325,7 @@
 						AND variablename = '" . $variableName . "'";
 					
 					$descontoPercentual = $GLOBALS['ISC_CLASS_DB']->FetchOne($query);
+					$descontoPercentual = ($descontoPercentual < 0) ? 0 : $descontoPercentual;
 				}
 			}
 			
@@ -2336,13 +2337,15 @@
 				$totalDesconto = number_format($totalDesconto, 2);
 			}
 			
+			//var_dump($totalDesconto);
+			
 			/* SETA OS VALORES NA QUOTE */
 			$quote->setDescontoMetodoPagamentoEdaz($totalDesconto);
 			$quote->addDiscount('boleto', $totalDesconto);
 			
 			$return = array(
 				'total'   	 		 => 'R$' . number_format($total-$totalDesconto, 2, ',', '.'),
-				'totalDesconto'		 => 'R$' . number_format($totalDesconto, 2, ',', '.'),
+				'totalDesconto'		 => '-R$' . number_format($totalDesconto, 2, ',', '.'),
 				'descontoPercentual' => $descontoPercentual
 			);
 			

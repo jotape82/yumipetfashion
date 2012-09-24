@@ -611,34 +611,38 @@ var ExpressCheckout = {
 				totalDesconto 	   = data.totalDesconto;
 				descontoPercentual = data.descontoPercentual;
 				
-				novoElementoTR  = $('<tr></tr>').attr({ id : 'descontoQuotacaoTR' }).addClass('SubTotal').addClass('displayNone');
-				novoElementoTD1 = $('<td></td>').attr({ id : 'labelDescontoQuotacao', colspan : '3' });
-				novoElementoTD2 = $('<td></td>').attr({ id : 'valorDescontoQuotacao' });
-				$(novoElementoTR).append(novoElementoTD1).append(novoElementoTD2);
-				
-				qtdeTR = $('#OrderConfirmationForm .CartContents tfoot tr').size();
-				$('#OrderConfirmationForm .CartContents tfoot tr').each(function(i, obj){
-					//Pega a Penultima Linha
-					if(i+1 == (qtdeTR-1)){
-						/* Verifica se Já não Inseriu */
-						if($(this).attr('id') != undefined && $(this).attr('id') != 'descontoQuotacaoTR'){
-							$(this).after($(novoElementoTR));
-							$(this).next().fadeIn(800);
-							return false;
-						}
+				if(totalDesconto != '-R$0,00' || $('#descontoQuotacaoTR').length > 0){
+					if($('#descontoQuotacaoTR').length == 0){
+						novoElementoTR  = $('<tr></tr>').attr({ id : 'descontoQuotacaoTR' }).addClass('SubTotal').addClass('displayNone');
+						novoElementoTD1 = $('<td></td>').attr({ id : 'labelDescontoQuotacao', colspan : '3' });
+						novoElementoTD2 = $('<td></td>').attr({ id : 'valorDescontoQuotacao' });
+						$(novoElementoTR).append(novoElementoTD1).append(novoElementoTD2);
+						
+						qtdeTR = $('#OrderConfirmationForm .CartContents tfoot tr').size();
+						$('#OrderConfirmationForm .CartContents tfoot tr').each(function(i, obj){
+							//Pega a Penultima Linha
+							if(i+1 == (qtdeTR-1)){
+								/* Verifica se Já não Inseriu */
+								if($(this).attr('id') != undefined && $(this).attr('id') != 'descontoQuotacaoTR'){
+									$(this).after($(novoElementoTR));
+									$(this).next().fadeIn(800);
+									return false;
+								}
+							}
+						});
 					}
-				});
-				
-				/* Insere os Valores de Desconto */
-				$('#labelDescontoQuotacao').fadeOut('fast', function(){
-					$(this).html('Desconto (' + descontoPercentual + '%):').fadeIn(800);
-				});
-				$('#valorDescontoQuotacao').fadeOut('fast', function(){
-					$(this).html(totalDesconto).fadeIn(800);
-				});
-				$('#OrderConfirmationForm .CartContents tfoot tr:last-child td:last-child').fadeOut('fast', function(){
-					$(this).html(total).fadeIn(800);
-				});
+					
+					/* Insere os Valores de Desconto */
+					$('#labelDescontoQuotacao').fadeOut('fast', function(){
+						$(this).html('Desconto (' + descontoPercentual + '%):').fadeIn(800);
+					});
+					$('#valorDescontoQuotacao').fadeOut('fast', function(){
+						$(this).html(totalDesconto).fadeIn(800);
+					});
+					$('#OrderConfirmationForm .CartContents tfoot tr:last-child td:last-child').fadeOut('fast', function(){
+						$(this).html(total).fadeIn(800);
+					});
+				}
 			} 
 		});
 		
