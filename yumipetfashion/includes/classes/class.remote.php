@@ -87,10 +87,9 @@
 				case 'getvariationoptions':
 					$this->GetVariationOptions();
 					break;
-				case "updatelanguage": {
+				case "updatelanguage":
 					$this->UpdateLanguage();
 					break;
-				}
 				case 'disabledesignmode':
 					$this->DisableDesignMode();
 					break;
@@ -112,6 +111,9 @@
 					break;
 				case 'tipopagamento':
 					$this->FormasdePagamento();
+					break;
+				case 'discountmethodpaymentedaz':
+					$this->GetDiscountMethodPaymentEdaz();
 					break;
 			}
 		}
@@ -2300,4 +2302,52 @@
 			$this->SendXMLResponse($tags);
 			die();
 		}
+		
+		/**
+		 * EDAZCOMMERCE - Calcula o desconto configurado para o método de pagamento selecionado
+		 */
+		private function GetDiscountMethodPaymentEdaz(){
+			$total	  			= '';
+			$totalDesconto		= '';
+			$variableName       = '';
+			$descontoPercentual = 0;
+			$metodoPagamento    = $_POST['metodoPagamento'];
+			
+			/* PEGA O DESCONTO CADASTRADO PARA O MÉTODO SELECIONADO */
+			if(isset($metodoPagamento)){
+				/* BOLETO */
+				if(strpos($metodoPagamento, "boleto")){ $variableName = 'descboleto'; }
+				
+				if($variableName != ''){
+					$query = "
+						SELECT variableval FROM [|PREFIX|]module_vars
+						WHERE modulename = 'addon_parcelas'
+						AND variablename = '" . $variableName . "'";
+					
+					$descontoPercentual = $GLOBALS['ISC_CLASS_DB']->FetchOne($query);
+				}
+			}
+			
+			$quote = getCustomerQuote();
+			$arrayValoresQuote = getClass('ISC_CHECKOUT')->getQuoteTotalRows($quote);
+			if(isset($arrayValoresQuote['total']['value'])){
+				$total 		   = $arrayValoresQuote['total']['value'];
+				$totalDesconto = $total * ($descontoPercentual/100);
+				$totalDesconto = number_format($totalDesconto, 2);
+			}
+			
+			/* SETA OS VALORES NA QUOTE */
+			$quote->setDescontoMetodoPagamentoEdaz($totalDesconto);
+			$quote->addDiscount('boleto', $totalDesconto);
+			
+			$return = array(
+				'total'   	 		 => 'R$' . number_format($total-$totalDesconto, 2, ',', '.'),
+				'totalDesconto'		 => 'R$' . number_format($totalDesconto, 2, ',', '.'),
+				'descontoPercentual' => $descontoPercentual
+			);
+			
+			echo isc_json_encode($return);
+			exit;
+		}
+		
 	}
