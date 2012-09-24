@@ -74,6 +74,10 @@ class ISC_QUOTE
 
 	/** @var int The order id being edited if this quote instance is being used to edit an order, otherwise this will be false */
 	protected $orderId = false;
+	
+	/* EDAZCOMMERCE - DESCONTO DE MÉTODO DE PAGAMENTO SELECIONADO */
+	protected $descontoMetodoPagamentoEdaz = 0;
+
 
 	/**
 	* Callback method for PHP array sorting methods for sorting a list of items by their shipping address id.
@@ -841,6 +845,7 @@ class ISC_QUOTE
 		if ($total < 0) {
 			$total = 0;
 		}
+		
 		return $total;
 	}
 
@@ -852,6 +857,15 @@ class ISC_QUOTE
 			$total = 0;
 		}
 
+		return $total;
+	}
+	
+	/**
+	 * EDAZCOMMERCE - Retorna o total do pedido com o crédito do cliente na loja e o desconto 
+	 * do método de pagamento selecionado (caso exista)
+	 */
+	public function getGrandTotalWithStoreCreditAndDiscountMethodPaymentEdaz(){
+		$total = $this->getGrandTotalWithStoreCredit() - $this->getDescontoMetodoPagamentoEdaz();
 		return $total;
 	}
 
@@ -1916,4 +1930,14 @@ class ISC_QUOTE
 		$vars = array_diff($vars, $dontSave);
 		return $vars;
 	}
+	
+	public function setDescontoMetodoPagamentoEdaz($desconto){
+		$this->descontoMetodoPagamentoEdaz = (float) $desconto;
+	}
+	
+	public function getDescontoMetodoPagamentoEdaz(){
+		return (float) ($this->descontoMetodoPagamentoEdaz > 0) ? number_format($this->descontoMetodoPagamentoEdaz, 2) : 0;
+		//return (float) number_format($this->descontoMetodoPagamentoEdaz, 2);
+	}
+	
 }

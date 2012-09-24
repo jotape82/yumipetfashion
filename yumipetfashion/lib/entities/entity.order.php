@@ -155,8 +155,8 @@ class ISC_ENTITY_ORDER extends ISC_ENTITY_BASE
 			'wrapping_cost_tax'				=> $quote->getWrappingCostTax(),
 			'wrapping_cost_tax_class_id'    => getConfig('taxGiftWrappingTaxClass'),
 
-			'total_ex_tax'					=> $quote->getGrandTotalWithStoreCredit(),
-			'total_inc_tax'					=> $quote->getGrandTotalWithStoreCredit(),
+			'total_ex_tax'					=> $quote->getGrandTotalWithStoreCreditAndDiscountMethodPaymentEdaz(), //getGrandTotalWithStoreCredit()
+			'total_inc_tax'					=> $quote->getGrandTotalWithStoreCreditAndDiscountMethodPaymentEdaz(), //getGrandTotalWithStoreCredit()
 
 			'ordbillfirstname'				=> $billingAddress->getFirstName(),
 			'ordbilllastname'				=> $billingAddress->getLastName(),

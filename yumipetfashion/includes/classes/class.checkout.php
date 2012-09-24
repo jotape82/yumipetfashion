@@ -2449,8 +2449,16 @@ class ISC_CHECKOUT
 				$GLOBALS['ClassItemPayment'] 	  = "";
 				$GLOBALS['ClassImageItemPayment'] = $this->getClassImagemMetodoPagamento($providerId);
 				if(strpos($provider['object']->GetId(), "boleto")){
+					/* VERIFICA SE EXISTE DESCONTO CADASTRADO NA LOJA AO COMPRAR POR BOLETO */
+					$query = "
+						SELECT variableval FROM [|PREFIX|]module_vars
+						WHERE modulename = 'addon_parcelas'
+						AND variablename = 'descboleto'";
+					$descontoPercentual 	 = (int) $GLOBALS['ISC_CLASS_DB']->FetchOne($query);
+					$descricaoDescontoBoleto = (isset($descontoPercentual) && $descontoPercentual > 0) ? '(' . $descontoPercentual . '% de Desconto)' : '';
+					
 					$GLOBALS['TargetNameMethodSelected'] = "Boleto";
-					$GLOBALS['TitleItemPayment'] = (!isset($GLOBALS['TitleItemPayment'])) ? "<li class='tituloGrupoMetodosPagamento'>Boleto Bancário: <span class='nomeMetodoPagamentoSelecionado metodoBoleto'></span></li>" : "";
+					$GLOBALS['TitleItemPayment'] = (!isset($GLOBALS['TitleItemPayment'])) ? "<li class='tituloGrupoMetodosPagamento'>Boleto Bancário " . $descricaoDescontoBoleto . ": <span class='nomeMetodoPagamentoSelecionado metodoBoleto'></span></li>" : "";
 				}else{
 					$GLOBALS['TargetNameMethodSelected'] = "Outros";
 					$GLOBALS['TitleItemPayment'] = ($proximoGrupoAposBoletos) ? "<li class='tituloGrupoMetodosPagamento'>Cartão de Crétido / Outros: <span class='nomeMetodoPagamentoSelecionado metodoOutros'></span></li>" : "";
