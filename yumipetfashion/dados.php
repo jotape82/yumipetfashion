@@ -1,5 +1,5 @@
 <?
-include "../../../config/config.php";
+include "/config/config.php";
 
 $servidor = $GLOBALS['ISC_CFG']["dbServer"];
 $usuariodb = $GLOBALS['ISC_CFG']["dbUser"];
