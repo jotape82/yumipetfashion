@@ -122,8 +122,10 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
     width: 300px;
 }
 
+#provider_list li { list-style: none; }
+
 #use_store_credit li.opcoesGrupoMetodosPagamento,
-#provider_list ul li.opcoesGrupoMetodosPagamento{
+#provider_list li.opcoesGrupoMetodosPagamento{
 	padding: 10px;
     text-align: center;
 	max-width: 100px;
@@ -141,7 +143,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;
 }
 
-#provider_list ul li.opcoesGrupoMetodosPagamento:hover{
+#provider_list li.opcoesGrupoMetodosPagamento:hover{
 	cursor: pointer;
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
@@ -150,7 +152,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 }
 
 #use_store_credit li.opcoesGrupoMetodosPagamento label,
-#provider_list ul li.opcoesGrupoMetodosPagamento label{
+#provider_list li.opcoesGrupoMetodosPagamento label{
 	display: block;
 }
 
