@@ -602,3 +602,64 @@ function validaEmail(email){
     	return false; 
     } 
 }
+
+/*
+	Verifica se o método de pagamento selecionado possui desconto cadastrado
+*/
+function verificaDescontoMetodoPagamento(metodoPagamento){
+	var total, totalDesconto, descontoPercentual, novoElementoTR, novoElementoTD1, novoElementoTD2, qtdeTR, tabelaRecebeResultado;
+		
+	$.ajax({
+		url: 'remote.php',
+		data: 'w=discountMethodPaymentEdaz&metodoPagamento=' + metodoPagamento,
+		dataType: 'json',
+		type: 'post',
+		success: function(data){
+			/* Altera os Valores Originais da Quotação */
+			total 			   = data.total;
+			totalDesconto 	   = data.totalDesconto;
+			descontoPercentual = data.descontoPercentual;
+			
+			if($('#OrderConfirmationForm').length > 0){
+				qtdeTR 				  = $('#OrderConfirmationForm .CartContents tfoot tr').size();
+				tabelaRecebeResultado = '#OrderConfirmationForm .CartContents tfoot tr';
+			}else if($('.OrderContents').length > 0){
+				qtdeTR 				  = $('.OrderContents .CartContents tfoot tr').size();
+				tabelaRecebeResultado = '.OrderContents .CartContents tfoot tr';
+			}
+			
+			if(totalDesconto != '-R$0,00' || $('#descontoQuotacaoTR').length > 0){
+				if($('#descontoQuotacaoTR').length == 0){
+					novoElementoTR  = $('<tr></tr>').attr({ id : 'descontoQuotacaoTR' }).addClass('SubTotal').addClass('displayNone');
+					novoElementoTD1 = $('<td></td>').attr({ id : 'labelDescontoQuotacao', colspan : '3' });
+					novoElementoTD2 = $('<td></td>').attr({ id : 'valorDescontoQuotacao' });
+					$(novoElementoTR).append(novoElementoTD1).append(novoElementoTD2);
+					
+					$(tabelaRecebeResultado).each(function(i, obj){
+						//Pega a Penultima Linha
+						if(i+1 == (qtdeTR-1)){
+							/* Verifica se Já não Inseriu */
+							if($(this).attr('id') != undefined && $(this).attr('id') != 'descontoQuotacaoTR'){
+								$(this).after($(novoElementoTR));
+								$(this).next().fadeIn(800);
+								return false;
+							}
+						}
+					});
+				}
+				
+				/* Insere os Valores de Desconto */
+				$('#labelDescontoQuotacao').fadeOut('fast', function(){
+					$(this).html('Desconto (' + descontoPercentual + '%):').fadeIn(800);
+				});
+				$('#valorDescontoQuotacao').fadeOut('fast', function(){
+					$(this).html(totalDesconto).fadeIn(800);
+				});
+				$(tabelaRecebeResultado + ':last-child td:last-child').fadeOut('fast', function(){
+					$(this).html(total).fadeIn(800);
+				});
+			}
+		} 
+	});
+
+}
