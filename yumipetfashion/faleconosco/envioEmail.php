@@ -6,7 +6,10 @@ $assunto    = (isset($_POST['assunto']))    ? $_POST['assunto']    : "";
 $email 	    = (isset($_POST['email']))      ? $_POST['email']      : "";
 $telefone   = (isset($_POST['telefone']))   ? $_POST['telefone']   : "";
 $mensagem   = (isset($_POST['mensagem']))   ? $_POST['mensagem']   : "";
-$urlWebsite = (isset($_POST['urlWebsite'])) ? $_POST['urlWebsite'] : "";
+
+$emailDestino = (isset($_POST['emailDestino'])) ? $_POST['emailDestino'] : "";
+$nomeLoja	  = (isset($_POST['nomeLoja'])) 	? $_POST['nomeLoja'] 	 : "";
+$urlWebsite   = (isset($_POST['urlWebsite']))   ? $_POST['urlWebsite']   : "";
 
 $stylecss  = "<style>";
 $stylecss .= 	".classTD1{ width: 100px; height: 30px; font-family: Arial; font-size: 12px; color: #000000; font-weight: bold; text-transform: uppercase; }";
@@ -43,9 +46,12 @@ $mensagemEmail .= 	"</tr>";
 
 $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=utf-8\r\n";
-$headers .= "From: 'edazcommerce'\r\n";
+$headers .= "From: 'webmail'\r\n";
 
-$enviou = mail("atendimento@yumipetfashion.com.br", "Contato Site - Yumi Pet Fashion", "$mensagemEmail", $headers);
+$enviou = false;
+if($emailDestino != ''){
+	$enviou = mail($emailDestino, "Contato Site - " . $nomeLoja, "$mensagemEmail", $headers);	
+}
 
 if ($enviou){
 	$resetForm 		 = true;
@@ -59,7 +65,7 @@ $retorno  = "<div class='mensagem_envio_email'>";
 $retorno .= 	$mensagemRetorno;
 $retorno .= 	"<p style='margin-top: 20px;'>";
 $retorno .=		"<div class='underline' onclick='voltarMensagem(" . $resetForm . ");' style='width: 100%; font-size: 12px;'>"; 	
-$retorno .= 		"<img src='".$urlWebsite."/templates/default/img/fale_conosco/back_arrow.png' width='20' height='20'>&nbsp;Voltar";
+$retorno .= 		"<img src='".$urlWebsite."/../img/fale_conosco/back_arrow.png' width='20' height='20'>&nbsp;Voltar";
 $retorno .=		"</div>";
 $retorno .=		"</p>";
 $retorno .=	"</div>";

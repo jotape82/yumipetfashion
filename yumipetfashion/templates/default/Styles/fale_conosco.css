@@ -1,45 +1,15 @@
-body{
-	font-family: Tahoma, Verdana;
-	color: #000000;
-	font-size: 16px;
-	line-height: 25px;
-}
-
-a:link{
-	color: #000000;
-}
-
-a:visited{
-	color: #000000;
-}
-
-#fale_conosco_div{
-	background: url('../img/fale_conosco/bg_fale_conosco.png') repeat-y scroll center top #feefff;
-}
-
-.tituloDiv{
-	width: 100%; 
-	height: 35px; 
-	padding-top: 10px; 
-	border-bottom: 2px dashed #000000; 
-	color: #000000; 
-	font-weight: bold;
-}
-
-.imagem_contato{
-	float: left; 
-	width: 210px; 
-	height: 515px;
-	right: 0px;
-	bottom: 0px;
-	position: absolute;
-	/* IE */
-	right: 0px\9;
-	bottom: 0px\9;
-	position: absolute\9;
-
-	background: url('../img/fale_conosco/telemarketing.png') no-repeat;
-}
+#fale_conosco_div { padding: 10px; font-size: 14px; }
+#fale_conosco_div .divLeft { float: left; width: 335px; border-right: 1px solid #E6E6E6; }
+#fale_conosco_div .divRight { float: right; width: 335px; padding-left: 6px; }
+.tituloDiv { color: #808080; font-size: 23px; font-weight: bold; margin: 10px 0; width: auto; }
+.faleConoscoSolicitarOrcamento { float: left; margin-bottom: 10px; width: 100%; }
+.faleConoscoSolicitarOrcamento .tituloDivOrcamento { color: #808080; font-size: 16px; font-weight: normal; margin: 10px 0; width: 410px; background-color: #F9F9F9; }
+.faleConoscoSolicitarOrcamento .orcamentoImagemProduto{ width: 150px; float: left; }
+.faleConoscoSolicitarOrcamento .orcamentoNomeProduto{ color: #606060; float: left; font-size: 17px; margin-left: 10px; }
+.wrapperCamposFaleConosco { background-color: #FAFAFA; color: #707070; float: left; padding: 6px; border: 1px solid #EAEAEA; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.wrapperCamposFaleConosco a { color: #000000; }
+.tituloEntreEmContato { background-color: #F9F9F9; font-weight: bold; margin-bottom: 10px; }
+.googleMapsDiv { border: 1px solid #DCDCDC; float: left; margin: 15px 0 0 8px; padding: 2px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 
 .texto_contato{
 	float: left; 
@@ -61,46 +31,52 @@ a:visited{
 
 .divCampo{
 	clear: left;
-	text-align: left;
+    float: left;
+    margin: 4px 0;
 }
 
 .label{
-	font-weight: bold;
 	float: left;
+    font-weight: bold;
+    margin-right: 5px;
+    min-width: 70px;
 }
 
-.espace{
-	margin: 20px;
+.campo{
+	float: left;
 }
 
 .top1{
-	padding-top: 10px;
 	float: left;
+	font-size: 13px;
+	padding-top: 10px;
 }
 
 #emailForm .inputbox {
-	width: 270px;
-	height: 27px;
-	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
-	border:1px solid #CCC;
-	font-size:1em;
-	padding:4px 4px;
-	margin:0 8px 7px 0;
-	position:relative;
-	z-index:100;
-	float: left;
+	border: 1px solid #CCCCCC;
+    color: #606060;
+    float: left;
+    font-size: 1em;
+    height: 20px;
+    margin-right: 4px;
+    padding: 4px;
+    width: 216px;
+	font-family: Arial;
+	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
 }
 
 .area-bg textarea {
-	padding:6px 4px;
-	width:250px;
-	height:150px;
-	border:1px solid #CCC;
-	font-size:1em;
-	padding:4px 4px;
-	margin:0 8px 7px 0;
-	float: left;
-	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+	border: 1px solid #CCCCCC;
+    color: #606060;
+    float: left;
+    font-size: 1em;
+    height:100px;
+    padding: 4px;
+    width: 290px;
+	font-family: Arial;
+	margin-right: 5px;
+	line-height: 20px;
+   -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
 }
 
 .#emailForm .inputbox, 
@@ -109,8 +85,6 @@ a:visited{
 }
 
 .button {
-	margin-top: 5px;
-	padding-top: 2px;
 	border:none;
 	background:url('../img/fale_conosco/button.png') no-repeat 0 0;
 	height:29px;
@@ -136,11 +110,10 @@ a:visited{
 }
 
 #mensagemErro {
-	float: left;
-    font-size: 12px;
-    margin-left: 45px;
-	margin-top: 10px;
-    top: 5px;
+	color: #CE0405;
+    font-size: 13px;
+    line-height: 15px;
+    margin: 10px 5px 0 0;
 }
 
 .contato_div_img{
@@ -148,42 +121,27 @@ a:visited{
 	height: 40px;
 	clear: left;
 	float: left;
+	margin: 5px 5px 0 0;
 }
 
 #contato_emailDiv{
 	float: left;
-	background:url('../img/fale_conosco/contato_email.png') no-repeat;
+	background:url('../img/fale_conosco/contato_email.png') no-repeat top center;
 }
 
 #contato_telefoneDiv{
-	background:url('../img/fale_conosco/contato_telefone.png') no-repeat;
+	background:url('../img/fale_conosco/contato_telefone.png') no-repeat top center;
 }
 
 #contato_celularDiv{
-	background:url('../img/fale_conosco/contato_celular.png') no-repeat;
+	background:url('../img/fale_conosco/contato_celular.png') no-repeat top center;
 }
 
 #retornoEnvioDiv{
+	width: 310px;
 	display: block;
 	margin-top: 10px; 
 	text-align: center; 
-}
-
-.orcamentoImagemProduto{
-	width: 150px;
-	float: left;
-	padding: 5px;
-	border: 1px solid black;
-	border-radius: 10px;
-}
-
-.orcamentoNomeProduto{
-	color: #000000;
-    float: left;
-    font-family: Tahoma;
-    font-size: 17px;
-    margin-left: 10px;
-    width: 300px;
 }
 
 #emailForm label {
@@ -198,15 +156,6 @@ a:visited{
 	background-color: #ebf5ff;
 }
 
-.area-bg textarea {
-	padding:6px 4px;
-	width:250px;
-	height:100px;
-	border:1px solid #CCC;
-	font-size:1em;
-	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
-}
-
 .label_obrigatorio{
 	top: -5px;
     font-size: 10px;
@@ -215,6 +164,14 @@ a:visited{
 
 .clearLeft{
 	clear: left;
+}
+
+.separadorHorizontal{
+    clear: left;
+    margin: 10px auto;
+    text-align: center;
+    width: 590px;
+	background-color: #EFEFEF;
 }
 
 .seta_obrigatorio{
@@ -233,6 +190,24 @@ a:visited{
 }
 
 .mensagem_envio_email{
-	border: 1px solid #C0C0C0;
-    border-radius: 5px 5px 5px 5px;
+	padding: 5px 0 0;
+	border: 1px solid #D9D9D9;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+	-moz-box-shadow: 2px 3px 6px 0 #C0C0C0; -webkit-box-shadow: 2px 3px 6px 0 #C0C0C0; box-shadow: 2px 3px 6px 0 #C0C0C0;
+}
+
+#carregandoAjaxDiv{
+    right: 3px;
+    top: 10px;
+	display: none;
+	position: absolute;
+}
+
+.TituloBordaSombra{
+	color: #606060;
+	padding: 20px 15px ;
+	border: 1px solid #e1e1e1;
+	background-color: #FAFAFA;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+	-moz-box-shadow: 1px 6px 7px -5px #707070; -webkit-box-shadow: 1px 6px 7px -5px #707070; box-shadow: 1px 6px 7px -5px #707070;
 }
