@@ -260,7 +260,7 @@ var QuickSearch = {
 
 	hide_popup: function()
 	{
-		//$('#QuickSearch').remove();
+		$('#QuickSearch').remove();
 		QuickSearch.selected = null;
 	},
 
