@@ -86,24 +86,12 @@ $(document).ready(function() {
 	/* ===== FIM - BUSCA POR CEP ===== */
 	
 	/* ===== INICIO - TRATAMENTO CAMPOS CADASTRO DO CLIENTE ===== */
-	if($('.FormContainer').length){
-		$('.FormContainer').find('input').each(function(){
-			// Desabilita Campo Empresa
-			if($(this).attr('attributeprivateid') == 'companyname'){ $(this).hide(); $(this).parent().prev().hide(); }
-			// Mascara Data de CPF
-			if($(this).attr('attributeprivateid') == 'cpf'){ $(this).mask("999.999.999-99"); }
-			// Mascara Data de Nascimento
-			if($(this).attr('attributeprivateid') == 'datanascimento'){ $(this).mask("99/99/9999"); }
-			// Mascara de Telefone
-			if($(this).attr('attributeprivateid') == 'phone'){ $(this).mask("(99) 9999-9999"); }
-			// Mascara de Cep
-			if($(this).attr('attributeprivateid') == 'zip'){ $(this).mask("99999-999"); }
-		});
-		$('.FormContainer').find('select').each(function(){
-			//Desabilita Campo País
-			if($(this).attr('attributeprivateid') == 'country'){ $(this).hide(); $(this).parent().prev().hide(); }
-		});
-	}
+	$('[attributeprivateid="companyname"]').hide(); $('[attributeprivateid="companyname"]').parent().prev().hide();
+	$('[attributeprivateid="cpf"]').mask("999.999.999-99");
+	$('[attributeprivateid="datanascimento"]').mask("99/99/9999");
+	$('[attributeprivateid="phone"]').mask("(99) 9999-9999");
+	$('[attributeprivateid="zip"]').mask("99999-999");
+	$('[attributeprivateid="country"]').hide(); $('[attributeprivateid="country"]').parent().prev().hide();
 	/* ===== FIM - TRATAMENTO CAMPOS CADASTRO DO CLIENTE ===== */
 	
 	/* ===== INICIO - VARIAÇÃO DE PRODUTOS ===== */
@@ -289,24 +277,12 @@ function buscaCep(cep, form){
 	Aplica Máscaras e Oculta Campos do Cadastro de Clientes
 */
 function mascaraCamposCadastroCliente(){
-	if($('.FormContainer').length){
-		$('.FormContainer').find('input').each(function(){
-			// Desabilita Campo Empresa
-			if($(this).attr('attributeprivateid') == 'companyname'){ $(this).hide(); $(this).parent().prev().hide(); }
-			// Mascara Data de CPF
-			if($(this).attr('attributeprivateid') == 'cpf'){ $(this).mask("999.999.999-99"); }
-			// Mascara Data de Nascimento
-			if($(this).attr('attributeprivateid') == 'datanascimento'){ $(this).mask("99/99/9999"); }
-			// Mascara de Telefone
-			if($(this).attr('attributeprivateid') == 'phone'){ $(this).mask("(99) 9999-9999"); }
-			// Mascara de Cep
-			if($(this).attr('attributeprivateid') == 'zip'){ $(this).mask("99999-999"); }
-		});
-		$('.FormContainer').find('select').each(function(){
-			//Desabilita Campo País
-			if($(this).attr('attributeprivateid') == 'country'){ $(this).hide(); $(this).parent().prev().hide(); }
-		});
-	}
+	$('[attributeprivateid="companyname"]').hide(); $('[attributeprivateid="companyname"]').parent().prev().hide();
+	$('[attributeprivateid="cpf"]').mask("999.999.999-99");
+	$('[attributeprivateid="datanascimento"]').mask("99/99/9999");
+	$('[attributeprivateid="phone"]').mask("(99) 9999-9999");
+	$('[attributeprivateid="zip"]').mask("99999-999");
+	$('[attributeprivateid="country"]').hide(); $('[attributeprivateid="country"]').parent().prev().hide();
 }
 
 function inArray(array, valor) {
