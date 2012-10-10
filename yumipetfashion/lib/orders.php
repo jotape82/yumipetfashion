@@ -1375,14 +1375,22 @@ function CompletePendingOrder($pendingOrderToken, $status, $sendInvoice=true)
 
 		// Does a customer account need to be created?
 		if(!empty($extraInfo['createAccount'])) {
-			createOrderCustomerAccount($order, $extraInfo['createAccount']);
+			$novoEnderecoID = createOrderCustomerAccount($order, $extraInfo['createAccount']);
 			unset($extraInfo['createAccount']);
 		}
 		
-		/* EDAZCOMMERCE - Pega o ID do Endereço de Fatura no Quote e Atualiza a Order */
-		$quote 			  = getCustomerQuote();
-		$billingAddress   = $quote->getBillingAddress();
-		$billingAddressID = $billingAddress->getCustomerAddressId();
+		/* EDAZCOMMERCE - CLIENTE NOVO (Pega o TD do Endereço de Fatura do Mesmo) */
+		if(isset($novoEnderecoID) && $novoEnderecoID != ''){
+			$billingAddressID = $novoEnderecoID;
+			/* ALTUALIZA O ID DO NOVO ENDEREÇO DE ENTREGA NA ORDER */
+			$arrayQuery = array("shipping_address_id" => $billingAddressID);
+			$GLOBALS['ISC_CLASS_DB']->updateQuery('order_addresses', $arrayQuery, 'order_id='.$order['orderid']);
+		}else{
+			/* Pega o ID do Endereço de Fatura no Quote e Atualiza a Order */
+			$quote 			  = getCustomerQuote();
+			$billingAddress   = $quote->getBillingAddress();
+			$billingAddressID = $billingAddress->getCustomerAddressId();
+		}
 		
 		// Now update the order and set the status
 		$updatedOrder = array(
@@ -1461,7 +1469,7 @@ function createOrderCustomerAccount($order, $accountDetails)
 						unset($address['shipformsessionid']);
 					}
 				}
-				$shippingEntity->add($address);
+				$novoEnderecoID = $shippingEntity->add($address);
 			}
 		}
 	}
@@ -1476,6 +1484,8 @@ function createOrderCustomerAccount($order, $accountDetails)
 	);
 
 	$GLOBALS["ISC_CLASS_DB"]->UpdateQuery("orders", $savedata, "orderid='".$order['orderid']."'");
+	
+	return $novoEnderecoID;
 }
 
 /**
