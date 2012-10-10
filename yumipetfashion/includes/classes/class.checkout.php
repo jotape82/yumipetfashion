@@ -302,6 +302,14 @@ class ISC_CHECKOUT
 	 */
 	public function ExpressCheckoutChooseAddress($addressType, $buildRequiredJS=false)
 	{
+		/* EDAZCOMMERCE - Se cliente não cadastrado, não permitir que o endereço de fatura e entrega sejam diferentes */
+		$clienteNaoCadastrado = $_REQUEST['clienteNaoCadastrado'];
+		if($clienteNaoCadastrado == 'true'){
+			$GLOBALS['HideRemeterParaMesmoEndereco'] = 'display: none';
+		}else{
+			$GLOBALS['JavaScriptExpressCheckout'] 	 = "";
+		}
+		
 		$templateAddressType = $addressType;
 		if($templateAddressType == 'account') {
 			$templateAddressType = 'billing';

@@ -106,6 +106,16 @@ var ExpressCheckout = {
 		// Aplica Máscaras e Oculta Campos do Cadastro de Clientes
 		//mascaraCamposCadastroCliente();
 		
+		// Consulta CEP
+		$('.buscaCep').blur(function(event){
+			var cep  	   = $.trim($(this).val()).replace('-', '').replace('_', '');
+			var parentForm = $(this).parents('form');
+			
+			if(cep != "" && cep.length == 8){
+				buscaCep($(this).val(), parentForm);
+			}
+		});
+		
 		// Set focus to a particular field
 		if(response.focus) {
 			try {
@@ -138,6 +148,7 @@ var ExpressCheckout = {
 			dataType: 'json',
 			data: {
 				w: 'expressCheckoutGetAddressFields',
+				clienteNaoCadastrado: true, //EDAZCOMMERCE
 				type: type
 			},
 			success: ExpressCheckout.handleResponse
