@@ -135,7 +135,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 			$var = correios($de,$cep,$peso,$valor,41106);
 			
 			if($var['valor']!='0'){
-			$var1 = "R$&nbsp;".$var['valor'];
+			$var1 = "R$&nbsp;".number_format($var['valor'], 2, ',', '.');
 			}else{
 			$var1 = 'Indisponível ';
 			}
@@ -153,7 +153,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 		case 'sedex':
 			$var = correios($de,$cep,$peso,$valor,40010);
 			if($var['valor']!='0'){
-			$var1 = "R$&nbsp;".$var['valor'];
+			$var1 = "R$&nbsp;".number_format($var['valor'], 2, ',', '.');
 			}else{
 			$var1 = 'Indisponível ';
 			}
@@ -171,7 +171,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 		case 'esedex':
 			$var = correios($de,$cep,$peso,$valor,81019);
 			if($var['valor']!='0'){
-			$var1 = "R$&nbsp;".$var['valor'];
+			$var1 = "R$&nbsp;".number_format($var['valor'], 2, ',', '.');
 			}else{
 			$var1 = 'Indisponível ';
 			}
@@ -189,7 +189,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 		case 'acobrar':
 			$var = correios($de,$cep,$peso,$valor,40045);
 			if($var['valor']!='0'){
-			$var1 = "R$&nbsp;".$var['valor'];
+			$var1 = "R$&nbsp;".number_format($var['valor'], 2, ',', '.');
 			}else{
 			$var1 = 'Indisponível ';
 			}
@@ -207,9 +207,11 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 		case 'porkg':
 			break;
 			
-			case 'fixo':
+		case 'fixo':
 			$var = frete('shipping_transportax','valorentrega');
 			$nom = frete('shipping_transportax','displayname');
+			$var = (isset($var) && is_numeric($var)) ? "R$ " . number_format($var, 2, ',', '.') : "" ;
+			
 			echo '<tr class="linhas" bgcolor="#f5f5f5" valign="top">
 			<td width="75"><b>
 			<img src="'.$loja.'/modificacoes/loja.gif">
@@ -238,7 +240,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 			$total =number_format($html1, 2, '.', '');
 			// Create a quote object
 			if($total!='0'){
-			$var = "R$&nbsp;".$total;
+			$var = "R$&nbsp;".number_format($total, 2, ',', '.');
 			}else{
 			$var = 'Indisponível ';
 			}
@@ -281,7 +283,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 			$prazo = $html2U[0];
 			// Create a quote object
 			if($total!='0'){
-			$var = "R$&nbsp;".$total;
+			$var = "R$&nbsp;".number_format($total, 2, ',', '.');
 			}else{
 			$var = 'Indisponível ';
 			}

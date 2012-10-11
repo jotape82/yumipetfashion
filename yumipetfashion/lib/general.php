@@ -1286,9 +1286,13 @@
 	function FormatWeight($weight, $includemeasure=false)
 	{
 		$num = number_format($weight, GetConfig('DimensionsDecimalPlaces'), GetConfig('DimensionsDecimalToken'), GetConfig('DimensionsThousandsToken'));
-
+		
+		/* EDAZCOMMERCE - Tradução do Tipo de Pesagem da Loja */
+		$arrayLabelPeso = array("LBS" => "Libras", "Ounces" => "Onças", "KGS" => "Quilos", "Grams" => "Gramas", "Tonnes" => "Toneladas");
+		$labelPeso	 	= (isset($arrayLabelPeso[GetConfig('WeightMeasurement')])) ? $arrayLabelPeso[GetConfig('WeightMeasurement')] : '-';
+		
 		if ($includemeasure) {
-			$num .= " " . GetConfig('WeightMeasurement');
+			$num .= " " . $labelPeso; //GetConfig('WeightMeasurement')
 		}
 
 		return $num;
