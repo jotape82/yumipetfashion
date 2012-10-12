@@ -83,8 +83,8 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 		
 		/* EDAZCOMMERCE - COMENTÁRIO DO PRODUTO DIRETO NO FACEBOOK */
 		$achouCaracterAcentuacao   = false;
-		$arrayCaractererAcentuacao = array("%E");
-		foreach($arrayCaractererAcentuacao as $caracterEspecial){
+		$arrayCaracterAcentuacao = "%E1,%E9,%ED,%F3,%FA,%C1,%C9,%CD,%D3,%DA,%E7,%C7,%E3,%F5,%C3,%D5,%E2,%F4,%C2,%D4";
+		foreach(explode(",", $arrayCaracterAcentuacao) as $caracterEspecial){
 			if(strpos($_SERVER['REQUEST_URI'], $caracterEspecial)){
 				$achouCaracterAcentuacao = true;
 				break;
