@@ -1533,6 +1533,12 @@
 				} else {
 					$GLOBALS["HideActionAdd"] = "none";
 				}
+				
+				/* EDAZCOMMERCE - PRODUTO INDISPONÍVEL (AVISE-ME QUANDO CHEGAR) */
+				$naoControlaEstoque 		 = 0;
+				$controlaEstoqueNormal 		 = 1;
+				$controlaEstoquePelaVariacao = 2;
+				$GLOBALS['HideProdutoIndisponivel'] = (($product['prodinvtrack'] == $naoControlaEstoque || $product['prodinvtrack'] == $controlaEstoquePelaVariacao) || ($product['prodinvtrack'] == $controlaEstoqueNormal && $product['prodcurrentinv'] > '0')) ? "displayNone" : "";
 
 				$GLOBALS["HideProductVendorName"] = "display: none";
 				$GLOBALS["ProductVendor"] = "";

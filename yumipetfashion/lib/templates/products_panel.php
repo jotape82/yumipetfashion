@@ -110,13 +110,23 @@ class PRODUCTS_PANEL extends PANEL
 		
 		if (CanAddToCart($row) && GetConfig('ShowAddToCartLink')) {
 			$GLOBALS['HideActionAdd'] = '';
-			/* EDAZCOMMERCE - Produto Insdisponível */
+			/* EDAZCOMMERCE - PRODUTO INDISPONÍVEL (AVISE-ME QUANDO CHEGAR) */
 			$GLOBALS['HideProdutoIndisponivel'] = 'displayNone';
+			$GLOBALS['HideParcelamentoProduto'] = '';
 		} else {
-			$GLOBALS['HideActionAdd'] = 'none';
-			/* EDAZCOMMERCE - Produto Insdisponível */
-			if($row['prodcurrentinv'] == '0'){
+			/* EDAZCOMMERCE - PRODUTO INDISPONÍVEL (AVISE-ME QUANDO CHEGAR) */
+			$naoControlaEstoque 		 = 0;
+			$controlaEstoqueNormal 		 = 1;
+			$controlaEstoquePelaVariacao = 2;
+			if($row['prodhideprice'] != 1 && 
+					(($row['prodinvtrack'] == $naoControlaEstoque || $row['prodinvtrack'] == $controlaEstoquePelaVariacao) || ($row['prodinvtrack'] == $controlaEstoqueNormal  && $row['prodcurrentinv'] > '0'))){
+				$GLOBALS['HideActionAdd'] 			= '';
+				$GLOBALS['HideProdutoIndisponivel'] = 'displayNone';
+				$GLOBALS['HideParcelamentoProduto'] = '';
+			}else{
+				$GLOBALS['HideActionAdd'] 			= 'none';
 				$GLOBALS['HideProdutoIndisponivel'] = '';
+				$GLOBALS['HideParcelamentoProduto'] = 'displayNone';
 			}
 		}
 		
