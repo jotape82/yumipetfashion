@@ -34,7 +34,7 @@ class ISC_SIDETOPSELLERS_PANEL extends PRODUCTS_PANEL
 		$query = $this->getProductQuery(
 			'p.prodnumsold > 0 '.$vendorRestriction,
 			'p.prodnumsold DESC',
-			5
+			20
 		);
 		$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 
