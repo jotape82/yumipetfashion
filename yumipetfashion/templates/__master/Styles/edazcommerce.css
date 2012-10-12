@@ -677,7 +677,7 @@ li.separador_links_footer{
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
 .sliderCarousel .viewport ul { position: relative; }
 .sliderCarousel { /*height: 1%;*/ overflow:hidden; padding: 0 0 10px; float: left; clear: left;  }
-.sliderCarousel .buttons { background:url("../images/carousel-buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 50px 10px 0 0; background-position: 0 -38px; text-indent: -999em; float: left; width: 39px; height: 37px; overflow: hidden; position: relative; }
+.sliderCarousel .buttons { background:url("../images/carousel-buttons.png") no-repeat scroll 0 0 transparent; display: block; margin: 50px 10px 0 0; background-position: 0 -90px; text-indent: -999em; float: left; width: 26px; height: 85px; overflow: hidden; position: relative; }
 .sliderCarousel .buttons:hover { background-image:url("../images/carousel-buttons-hover.png"); }
 .sliderCarousel .disable { visibility: hidden; }
 
@@ -694,12 +694,12 @@ li.separador_links_footer{
 /* CAROUSEL - SLIDER PRODUTOS RELACIONADOS */
 .sliderCarouselProdutosRelacionados .ProductList  li { height: auto !important; }
 .sliderCarouselProdutosRelacionados .viewport { float: left; width: 560px; height: auto; overflow: hidden; position: relative; border-radius: 10px; }
-.sliderCarouselProdutosRelacionados .prev 	  { position: absolute; margin: 80px -15px; z-index: 10; }
-.sliderCarouselProdutosRelacionados .next 	  { position: absolute; margin: 80px 530px; background-position: 0 0;  }
+.sliderCarouselProdutosRelacionados .prev 	  { position: absolute; margin: 105px -15px; z-index: 10; }
+.sliderCarouselProdutosRelacionados .next 	  { position: absolute; margin: 105px 540px; background-position: 0 0;  }
 
 /* CAROUSEL - SLIDER PRODUTOS RELACIONADOS */
 .sliderCarouselMaisVendidos .ProductList  li { height: auto !important; }
 .sliderCarouselMaisVendidos .ProductList .ProductActionAdd{	left: 0px !important; position: relative !important; }
 .sliderCarouselMaisVendidos .viewport { float: left; width: 560px; height: auto; overflow: hidden; position: relative; border-radius: 10px; }
-.sliderCarouselMaisVendidos .prev 	  { position: absolute; margin: 80px -15px; z-index: 10; }
-.sliderCarouselMaisVendidos .next 	  { position: absolute; margin: 80px 530px; background-position: 0 0;  }
+.sliderCarouselMaisVendidos .prev 	  { position: absolute; margin: 105px -15px; z-index: 10; }
+.sliderCarouselMaisVendidos .next 	  { position: absolute; margin: 105px 540px; background-position: 0 0;  }
