@@ -645,7 +645,7 @@ break; // fim deposito
 
 }
 
-$parcelador = "<span class='parcelamento_label_produto'>" . $parcelador . "</span>";
+$parcelador = "<span class='parcelamento_label_produto " . $GLOBALS['HideParcelamentoProduto'] . "'>" . $parcelador . "</span>";
 return $parcelador;
 }
 ?>

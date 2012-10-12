@@ -302,9 +302,20 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 			$GLOBALS['BuyBoxSoldOut'] = "ProductBuyBoxSoldOut";
 			$GLOBALS['DisplayAdd'] = "none";
 			$GLOBALS['ISC_LANG']['BuyThisItem'] = GetLang('ItemUnavailable');
-			
-			/* EDAZCOMMERCE - Produto Insdisponível */
-			$GLOBALS['HideProdutoIndisponivel'] = ($this->productClass->getProduct['prodcurrentinv'] > '0') ? 'displayNone' : '';
+		}
+		
+		/* EDAZCOMMERCE - PRODUTO INDISPONÍVEL (AVISE-ME QUANDO CHEGAR) */
+		$arrayProduto = $this->productClass->getProduct();
+		$naoControlaEstoque 		 = 0;
+		$controlaEstoqueNormal 		 = 1;
+		$controlaEstoquePelaVariacao = 2;
+		if($arrayProduto['prodhideprice'] != 1 && 
+				(($arrayProduto['prodinvtrack'] == $naoControlaEstoque || $arrayProduto['prodinvtrack'] == $controlaEstoquePelaVariacao) || ($arrayProduto['prodinvtrack'] == $controlaEstoqueNormal  && $arrayProduto['prodcurrentinv'] > '0'))){
+			$GLOBALS['HideActionAdd'] 			= '';
+			$GLOBALS['HideProdutoIndisponivel'] = 'displayNone';
+		}else{
+			$GLOBALS['HideActionAdd'] 			= 'none';
+			$GLOBALS['HideProdutoIndisponivel'] = '';
 		}
 
 		if(GetConfig('ShowAddToCartQtyBox') == 1) {
