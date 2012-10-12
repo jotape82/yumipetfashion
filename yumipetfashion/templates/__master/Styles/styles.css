@@ -93,14 +93,15 @@
 
 div.FacebookLikeButtonContainer {
 	clear: left;
+	float: left;
+	width: 100%;
+	margin: 10px 0;
 	text-align: center;
-	margin-top: 5px;
-	margin-bottom: 10px;
 }
 
 div.FacebookLikeButtonContainer iframe {
 	width: 100%;
-	height: 55px;
+	height: 35px;
 	border: none;
 	overflow: hidden;
 }

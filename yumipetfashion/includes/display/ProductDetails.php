@@ -81,6 +81,7 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 			$GLOBALS['SNIPPETS']['SideAddItemSoldOut'] = $GLOBALS['ISC_CLASS_TEMPLATE']->getSnippet('ProductNotOrderableOnMobiles');
 		}
 		
+		$GLOBALS['REQUEST_URI'] = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']; // EDAZCOMMERCE - COMENTÁRIO DO PRODUTO DIRETO NO FACEBOOK
 		$GLOBALS['SNIPPETS']['ProductAddToCart'] = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("ProductAddToCart");
 	}
 
