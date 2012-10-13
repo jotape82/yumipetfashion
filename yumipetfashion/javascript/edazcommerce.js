@@ -568,10 +568,12 @@ function verificaDescontoMetodoPagamento(metodoPagamento){
 
 function avisemeQuandoChegar(codProduto){
 	var url,
-		parametros;
+		parametros,
+		variacaoProdutoID;
 	
-	parametros = '?codprod=' + codProduto;
-	url		   = urlWebsite + '/faleconosco.php' + parametros;
+	variacaoProdutoID = ($('.CartVariationId').length > 0) ? $('.CartVariationId').val() : '';
+	parametros 		  = '?codprod=' + codProduto + '&variacaoProdutoID=' + variacaoProdutoID;
+	url		   		  = urlWebsite + '/faleconosco.php' + parametros;
 	
 	window.location = url;
 	return false;

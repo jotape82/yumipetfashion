@@ -343,7 +343,7 @@ class __TwigTemplate_72ce2ac652ecc94601ec67014d4f7773 extends Twig_Template
 
 \t\t\tfor (i = 0; i < tr.childNodes.length; i++) {
 \t\t\t\tif (tr.childNodes[i].style != null) {
-\t\t\t\t\ttr.childNodes[i].style.backgroundColor = \"#dbf3d1\";
+\t\t\t\t\ttr.childNodes[i].style.backgroundColor = \"#E9E9E9\";
 \t\t\t\t}
 \t\t\t}
 

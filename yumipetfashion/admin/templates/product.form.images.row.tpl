@@ -10,7 +10,7 @@
 				<td class="productImageBaseThumb"><input type="radio" name="productImageBaseThumb" /></td>
 				<td class="productImageAction">
 					<a href="#" class="productImageDelete">{% lang 'Delete' %}</a>
-					<a href="#" class="productImageEdit">{% lang 'Edit' %}</a>
+					<!--<a href="#" class="productImageEdit">{% lang 'Edit' %}</a>-->
 				</td>
 			</tr>
 		</tbody>

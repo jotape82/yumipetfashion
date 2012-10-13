@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="%%GLOBAL_TPL_PATH%%/Styles/fale_conosco.css"/> 
+<link rel="stylesheet" type="text/css" href="%%GLOBAL_TPL_PATH%%/Styles/fale_conosco.css"/>
 
 <div style="margin: 20px;">
 	<div class="tituloDiv TituloBordaSombra">%%GLOBAL_TituloPagina%%</div>
@@ -9,8 +9,11 @@
 			<div class="faleConoscoSolicitarOrcamento %%GLOBAL_HideSolicitarOrcamento%%">
 				<div class="clearLeft tituloDivOrcamento">Solicite um orçamento para o produto abaixo:</div>
 				<div class="clearLeft floatLeft" style="margin: 10px 0;">
-					<div class="orcamentoImagemProduto"><img src="%%GLOBAL_FaleConoscoImagemProduto%%" width="150"></div>
-					<div class="orcamentoNomeProduto">%%GLOBAL_FaleConoscoNomeProduto%%</div>
+					<div class="orcamentoImagemProduto"><img src="%%GLOBAL_FaleConoscoImagemProduto%%"></div>
+					<div class="floatLeft">
+						<div class="orcamentoNomeProduto">%%GLOBAL_FaleConoscoNomeProduto%%</div>
+						<div class="orcamentoDescricaoAtributosProduto">%%GLOBAL_FaleConoscoDescricaoAtributosProduto%%</div>
+					</div>
 				</div>
 				<hr class="separadorHorizontal" />
 			</div>
@@ -77,28 +80,27 @@
 				</div>
 			
 				<div class="divRight">
-					<div class="tituloEntreEmContato">Entre em contato com a %%GLOBAL_StoreName%%</div>
+					<div class="subTituloFundoCinza">Entre em contato com a %%GLOBAL_StoreName%%</div>
 					<div class="clearLeft">
 						<div id="contato_emailDiv" class="contato_div_img"></div>
-						<div class="left top1"><strong>E-mail:</strong> <a href="mailto:%%GLOBAL_EmailRemetenteSite%%?subject=Formulario - Contato Site">%%GLOBAL_EmailRemetenteSite%%</a></div>
+						<div class="left top1"><strong>E-mail:</strong> <a href="mailto:%%GLOBAL_EmailRemetenteSite%%?subject=Formulario - Contato Site" style="font-size: 12px !important;">%%GLOBAL_EmailRemetenteSite%%</a></div>
 					</div>
 					<div class="clearLeft">
 						<div id="contato_telefoneDiv" class="contato_div_img"></div>
-						<div class="left top1"><strong>Tel:</strong> (13) 3307-2645</div>
+						<div class="left top1"><strong>Tel:</strong></div>
+						<div style="float: left; padding: 10px 0 0 2px;">(11) 2218-0804<br /> (11) 2218-0499<br /> (11) 2901-2630</div>
 					</div>
+					<!--
 					<div class="clearLeft">
 						<div id="contato_celularDiv" class="contato_div_img"></div>
 						<div class="left top1">
-							<strong>Cel:</strong> (13)7806-1231&nbsp;/&nbsp;
-							<strong>ID:</strong> 80*186939
+							<strong>Cel:</strong> (11) 2901-2630
 						</div>
 					</div>
-					
-					<!--
-					<div class="googleMapsDiv">
-						
-					</div>
 					-->
+					<div class="googleMapsDiv">
+						<iframe width="325" height="280" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.br/maps?f=q&amp;source=s_q&amp;hl=pt-BR&amp;geocode=&amp;q=premiatta+moveis+e+cofres+Rua+Chico+Pontes&amp;aq=&amp;sll=-23.734464,-46.47552&amp;sspn=0.799531,1.454315&amp;ie=UTF8&amp;hq=premiatta+moveis+e+cofres+Rua+Chico+Pontes&amp;hnear=&amp;t=m&amp;cid=18049006874058847816&amp;ll=-23.507586,-46.60321&amp;spn=0.005608,0.00706&amp;z=16&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.br/maps?f=q&amp;source=embed&amp;hl=pt-BR&amp;geocode=&amp;q=premiatta+moveis+e+cofres+Rua+Chico+Pontes&amp;aq=&amp;sll=-23.734464,-46.47552&amp;sspn=0.799531,1.454315&amp;ie=UTF8&amp;hq=premiatta+moveis+e+cofres+Rua+Chico+Pontes&amp;hnear=&amp;t=m&amp;cid=18049006874058847816&amp;ll=-23.507586,-46.60321&amp;spn=0.005608,0.00706&amp;z=16" style="color:#0000FF;text-align:left">Exibir mapa ampliado</a></small>
+					</div>
 				</div>
 				
 			</div>
@@ -142,15 +144,20 @@
 			
 			$.post("%%GLOBAL_ShopPathNormal%%/faleconosco/envioEmail.php", 
 				{
-				nome:nome, 
-				empresa:empresa,
-				assunto:assunto,
-				email:email, 
-				telefone:telefone, 
-				mensagem:mensagem,
-				emailDestino:'%%GLOBAL_EmailRemetenteSite%%',
-				nomeLoja:'%%GLOBAL_StoreName%%',
-				urlWebsite:'%%GLOBAL_IMG_PATH%%'
+				nome: nome, 
+				empresa: empresa,
+				assunto: assunto,
+				email: email, 
+				telefone: telefone, 
+				mensagem: mensagem,
+				emailDestino: '%%GLOBAL_EmailRemetenteSite%%',
+				solicitarOrcamento: '%%GLOBAL_SolicitarOrcamento%%',
+				nomeProduto: '%%GLOBAL_FaleConoscoNomeProduto%%',
+				imagemProduto: '%%GLOBAL_FaleConoscoImagemProduto%%',
+				descricaoAtributos: '%%GLOBAL_FaleConoscoDescricaoAtributosProduto%%',
+				nomeLoja: '%%GLOBAL_StoreName%%',
+				urlWebsite: '%%GLOBAL_ShopPathNormal%%',
+				urlImageWebsite: '%%GLOBAL_IMG_PATH%%'
 				}, function(data){
 					complete:
 						$(divForm).hide();
