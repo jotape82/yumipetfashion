@@ -33,13 +33,13 @@ $dataExtenso	= getFormataDataExtenso(time());
 $tituloEmail	= ($solicitarOrcamento)  ? 'Solicitação de Orçamento' : $nomeLoja . ' (Fale Conosco)';
 
 $mensagemEmail   = array();
-$mensagemEmail[] = $stylecss;
+$mensagemEmail[] = $stylecss . "#NEWLINE#";
 $mensagemEmail[] = "<table border='0' style='width:700px;'>";
 $mensagemEmail[] = 	"<tr>";
-$mensagemEmail[] = 		"<td class='classTitulo' colspan='2'>$tituloEmail</td>";
+$mensagemEmail[] = 		"<td class='classTitulo' colspan='2'>" . $tituloEmail . "</td>";
 $mensagemEmail[] = 	"</tr>";
 $mensagemEmail[] = 	"<tr>";
-$mensagemEmail[] = 		"<td class='classData' colspan='2'>$dataExtenso</td>";
+$mensagemEmail[] = 		"<td class='classData' colspan='2'>" . $dataExtenso . "</td>";
 $mensagemEmail[] = 	"</tr>";
 if($solicitarOrcamento){
 	$mensagemEmail[] = 	"<tr>";
@@ -58,6 +58,7 @@ if($solicitarOrcamento){
 	$mensagemEmail[] = 	"<tr>";
 	$mensagemEmail[] = 		"<td colspan='2'>&nbsp;</td>";
 	$mensagemEmail[] = 	"</tr>";
+	$mensagemEmail[] =  "#NEWLINE#";
 }
 $mensagemEmail[] = 	"<tr>";
 $mensagemEmail[] = 		"<td class='classTD1'>Nome:</td>";
@@ -79,6 +80,7 @@ $mensagemEmail[] = 	"<tr>";
 $mensagemEmail[] = 		"<td class='classTD1'>Telefone:</td>";
 $mensagemEmail[] = 		"<td class='classTD2'>$telefone&nbsp;</td>";
 $mensagemEmail[] = 	"</tr>";
+$mensagemEmail[] =  "#NEWLINE#";
 $mensagemEmail[] = 	"<tr>";
 $mensagemEmail[] = 		"<td class='classTD1'>Mensagem:</td>";
 $mensagemEmail[] = 		"<td class='classTD2'>$mensagem&nbsp;</td>";
