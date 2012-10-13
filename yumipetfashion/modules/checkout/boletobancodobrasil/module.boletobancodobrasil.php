@@ -319,7 +319,7 @@
 <form action='".$GLOBALS['ShopPath']."/modules/checkout/boletobancodobrasil/boleto_bancodobrasil.php' method='post' name='boleto' target='_blank'>
 
 <input type='hidden' name='item_id' value='".$id."' />
-<input type='image' src='".$GLOBALS['ShopPath']."/modules/checkout/boletobancodobrasil/images/gerar_boleto.gif' value='submit'><br>
+<input type='image' src='".$GLOBALS['ShopPath']."/modules/checkout/boletobancodobrasil/images/gerar_boleto.png' value='submit'><br>
 <br>URL DO BOLETO:<br>
 <a href='".$GLOBALS['ShopPath']."/modules/checkout/boletobancodobrasil/boleto_bancodobrasil.php?boleto=".$id."'>".$GLOBALS['ShopPath']."/modules/checkout/boletobancodobrasil/boleto_bancodobrasil.php?boleto=".$id."</a><br><br><br>
 
