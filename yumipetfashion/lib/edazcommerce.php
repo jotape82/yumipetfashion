@@ -67,7 +67,7 @@
 	 function getEnderecoDeFaturaDoPedido($codPedido, $billingAddressId=null){
 	 	
 	 	/* PEGA O ID DO ENDEREÇO DE FATURA NO PEDIDO */
-	 	if(!isset($billingAddressId)){
+	 	if(!isset($billingAddressId) || $billingAddressId == ''){
 	 		$query 			  = " SELECT billing_address_id FROM [|PREFIX|]orders WHERE orderid = $codPedido ";
 	 		$result 		  = $GLOBALS['ISC_CLASS_DB']->Query($query);
 			$billingAddressId = $GLOBALS['ISC_CLASS_DB']->FetchOne($result);
@@ -84,7 +84,7 @@
 	 function getEnderecoDeEntregaDoPedido($codPedido, $shippingAddressId=null){
 	 	
 	 	/* PEGA O ID DO ENDEREÇO DE ENTREGA NO PEDIDO */
-	 	if(!isset($shippingAddressId)){
+	 	if(!isset($shippingAddressId) || $shippingAddressId == ''){
 	 		$query 			  = " SELECT shipping_address_id FROM [|PREFIX|]order_addresses where order_id = $codPedido ";
 	 		$result 		  = $GLOBALS['ISC_CLASS_DB']->Query($query);
 			$shippingAddressId = $GLOBALS['ISC_CLASS_DB']->FetchOne($result);
@@ -107,20 +107,21 @@
 			$address = $GLOBALS['ISC_CLASS_DB']->fetch($result);
 			
 			/* VARIÁVEIS GLOBAIS */
-			$GLOBALS['ShipNome'] 			= ucwords(strtolower(isc_html_escape($address['shipfirstname'])));
-			$GLOBALS['ShipSobrenome'] 		= ucwords(strtolower(isc_html_escape($address['shiplastname'])));
-			$GLOBALS['ShipCompany'] 		= ucwords(strtolower(isc_html_escape($address['shipcompany'])));
-			$GLOBALS['ShipAddressLines'] 	= ucwords(strtolower(isc_html_escape($address['shipaddress1'])));
-			$GLOBALS['ShipSuburb'] 			= ucwords(strtolower(isc_html_escape($address['shipcity'])));
-			$GLOBALS['ShipState'] 			= ucwords(strtolower(isc_html_escape($address['shipstate'])));
-			$GLOBALS['ShipZip'] 			= ucwords(strtolower(isc_html_escape($address['shipzip'])));
-			$GLOBALS['ShipCountry'] 		= ucwords(strtolower(isc_html_escape($address['shipcountry'])));
-			$GLOBALS['ShipPhone'] 			= ucwords(strtolower(isc_html_escape($address['shipphone'])));
-			$GLOBALS['ShipDataNascimento'] 	= ucwords(strtolower(isc_html_escape($address['shipdatanascimento'])));
-			$GLOBALS['ShipNumero'] 			= ucwords(strtolower(isc_html_escape($address['shipnumero'])));
-			$GLOBALS['ShipComplemento'] 	= ucwords(strtolower(isc_html_escape($address['shipcomplemento'])));
-			$GLOBALS['ShipBairro'] 			= ucwords(strtolower(isc_html_escape($address['shipbairro'])));
-			$GLOBALS['ShipCpf'] 			= ucwords(strtolower(isc_html_escape($address['shipcpf'])));
+			$GLOBALS['ShipNome'] 			= isc_html_escape(ucwords(strtolower($address['shipfirstname'])));
+			$GLOBALS['ShipSobrenome'] 		= isc_html_escape(ucwords(strtolower($address['shiplastname'])));
+			$GLOBALS['ShipFullName'] 		= isc_html_escape(ucwords(strtolower($address['ordbillfirstname'].' '.$address['ordbilllastname'])));
+			$GLOBALS['ShipCompany'] 		= isc_html_escape(ucwords(strtolower($address['shipcompany'])));
+			$GLOBALS['ShipAddressLines'] 	= isc_html_escape(ucwords(strtolower($address['shipaddress1'])));
+			$GLOBALS['ShipSuburb'] 			= isc_html_escape(ucwords(strtolower($address['shipcity'])));
+			$GLOBALS['ShipState'] 			= isc_html_escape(ucwords(strtolower($address['shipstate'])));
+			$GLOBALS['ShipZip'] 			= isc_html_escape(ucwords(strtolower($address['shipzip'])));
+			$GLOBALS['ShipCountry'] 		= isc_html_escape(ucwords(strtolower($address['shipcountry'])));
+			$GLOBALS['ShipPhone'] 			= isc_html_escape(ucwords(strtolower($address['shipphone'])));
+			$GLOBALS['ShipDataNascimento'] 	= isc_html_escape(ucwords(strtolower($address['shipdatanascimento'])));
+			$GLOBALS['ShipNumero'] 			= isc_html_escape(ucwords(strtolower($address['shipnumero'])));
+			$GLOBALS['ShipComplemento'] 	= isc_html_escape(ucwords(strtolower($address['shipcomplemento'])));
+			$GLOBALS['ShipBairro'] 			= isc_html_escape(ucwords(strtolower($address['shipbairro'])));
+			$GLOBALS['ShipCpf'] 			= isc_html_escape(ucwords(strtolower($address['shipcpf'])));
 		}
 	 	
 	 }
