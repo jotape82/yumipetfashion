@@ -219,6 +219,7 @@
 	/* EDAZCOMMERCE */
 	require_once(ISC_BASE_PATH . "/lib/parcelar.php");
 	require_once(ISC_BASE_PATH . "/lib/twitter.php");
+	require_once(ISC_BASE_PATH . "/lib/edazcommerce.php");
 	
 	require(ISC_CONFIG_DEFAULT_FILE);
 	require(ISC_CONFIG_FILE);
