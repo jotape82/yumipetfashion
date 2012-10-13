@@ -438,6 +438,7 @@
 				
 				//inicio do switch
 				switch($s['variableval']) {
+					
 					case 'deposito': //deposito
 					$ativo = GetModuleVariable('checkout_deposito','is_setup');
 					$desc = GetModuleVariable('checkout_deposito','desconto');
@@ -458,13 +459,13 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/deposito.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/deposito.png" /></td>
 					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Depósito"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/deposito.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Depósito Bancário"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/deposito.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -510,14 +511,14 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/cheque.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/cheque.gif" /></td>
 					<td width="40%"><font size="2">'.$msg.'</font></td>
 					<td width="40%"><font size="2">'.$msg1.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Cheque"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/cheque.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Cheque"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/cheque.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -548,7 +549,8 @@
 					$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 					while ($method = $GLOBALS['ISC_CLASS_DB']->Fetch($result)) {
 						$nomeMetodo 		   		   = substr($method['modulename'], strpos($method['modulename'], 'boleto'), strlen($method['modulename']));
-						$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Boleto '.$arrayNomeBanco[$nomeMetodo].'"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/'.$nomeMetodo.'.png" class="height28"/></li>';
+						$descricao					   = '<span class=tituloFormaPagamento>Boleto:</span> '.$arrayNomeBanco[$nomeMetodo];
+						$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="' . $descricao . '"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/'.$nomeMetodo.'.png"/></li>';
 						$parcelasFormasPagamentoHtml  .= '
 							<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 								<div class="label first">'.$msg.'</div>
@@ -560,7 +562,7 @@
 						<div id="faq'.$i.'" class="icongroup1">
 						<table width="100%" border="0">
 						<tr>
-						<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/'.$nomeMetodo.'.png" /></td>
+						<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/'.$nomeMetodo.'.png" /></td>
 						<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
 						</tr>
 						</table>
@@ -617,14 +619,14 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagseguro.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/pagseguro.png" /></td>
 					<td width="40%"><font size="2">'.$msg.'</font></td>
 					<td width="40%"><font size="2">'.$msg1.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="PagSeguro"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagseguro.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="PagSeguro"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/pagseguro.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -680,14 +682,14 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagdigital.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/pagamento_digital.png" /></td>
 					<td width="40%"><font size="2">'.$msg.'</font></td>
 					<td width="40%"><font size="2">'.$msg1.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Pagamento Digital"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/pagdigital.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Pagamento Digital"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/pagamento_digital.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -746,14 +748,14 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/moip.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/moip.gif" /></td>
 					<td width="40%"><font size="2">'.$msg.'</font></td>
 					<td width="40%"><font size="2">'.$msg1.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Moip"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/moip.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Moip"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/moip.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -809,14 +811,14 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/dinmail.png" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/dinheiro_mail.png" /></td>
 					<td width="40%"><font size="2">'.$msg.'</font></td>
 					<td width="40%"><font size="2">'.$msg1.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="DinheiroMail"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/dinmail.png" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="DinheiroMail"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/dinheiro_mail.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -847,13 +849,13 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/paypal.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/paypal.gif" /></td>
 					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Paypal"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/paypal.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Paypal"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/paypal.png" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -897,13 +899,13 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/spsbradesco.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/spsbradesco.gif" /></td>
 					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Sps"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/spsbradesco.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Sps"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/spsbradesco.gif" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -944,13 +946,13 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/bb_commerce.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/bb_commerce.gif" /></td>
 					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="BBOfice"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/bb_commerce.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="BBOfice"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/bb_commerce.gif" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -989,13 +991,13 @@
 					<div id="faq'.$i.'" class="icongroup1">
 					<table width="100%" border="0">
 					<tr>
-					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/itau_shopline.gif" /></td>
+					<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/itau_shopline.gif" /></td>
 					<td width="80%" colspan="2"><font size="2">'.$msg.'</font></td>
 					</tr>
 					</table>
 					</div>';
 					
-					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Shopline"><img src="'.$GLOBALS['ShopPathNormal'].'/modificacoes/itau_shopline.gif" /></li>';
+					$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="Shopline"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/itau_shopline.gif" /></li>';
 					$parcelasFormasPagamentoHtml  .= '
 						<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 							<div class="label first">'.$msg.'</div>
@@ -1052,14 +1054,14 @@
 					}
 					
 					/* EdazCommerce - Pega os Métodos de Boleto Configurados */
-					$arrayBandeiras    = array("v" => "visa", "m" => "master_card", "e" => "visa_electron", "el" => "elo", "din" => "diners", "dis" => "discover", "am" => "american_express");
+					$arrayBandeiras    = array("v" => "visa", "m" => "master_card", "e" => "visa_electron", "el" => "elo_card", "din" => "diners_club", "dis" => "discover", "am" => "american_express");
 					$query  = "SELECT variableval FROM [|PREFIX|]module_vars WHERE modulename = 'checkout_cielo' AND variablename = 'meios'";
 					$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 					while ($method  = $GLOBALS['ISC_CLASS_DB']->Fetch($result)) {
 						$bandeira   = $arrayBandeiras[strtolower($method['variableval'])];
-						$descricao  = 'Cartão de Crédito ' . ucwords(str_replace("_", " ", $bandeira));
+						$descricao  = '<span class=tituloFormaPagamento>Cartão de Crédito:</span> ' . ucwords(str_replace("_", " ", $bandeira));
 						
-						$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="'.$descricao.'"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/'.$bandeira.'.png" class="height25"/></li>';
+						$bandeirasFormasPagamentoHtml .= '<li count="'.$countEdaz.'" descricao="'.$descricao.'"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/'.$bandeira.'.png" class="height25"/></li>';
 						$parcelasFormasPagamentoHtml  .= '
 							<div class="ConteudoFormaPagamento" count="'.$countEdaz.'">
 								<div class="label first">'.$msg.'</div>
@@ -1072,7 +1074,7 @@
 						<div id="faq'.$i.'" class="icongroup1">
 						<table width="100%" border="0">
 						<tr>
-						<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/'.$bandeira.'.png" /></td>
+						<td width="10%"><img src="'.$GLOBALS['ShopPathNormal'].'/templates/__master/images/bandeiras/little/'.$bandeira.'.png" /></td>
 						<td width="40%">'.$msg.'</td>
 						<td width="50%">'.$msg1.'</td>
 						</tr>
