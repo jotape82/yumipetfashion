@@ -648,6 +648,10 @@ li.separador_links_footer{
 	margin: 15px 0 20px;
 }
 
+#EnderecoFaturaEntregaPedido div{ clear: left; padding: 2px 0; }
+#EnderecoFaturaEntregaPedido div span.label { color: #505050; font-weight: bold; }
+#EnderecoFaturaEntregaPedido div span.value { color: #404040; }
+
 /* INDIQUE UM PRODUTO */
 #indiqueEsteProduto tr td { font-size: 12px; }
 #indiqueEsteProduto input{ height: 22px; padding: 0 4px 1px; }

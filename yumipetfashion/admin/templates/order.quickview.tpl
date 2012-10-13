@@ -66,7 +66,7 @@
 				<tr>
 					<td class="text" valign="top">{% lang 'OrderDate1' %}:</td>
 					<td class="text">
-						{{ order.orddate|date('d M Y H:i:s') }}
+						{{ order.orddate|date('d/m/Y - H:i:s') }}
 					</td>
 				</tr>
 				<tr>
