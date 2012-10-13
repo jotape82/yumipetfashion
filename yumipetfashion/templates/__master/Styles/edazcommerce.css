@@ -110,7 +110,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
     font-weight: bold;
     margin: 10px 0 8px;
     padding: 10px;
-    width: 550px;
+    width: 560px;
 }
 
 .CheckoutRedeemCoupon { 
@@ -122,141 +122,170 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
     width: 300px;
 }
 
-#provider_list li { list-style: none; }
-
 #use_store_credit li.opcoesGrupoMetodosPagamento,
-#provider_list li.opcoesGrupoMetodosPagamento{
+#provider_list li.opcoesGrupoMetodosPagamento
+{
 	padding: 10px;
     text-align: center;
 	max-width: 100px;
     min-height: 90px;
     min-width: 100px;
-    padding: 10px;
+	margin: 0 2px 2px;
+    padding: 3px;
+    text-align: center;
+}
+
+.bandeirasLinks div.opcoesGrupoMetodosPagamento
+{
+	float: left;
+    margin: 2px;
+    max-width: 100px;
+    min-height: 65px;
+    padding: 5px 0 0;
+	min-width: 90px;
     text-align: center;
 }
 
 #use_store_credit li.opcoesGrupoMetodosPagamento:hover{
 	cursor: pointer;
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
-	background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F7F7F7)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F7F7F7);
+	background: -moz-linear-gradient(top, #FFFFFF, #F7F7F7) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F7F7F7)) repeat-X;
 }
 
 #provider_list li.opcoesGrupoMetodosPagamento:hover{
 	cursor: pointer;
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
-	background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F7F7F7)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F7F7F7);
+	background: -moz-linear-gradient(top, #FFFFFF, #F7F7F7) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F7F7F7)) repeat-X;
+}
+
+.bandeirasLinks div.opcoesGrupoMetodosPagamento:hover{
+	cursor: pointer;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FBFBFB, endColorstr=#F6F6F6)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FBFBFB, endColorstr=#F6F6F6);
+	background: -moz-linear-gradient(top, #FBFBFB, #F6F6F6) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FBFBFB), to(#F6F6F6)) repeat-X;
 }
 
 #use_store_credit li.opcoesGrupoMetodosPagamento label,
-#provider_list li.opcoesGrupoMetodosPagamento label{
+#provider_list li.opcoesGrupoMetodosPagamento label,
+.bandeirasLinks div.opcoesGrupoMetodosPagamento
+{
 	display: block;
 }
 
 .itemMetodoPagamentoSelecionado{
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)";
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1);
-	background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F7F7F7)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F7F7F7);
+	background: -moz-linear-gradient(top, #FFFFFF, #F7F7F7) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F7F7F7)) repeat-X;
 }
 
-.nomeMetodoPagamentoSelecionado{
+.itemMetodoPagamentoSelecionado .nomeMetodoPagamento{
+	font-weight: bold !important;
+}
+
+#provider_list .nomeMetodoPagamentoSelecionado,
+.bandeirasLinks .nomeMetodoPagamentoSelecionado
+{
 	margin-left: 5px;
 	font-size: 14px;
 	font-weight: bold;
 	color: #000000;
 }
 
-.imagemMetodoPagamento{
+#provider_list li.opcoesGrupoMetodosPagamento .nomeMetodoPagamento,
+.bandeirasLinks div.opcoesGrupoMetodosPagamento .nomeMetodoPagamento
+{
 	clear: left;
+	margin: 5px 0;
+	color: #606060;
+    font-weight: normal;
+}
+
+#provider_list .imagemMetodoPagamento,
+.bandeirasLinks .imagemMetodoPagamento
+{
+	clear: left;
+	width: 60px;
+	height: 60px;
 	margin: 0 auto 7px;
 }
 
+#provider_list .opcoesGrupoMetodosPagamento input,
+.bandeirasLinks .opcoesGrupoMetodosPagamento input
+{
+	cursor: pointer !important;
+}
+
 .checkout_metodo_boletobradesco{
-	width: 35px;
-	height: 35px;
+	width: 50px !important;
+	height: 50px !important;
 	background: url(../images/bandeiras/boletobradesco.png) no-repeat;
 }
 
 .checkout_metodo_boletobancodobrasil{
-	width: 35px;
-	height: 35px;
+	width: 50px !important;
+	height: 50px !important;
 	background: url(../images/bandeiras/boletobancodobrasil.png) no-repeat;
 }
 
 .checkout_metodo_boletoitau{
-	width: 35px;
-	height: 35px;
+	width: 50px !important;
+	height: 50px !important;
 	background: url(../images/bandeiras/boletoitau.png) no-repeat;
 }
 
 .checkout_metodo_boletoreal{
-	width: 35px;
-	height: 35px;
+	width: 50px !important;
+	height: 50px !important;
 	background: url(../images/bandeiras/) no-repeat;
 }
 
 .checkout_metodo_cheque{
-	width: 90px;
-	height: 44px;
 	background: url(../images/bandeiras/cheque.png) no-repeat;
 }
 
 .checkout_metodo_cielo{
-	width: 40px;
-	height: 40px;
 	background: url(../images/bandeiras/cielo.png) no-repeat;
 }
 
 .checkout_metodo_deposito{
-	width: 70px;
-	height: 25px;
 	background: url(../images/bandeiras/deposito.png) no-repeat;
 }
 
 .checkout_metodo_dinheiromail{
-	width: 90px;
-	height: 25px;
 	background: url(../images/bandeiras/dinheiro_mail.png) no-repeat;
 }
 
 .checkout_metodo_f2b{
-	width: 40px;
-	height: 25px;
 	background: url(../images/bandeiras/f2b.png) no-repeat;
 }
 
 .checkout_metodo_mercadopago{
-	width: 70px;
-	height: 25px;
 	background: url(../images/bandeiras/mercado_pago.png) no-repeat;
 }
 
 .checkout_metodo_moip{
-	width: 70px;
-	height: 25px;
 	background: url(../images/bandeiras/moip.png) no-repeat;
 }
 
 .checkout_metodo_pagamentodigital{
-	width: 90px;
-	height: 25px;
 	background: url(../images/bandeiras/pagamento_digital.png) no-repeat;
 }
 
 .checkout_metodo_pagseguro{
-	width: 90px;
-	height: 25px;
 	background: url(../images/bandeiras/pagseguro.png) no-repeat;
 }
 
 .checkout_metodo_paypal{
-	width: 60px;
-	height: 20px;
-	margin-top: 5px;
 	background: url(../images/bandeiras/paypal.png) no-repeat;
 }
 
