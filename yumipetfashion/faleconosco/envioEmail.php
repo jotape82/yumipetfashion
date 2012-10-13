@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__).'/../lib/edazcommerce.php');
+
 $nome 	     = (isset($_POST['nome']))       ? utf8_decode($_POST['nome'])        : "";
 $empresa     = (isset($_POST['empresa']))    ? utf8_decode($_POST['empresa'])     : "";
 $assunto     = (isset($_POST['assunto']))    ? utf8_decode($_POST['assunto'])     : "";
@@ -19,13 +21,15 @@ $urlImageWebsite   	= (isset($_POST['urlImageWebsite']))    ? $_POST['urlImageWe
 $stylecss  = "<style>";
 $stylecss .= 	".classTD1{ width: 100px; height: 30px; font-family: Arial; font-size: 12px; color: #404040; font-weight: bold; text-transform: uppercase; }";
 $stylecss .= 	".classTD2{ width: 600px; height: 30px; font-family: Arial; font-size: 12px; color: #404040; }";
+$stylecss .= 	".classData{ font-family: Arial; font-size: 12px; color: #707070; text-align: right; }";
 $stylecss .= 	".classTitulo{ background-color: #F9F9F9; color: #909090; font-family: Arial; font-size: 22px; font-weight: bold; padding: 15px 5px; }";
 $stylecss .= 	".classNomeProduto{ font-family: Arial; font-size: 18px; color: #909090; font-weight: bold; }";
-$stylecss .= 	".classDescricaoProduto{ font-family: Arial; font-size: 12px; color: #404040; }";
+$stylecss .= 	".classDescricaoProduto{ font-family: Arial; font-size: 12px; color: #404040; font-weight: normal; }";
 $stylecss .= 	".classRodapeNomeLoja{ font-family: Arial; font-size: 14px; color: #404040; font-weight: bold; font-style: italic; text-align: right; padding-right: 10px; }";
 $stylecss .= 	".divisorRodape{ width: 550px; float: right; color: #E5E5E5; }";
 $stylecss .= "</style>";
 
+$dataExtenso	= getFormataDataExtenso(time());
 $tituloEmail	= ($solicitarOrcamento)  ? 'Solicitação de Orçamento' : $nomeLoja . ' (Fale Conosco)';
 
 $mensagemEmail   = array();
@@ -33,6 +37,9 @@ $mensagemEmail[] = $stylecss;
 $mensagemEmail[] = "<table border='0' style='width:700px;'>";
 $mensagemEmail[] = 	"<tr>";
 $mensagemEmail[] = 		"<td class='classTitulo' colspan='2'>$tituloEmail</td>";
+$mensagemEmail[] = 	"</tr>";
+$mensagemEmail[] = 	"<tr>";
+$mensagemEmail[] = 		"<td class='classData' colspan='2'>$dataExtenso</td>";
 $mensagemEmail[] = 	"</tr>";
 if($solicitarOrcamento){
 	$mensagemEmail[] = 	"<tr>";
