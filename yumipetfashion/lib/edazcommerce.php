@@ -19,7 +19,7 @@
 					<div class='wrapperVejaMais'>
 						<div class='imgVejaMais'></div>
 						<a href='" . CatLink($categorias['categoryid'], $categorias['catname'], false) . "'>
-							<div class='nomeCategoria floatLeft'>" . ucwords($categorias['catname']) . "</div>
+							<div class='nomeCategoria floatLeft'>" . ucwords(strtolower($categorias['catname'])) . "</div>
 						</a>
 					</div>
 				</div>
@@ -36,23 +36,104 @@
 	 *  @return string7. 
 	 */
 	 function getFormataDataExtenso($strDate){
-	 	$strDate = date('Y-m-d', $strDate);
+	 	date_default_timezone_set("Brazil/East");
 	 	
 	 	// Array com os dia da semana em português;
 	 	$arrDaysOfWeek = array('Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado');
 	 	// Array com os meses do ano em português;
 	 	$arrMonthsOfYear = array(1 => 'Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
-	 	// Descobre o dia da semana
-	 	$intDayOfWeek = date('w',strtotime($strDate));
-	 	// Descobre o dia do mês
-	 	$intDayOfMonth = date('d',strtotime($strDate));
-	 	// Descobre o mês
-	 	$intMonthOfYear = date('n',strtotime($strDate));
-	 	// Descobre o ano
-	 	$intYear = date('Y',strtotime($strDate));
+	 	// Dia da semana
+	 	$intDayOfWeek = date('w',$strDate);
+	 	// Dia do mês
+	 	$intDayOfMonth = date('d',$strDate);
+	 	// Mês
+	 	$intMonthOfYear = date('n',$strDate);
+	 	// Ano
+	 	$intYear = date('Y',$strDate);
+		// Hora
+		$intHora = date('H',$strDate);
+		// Minuto
+		$intMinuto = date('i',$strDate);
+		// Segundo
+		$intSegundo = date('s',$strDate);
+		
 	 	// Formato a ser retornado
-	 	
-	 	return $arrDaysOfWeek[$intDayOfWeek] . ', ' . $intDayOfMonth . ' de ' . $arrMonthsOfYear[$intMonthOfYear] . ' de ' . $intYear;
+	 	return $arrDaysOfWeek[$intDayOfWeek] . ', ' . $intDayOfMonth . ' de ' . $arrMonthsOfYear[$intMonthOfYear] . ' de ' . $intYear . ' - as ' . $intHora . ':' .  $intMinuto . ':' . $intSegundo;
 	 }
+	 
+	 /**
+	  * Retorna as Propriedades Globais Setadas do Endereço de Fatura do Pedido
+	  */
+	 function getEnderecoDeFaturaDoPedido($codPedido, $billingAddressId=null){
+	 	
+	 	/* PEGA O ID DO ENDEREÇO DE FATURA NO PEDIDO */
+	 	if(!isset($billingAddressId)){
+	 		$query 			  = " SELECT billing_address_id FROM [|PREFIX|]orders WHERE orderid = $codPedido ";
+	 		$result 		  = $GLOBALS['ISC_CLASS_DB']->Query($query);
+			$billingAddressId = $GLOBALS['ISC_CLASS_DB']->FetchOne($result);
+	 	}
+	 	
+	 	/* PEGA UM ENDEREÇO PELO ID E SETA PROPRIEDADES GLOBAIS */
+	 	getEnderecoPeloId($billingAddressId);
+	 	
+	 }
+	 
+	 /**
+	  * Retorna as Propriedades Globais Setadas do Endereço de Entrega do Pedido
+	  */
+	 function getEnderecoDeEntregaDoPedido($codPedido, $shippingAddressId=null){
+	 	
+	 	/* PEGA O ID DO ENDEREÇO DE ENTREGA NO PEDIDO */
+	 	if(!isset($shippingAddressId)){
+	 		$query 			  = " SELECT shipping_address_id FROM [|PREFIX|]order_addresses where order_id = $codPedido ";
+	 		$result 		  = $GLOBALS['ISC_CLASS_DB']->Query($query);
+			$shippingAddressId = $GLOBALS['ISC_CLASS_DB']->FetchOne($result);
+	 	}
+	 	
+	 	/* PEGA UM ENDEREÇO PELO ID E SETA PROPRIEDADES GLOBAIS */
+	 	getEnderecoPeloId($shippingAddressId);
+	 	
+	 }
+	 
+	 /**
+	  * Pega um Endreço Pelo Id e Seta Propriedades Globais
+	  */
+	 function getEnderecoPeloId($addressId){
+	 	
+	 	/* PEGA O ENDEREÇO DE FATURA PELO ID E SETA AS VARIÁVEIS GLOBAIS */
+		if(isset($addressId)){
+			$query   = "SELECT * FROM [|PREFIX|]shipping_addresses WHERE shipid = $addressId ";
+			$result  = $GLOBALS['ISC_CLASS_DB']->Query($query);
+			$address = $GLOBALS['ISC_CLASS_DB']->fetch($result);
+			
+			/* VARIÁVEIS GLOBAIS */
+			$GLOBALS['ShipNome'] 			= ucwords(strtolower(isc_html_escape($address['shipfirstname'])));
+			$GLOBALS['ShipSobrenome'] 		= ucwords(strtolower(isc_html_escape($address['shiplastname'])));
+			$GLOBALS['ShipCompany'] 		= ucwords(strtolower(isc_html_escape($address['shipcompany'])));
+			$GLOBALS['ShipAddressLines'] 	= ucwords(strtolower(isc_html_escape($address['shipaddress1'])));
+			$GLOBALS['ShipSuburb'] 			= ucwords(strtolower(isc_html_escape($address['shipcity'])));
+			$GLOBALS['ShipState'] 			= ucwords(strtolower(isc_html_escape($address['shipstate'])));
+			$GLOBALS['ShipZip'] 			= ucwords(strtolower(isc_html_escape($address['shipzip'])));
+			$GLOBALS['ShipCountry'] 		= ucwords(strtolower(isc_html_escape($address['shipcountry'])));
+			$GLOBALS['ShipPhone'] 			= ucwords(strtolower(isc_html_escape($address['shipphone'])));
+			$GLOBALS['ShipDataNascimento'] 	= ucwords(strtolower(isc_html_escape($address['shipdatanascimento'])));
+			$GLOBALS['ShipNumero'] 			= ucwords(strtolower(isc_html_escape($address['shipnumero'])));
+			$GLOBALS['ShipComplemento'] 	= ucwords(strtolower(isc_html_escape($address['shipcomplemento'])));
+			$GLOBALS['ShipBairro'] 			= ucwords(strtolower(isc_html_escape($address['shipbairro'])));
+			$GLOBALS['ShipCpf'] 			= ucwords(strtolower(isc_html_escape($address['shipcpf'])));
+		}
+	 	
+	 }
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

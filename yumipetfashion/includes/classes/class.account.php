@@ -1160,7 +1160,9 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 
 			while ($row = $GLOBALS['ISC_CLASS_DB']->Fetch($result)) {
 				$order = $row;
-				$GLOBALS['OrderDate'] = isc_date(GetConfig('DisplayDateFormat'), $row['orddate']);
+				/* EDAZCOMMERCE - FORMATA DATA POR EXTENSO */
+				$dataFormatada = getFormataDataExtenso($row['orddate']);
+				$GLOBALS['OrderDate'] = $dataFormatada; //isc_date(GetConfig('DisplayDateFormat'), $row['orddate']);
 				$GLOBALS['OrderId'] = $row['orderid'];
 				$GLOBALS['OrderTotal'] = CurrencyConvertFormatPrice($row['total_inc_tax'], $row['ordcurrencyid'], $row['ordcurrencyexchangerate'], true);
 				$GLOBALS['OrderStatus'] = $row['ordstatustext'];
@@ -1306,7 +1308,10 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 			// Are there any orders for this customer
 			if ($GLOBALS['ISC_CLASS_DB']->CountResult($result) > 0) {
 				while ($row = $GLOBALS['ISC_CLASS_DB']->Fetch($result)) {
-					$GLOBALS['OrderDate'] = isc_date(GetConfig('DisplayDateFormat'), $row['orddate']);
+					/* EDAZCOMMERCE - FORMATA DATA POR EXTENSO */
+					$dataFormatada = getFormataDataExtenso($row['orddate']);
+					$GLOBALS['OrderDate'] = $dataFormatada; //isc_date(GetConfig('DisplayDateFormat'), $row['orddate']);
+					
 					$GLOBALS['OrderId'] = $row['orderid'];
 					$GLOBALS['OrderTotal'] = CurrencyConvertFormatPrice($row['total_inc_tax'], $row['ordcurrencyid'], $row['ordcurrencyexchangerate'], true);
 
@@ -2047,31 +2052,17 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 			if(!$row['ordstatus']) {
 				$GLOBALS['ShowOrderActions'] = 'display:none';
 			}
-
-			$GLOBALS['OrderDate'] = isc_date(GetConfig('ExtendedDisplayDateFormat'), $row['orddate']);
+			
+			/* EDAZCOMMERCE - FORMATA DATA POR EXTENSO */
+			$dataFormatada = getFormataDataExtenso($row['orddate']);
+			$GLOBALS['OrderDate'] = $dataFormatada; //isc_date(GetConfig('ExtendedDisplayDateFormat'), $row['orddate']);
 
 			$GLOBALS['OrderTotal'] = CurrencyConvertFormatPrice($row['total_inc_tax'], $row['ordcurrencyid'], $row['ordcurrencyexchangerate'], true);
 
-			// Format the billing address
-			$GLOBALS['ShipFullName'] = isc_html_escape($row['ordbillfirstname'].' '.$row['ordbilllastname']);
-			$GLOBALS['ShipCompany'] = '';
-			if($row['ordbillcompany']) {
-				$GLOBALS['ShipCompany'] = '<br />'.isc_html_escape($row['ordbillcompany']);
-			}
-
-			$GLOBALS['ShipAddressLines'] = isc_html_escape($row['ordbillstreet1']);
-
-			if ($row['ordbillstreet2'] != "") {
-				$GLOBALS['ShipAddressLines'] .= '<br />' . isc_html_escape($row['ordbillstreet2']);
-			}
-
-			$GLOBALS['ShipSuburb'] = isc_html_escape($row['ordbillsuburb']);
-			$GLOBALS['ShipState'] = isc_html_escape($row['ordbillstate']);
-			$GLOBALS['ShipZip'] = isc_html_escape($row['ordbillzip']);
-			$GLOBALS['ShipCountry'] = isc_html_escape($row['ordbillcountry']);
-			$GLOBALS['ShipPhone'] = "";
+			/* EDAZCOMMERCE - PEGA OS DADOS DO ENDEREÇO DE FATURA DO PEDIDO E SETA PROPRIEDADES GLOBAIS */
+			getEnderecoDeFaturaDoPedido($order['orderid'], $order['billing_address_id']);
 			$GLOBALS['BillingAddress'] = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("AddressLabel");
-
+			
 			// Is there a shipping address, or is it a digital download?
 			if ($order['ordisdigital']) {
 				$GLOBALS['HideSingleShippingAddress'] = 'display: none';
@@ -2082,25 +2073,9 @@ require_once(ISC_BASE_PATH . '/lib/addressvalidation.php');
 			}
 			else {
 				$shippingAddress = current($addresses);
-				$GLOBALS['ShipFullName'] = isc_html_escape($shippingAddress['first_name'].' '.$shippingAddress['last_name']);
 
-				$GLOBALS['ShipCompany'] = '';
-				if($shippingAddress['company']) {
-					$GLOBALS['ShipCompany'] = '<br />'.isc_html_escape($shippingAddress['company']);
-				}
-
-				$GLOBALS['ShipAddressLines'] = isc_html_escape($shippingAddress['address_1']);
-
-				if ($shippingAddress['address_2'] != "") {
-					$GLOBALS['ShipAddressLines'] .= '<br />' . isc_html_escape($shippingAddress['address_2']);
-				}
-
-				$GLOBALS['ShipSuburb'] = isc_html_escape($shippingAddress['city']);
-				$GLOBALS['ShipState'] = isc_html_escape($shippingAddress['state']);
-				$GLOBALS['ShipZip'] = isc_html_escape($shippingAddress['zip']);
-				$GLOBALS['ShipCountry'] = isc_html_escape($shippingAddress['country']);
-
-				$GLOBALS['ShipPhone'] = "";
+				/* EDAZCOMMERCE - PEGA OS DADOS DO ENDEREÇO DE ENTREGA DO PEDIDO E SETA PROPRIEDADES GLOBAIS */
+				getEnderecoDeEntregaDoPedido($order['orderid'], $shippingAddress['shipping_address_id']);
 				$GLOBALS['ShippingAddress'] = $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("AddressLabel");
 			}
 

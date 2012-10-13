@@ -2365,4 +2365,6 @@ dl.OrderProductEventDate {
 	text-decoration: underline;
 }
 
+/* ADMIN - PEDIDOS */
 .QuickViewPanel table tr td { padding: 3px 0; }
+.QuickView .QuickViewPanel .orderQuickViewShippingBlockItems blockquote { margin: 5px 0 0 18px; }

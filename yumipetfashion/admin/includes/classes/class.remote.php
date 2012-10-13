@@ -1906,12 +1906,7 @@
 		}
 
 		/**
-		 * Display the quick view for an order
-		 *
-		 * @return void
-		 **/
-		/**
-		 * Display the quick view for an order
+		 * Display the quick view for an order 
 		 *
 		 * @return void
 		 **/

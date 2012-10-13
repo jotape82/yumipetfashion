@@ -547,11 +547,11 @@ function FormatPrice($price, $strip_decimals=false, $add_token=true, $strip_thou
 			$num = $num . $currency['currencystring'];
 		}
 	}
-
+	/*
 	if($includeCurrencyCode == true) {
 		$num .= ' '.$currency['currencycode'];
 	}
-
+	*/
 	if($negative) {
 		$num = '-'.$num;
 	}
