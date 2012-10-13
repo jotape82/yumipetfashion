@@ -20,8 +20,8 @@ $stylecss  = "<style>";
 $stylecss .= 	".classTD1{ width: 100px; height: 30px; font-family: Arial; font-size: 12px; color: #404040; font-weight: bold; text-transform: uppercase; }";
 $stylecss .= 	".classTD2{ width: 600px; height: 30px; font-family: Arial; font-size: 12px; color: #404040; }";
 $stylecss .= 	".classTitulo{ background-color: #F9F9F9; color: #909090; font-family: Arial; font-size: 22px; font-weight: bold; padding: 15px 5px; }";
-$stylecss .= 	".classNomeProduto{ font-family: Arial; font-size: 16px; color: #404040; font-weight: bold; }";
-$stylecss .= 	".classDescricaoProduto{ font-family: Arial; font-size: 12px; color: #909090; }";
+$stylecss .= 	".classNomeProduto{ font-family: Arial; font-size: 18px; color: #909090; font-weight: bold; }";
+$stylecss .= 	".classDescricaoProduto{ font-family: Arial; font-size: 12px; color: #404040; }";
 $stylecss .= 	".classRodapeNomeLoja{ font-family: Arial; font-size: 14px; color: #404040; font-weight: bold; font-style: italic; text-align: right; padding-right: 10px; }";
 $stylecss .= 	".divisorRodape{ width: 550px; float: right; color: #E5E5E5; }";
 $stylecss .= "</style>";
@@ -40,7 +40,7 @@ if($solicitarOrcamento){
 	$mensagemEmail[] = 			"<table>";
 	$mensagemEmail[] = 				"<tr>";
 	$mensagemEmail[] = 					"<td class='classTD1'>#NEWLINE#<img src='".$imagemProduto."'>#NEWLINE#</td>";
-	$mensagemEmail[] = 					"<td class='classNomeProduto' valign='top' style='padding-left: 10px;'>
+	$mensagemEmail[] = 					"<td class='classNomeProduto' style='padding-left: 5px;'>
 											$nomeProduto<br>
 											<span class='classDescricaoProduto'>$descricaoAtributos</span>
 										</td>";
