@@ -36,10 +36,10 @@ class __TwigTemplate_00a5e4cfa9b92627e177fcb16a1747e8 extends Twig_Template
         // line 12
         echo getLang("Delete");
         echo "</a>
-\t\t\t\t\t<a href=\"#\" class=\"productImageEdit\">";
+\t\t\t\t\t<!--<a href=\"#\" class=\"productImageEdit\">";
         // line 13
         echo getLang("Edit");
-        echo "</a>
+        echo "</a>-->
 \t\t\t\t</td>
 \t\t\t</tr>
 \t\t</tbody>

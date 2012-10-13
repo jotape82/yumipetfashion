@@ -4,8 +4,9 @@
 .tituloDiv { color: #808080; font-size: 23px; font-weight: bold; margin: 10px 0; width: auto; }
 .faleConoscoSolicitarOrcamento { float: left; margin-bottom: 10px; width: 100%; }
 .faleConoscoSolicitarOrcamento .tituloDivOrcamento { color: #808080; font-size: 16px; font-weight: normal; margin: 10px 0; width: 410px; background-color: #F9F9F9; }
-.faleConoscoSolicitarOrcamento .orcamentoImagemProduto{ width: 150px; float: left; }
+.faleConoscoSolicitarOrcamento .orcamentoImagemProduto{ float: left; }
 .faleConoscoSolicitarOrcamento .orcamentoNomeProduto{ color: #606060; float: left; font-size: 17px; margin-left: 10px; }
+.faleConoscoSolicitarOrcamento .orcamentoDescricaoAtributosProduto { clear: left; float: left; color: #666666; font-size: 12px; margin: 2px 10px; }
 .wrapperCamposFaleConosco { background-color: #FAFAFA; color: #707070; float: left; padding: 6px; border: 1px solid #EAEAEA; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
 .wrapperCamposFaleConosco a { color: #000000; }
 .tituloEntreEmContato { background-color: #F9F9F9; font-weight: bold; margin-bottom: 10px; }
