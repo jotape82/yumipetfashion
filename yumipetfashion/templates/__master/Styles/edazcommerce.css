@@ -634,7 +634,7 @@ li.separador_links_footer{
 	margin-bottom: 20px !important;
 }
 
-#CartContent { margin-bottom: 25px; float: left; }
+#CartContent { margin-bottom: 25px; }
 
 .AccountOrderStatusList { margin-left: 20px !important; }
 .cieloPaymentLeftDiv  { width: 340px; float: left; }
