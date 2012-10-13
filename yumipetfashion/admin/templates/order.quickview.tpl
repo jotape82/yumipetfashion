@@ -260,7 +260,7 @@
 									<td class="text" valign="top">{% lang 'ShippingDate' %}:</td>
 									<td class="text">
 										{% if order.orddateshipped %}
-											{{ order.orddateshipped|date('DisplayDateFormat') }}
+											{{ order.orddateshipped|date('d/m/Y') }}
 										{% else %}
 											{{ lang.NA }}
 										{% endif %}
