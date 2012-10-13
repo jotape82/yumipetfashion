@@ -19,9 +19,9 @@ CLASS ISC_TOPMENU_PANEL extends PANEL
 				// If they're a customer, set their name so it's available in the templates
 				$c = GetClass('ISC_CUSTOMER');
 				$customerData = $c->GetCustomerDataByToken();
-				$GLOBALS['CurrentCustomerFirstName'] = isc_html_escape($customerData['custconfirstname']);
-				$GLOBALS['CurrentCustomerLastName'] = isc_html_escape($customerData['custconlastname']);
-				$GLOBALS['CurrentCustomerEmail'] = isc_html_escape($customerData['custconemail']);
+				$GLOBALS['CurrentCustomerFirstName'] = isc_html_escape(ucwords(strtolower($customerData['custconfirstname'])));
+				$GLOBALS['CurrentCustomerLastName'] = isc_html_escape(ucwords(strtolower($customerData['custconlastname'])));
+				$GLOBALS['CurrentCustomerEmail'] = isc_html_escape(strtolower($customerData['custconemail']));
 
 				$GLOBALS['LoginOrLogoutLink'] = "login.php?action=logout";
 				//$GLOBALS['LoginOrLogoutText'] = sprintf(GetLang('LogoutLink'), $GLOBALS['ShopPathNormal']);
