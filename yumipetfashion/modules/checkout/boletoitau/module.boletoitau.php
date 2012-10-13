@@ -1,5 +1,7 @@
 <?php
-
+	
+	require_once(dirname(__FILE__) . '/../checkoutEdazCommerce.php');
+	
 	class CHECKOUT_boletoitau extends ISC_CHECKOUT_PROVIDER
 	{
 
@@ -278,55 +280,48 @@
 			   "rows" => 7
 			);
 			
-
-
-			
-			
-			
 		}
 
 	function getofflinepaymentmessage($id){
-	
-			$order = LoadPendingOrderByToken($_COOKIE['SHOP_ORDER_TOKEN']);
+
+		if($id != ''){
+			$objCheckoutEdazCommerce = new checkoutEdazCommerce();
+			$tokenOrder = $objCheckoutEdazCommerce->getTokenByOrderId($id);
+			$order = LoadPendingOrderByToken($tokenOrder);
+		}else{
+			$order = LoadPendingOrderByToken($_COOKIE['SHOP_TOKEN']);
+		}
 			
-			$desc1 = $this->GetValue("desconto");
+		$desc1 = $this->GetValue("desconto");
 
-	$total = $order['ordgatewayamount'];
-	$c = ($total/100)*$desc1;
-	$valorpg = str_replace(",", ".",$total-$c);
-	$valorfinal = number_format($valorpg, 2, '.', '');
+		$total = $order['ordgatewayamount'];
+		$c = ($total/100)*$desc1;
+		$valorpg = str_replace(",", ".",$total-$c);
+		$valorfinal = number_format($valorpg, 2, '.', '');
 
+		if($desc1>"0"){
+		$ms = "<b>Pague seu pedido com ".$desc1."% de desconto.</b>";
+		} else {
+		$ms = '';
+		}
 
-
-if($desc1>"0"){
-$ms = "<b>Pague seu pedido com ".$desc1."% de desconto.</b>";
-} else {
-$ms = '';
-}
-
-			$billhtml = "
-<div class='FloatLeft'><b>Boleto Itau</b><br />
-".$ms."
-<br />
-</div>
-
-<br />
-
-<form action='".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/boleto_itau.php' method='post' name='boleto' target='_blank'>
-
-<input type='hidden' name='item_id' value='".$id."' />
-<input type='image' src='".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/images/gerar_boleto.png' value='submit'><br>
-URL DO BOLETO: <a href='".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/boleto_itau.php?boleto=".$id."'>".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/boleto_itau.php?boleto=".$id."</a><br><br><br>
-
-
-</form>
-
-
-";
-						
-return $billhtml;
-
-}
+		$billhtml = "
+		<div class='FloatLeft'><b>Boleto Itau</b><br />
+		".$ms."
+		<br />
+		</div>
+		
+		<br />
+		
+		<form action='".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/boleto_itau.php' method='post' name='boleto' target='_blank'>
+		
+		<input type='hidden' name='item_id' value='".$id."' />
+		<input type='image' src='".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/images/gerar_boleto.png' value='submit'><br>
+		URL DO BOLETO: <a href='".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/boleto_itau.php?boleto=".$id."'>".$GLOBALS['ShopPath']."/modules/checkout/boletoitau/boleto_itau.php?boleto=".$id."</a><br><br><br>
+		</form>";
+								
+		return $billhtml;
+	}
 	
 }
 

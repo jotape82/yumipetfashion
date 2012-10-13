@@ -228,6 +228,7 @@ function EmailInvoiceToCustomer($orderId, $newStatusId=null)
 		// no shipping addresses (digital order)
 		$GLOBALS['ShippingAddress'] = GetLang('ShippingImmediateDownload');
 	} else {
+		/*
 		// single shipping address
 		$address = $GLOBALS['ISC_CLASS_DB']->FetchRow("
 			SELECT
@@ -237,20 +238,15 @@ function EmailInvoiceToCustomer($orderId, $newStatusId=null)
 			WHERE
 				oa.order_id = " . (int)$order_row['orderid'] . "
 		");
-
 		$GLOBALS['ShipFullName'] = isc_html_escape($address['first_name'].' '.$address['last_name']);
-
 		$GLOBALS['ShipCompany'] = '';
 		if($address['company']) {
 			$GLOBALS['ShipCompany'] = '<br />'.isc_html_escape($address['company']);
 		}
-
 		$GLOBALS['ShipAddressLines'] = isc_html_escape($address['address_1']);
-
 		if ($address['address_2'] != "") {
 			$GLOBALS['ShipAddressLines'] .= '<br />' . isc_html_escape($address['address_2']);
 		}
-
 		$GLOBALS['ShipSuburb'] = isc_html_escape($address['city']);
 		$GLOBALS['ShipState'] = isc_html_escape($address['state']);
 		$GLOBALS['ShipZip'] = isc_html_escape($address['zip']);
@@ -263,37 +259,39 @@ function EmailInvoiceToCustomer($orderId, $newStatusId=null)
 		} else {
 			$GLOBALS['ShippingEmail'] = $address['email'];
 		}
+		*/
 
+		/* EDAZCOMMERCE - PEGA OS DADOS DO ENDEREÇO DE ENTREGA DO PEDIDO E SETA PROPRIEDADES GLOBAIS */
+		getEnderecoDeEntregaDoPedido($order_row['orderid']);
 		$GLOBALS['ShippingAddress'] = $emailTemplate->GetSnippet("AddressLabel");
 	}
-
+	
+	/*
 	// Format the billing address
 	$GLOBALS['ShipFullName'] = isc_html_escape($order_row['ordbillfirstname'].' '.$order_row['ordbilllastname']);
-
 	$GLOBALS['ShipCompany'] = '';
 	if($order_row['ordbillcompany']) {
 		$GLOBALS['ShipCompany'] = '<br />'.isc_html_escape($order_row['ordbillcompany']);
 	}
-
 	$GLOBALS['ShipAddressLines'] = isc_html_escape($order_row['ordbillstreet1']);
-
 	if ($order_row['ordbillstreet2'] != "") {
 		$GLOBALS['ShipAddressLines'] .= '<br />' . isc_html_escape($order_row['ordbillstreet2']);
 	}
-
 	$GLOBALS['ShipSuburb'] = isc_html_escape($order_row['ordbillsuburb']);
 	$GLOBALS['ShipState'] = isc_html_escape($order_row['ordbillstate']);
 	$GLOBALS['ShipZip'] = isc_html_escape($order_row['ordbillzip']);
 	$GLOBALS['ShipCountry'] = isc_html_escape($order_row['ordbillcountry']);
 	$GLOBALS['ShipPhone'] = isc_html_escape($order_row['ordbillphone']);
-
 	// show billing email, if any
 	if(!$order_row['ordbillemail']) {
 		$GLOBALS['HideBillingEmail'] = 'display: none';
 	} else {
 		$GLOBALS['BillingEmail'] = $order_row['ordbillemail'];
 	}
-
+	*/
+	
+	/* EDAZCOMMERCE - PEGA OS DADOS DO ENDEREÇO DE FATURA DO PEDIDO E SETA PROPRIEDADES GLOBAIS */
+	getEnderecoDeFaturaDoPedido($order_row['orderid']);
 	$GLOBALS['BillingAddress'] = $emailTemplate->GetSnippet("AddressLabel");
 
 	// Format the shipping provider's details
@@ -460,7 +458,7 @@ function EmailInvoiceToCustomer($orderId, $newStatusId=null)
 			);
 			$checkout_provider->SetOrderData($paymentData);
 			$GLOBALS['PaymentGatewayAmount'] = CurrencyConvertFormatPrice($order_row['total_inc_tax'], $order_row['ordcurrencyid'], $order_row['ordcurrencyexchangerate'], true);
-			$GLOBALS['PaymentMessage'] = $checkout_provider->GetOfflinePaymentMessage();
+			$GLOBALS['PaymentMessage'] = $checkout_provider->GetOfflinePaymentMessage($order_row['orderid']);
 			$GLOBALS['PendingPaymentDetails'] = $emailTemplate->GetSnippet("InvoicePendingPaymentDetails");
 			$GLOBALS['PendingPaymentNotice'] = $emailTemplate->GetSnippet("InvoicePendingPaymentNotice");
 		}
