@@ -6,8 +6,12 @@ if($itemId=="" || $itemId==NULL || !isset($itemId)){
 $itemId = $_GET['boleto'];
 }
 
-
 include "../../../dados.php";
+
+/* EDAZCOMMERCE - PROPRIEDADES GERAÇÃO BOLETO MANUAL */
+$gerarBoletoManual = (isset($_GET['gerarBoletoManual'])) ? $_GET['gerarBoletoManual'] : '';
+$valor			   = (isset($_GET['valor'])) 			 ? $_GET['valor'] 			  : '';;
+$dias			   = (isset($_GET['dias'])) 			 ? $_GET['dias'] 			  : '';;
 
 //Variaveis do modulo
 //$BoletoDesc 				= corinthias("checkout_boletoitau","desconto");
@@ -31,13 +35,19 @@ $BoletoAgencia 				= corinthias("checkout_boletoitau","boletoitauagencia");
 $BoletoConta 				= corinthias("checkout_boletoitau","boletoitauconta");
 $BoletoDV 					= corinthias("checkout_boletoitau","boletoitaudv");
 
+/* EDAZCOMMERCE - GERAÇÃO DE BOLETO MANUALMENTE */
+if($gerarBoletoManual == 'true'){
+	$prazo 		 = $dias;
+	$valorBoleto = $valor;
+}else{
+	$prazo 		 = $BoletodiasVencimento;
+	$valorBoleto = $fetch_order['total_inc_tax'];;
+}
+
 //Variaveis da compra.
-$valorBoleto = $fetch_order['total_inc_tax'];
-$sacadoBoleto = $fetch_order['ordbillfirstname']." ".$fetch_order['ordbilllastname'];
+//$valorBoleto    = $fetch_order['total_inc_tax'];
+$sacadoBoleto   = $fetch_order['ordbillfirstname']." ".$fetch_order['ordbilllastname'];
 $enderecoBoleto = $fetch_order['ordbillstreet1']." - ".$fetch_order['ordbillsuburb']." - ".$fetch_order['ordbillstate'].", CEP: ".$fetch_order['ordbillzip'];
-
-
-$prazo = $BoletodiasVencimento;
 
 $data_venc = date("d/m/Y", time() + ($prazo * 86400)); 
 $valor_cobrado = $valorBoleto;
