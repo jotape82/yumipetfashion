@@ -22,13 +22,13 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 .Content .ProductList li { overflow: visible !important; }
 
 /********** CHECKOU CIELO **********/
-.finalizacaoPedidoBlock blockquote{
-	margin: 0 !important;
-	margin-bottom: 20px;
-}
+.finalizacaoPedidoBlock { width: 570px; }
+.finalizacaoPedidoBlock form { clear: left; float: left; margin-top: 10px; }
+.finalizacaoPedidoBlock form a { clear: left; float: left; }
+.finalizacaoPedidoBlock blockquote { margin-left: 0; }
 
 .checkout_cielo_parcelas_div{
-
+	color: #808080;
 }
 
 .bandeirasLinks{
@@ -52,7 +52,7 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 }
 
 .checkou_cielo_payment_div{
-	width: 405px;
+	width: 100%;
 	float: left;
 }
 
@@ -637,8 +637,8 @@ li.separador_links_footer{
 #CartContent { margin-bottom: 25px; }
 
 .AccountOrderStatusList { margin-left: 20px !important; }
-.cieloPaymentLeftDiv  { width: 340px; float: left; }
-.cieloPaymentRightDiv { float: left; width: 10px; margin-top: -90px; }
+.cieloPaymentLeftDiv  { float: left; margin-right: 10px; width: 390px; }
+.cieloPaymentRightDiv { float: left; margin-top: -60px; width: 340px; }
 
 .AccountOrderStatusList li { clear: left; }
 #OrderConfirmationForm li  { list-style: none; }

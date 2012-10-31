@@ -111,7 +111,15 @@
 			if($this->pendingData['paymentmodule'] == 'checkout_cielo'){	
 				$GLOBALS['orderID'] 	  = $orderID;
 				$pedidoJaProcessado 	  = $this->verificaPedidoJaProcessado($orderID);
-				$GLOBALS['HideMenuRight'] = (!$pedidoJaProcessado) ? 'displayNone' : '';
+				
+				if(!$pedidoJaProcessado){
+					$cieloCss  = "<style>";
+					$cieloCss .= " .finalizacaoPedidoBlock { width: 740px; } ";
+					$cieloCss .= " .finalizacaoPedidoBlock blockquote { margin: 0 !important; margin-bottom: 20px; } ";
+					$cieloCss .= "</style>";
+					$GLOBALS['HideMenuRight'] 				   	= 'displayNone';
+					$GLOBALS['FinalizacaoPedidoBlockCielo_CSS'] = $cieloCss;
+				}
 			}
 			
 			if($this->pendingData['storecreditamount'] > 0) {

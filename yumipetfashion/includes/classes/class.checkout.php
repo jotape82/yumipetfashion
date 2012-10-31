@@ -2495,6 +2495,13 @@ class ISC_CHECKOUT
 				else {
 					$GLOBALS['ProviderPaymentFormClass'] = '';
 				}
+				
+				/* EDAZCOMMERCE */
+				$GLOBALS['OcultaMetodoTemporario'] = '';
+				if($providerId == 'checkout_cielo'){
+					$GLOBALS['ProviderName'] = 'Cartão de Crédito';
+				}
+				
 				$GLOBALS['PaymentFieldPrefix'] = '';
 				$GLOBALS['PaymentProviders'] .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("CheckoutProviderOption");
 				$GLOBALS['PaymentFieldPrefix'] = 'credit_';
