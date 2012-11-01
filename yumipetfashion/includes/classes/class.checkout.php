@@ -2498,8 +2498,12 @@ class ISC_CHECKOUT
 				
 				/* EDAZCOMMERCE */
 				$GLOBALS['OcultaMetodoTemporario'] = '';
+				$GLOBALS['ClassHomologacaoCielo']  = '';
 				if($providerId == 'checkout_cielo'){
 					$GLOBALS['ProviderName'] = 'Cartão de Crédito';
+					/* HOMOLOGACAO CIELO */
+					$GLOBALS['ProviderName'] 		   = 'CARTÃO - APENAS PARA HOMOLOGAÇÃO CIELO';
+					$GLOBALS['ClassHomologacaoCielo']  = 'cielo_homologacao_alert';
 				}
 				
 				$GLOBALS['PaymentFieldPrefix'] = '';

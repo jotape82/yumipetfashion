@@ -27,6 +27,13 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 .finalizacaoPedidoBlock form a { clear: left; float: left; }
 .finalizacaoPedidoBlock blockquote { margin-left: 0; }
 
+.cielo_homologacao_alert{
+	background-color: #000000;
+	color: yellow;
+	padding: 3px;
+	font-weight: bold;
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+}
 .checkout_cielo_parcelas_div{
 	color: #808080;
 }
