@@ -2468,8 +2468,16 @@ class ISC_CHECKOUT
 					$GLOBALS['TargetNameMethodSelected'] = "Boleto";
 					$GLOBALS['TitleItemPayment'] = (!isset($GLOBALS['TitleItemPayment'])) ? "<li class='tituloGrupoMetodosPagamento'>Boleto Bancário " . $descricaoDescontoBoleto . ": <span class='nomeMetodoPagamentoSelecionado metodoBoleto'></span></li>" : "";
 				}else{
+					/* VERIFICA SE EXISTE DESCONTO CADASTRADO NA LOJA NO DÉBITO PELO CAR~TAO DE CRÉDITO */
+					$query = "
+						SELECT variableval FROM [|PREFIX|]module_vars
+						WHERE modulename = 'checkout_cielo'
+						AND variablename = 'desconto' ";
+					$descontoPercentual  = (int) $GLOBALS['ISC_CLASS_DB']->FetchOne($query);
+					$descricaoDesconto   = (isset($descontoPercentual) && $descontoPercentual > 0) ? '(' . $descontoPercentual . '% de Desconto no Débito À Vista - Visa Electron)' : '';
+					
 					$GLOBALS['TargetNameMethodSelected'] = "Outros";
-					$GLOBALS['TitleItemPayment'] = ($proximoGrupoAposBoletos) ? "<li class='tituloGrupoMetodosPagamento'>Cartão de Crétido / Outros: <span class='nomeMetodoPagamentoSelecionado metodoOutros'></span></li>" : "";
+					$GLOBALS['TitleItemPayment'] = ($proximoGrupoAposBoletos) ? "<li class='tituloGrupoMetodosPagamento'>Cartão de Crétido / Outros " . $descricaoDesconto . ": <span class='nomeMetodoPagamentoSelecionado metodoOutros'></span></li>" : "";
 					if($proximoGrupoAposBoletos || $countItem == $qtdeItemPorLinha){
 						$GLOBALS['ClassItemPayment'] = "clearLeft";
 						if($countItem == $qtdeItemPorLinha){
