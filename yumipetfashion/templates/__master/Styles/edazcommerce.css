@@ -38,6 +38,10 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 	color: #808080;
 }
 
+.botaoPagarAgoraCielo{
+	cursor: pointer;
+}
+
 .bandeirasLinks{
 	text-align: center;
 }
