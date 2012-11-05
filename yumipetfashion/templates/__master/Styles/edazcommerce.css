@@ -69,7 +69,8 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 
 #checkou_cielo_iframe{
 	display: none;
-	width: 100%;
+    width: 750px;
+	margin-top: 20px;
 }
 
 #checkou_cielo_iframe_ajax{
