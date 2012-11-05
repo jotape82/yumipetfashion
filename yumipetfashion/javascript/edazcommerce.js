@@ -69,9 +69,11 @@ $(document).ready(function() {
 	}
 	
 	/* ===== INICIO - CHECKOUT CIELO ===== */
+	/*
 	$('.checkout_cielo_parcelas_div > div > input:radio').click(function(){
 		pegavalor();
 	});
+	*/
 	/* ===== FIM - CHECKOUT CIELO ===== */
 	
 	/* ===== INICIO - BUSCA POR CEP ===== */

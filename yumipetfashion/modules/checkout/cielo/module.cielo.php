@@ -232,7 +232,7 @@ function pegavalor() {
 		fabrewin(valor);
 		return true;
 	}else{
-		alert('".GetLang('SelecioneCielo')."');
+		alert('".GetLang('SelecioneParcela')."');
 	}
 }
 
@@ -396,7 +396,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do visa
 
@@ -429,8 +429,7 @@ $help .= "<div id='debito' style='display:none;'>
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
-</a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do debito
 
@@ -482,8 +481,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
-</a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do mastercard
 
@@ -534,8 +532,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
-</a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do elo
 
@@ -586,8 +583,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
-</a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do diners
 
@@ -602,6 +598,8 @@ $help .= "<div id='dis' style='display:none;'>
 
 <br>";
 
+/* DESABILITANDO PARCELAS DO DISCOVER - SÓ ACEITA À VISTA */
+/*
 for($j=2; $j<=$div;$j++) {
 
 
@@ -635,11 +633,11 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 }
 
 }
+*/
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
-</a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim do discover
 
@@ -691,8 +689,7 @@ $help .= "&nbsp;&nbsp;<input type='radio' id='forma' name='forma' value='".base6
 
 $help .= "
 <br>
-<a onclick=\"javascript:pegavalor();\" class='displayNone'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'>
-</a>
+<a onclick=\"pegavalor();\" class='botaoPagarAgoraCielo'><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/pagar.gif'></a>
 </div>"; 
 //fim amex
 
