@@ -278,6 +278,7 @@ function fabrewin(valor)
 {
 var urlPayment = '".$GLOBALS['ShopPath']."/modules/checkout/cielo/pagar.php?token='+valor;
 
+$('html,body').animate({scrollTop: $('.checkou_cielo_payment_div').offset().top}, 1500);
 $('#checkou_cielo_iframe').fadeOut('fast', function(){
 	$('#checkou_cielo_iframe_ajax').css('height','660px');
 	$('#checkou_cielo_iframe_ajax').fadeIn('slow');
