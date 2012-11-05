@@ -9,7 +9,7 @@
 
 .DashboardPanelContent {
 	border: 1px solid #ccc;
-	padding: 15px;
+	padding: 10px;
 	position: relative;
 }
 
@@ -281,7 +281,7 @@
 
 .DashboardRecentOrderList li span.OrderStatus {
 	text-transform: uppercase;
-	width: 130px;
+	width: 150px;
 	display: block;
 	white-space: nowrap;
 	text-align: center;
@@ -304,7 +304,8 @@ span.OrderDetails a {
 
 .DashboardRecentOrderList li span.OrderDetails {
 	position: relative;
-	left: 140px;
+	left: 150px;
+	width: 270px;
 	display: inline-block;
 }
 
