@@ -56,7 +56,7 @@
   }
   $Pedido->dadosEcNumero     = $afiliacao;
   $Pedido->dadosEcChave      = $chave;
-  $Pedido->capturar          = "true"; //"false"
+  $Pedido->capturar          = "false";
   $Pedido->autorizar         = $autorizar;
   $Pedido->dadosPedidoNumero = $itemId;
   $Pedido->dadosPedidoValor  = $valor;
