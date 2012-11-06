@@ -2514,6 +2514,8 @@ class ISC_CHECKOUT
 					$GLOBALS['ProviderName'] 		   = 'CARTÃO - APENAS PARA HOMOLOGAÇÃO CIELO';
 					$GLOBALS['ClassHomologacaoCielo']  = 'cielo_homologacao_alert';
 					*/
+				}else if($providerId == 'checkout_pagseguro'){
+					$GLOBALS['OcultaMetodoTemporario'] = 'displayNone';
 				}
 				
 				$GLOBALS['PaymentFieldPrefix'] = '';
