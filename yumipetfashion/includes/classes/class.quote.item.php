@@ -51,6 +51,8 @@ class ISC_QUOTE_ITEM
 	 * @var string The name of the product, as it exists in the quote.
 	 */
 	protected $name = '';
+	
+	protected $novoNomeRegraDesconto = '';
 
 	protected $basePrice = null;
 
@@ -1294,12 +1296,22 @@ class ISC_QUOTE_ITEM
 
 	public function getName()
 	{
+		/* EDAZCOMMERCE - Se Existir, Retorna o Novo Nome do Produto Brinde (Regra de Desconto) */
+		if($this->novoNomeRegraDesconto != ''){
+			return $this->novoNomeRegraDesconto;
+		}
+		
 		$productData = $this->getProductData();
 		if (!empty($productData['prodname'])) {
 			return $productData['prodname'];
 		}
 
 		return $this->name;
+	}
+	
+	public function setNovoNomeRegraDesconto($novoNomeRegraDesconto){
+		$this->novoNomeRegraDesconto = $novoNomeRegraDesconto;
+		return $this;
 	}
 
 	public function setBasePrice($price, $isCustomPrice = false)
