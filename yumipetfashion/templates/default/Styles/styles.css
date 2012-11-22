@@ -2317,6 +2317,10 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 	background: url(../img/layout/banner/banner4.jpg) no-repeat;
 }
 
+.bannerHomeSlider5{
+	background: url(../img/layout/banner/banner5.jpg) no-repeat;
+}
+
 .seta_obrigatorio{
 	float: left;
 	width: 25px;
