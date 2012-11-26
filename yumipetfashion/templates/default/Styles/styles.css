@@ -2347,3 +2347,11 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 	display: none;
 	background: url(../images/ajax-loader.gif) no-repeat;
 }
+
+.criarNovaContaHeader{
+	width: 139px;
+	height: 30px;
+	float: left;
+	margin-top: -4px;
+	background: url(../img/layout/header/criar_nova_conta.gif) no-repeat;
+}
