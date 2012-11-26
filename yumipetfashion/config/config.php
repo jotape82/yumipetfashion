@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 5th Oct 2012 @ 3:15 PM
+	// Last Updated: 1st Nov 2012 @ 2:24 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -78,7 +78,7 @@
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_cheque,checkout_cielo,checkout_deposito,checkout_pagseguro';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletoitau,checkout_cielo';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;

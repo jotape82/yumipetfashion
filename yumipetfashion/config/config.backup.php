@@ -1,6 +1,6 @@
 <?php
 
-	// Last Updated: 24th Sep 2012 @ 12:48 AM
+	// Last Updated: 1st Nov 2012 @ 2:23 PM
 
 	$GLOBALS['ISC_CFG']["isSetup"] = true;
 	$GLOBALS['ISC_CFG']["Language"] = 'br';
@@ -62,7 +62,7 @@
 	$GLOBALS['ISC_CFG']["CaptchaEnabled"] = 0;
 	$GLOBALS['ISC_CFG']["ShowCartSuggestions"] = 1;
 	$GLOBALS['ISC_CFG']["AdminEmail"] = 'teste@teste.com.br';
-	$GLOBALS['ISC_CFG']["OrderEmail"] = 'teste@teste.com.br';
+	$GLOBALS['ISC_CFG']["OrderEmail"] = 'leonardo.sargo@gmail.com';
 	$GLOBALS['ISC_CFG']['LowInventoryNotificationAddress'] = 'atendimento@yumipetfashion.com.br';
 	$GLOBALS['ISC_CFG']["ShowThumbsInCart"] = 1;
 	$GLOBALS['ISC_CFG']["AutoApproveReviews"] = 0;
@@ -78,7 +78,7 @@
 	$GLOBALS['ISC_CFG']["CompanyZip"] = '11040001';
 
 	// Checkout Settings
-	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletobradesco,checkout_boletobancodobrasil,checkout_boletoitau,checkout_cheque,checkout_cielo,checkout_deposito,checkout_pagseguro';
+	$GLOBALS['ISC_CFG']["CheckoutMethods"] = 'checkout_boletoitau,checkout_cielo';
 	$GLOBALS['ISC_CFG']['CheckoutType'] = 'single';
 	$GLOBALS['ISC_CFG']['GuestCheckoutEnabled'] = 1;
 	$GLOBALS['ISC_CFG']['GuestCheckoutCreateAccounts'] = 1;
@@ -326,7 +326,7 @@
 	$GLOBALS['ISC_CFG']["DownForMaintenanceMessage"] = '';
 
 	// Starting Order Number
-	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 130;
+	$GLOBALS['ISC_CFG']["StartingOrderNumber"] = 252;
 
 	// Shipping Manager Settings
 	$GLOBALS['ISC_CFG']['ShippingManagerModules'] = '';
