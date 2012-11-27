@@ -730,6 +730,7 @@ li.separador_links_footer{
 .sliderCarousel .disable { visibility: hidden; }
 
 /* CAROUSEL - SLIDER MARCAS */
+#SideShopByBrand { display: none; } /* DESABILITADO */
 .sliderCarouselMarcas .viewport { float: left; width: 550px; height: 110px; overflow: hidden; position: relative; border-radius: 10px; -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1)"; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#F1F1F1); background: -moz-linear-gradient(top, #FFFFFF, #F1F1F1) repeat-X; background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F1F1F1)) repeat-X; }
 .sliderCarouselMarcas .prev { position: absolute; margin: 35px -15px; z-index: 10; }
 .sliderCarouselMarcas .next { position: absolute; margin: 35px 530px; background-position: 0 0;  }
