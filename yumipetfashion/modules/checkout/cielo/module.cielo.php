@@ -224,7 +224,10 @@ if($valor>$minima) {
 
 $help = "
 <script type='text/javascript'>
-var bandeiraSelecionada;
+var divParcelas,
+	divPagamento,
+	bandeirasLinks,
+	bandeiraSelecionada;
 
 function pegavalor() {
 	var valor = getCheckedValue();
@@ -246,25 +249,33 @@ function getCheckedValue() {
 	}
 	*/
 
-	return $('#' + bandeiraSelecionada + ' input:checked').val();
+	return $(divParcelas).find('#' + bandeiraSelecionada + ' input:checked').val();
 }
 
-function carregaParcelas(bandeira){
-	var arrayBandeiras = ['credito', 'debito', 'master', 'elo', 'din', 'dis', 'ame'];
-
+function carregaParcelas(bandeira, obj){
+	var arrayBanceiras;
+	
+	arrayBandeiras 		= ['credito', 'debito', 'master', 'elo', 'din', 'dis', 'ame'];
 	bandeiraSelecionada = bandeira;
-
+	
+	bandeirasLinks = $(obj).parents('.bandeirasLinks');
+	divParcelas    = $(obj).parents('.cieloPaymentLeftDiv').next('.cieloPaymentRightDiv');
+	divPagamento   = $(divParcelas).next('.checkou_cielo_payment_div');
+	
+	$(bandeirasLinks).find('.opcoesGrupoMetodosPagamento').removeClass('bandeiraSelecionada');
+	$(obj).parents('.opcoesGrupoMetodosPagamento').addClass('bandeiraSelecionada');
+	
 	if(!transacaoConcluida){
 		for(var i=0; i<arrayBandeiras.length; i++){
 			if((arrayBandeiras[i] == bandeira)){
-				$('#' + arrayBandeiras[i]).fadeIn(1500);
+				$(divParcelas).find('#' + arrayBandeiras[i]).fadeIn(1500);
 			}else{
-				$('#' + arrayBandeiras[i]).hide();
+				$(divParcelas).find('#' + arrayBandeiras[i]).hide();
 			}
 		}
 	
 		/* FadeOut na Iframe */
-		$('#checkou_cielo_iframe').fadeOut('slow');
+		$(divPagamento).find('#checkou_cielo_iframe').fadeOut('slow');
 	}
 }
 
@@ -278,15 +289,13 @@ function fabrewin(valor)
 {
 var urlPayment = '".$GLOBALS['ShopPath']."/modules/checkout/cielo/pagar.php?token='+valor;
 
-$('html,body').animate({scrollTop: $('.checkou_cielo_payment_div').offset().top}, 1500);
-$('#checkou_cielo_iframe').fadeOut('fast', function(){
-	$('#checkou_cielo_iframe_ajax').css('height','660px');
-	$('#checkou_cielo_iframe_ajax').fadeIn('slow');
-	$('#checkou_cielo_iframe').css('height','660px');
-	$('#checkou_cielo_iframe').attr('src',urlPayment);
-	$('#checkou_cielo_iframe').load(function(){
-		$('#checkou_cielo_iframe_ajax').hide();
-		$('#checkou_cielo_iframe').fadeIn('slow');
+$('html,body').animate({scrollTop: $(divPagamento).offset().top}, 1500);
+$(divPagamento).find('#checkou_cielo_iframe').fadeOut('fast', function(){
+	$(divPagamento).find('#checkou_cielo_iframe_ajax').css('height','660px').fadeIn('slow');
+	$(divPagamento).find('#checkou_cielo_iframe').css('height','660px').attr('src',urlPayment);
+	$(divPagamento).find('#checkou_cielo_iframe').load(function(){
+		$(divPagamento).find('#checkou_cielo_iframe_ajax').hide();
+		$(divPagamento).find('#checkou_cielo_iframe').fadeIn('slow');
 	});
 						
 	//mpg_popup = window.open('".$GLOBALS['ShopPath']."/modules/checkout/cielo/pagar.php?token='+valor,'mpg_popup','toolbar=0,location=0,directories=0,status=1,menubar=0,scrollbars=1,resizable=0,screenX=0,screenY=0,left=150,top=150,width=460,height=660');
@@ -310,30 +319,30 @@ $help .= "<div class='bandeirasLinks'>";
 if(is_array($meios)){
 
 if(in_array('V', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('credito');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/credito.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('credito', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/credito.png'></a></div>";
 }
 
 if(in_array('E', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('debito');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/debito.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('debito', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/debito.png'></a></div>";
 }
 
 if(in_array('M', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('master');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/master.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('master', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/master.png'></a></div>";
 }
 
 if(in_array('EL', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('elo');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/elo.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('elo', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/elo.png'></a></div>";
 }
 
 if(in_array('DIN', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('din');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/dinners.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('din', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/dinners.png'></a></div>";
 }
 
 if(in_array('DIS', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('dis');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/discover.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('dis', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/discover.png'></a></div>";
 }
 if(in_array('AM', $meios)){
-$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('ame');\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/amex.png'></a></div>";
+$help .= "<div class='opcoesGrupoMetodosPagamento'><a onclick=\"javascript:carregaParcelas('ame', this);\"><img src='".$GLOBALS['ShopPath']."/modules/checkout/cielo/images/amex.png'></a></div>";
 }
 $help .= "</div>";
  

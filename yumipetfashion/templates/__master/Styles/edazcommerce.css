@@ -62,20 +62,14 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 	cursor: pointer;
 }
 
-.checkou_cielo_payment_div{
-	width: 100%;
-	float: left;
-}
+.checkou_cielo_payment_div { width: 750px; float: left; }
+.AccountOrderStatusList .checkou_cielo_payment_div { width: 740px; }
 
-#checkou_cielo_iframe{
-	display: none;
-    width: 750px;
-	margin-top: 20px;
-}
+#checkou_cielo_iframe{ display: none;  width: 750px; margin-top: 20px; }
+.AccountOrderStatusList #checkou_cielo_iframe { display: none; width: 740px; }
 
-#checkou_cielo_iframe_ajax{
-	display: none;
-}
+#checkou_cielo_iframe_ajax{ display: none; }
+.AccountOrderStatusList #checkou_cielo_iframe_ajax { display: none; width: 740px; }
 
 .checkout_cielo_parcelas_div div #forma:hover{
 	cursor: pointer;
@@ -156,6 +150,15 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
     padding: 5px 0 0;
 	min-width: 90px;
     text-align: center;
+}
+
+.bandeiraSelecionada{
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px;
+	-moz-box-shadow: 2px -4px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -4px #A1A1A1; box-shadow: 2px -4px 5px -3px #A1A1A1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#EFEFEF)";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FFFFFF, endColorstr=#EFEFEF);
+	background: -moz-linear-gradient(top, #FFFFFF, #EFEFEF) repeat-X;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EFEFEF)) repeat-X;
 }
 
 #use_store_credit li.opcoesGrupoMetodosPagamento:hover{
@@ -651,6 +654,7 @@ li.separador_links_footer{
 .AccountOrderStatusList { margin-left: 20px !important; }
 .cieloPaymentLeftDiv  { float: left; margin-right: 10px; width: 390px; }
 .cieloPaymentRightDiv { float: left; margin-top: -60px; width: 340px; }
+.AccountOrderStatusList .cieloPaymentRightDiv { margin-top: 0px; }
 
 .AccountOrderStatusList li { clear: left; }
 #OrderConfirmationForm li  { list-style: none; }
@@ -710,7 +714,6 @@ li.separador_links_footer{
 #metodoPagamentoSelecionado { float: left; font-weight: bold; margin: 1px 10px; color: #D04AA3; }
 .wrapperFormasPagamento { float: left; margin: 0px 10px; min-width: 400px; }
 .formasPagamentoProduto { clear: left; -moz-box-shadow: 2px 2px 5px -1px #A1A1A1; -webkit-box-shadow: 2px 2px 5px -1px #A1A1A1; box-shadow: 2px 2px 5px -1px #A1A1A1; }
-.bandeiraSelecionada { -moz-box-shadow: 2px -3px 5px -3px #A1A1A1; -webkit-box-shadow: 2px -3px 5px -3px #A1A1A1; box-shadow: 2px -3px 5px -3px #A1A1A1;  background-color: #F7F7F7; }
 .parcelaSelecionada { background-color: #F7F7F7; }
 #bandeirasFormasPagamento, #parcelasFormasPagamento { clear: left; }
 #bandeirasFormasPagamento{ margin: 0px; }
