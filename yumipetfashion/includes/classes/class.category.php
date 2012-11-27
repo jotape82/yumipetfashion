@@ -540,7 +540,7 @@
 			$this->_insertOptimizerScripts();
 
 			$GLOBALS['CatId'] = (int) $this->GetId();
-			$GLOBALS['CatName'] = isc_html_escape($this->GetName());
+			$GLOBALS['CatName'] = isc_html_escape(ucwords(strtolower($this->GetName())));
 			$GLOBALS['CatDesc'] = $this->GetDesc();
 
 			$GLOBALS['CompareLink'] = CompareLink();

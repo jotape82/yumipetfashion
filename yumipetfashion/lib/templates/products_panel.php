@@ -56,7 +56,7 @@ class PRODUCTS_PANEL extends PANEL
 		}
 
 		$GLOBALS['ProductId'] = (int)$row['productid'];
-		$GLOBALS['ProductName'] = isc_html_escape($row['prodname']);
+		$GLOBALS['ProductName'] = isc_html_escape(ucwords(strtolower($row['prodname'])));
 		$GLOBALS['ProductLink'] = ProdLink($row['prodname']);
 		$GLOBALS['ProductRating'] = (int)$row['prodavgrating'];
 
