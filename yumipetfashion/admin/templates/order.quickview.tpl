@@ -158,6 +158,16 @@
 					{{ order.ordcustmessage|nl2br }}
 				</div>
 			{% endif %}
+			
+			<!-- FCONTROL -->
+			<!--
+			<div style="margin-top: 10px">
+				<h5>FControl - Controle de Fraudes</h5>
+				<div>
+					<iframe src="../modificacoes/fcontrol.php?pedido=%%GLOBAL_OrderId%%" frameborder="0" width="300" height="100" marginwidth="0" marginheight="0" vspace="0" scrolling="no"></iframe>
+				</div>
+			</div>
+			-->
 		</td>
 
 		<td valign="top" width="67%" class="QuickViewPanel" style="border: 0; padding-left: 15px; border-left: 3px solid #E9E9E9;">
