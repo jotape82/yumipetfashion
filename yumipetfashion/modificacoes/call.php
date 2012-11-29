@@ -1,8 +1,8 @@
 <?php
 include("../init.php");
-$qt 		  = $_POST['qtda'];
-$cep 		  = $_POST['cep'];
-$de 		  = $_POST['de'];
+$qt 		 = $_POST['qtda'];
+$cep 		 = $_POST['cep'];
+$de 		 = $_POST['de'];
 $largura     = (isset($_POST['largura'])     && $_POST['largura']     < 20) ?  20 : $_POST['largura']; 
 $altura 	 = (isset($_POST['altura']) 	 && $_POST['altura'] 	  < 20) ?  20 : $_POST['altura'];
 $comprimento = (isset($_POST['comprimento']) && $_POST['comprimento'] < 20) ?  20 : $_POST['comprimento'];
@@ -55,7 +55,7 @@ function correios($de,$para,$peso,$valor,$tipo) {
 	."sCepOrigem=".$de."&"
 	."sCepDestino=".$para."&"
 	."nVlPeso=".$peso."&"
-	."nCdFormato=1&"
+	."nCdFormato=3&"
 	."nVlComprimento=".$comprimento."&"
 	."nVlAltura=".$altura."&"
 	."nVlLargura=".$largura."&"
