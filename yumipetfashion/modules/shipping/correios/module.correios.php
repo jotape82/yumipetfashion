@@ -4,12 +4,10 @@
 
 		private $_deliverytype = "";
 
-
 		private $_destzip = "";
 
-
 		private $_deliverytypes = array();
-
+		
 
 		public function __construct()
 		{
@@ -114,28 +112,34 @@ public function SetCustomVars()
 
 $total = $count = 0;
 
+/* EDAZCOMMERCE - Retorna Array com as Dimensões dos Produtos do Carrinho */
+$arrayDimensoesProduto = $this->getDimensoesProdutosCarrinho();
+
+/*
 if (isset($_SESSION['CART']['ITEMS'])) {
 	foreach ($_SESSION['CART']['ITEMS'] as $item) {
 		$total += $item['product_price'] * $item['quantity'];
 	}
 }
 $total = str_replace('.',',',$total);
+*/
 $correios ="http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?"
 ."nCdEmpresa=".$this->_id."&"
 ."sDsSenha=".$this->_senha."&"
 ."sCepOrigem=".$sCepOrigem."&"
 ."sCepDestino=".$sCepDestino."&"
-."nVlPeso=".$this->_peso."&"
+."nVlPeso=".$arrayDimensoesProduto['weight']."&"
 ."nCdFormato=1&"
-."nVlComprimento=20&"
-."nVlAltura=20&"
-."nVlLargura=20&"
+."nVlComprimento=".$arrayDimensoesProduto['width']."&"
+."nVlAltura=".$arrayDimensoesProduto['height']."&"
+."nVlLargura=".$arrayDimensoesProduto['depth']."&"
 ."sCdMaoPropria=N&"
-."nVlValorDeclarado=".$total."&"
+."nVlValorDeclarado=".$arrayDimensoesProduto['price']."&"
 ."sCdAvisoRecebimento=N&"
 ."nCdServico=".$this->_deliverytype."&"
 ."nVlDiametro=0&"
 ."StrRetorno=xml";
+
 //inicia o curl
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $correios);
@@ -191,9 +195,48 @@ return false;
 
 			return $QuoteList;
 		}
-
-
-
+		
+		/**
+		 * EDAZCOMMERCE - Retorna um Array com as Dimensões do Maior Produto do Carrinho e a Soma dos Pesos e Preços de Todos os Produtos, para Cálculo do Frete
+		 */
+		public function getDimensoesProdutosCarrinho(){
+			$width  = 0;
+			$height = 0;
+			$depth  = 0;
+			$weight = 0;
+			$price  = 0;
+			$qtde   = 0;
+			
+			/* EDAZCOMMERCE - Pega Lista dos Produtos do Carrinho */
+			$arrayProductItems = $_SESSION['CART']['ITEMS'];
+			
+			foreach($arrayProductItems as $arrayTemp){
+				$arrayProduto = $arrayTemp->getProductData();
+				
+				$width   = ($arrayProduto['prodwidth']  > $width)  ? $arrayProduto['prodwidth']  : $width;
+				$height  = ($arrayProduto['prodheight'] > $height) ? $arrayProduto['prodheight'] : $height;
+				$depth   = ($arrayProduto['proddepth']  > $depth)  ? $arrayProduto['proddepth']  : $depth;
+				$qtde    = $arrayTemp->getQuantity();
+				$weight += $arrayProduto['prodweight'] * $qtde;
+				$price  += $arrayProduto['prodcalculatedprice'];
+			}
+			
+			/* Caso Necessário, Setar Valores Padrão */
+			$width  = ($width  < 20) ? 20 : $width;
+			$height = ($height < 20) ? 20 : $height;
+			$depth  = ($depth  < 20) ? 20 : $depth;
+			$weight = ($weight < 20) ? 20 : $weight;
+			
+			$arrayDimensoes = array(
+				"width"  => number_format($width,  0), 
+				"height" => number_format($height, 0), 
+				"depth"  => number_format($depth,  0), 
+				"weight" => number_format(max(ConvertWeight($weight, 'kgs'), 0.1), 1),
+				"price"  => $price
+			);
+			
+			return $arrayDimensoes;
+		} 
 
 		public function GetTrackingLink($trackingLink = "")
 		{

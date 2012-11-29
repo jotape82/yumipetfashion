@@ -55,7 +55,7 @@ function correios($de,$para,$peso,$valor,$tipo) {
 	."sCepOrigem=".$de."&"
 	."sCepDestino=".$para."&"
 	."nVlPeso=".$peso."&"
-	."nCdFormato=3&"
+	."nCdFormato=1&"
 	."nVlComprimento=".$comprimento."&"
 	."nVlAltura=".$altura."&"
 	."nVlLargura=".$largura."&"
