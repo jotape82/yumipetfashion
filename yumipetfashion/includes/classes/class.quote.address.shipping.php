@@ -164,9 +164,10 @@ class ISC_QUOTE_ADDRESS_SHIPPING extends ISC_QUOTE_ADDRESS
 				$item->getBasePrice()
 			);
 		}
-
+		
 		// Now attempt to fetch the quotes
 		if (method_exists($shippingModule, 'getServiceQuotes')) {
+			$_SESSION['CART']['ITEMS'] = $this->getQuote()->getItems();
 			$quotes = $shippingModule->getServiceQuotes();
 		}
 		else {
