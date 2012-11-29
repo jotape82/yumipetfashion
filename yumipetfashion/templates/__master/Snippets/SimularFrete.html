@@ -88,9 +88,9 @@ function makePOSTRequest(url, parameters) {
 				"&de=%%GLOBAL_CepOrigem%%" + 
 				"&valor=%%GLOBAL_Valor%%" +
 				"&peso=%%GLOBAL_Peso%%" +
-				"&largura=%%GLOBAL_Largura%%" +
-				"&altura=%%GLOBAL_Altura%%" + 
-				"&comprimento=%%GLOBAL_Profundidade%%";
+				"&comprimento=%%GLOBAL_Largura%%" +
+				"&altura=%%GLOBAL_Altura%%" +
+				"&largura=%%GLOBAL_Profundidade%%";
 		    loadingAjax("myspan","Calculando Taxas Aguarde...");
 	        makePOSTRequest('%%GLOBAL_ShopPath%%/modificacoes/call.php', poststr);
    		}
