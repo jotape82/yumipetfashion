@@ -227,6 +227,13 @@ return false;
 			$depth  = ($depth  < 20) ? 20 : $depth;
 			$weight = ($weight < 20) ? 20 : $weight;
 			
+			/* EDAZCOMMERCE - Adiciona a Porcentagem do Seguro Sobre o Valor Declarado */
+			$valorDeclarado = false;
+			$price = ($valorDeclarado) ? $price : 1;
+			
+			/* EDAZCOMMERCE - Se os Produtos da Loja foram Maleáveis/Dobráveis, fixar a Largura/Profundidade de 20cm */
+			$depth = 20;
+			
 			$arrayDimensoes = array(
 				"width"  => number_format($width,  0), 
 				"height" => number_format($height, 0), 

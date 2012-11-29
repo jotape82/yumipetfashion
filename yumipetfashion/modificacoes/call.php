@@ -44,7 +44,12 @@ function correios($de,$para,$peso,$valor,$tipo) {
 	global $altura;
 	global $comprimento;
 	
-	$valor = str_replace('.',',',$valor);
+	/* EDAZCOMMERCE - Adiciona a Porcentagem do Seguro Sobre o Valor Declarado */
+	$valorDeclarado = false;
+	$valor = ($valorDeclarado) ? $valor : 1;
+	
+	/* EDAZCOMMERCE - Se os Produtos da Loja foram Maleáveis/Dobráveis, fixar a Largura/Profundidade de 20cm */
+	$largura = 20;
 	
 	$nCdEmpresa='09119132';
 	$sDsSenha='08677327';
@@ -218,7 +223,7 @@ while($re = $GLOBALS['ISC_CLASS_DB']->Fetch($e)) {
 			</b>
 			</td>
 			<td width="145" valign="Middle" align="left"><b>'.$nom.'</b></td>
-			<td width="85" valign="Middle" align="left"><font color="blue"><strong>R$'.$var.'</strong></font></td>
+			<td width="85" valign="Middle" align="left"><font color="blue"><strong>'.$var.'</strong></font></td>
 			<td width="230" valign="Middle">Nossa loja leva o produto até você.</td>
 			</tr>';
 			break;
