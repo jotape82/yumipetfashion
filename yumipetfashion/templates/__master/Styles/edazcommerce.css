@@ -22,10 +22,10 @@ div.itemRatingForm .formLogLoading {background:url(../images/loading.gif) no-rep
 .Content .ProductList li { overflow: visible !important; }
 
 /********** CHECKOU CIELO **********/
-.finalizacaoPedidoBlock { width: 570px; }
+.finalizacaoPedidoBlock{ width: 740px; }
+.finalizacaoPedidoBlock blockquote{	margin: 0 !important; margin-bottom: 20px; }
 .finalizacaoPedidoBlock form { clear: left; float: left; margin-top: 10px; }
 .finalizacaoPedidoBlock form a { clear: left; float: left; }
-.finalizacaoPedidoBlock blockquote { margin-left: 0; }
 
 .cielo_homologacao_alert{
 	background-color: #000000;
