@@ -18,6 +18,8 @@
 			'../javascript/jquery/plugins/shiftcheckbox.js',
 			'../javascript/jquery/plugins/imodal/imodal.js',
 			'../javascript/jquery/plugins/htmlEncode/jquery.htmlEncode.js',
+			'../javascript/func_edazcommerce.js',
+			'../javascript/admin_edazcommerce.js'
 		);
 
 		/** @var array<string> urls of external script files that should be loaded at the end of the document body (preferred) */
@@ -1110,6 +1112,19 @@
 						),
 					),
 				),
+				'mnuConfigGeral' => array (
+					'match' => 'config',
+					'items' => array(
+						array (
+							'id'   => 'SubMenuConfigVendaAtacado',
+							'text' => GetLang('ConfigVendaAtacado'),
+							'help' => GetLang('ConfigVendaAtacadoHelp'),
+							'link' => 'index.php?ToDo=configVendaAtacadoEdaz',
+							'show' => true,
+						),
+					),
+				),
+				
 			);
 
 			// Now that we've loaded the default menu, let's check if there are any addons we need to load

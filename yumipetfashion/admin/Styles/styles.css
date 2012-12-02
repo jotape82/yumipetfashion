@@ -2368,3 +2368,29 @@ dl.OrderProductEventDate {
 /* ADMIN - PEDIDOS */
 .QuickViewPanel table tr td { padding: 3px 0; }
 .QuickView .QuickViewPanel .orderQuickViewShippingBlockItems blockquote { margin: 5px 0 0 18px; }
+
+#wrapperTelaAdminDiv label { cursor: default; float: left; color: #404040; font-weight: normal; font-size: 14px; margin: 10px 5px; }
+#wrapperTelaAdminDiv .select,
+#wrapperTelaAdminDiv input[type=text],
+#wrapperTelaAdminDiv input[type=checkbox] { float: left; border: 1px solid #CCCCCC; color: #909090; cursor: pointer; font-size: 14px; padding: 7px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#wrapperTelaAdminDiv .select { height: 35px; }
+#wrapperTelaAdminDiv input[type=text] { margin-right: 5px; }
+#wrapperTelaAdminDiv input[type=checkbox] { margin-top: 10px; }
+#wrapperTelaAdminDiv .select option { color: #909090; cursor: pointer; font-size: 14px; padding: 7px; }
+#wrapperTelaAdminDiv .marginVertical20 { margin: 20px 0; clear: left; float: left; }
+#wrapperTelaAdminDiv .tituloAdminFundo { background-color: #F7F7F7; float: left; padding: 10px; width: 98%; margin-top: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
+#wrapperTelaAdminDiv .novaLinha { clear: left; float: left; margin-bottom: 5px; }
+#wrapperTelaAdminDiv .leftDiv { float: left; width: 350px; }
+#wrapperTelaAdminDiv .rightDiv { float: left; width: 150px; text-align: right; }
+#wrapperTelaAdminDiv .width180 { width: 180px }
+#wrapperTelaAdminDiv .width310 { width: 310px }
+#wrapperTelaAdminDiv .submit { cursor: pointer; background-color: #FBFBFB; font-size: 12px; font-weight: bold; height: 30px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#wrapperTelaAdminDiv #relatorioTable .combinacaoEstoqueProdutoTable div.atributo { min-width: 130px; /* padding-right: 20px; */ }
+
+#wrapperTelaAdminDiv .separadorHorizontal { background-image:url(../images/shadow-down-60.png); background-repeat: no-repeat; background-position: center top; clear: left; float: left; margin: 20px 0 10px; padding-top: 10px; width: 800px; }
+#wrapperTelaAdminDiv .nenhumProdutoEncontrado { 
+	background: url("../images/alert_icon.png") no-repeat 20px 15px #F9F9F9; border: 1px solid #CCCCCC; font-size: 14px; 
+	font-weight: bold; color: #505050; height: 68px; margin: 40px 0; padding: 35px 0 0 115px; width: 380px; 
+	-moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; 
+	-moz-box-shadow: 2px 3px 6px 0 #808080; -webkit-box-shadow: 2px 3px 6px 0 #808080; box-shadow: 2px 3px 6px 0 #808080;
+}
