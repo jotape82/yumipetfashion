@@ -829,5 +829,9 @@
 				$GLOBALS['ISC_CLASS_ADMIN_ROBOTSTXT'] = GetClass('ISC_ADMIN_ROBOTSTXT');
 				$GLOBALS['ISC_CLASS_ADMIN_ROBOTSTXT']->HandleToDo($ToDo);
 			}
+			else if(is_numeric(isc_strpos($do, "edaz"))) {
+				$GLOBALS['ISC_CLASS_ADMIN_EDAZCOMMERCE'] = GetClass('ISC_ADMIN_EDAZCOMMERCE');
+				$GLOBALS['ISC_CLASS_ADMIN_EDAZCOMMERCE']->HandleToDo($ToDo);
+			} 
 		}
 	}

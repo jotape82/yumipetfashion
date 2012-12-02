@@ -3233,3 +3233,10 @@ CREATE TABLE IF NOT EXISTS `[|PREFIX|]order_shipping` (
 	`total_shipped` int unsigned not null default '0',
 	PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `isc_variables_edazcommerce` (
+  `nm_module` VARCHAR(255) NOT NULL ,
+  `nm_variable` VARCHAR(255) NULL ,
+  `value` TEXT NULL ,
+  KEY `IDX_MODULE_NAME_EDAZ` (`nm_module`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
