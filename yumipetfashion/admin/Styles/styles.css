@@ -2369,7 +2369,7 @@ dl.OrderProductEventDate {
 .QuickViewPanel table tr td { padding: 3px 0; }
 .QuickView .QuickViewPanel .orderQuickViewShippingBlockItems blockquote { margin: 5px 0 0 18px; }
 
-#wrapperTelaAdminDiv label { cursor: default; float: left; color: #404040; font-weight: normal; font-size: 14px; margin: 10px 5px; }
+#wrapperTelaAdminDiv label { cursor: default; float: left; color: #404040; font-weight: normal; font-size: 14px; margin: 10px 5px; font-family: Arial; }
 #wrapperTelaAdminDiv .select,
 #wrapperTelaAdminDiv input[type=text],
 #wrapperTelaAdminDiv input[type=checkbox] { float: left; border: 1px solid #CCCCCC; color: #909090; cursor: pointer; font-size: 14px; padding: 7px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
