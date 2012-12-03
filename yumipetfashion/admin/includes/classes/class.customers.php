@@ -2209,6 +2209,7 @@
 			$GLOBALS['PasswordConfirmError'] = GetLang('CustomerPasswordConfirmError');
 			$GLOBALS['CustomFieldsAccountFormId'] = FORMFIELDS_FORM_ACCOUNT;
 			$GLOBALS['CustomFields'] = '';
+			$GLOBALS['ClienteCompraAtacado'] = ($customer['custhabilitaatacado'] == '1') ? 'checked=checked' : '';
 
 			/**
 			 * Custom fields
@@ -2801,6 +2802,7 @@
 			$GLOBALS['PasswordConfirmRequired'] = '&nbsp;&nbsp;';
 			$GLOBALS['CustomFieldsAccountFormId'] = FORMFIELDS_FORM_ACCOUNT;
 			$GLOBALS['CustomFields'] = '';
+			$GLOBALS['ClienteCompraAtacado'] = ($customer['custhabilitaatacado'] == '1') ? 'checked=checked' : '';
 
 			/**
 			 * Custom fields
@@ -2992,6 +2994,8 @@
 				$customer['custpassword'] = $_POST['custPassword'];
 				$customer['custstorecredit'] = DefaultPriceFormat($_POST['custStoreCredit']);
 				$customer['custgroupid'] = @$_POST['custGroupId'];
+				$customer['custhabilitaatacado'] = (isset($_POST['clienteCompraAtacado']) && $_POST['clienteCompraAtacado'] == 'on') ? true : false;
+				
 			} else {
 				// Get the data for this customer from the database
 				$query = "SELECT *
