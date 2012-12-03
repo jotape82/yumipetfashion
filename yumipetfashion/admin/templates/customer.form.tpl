@@ -89,8 +89,15 @@
 						<div style="display:none" id="dcuststorecredit"></div>
 					{{ formBuilder.endRow }}
 				{% endif %}
-
+				
 				{{ CustomFields|safe }}
+				
+				{{ formBuilder.startRow([
+					'label': lang.ConfigHabilitarClienteCompraAtacado ~ ':'
+				]) }}
+					<input type="checkbox" id="clienteCompraAtacado" name="clienteCompraAtacado" {{ ClienteCompraAtacado|safe }} />
+				{{ formBuilder.endRow }}
+				
 			{{ formBuilder.endForm }}
 
 			{{ formBuilder.startForm }}

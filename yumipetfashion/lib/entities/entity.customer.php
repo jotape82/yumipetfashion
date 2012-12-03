@@ -35,6 +35,7 @@ class ISC_ENTITY_CUSTOMER extends ISC_ENTITY_BASE
 				"custgroupid" => "int",
 				"custnotes" => "text",
 				"custformsessionid" => "int",
+				"custhabilitaatacado" => "int",
 		);
 
 		$tableName = "customers";

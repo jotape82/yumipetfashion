@@ -667,6 +667,7 @@ CREATE TABLE IF NOT EXISTS `%%PREFIX%%customers` (
   `custgroupid` int(11) NOT NULL default '0',
   `custnotes` TEXT,
   `custformsessionid` int(11) NOT NULL default '0',
+  `custhabilitaatacado` int(1) NOT NULL default '0',
   PRIMARY KEY  (`customerid`),
   KEY `i_customers_customertoken` (`customertoken`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
