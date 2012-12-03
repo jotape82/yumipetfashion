@@ -31,16 +31,22 @@
 			$this->shippingEntity = new ISC_ENTITY_SHIPPING();
 
 			$this->shippingMap = array(
-						'FirstName' => 'shipfirstname',
-						'LastName' => 'shiplastname',
-						'CompanyName' => 'shipcompany',
-						'AddressLine1' => 'shipaddress1',
-						'AddressLine2' => 'shipaddress2',
-						'City' => 'shipcity',
-						'Country' => 'shipcountry',
-						'State' => 'shipstate',
-						'Zip' => 'shipzip',
-						'Phone' => 'shipphone'
+					'FirstName' => 'shipfirstname',
+					'LastName' => 'shiplastname',
+					'CompanyName' => 'shipcompany',
+					'AddressLine1' => 'shipaddress1',
+					'AddressLine2' => 'shipaddress2',
+					'City' => 'shipcity',
+					'State' => 'shipstate',
+					'Country' => 'shipcountry',
+					'Zip' => 'shipzip',
+					'Phone' => 'shipphone',
+					'BuildingType' => 'shipdestination',
+					'DataNascimento' => 'shipdatanascimento',
+					'Numero' => 'shipnumero',
+					'Complemento' => 'shipcomplemento',
+					'Bairro' => 'shipbairro',
+					'Cpf' => 'shipcpf'
 					);
 		}
 
