@@ -7,8 +7,6 @@
 		protected $habilitadoModulo;
 		protected $qtdeProdutoAtacado;
 		protected $descontoPorcentagem;
-		protected $usuarioLogadoCompraAtacado;
-		
 		
 		public function __construct()
 		{
@@ -96,7 +94,7 @@
 		 * Atualiza o Preço por Atacado nos Produtos do Carrinho
 		 */
 		public function atualizaPrecoAtacadoProdutosCarrinho($arrayItems){
-			//if($this->isHabilitadoModulo() && $this->isUsuarioLogadoCompraAtacado() && $this->getDescontoPorcentagem() > 0){
+			if($this->isHabilitadoModulo()){
 				$qtdeProdutosAtacado = $this->getQtdeProdutoAtacado();
 				$descontoPorcentagem = $this->getDescontoPorcentagem();
 				
@@ -110,7 +108,7 @@
 						$item->setProductData($productData);
 					}
 				}
-			//}
+			}
 
 			return $arrayItems;
 		}
@@ -119,18 +117,15 @@
 		 * Atualiza o Preço por Atacado no Produto
 		 */
 		public function atualizaPrecoAtacadoProduto($produtoClass){
-			//if($this->isHabilitadoModulo() && $this->isUsuarioLogadoCompraAtacado() && $this->getDescontoPorcentagem() > 0){
+			if($this->isHabilitadoModulo()){
 				$qtdeProdutosAtacado = $this->getQtdeProdutoAtacado();
 				$descontoPorcentagem = $this->getDescontoPorcentagem();
 				$productData 		 = $produtoClass->getProduct();
 				
 				$descontoValor 							= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
 				$productData['prodcalculatedprice'] 	= $productData['prodcalculatedprice'] - $descontoValor;
-//				$productData['ProdutoVendaAtacado']		= true;
-//				$productData['PorcentagemVendaAtacado'] = $descontoPorcentagem;
-//				$productData['QtdeProdutosMinAtacado']  = $qtdeProdutosAtacado;
 				$produtoClass->setProductVendaAtacado($productData);
-			//}
+			}
 			
 			return $produtoClass;
 		}
@@ -157,14 +152,6 @@
 		
 		public function getDescontoPorcentagem(){
 			return $this->descontoPorcentagem;
-		}
-		
-		public function setUsuarioLogadoCompraAtacado($usuarioLogadoCompraAtacado){
-			$this->usuarioLogadoCompraAtacado = $usuarioLogadoCompraAtacado;
-		}
-		
-		public function isUsuarioLogadoCompraAtacado(){
-			return $this->usuarioLogadoCompraAtacado;
 		}
 		
 	}

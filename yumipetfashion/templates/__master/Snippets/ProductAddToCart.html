@@ -1,5 +1,5 @@
 %%GLOBAL_AddToCartButtonControlScript%%
-<form method="post" action="%%GLOBAL_CartLink%%" onsubmit="return check_add_to_cart(this, %%GLOBAL_ProductOptionRequired%%), validaCompraPorAtacado();"  enctype="multipart/form-data">
+<form method="post" action="%%GLOBAL_CartLink%%" onsubmit="return check_add_to_cart(this, %%GLOBAL_ProductOptionRequired%%)"  enctype="multipart/form-data">
 	<input type="hidden" name="action" value="add" />
 	<input type="hidden" name="product_id" value="%%GLOBAL_ProductId%%" />
 	<input type="hidden" name="variation_id" class="CartVariationId" value="" />

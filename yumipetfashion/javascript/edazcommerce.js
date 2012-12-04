@@ -580,19 +580,3 @@ function avisemeQuandoChegar(codProduto){
 	window.location = url;
 	return false;
 }
-
-function validaCompraPorAtacado(){
-	var validado = true;
-		
-	/* Atacado - Valida Quantidade Mínima do Produto */
-	if(moduloVendaAtacadoHabilitado){
-		qtdeEstoqueSolicitada = parseInt($('.quantityInput').val());
-		if(qtdeEstoqueSolicitada < qtdeProdutosMinAtacado){
-			alert('A quantidade mínima de ' + qtdeProdutosMinAtacado + ' unidades do produto na compra por atacado não foi alcançada.\nSeleciona a quantidade necessária!');
-			validado = false;
-			return false;
-		}
-	}
-	
-	return validado;
-}
