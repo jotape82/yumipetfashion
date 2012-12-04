@@ -721,6 +721,9 @@ li.separador_links_footer{
 #bandeirasFormasPagamento li img { cursor: pointer; height: 25px; }
 #parcelasFormasPagamento .ConteudoFormaPagamento { display: none; padding: 10px; color: #D04AA3; }
 
+/* VENDA POR ATACADO */
+.imgProdutoAtacadoCarrinho {  }
+.imgProdutoAtacadoPagProduto {  }
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
 .sliderCarousel .viewport ul { position: relative; }

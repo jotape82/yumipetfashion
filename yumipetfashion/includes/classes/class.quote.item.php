@@ -1772,4 +1772,23 @@ class ISC_QUOTE_ITEM
 	{
 		return $this->type == PT_GIFTCERTIFICATE;
 	}
+	
+	/**
+	 * EDAZCOMMERCE - Verifica se o Produto Está Com Preço de Atacado
+	 */
+	public function isProdutoVendaAtacado()
+	{
+		$productData = $this->getProductData();
+		return (!empty($productData['ProdutoVendaAtacado'])) ? true : false;
+	}
+	
+	/**
+	 * EDAZCOMMERCE - Retorna a Porcentagem de Desconto do Produto Com Preço de Atacado
+	 */
+	public function getPorcentagemVendaAtacado()
+	{
+		$productData = $this->getProductData();
+		return (!empty($productData['PorcentagemVendaAtacado'])) ? $productData['PorcentagemVendaAtacado'] : 0;
+	}
+	
 }

@@ -1,8 +1,15 @@
 <?php
 
-
+	define(VENDA_ATACADO, 'venda_atacado'); 
+	
 	class ISC_ADMIN_VENDA_ATACADO
 	{
+		protected $habilitadoModulo;
+		protected $qtdeProdutoAtacado;
+		protected $descontoPorcentagem;
+		protected $usuarioLogadoCompraAtacado;
+		
+		
 		public function __construct()
 		{
 			if(defined('ISC_ADMIN_CP')) {
@@ -12,6 +19,8 @@
 			if(!empty($GLOBALS['ISC_CLASS_DB'])) {
 				$this->db = $GLOBALS['ISC_CLASS_DB'];
 			}
+			
+			$this->setVariaveisConfiguracaoModulo();
 		}
 
 		/**
@@ -19,7 +28,7 @@
 		 */
 		public function getConfigVendaAtacado(){
 			$query  = " SELECT nm_variable, value FROM [|PREFIX|]variables_edazcommerce ";
-			$query .= " WHERE nm_module = 'venda_atacado' ";
+			$query .= " WHERE nm_module = '". VENDA_ATACADO ."' ";
 			$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
 			while($row = $GLOBALS['ISC_CLASS_DB']->Fetch($result)){
 				$GLOBALS[$row['nm_variable']] = $row['value'];
@@ -44,19 +53,118 @@
 			);
 			
 			$query  = " DELETE FROM [|PREFIX|]variables_edazcommerce ";
-			$query .= " WHERE nm_module = 'venda_atacado' "; 
+			$query .= " WHERE nm_module = '". VENDA_ATACADO ."' "; 
 			$GLOBALS['ISC_CLASS_DB']->Query($query);
 			
 			if($arrayCampos['habilitar_modulo'] == 'on'){
 				foreach($arrayCampos as $campo => $valor){
 					$query  = " INSERT INTO [|PREFIX|]variables_edazcommerce (nm_module, nm_variable, value) ";
-					$query .= " VALUES ('venda_atacado', '".$campo."', '".$valor."') ";
+					$query .= " VALUES ('". VENDA_ATACADO ."', '".$campo."', '".$valor."') ";
 					
 					$GLOBALS['ISC_CLASS_DB']->Query($query);
 				}
 			}
 			
 			$this->getConfigVendaAtacado();
+		}
+		
+		/**
+		 * Seta as Variáveis de Configuração do Módulo de Atacado
+		 */
+		public function setVariaveisConfiguracaoModulo(){
+			$arrayVariablesModule = array();
+			
+			/* Pega a Configuração no Banco */
+			$query  = " SELECT nm_module, nm_variable, value FROM isc_variables_edazcommerce ";
+			$query .= " WHERE nm_module = '". VENDA_ATACADO ."' ";
+			$result = $GLOBALS['ISC_CLASS_DB']->Query($query);
+			
+			while($row = $GLOBALS['ISC_CLASS_DB']->Fetch($result)){
+				$arrayVariablesModule[$row['nm_variable']] = $row['value'];
+			}
+			
+			$this->setHabilitadoModulo($arrayVariablesModule['habilitar_modulo']);
+			$this->setQtdeProdutoAtacado($arrayVariablesModule['qtde_produto_atacado']);
+			$this->setDescontoPorcentagem($arrayVariablesModule['porcentagem_desconto']);
+				 
+			/* Verifica se o Usuário Logado Pode Comprar por Atacado */
+			/* XXXXXXXXXXXX */
+			
+		}
+		
+		/**
+		 * Atualiza o Preço por Atacado nos Produtos do Carrinho
+		 */
+		public function atualizaPrecoAtacadoProdutosCarrinho($arrayItems){
+			//if($this->isHabilitadoModulo() && $this->isUsuarioLogadoCompraAtacado() && $this->getDescontoPorcentagem() > 0){
+				$qtdeProdutosAtacado = $this->getQtdeProdutoAtacado();
+				$descontoPorcentagem = $this->getDescontoPorcentagem();
+				
+				foreach($arrayItems as $item){
+					if($item->getQuantity() >= $qtdeProdutosAtacado){
+						$productData 							= $item->getProductData();
+						$descontoValor 							= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
+						$productData['prodcalculatedprice'] 	= $productData['prodcalculatedprice'] - $descontoValor;
+						$productData['ProdutoVendaAtacado']		= true;
+						$productData['PorcentagemVendaAtacado'] = $descontoPorcentagem;
+						$item->setProductData($productData);
+					}
+				}
+			//}
+
+			return $arrayItems;
+		}
+		
+		/**
+		 * Atualiza o Preço por Atacado no Produto
+		 */
+		public function atualizaPrecoAtacadoProduto($produtoClass){
+			//if($this->isHabilitadoModulo() && $this->isUsuarioLogadoCompraAtacado() && $this->getDescontoPorcentagem() > 0){
+				$qtdeProdutosAtacado = $this->getQtdeProdutoAtacado();
+				$descontoPorcentagem = $this->getDescontoPorcentagem();
+				$productData 		 = $produtoClass->getProduct();
+				
+				$descontoValor 							= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
+				$productData['prodcalculatedprice'] 	= $productData['prodcalculatedprice'] - $descontoValor;
+//				$productData['ProdutoVendaAtacado']		= true;
+//				$productData['PorcentagemVendaAtacado'] = $descontoPorcentagem;
+//				$productData['QtdeProdutosMinAtacado']  = $qtdeProdutosAtacado;
+				$produtoClass->setProductVendaAtacado($productData);
+			//}
+			
+			return $produtoClass;
+		}
+		
+		public function setHabilitadoModulo($habilitadoModulo){
+			$this->habilitadoModulo = $habilitadoModulo;
+		}
+		
+		public function isHabilitadoModulo(){
+			return (isset($this->habilitadoModulo) && $this->habilitadoModulo == 'on') ? true : false;
+		}
+		
+		public function setQtdeProdutoAtacado($qtdeProdutoAtacado){
+			$this->qtdeProdutoAtacado = $qtdeProdutoAtacado;
+		}
+		
+		public function getQtdeProdutoAtacado(){
+			return $this->qtdeProdutoAtacado;
+		}
+		
+		public function setDescontoPorcentagem($descontoPorcentagem){
+			$this->descontoPorcentagem = $descontoPorcentagem;
+		}
+		
+		public function getDescontoPorcentagem(){
+			return $this->descontoPorcentagem;
+		}
+		
+		public function setUsuarioLogadoCompraAtacado($usuarioLogadoCompraAtacado){
+			$this->usuarioLogadoCompraAtacado = $usuarioLogadoCompraAtacado;
+		}
+		
+		public function isUsuarioLogadoCompraAtacado(){
+			return $this->usuarioLogadoCompraAtacado;
 		}
 		
 	}
