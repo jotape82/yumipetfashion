@@ -800,6 +800,14 @@
 		{
 			return $this->_prodreleasedateremove;
 		}
+		
+		/**
+		 * EDAZCOMMERCE - Método Criado para Setar o ProductData da Venda Por Atacado no Objeto
+		 */
+		public function setProductVendaAtacado($productData)
+		{
+			$this->_product = $productData;
+		}
 
 		/**
 		* Returns the pre-order message to use for this product. If no product-specific message is set, this will return the site-wide default. If the product is not a pre-order, or no release date, a blank string will be returned.

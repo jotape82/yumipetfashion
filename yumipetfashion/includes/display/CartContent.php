@@ -111,7 +111,15 @@ class ISC_CARTCONTENT_PANEL extends PANEL
 			$GLOBALS['ItemId'] = $item->getProductId();
 			$GLOBALS['VariationId'] = $item->getVariationId();
 			$GLOBALS['ProductQuantity'] = $quantity;
-
+			
+			/* EDAZCOMMERCE - Propriedades - Compra por Atacado no Carrinho */
+			if($item->isProdutoVendaAtacado()){
+				$GLOBALS['DisplayImgProdutoAtacado'] = 'block;';
+				$GLOBALS['PorcentagemDescontoOFF']   = $item->getPorcentagemVendaAtacado()."%";
+			}else{
+				$GLOBALS['DisplayImgProdutoAtacado'] = 'none;';
+			}
+			
 			if(getConfig('ShowThumbsInCart')) {
 				$GLOBALS['ProductImage'] = imageThumb($item->getThumbnail(), prodLink($name));
 			}

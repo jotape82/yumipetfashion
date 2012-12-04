@@ -60,7 +60,9 @@ var productId = %%GLOBAL_ProductId%%;
 				<div class="DetailRow" style="%%GLOBAL_HidePrice%%">
 					<div class="Label">%%GLOBAL_PriceLabel%%:</div>
 					<div class="Value">
-						<em class="ProductPrice VariationProductPrice">%%GLOBAL_ProductPrice%%</em>
+						<em class="floatLeft ProductPrice VariationProductPrice">%%GLOBAL_ProductPrice%%</em>
+						<div class="floatLeft imgProdutoAtacadoPagProduto" style="margin-left: 10px; display: %%GLOBAL_DisplayImgProdutoAtacadoPagProduto%%">Preço de<br> Atacado!</div>
+						
 						%%GLOBAL_IncludingExcludingTax%% %%GLOBAL_YouSave%%
 					</div>
 				</div>
@@ -187,3 +189,10 @@ var productId = %%GLOBAL_ProductId%%;
 		<hr />
 	</div>
 </div>
+
+<script>
+	/* VENDA POR ATACADO */
+	var moduloVendaAtacadoHabilitado = '%%GLOBAL_ModuloVendaAtacadoHabilitado%%';
+	var qtdeProdutosMinAtacado 		 = '%%GLOBAL_QtdeProdutosMinAtacado%%';
+	moduloVendaAtacadoHabilitado	 = (moduloVendaAtacadoHabilitado != undefined && moduloVendaAtacadoHabilitado == 'true') ? true : false;
+</script>

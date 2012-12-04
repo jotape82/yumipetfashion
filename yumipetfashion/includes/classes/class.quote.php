@@ -559,6 +559,10 @@ class ISC_QUOTE
 				$additionalItem->setProductData($data);
 			}
 		}
+		
+		/* EDAZCOMMERCE - Atualiza o Preço dos Produto por Atacado no Carrinho */
+		$GLOBALS['ISC_ADMIN_VENDA_ATACADO'] = GetClass('ISC_ADMIN_VENDA_ATACADO');
+		$this->items = $GLOBALS['ISC_ADMIN_VENDA_ATACADO']->atualizaPrecoAtacadoProdutosCarrinho($this->items);
 
 		return $this;
 	}
