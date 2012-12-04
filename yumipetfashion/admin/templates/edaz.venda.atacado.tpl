@@ -82,6 +82,12 @@
 				valida = false;
 				return false;
 			}
+			if($('[name=porcentagem_desconto]').val() <= 0){
+				alert('Informe uma porcentagem de desconto válida');
+				$('[name=porcentagem_desconto]').focus();
+				valida = false;
+				return false;
+			}
 			if($('[name=porcentagem_desconto]').val() > 100){
 				alert('A porcentagem não pode ser superior a 100%');
 				$('[name=porcentagem_desconto]').focus();
