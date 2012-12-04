@@ -52,7 +52,6 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 
 		// We've got a lot to do on this page, so to make it easier to follow,
 		// everything is broken down in to smaller functions.
-		$this->SetDescontoVendaAtacado();
 		$this->SetVendorDetails();
 		$this->SetWrappingDetails();
 		$this->SetProductImages();
@@ -1120,20 +1119,6 @@ CLASS ISC_PRODUCTDETAILS_PANEL extends PANEL
 		$obj = new ISC_REMOTE();
 		$formasPagamentoHtml 			= $obj->SimularParcelas('body', $productId);
 		$GLOBALS['FormasPagamentoBody'] = $formasPagamentoHtml;
-	}
-	
-	/**
-	 * Seta o Desconto de Venda por Atacado no Produto 
-	 */
-	private function SetDescontoVendaAtacado(){
-		$GLOBALS['ISC_ADMIN_VENDA_ATACADO'] 	 	   = GetClass('ISC_ADMIN_VENDA_ATACADO');
-		$moduloAtacadoHabilitado 				 	   = $GLOBALS['ISC_ADMIN_VENDA_ATACADO']->isHabilitadoModulo();
-		$GLOBALS['ModuloVendaAtacadoHabilitado'] 	   = ($moduloAtacadoHabilitado) ? 'true' : 'false';
-		$GLOBALS['DisplayImgProdutoAtacadoPagProduto'] = ($moduloAtacadoHabilitado) ? 'block;' : 'none;';
-		$GLOBALS['QtdeProdutosMinAtacado']  	 	   = $GLOBALS['ISC_ADMIN_VENDA_ATACADO']->getQtdeProdutoAtacado();
-		$GLOBALS['PorcentagemVendaAtacado']  	   	   = $GLOBALS['ISC_ADMIN_VENDA_ATACADO']->getDescontoPorcentagem();
-		
-		$this->productClass = $GLOBALS['ISC_ADMIN_VENDA_ATACADO']->atualizaPrecoAtacadoProduto($this->productClass);
 	}
 	
 }
