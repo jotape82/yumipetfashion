@@ -46,8 +46,8 @@
 		public function saveConfigVendaAtacado(){
 			$arrayCampos = array(
 				'habilitar_modulo'     => $_POST['habilitar_modulo'],
-				'qtde_produto_atacado' => $_POST['qtde_produto_atacado'],
-				'porcentagem_desconto' => $_POST['porcentagem_desconto']
+				'qtde_produto_atacado' => (int) $_POST['qtde_produto_atacado'],
+				'porcentagem_desconto' => (int) $_POST['porcentagem_desconto']
 			);
 			
 			$query  = " DELETE FROM [|PREFIX|]variables_edazcommerce ";
