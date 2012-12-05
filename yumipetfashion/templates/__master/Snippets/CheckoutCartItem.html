@@ -1,8 +1,13 @@
-<tr>
+<tr class="linhaProdutosCheckoutTR">
 	<td>
-		<strong>%%GLOBAL_ProductName%%</strong>
-		%%GLOBAL_ProductOptions%%
+		<div class="floatLeft imgProductCheckout">%%GLOBAL_ProductImage%%</div>
+		<div class="floatLeft" style="margin-left: 15px;">
+			<div class="floatLeft"><strong>%%GLOBAL_ProductName%%</strong></div>
+			<div class="floatLeft imgProdutoAtacadoCheckout" style="display: %%GLOBAL_DisplayImgProdutoAtacado%%">Atacado! - %%GLOBAL_PorcentagemDescontoOFF%% OFF</div>
+			<div class="clearLeft floatLeft" style="margin-top: 3px;">%%GLOBAL_ProductOptions%%</div>
+		</div>
 		<br />
+		
 		%%GLOBAL_EventDate%%
 		<span class="Availability">%%GLOBAL_ProductAvailability%%</span>
 		<div class="CartExpectedReleaseDate" style="%%GLOBAL_HideExpectedReleaseDate%%">(%%GLOBAL_ProductExpectedReleaseDate%%)</div>
