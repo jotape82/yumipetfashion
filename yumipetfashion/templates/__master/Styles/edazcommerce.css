@@ -697,6 +697,9 @@ li.separador_links_footer{
 #EnderecoFaturaEntregaPedido div span.label { color: #505050; font-weight: bold; }
 #EnderecoFaturaEntregaPedido div span.value { color: #404040; }
 
+/* CHECKOUT - CONFERENCIA DE PRODUTOS */
+#OrderConfirmationForm .CartContents .imgProductCheckout img { width: 80px !important; }
+
 /* INDIQUE UM PRODUTO */
 #indiqueEsteProduto tr td { font-size: 12px; }
 #indiqueEsteProduto input{ height: 22px; padding: 0 4px 1px; }
@@ -722,8 +725,8 @@ li.separador_links_footer{
 #parcelasFormasPagamento .ConteudoFormaPagamento { display: none; padding: 10px; color: #D04AA3; }
 
 /* VENDA POR ATACADO */
-.imgProdutoAtacadoCarrinho {  }
-.imgProdutoAtacadoPagProduto {  }
+.imgProdutoAtacadoCarrinho { clear: left; margin-top: 5px; }
+.imgProdutoAtacadoCheckout { float: left; margin-left: 10px; }
 
 /* CAROUSEL - ATRIBUTOS GENÉRICOS */
 .sliderCarousel .viewport ul { position: relative; }

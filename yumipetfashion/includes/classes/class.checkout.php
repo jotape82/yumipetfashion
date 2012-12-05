@@ -2564,7 +2564,7 @@ class ISC_CHECKOUT
 			$GLOBALS['ProductOptions'] = '';
 			$options = $item->getVariationOptions();
 			if(!empty($options)) {
-				$GLOBALS['ProductOptions'] .= "<br /><small>(";
+				$GLOBALS['ProductOptions'] .= "<small>(";
 				$comma = '';
 				foreach($options as $name => $value) {
 					if(!trim($name) || !trim($value)) {
@@ -2573,7 +2573,7 @@ class ISC_CHECKOUT
 					$GLOBALS['ProductOptions'] .= $comma.isc_html_escape($name).": ".isc_html_escape($value);
 					$comma = ', ';
 				}
-				$GLOBALS['ProductOptions'] .= ")</small>";
+				$GLOBALS['ProductOptions'] .= ")</small><br />";
 			}
 			$GLOBALS['EventDate'] = '';
 			$eventDate = $item->getEventDate(true);
@@ -2611,14 +2611,22 @@ class ISC_CHECKOUT
 			}
 
 			$GLOBALS['ProductName'] = isc_html_escape($item->getName());
-			$GLOBALS['ProductImage'] = imageThumb($item->getThumbnail(), prodLink($item->getName()));
+			$GLOBALS['ProductImage'] = imageThumb($item->getThumbnail()); //prodLink($item->getName())
 
 			$GLOBALS['HideExpectedReleaseDate'] = 'display: none;';
 			if($item->isPreOrder()) {
 				$GLOBALS['ProductExpectedReleaseDate'] = $item->getPreOrderMessage();
 				$GLOBALS['HideExpectedReleaseDate'] = '';
 			}
-
+			
+			/* EDAZCOMMERCE - Propriedades - Compra por Atacado no Carrinho */
+			if($item->isProdutoVendaAtacado()){
+				$GLOBALS['DisplayImgProdutoAtacado'] = 'block;';
+				$GLOBALS['PorcentagemDescontoOFF']   = $item->getPorcentagemVendaAtacado()."%";
+			}else{
+				$GLOBALS['DisplayImgProdutoAtacado'] = 'none;';
+			}
+			
 			$GLOBALS['SNIPPETS']['CartItems'] .= $GLOBALS['ISC_CLASS_TEMPLATE']->GetSnippet("CheckoutCartItem");
 		}
 
