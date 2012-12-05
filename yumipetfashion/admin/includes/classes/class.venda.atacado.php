@@ -84,10 +84,6 @@
 			$this->setHabilitadoModulo($arrayVariablesModule['habilitar_modulo']);
 			$this->setQtdeProdutoAtacado($arrayVariablesModule['qtde_produto_atacado']);
 			$this->setDescontoPorcentagem($arrayVariablesModule['porcentagem_desconto']);
-				 
-			/* Verifica se o Usuário Logado Pode Comprar por Atacado */
-			/* XXXXXXXXXXXX */
-			
 		}
 		
 		/**
@@ -101,8 +97,17 @@
 				foreach($arrayItems as $item){
 					if($item->getQuantity() >= $qtdeProdutosAtacado){
 						$productData 							= $item->getProductData();
-						$descontoValor 							= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
-						$productData['prodcalculatedprice'] 	= $productData['prodcalculatedprice'] - $descontoValor;
+						
+						/* Verifica se Produto Usa Variação */
+						if(isset($productData['variation']) && !empty($productData['variation'])){
+							$descontoValor 						= (string) ($productData['variation']['vcprice'] * $descontoPorcentagem / 100);
+							$productData['variation']['vcprice']= $productData['variation']['vcprice'] - $descontoValor;
+						
+						}else{
+							$descontoValor 						= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
+							$productData['prodcalculatedprice'] = $productData['prodcalculatedprice'] - $descontoValor;
+						}
+						
 						$productData['ProdutoVendaAtacado']		= true;
 						$productData['PorcentagemVendaAtacado'] = $descontoPorcentagem;
 						$item->setProductData($productData);
