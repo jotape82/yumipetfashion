@@ -2355,3 +2355,9 @@ ul.menuVerticalCategorias li a { color: #FFFFFF; font-size: 14px; font-family: T
 	margin-top: -4px;
 	background: url(../img/layout/header/criar_nova_conta.gif) no-repeat;
 }
+
+/* VENDA POR ATACADO */
+.imgProdutoAtacadoCarrinho { background: url(../img/layout/atacado/atacado_home.gif); width: 80px; height: 20px; clear: left; }
+.imgProdutoAtacadoPagProduto { background: url(../img/layout/atacado/atacado_produto.gif); width: 65px; height: 45px; margin-left: 5px; }
+.imgProdutoAtacadoCheckout { background: url(../img/layout/atacado/atacado_home.gif); width: 80px; height: 20px; }
+.porcentagemPrecoAtacadoDesconto { font-size: 12px; color: #808080; }
