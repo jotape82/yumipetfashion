@@ -65,7 +65,7 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 $msg = "";
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg .= " ou <destaque>1x</destaque> de <destaque> ".$preco."</destaque> no <destaque>itau shopline</destaque> ";
+$msg .= " ou <span class='destaque'>1x</span> de <span class='destaque'> ".$preco."</span> no <span class='destaque'>itau shopline</span> ";
 //inicio do codigo do parcelamento
 $parcelador .= $msg.'</fbr>';
 //fim do codigo de parcelamento
@@ -85,7 +85,7 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 $msg = "";
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg .= " ou <destaque>1x</destaque> de <destaque> ".$preco."</destaque> no <destaque>bb ofice bank</destaque> ";
+$msg .= " ou <span class='destaque'>1x</span> de <span class='destaque'> ".$preco."</span> no <span class='destaque'>bb ofice bank</span> ";
 
 
 //inicio do codigo do parcelamento
@@ -107,7 +107,7 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 $msg = "";
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg .= " ou <destaque>1x</destaque> de <destaque> ".$preco."</destaque> no <destaque>bradesco online</destaque> ";
+$msg .= " ou <span class='destaque'>1x</span> de <span class='destaque'> ".$preco."</span> no <span class='destaque'>bradesco online</span> ";
 
 
 
@@ -162,9 +162,9 @@ $valors = number_format($valor, 2, '.', '');
 
 $op = GetModuleVariable('checkout_dinners','jurosde');
 if($op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>diners</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>diners</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>diners</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>diners</span> ";
 }
 }
 }
@@ -219,9 +219,9 @@ $valors = number_format($valor, 2, '.', '');
 
 $op = GetModuleVariable('checkout_mastercard','jurosde');
 if($op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>mastercard</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>mastercard</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>mastercard</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>mastercard</span> ";
 }
 }
 }
@@ -242,11 +242,11 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 if($desc<=0 OR empty($desc)){
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque>".$preco."</destaque> a vista no <destaque>visa electron</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'>".$preco."</span> a vista no <span class='destaque'>visa electron</span> ";
 } else {
 $valven = ($valordoproduto/100)*$desc;
 $preco = CurrencyConvertFormatPrice($valordoproduto-$valven, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque>".$preco."</destaque> com <destaque>".$desc."%</destaque> de desconto no <destaque>visa electron</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'>".$preco."</span> com <span class='destaque'>".$desc."%</span> de desconto no <span class='destaque'>visa electron</span> ";
 }
 //inicio do codigo do parcelamento
 $parcelador .= $msg.'</br>';
@@ -298,9 +298,9 @@ $valors = number_format($valor, 2, '.', '');
 
 $op = GetModuleVariable('checkout_visanet','jurosde');
 if($op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>visa</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>visa</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>visa</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>visa</span> ";
 }
 }
 }
@@ -322,11 +322,11 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 if($desc<=0 OR empty($desc)){
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque>".$preco."</destaque> a vista no <destaque>paypal</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'>".$preco."</span> a vista no <span class='destaque'>paypal</span> ";
 } else {
 $valven = ($valordoproduto/100)*$desc;
 $preco = CurrencyConvertFormatPrice($valordoproduto-$valven, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque>".$preco."</destaque> com <destaque>".$desc."%</destaque> de desconto no <destaque>paypal</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'>".$preco."</span> com <span class='destaque'>".$desc."%</span> de desconto no <span class='destaque'>paypal</span> ";
 }
 //inicio do codigo do parcelamento
 $parcelador .= $msg.'</br>';
@@ -370,9 +370,9 @@ $parcelas = number_format($parcelas, 2, '.', '');
 $valors = number_format($valor, 2, '.', '');
 $op = GetModuleVariable('checkout_dinheiromail','jurosde');
 if($j==1 OR $op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>dinheiromail</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>dinheiromail</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>dinheiromail</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>dinheiromail</span> ";
 }
 }
 }
@@ -425,9 +425,9 @@ $parcelas = number_format($parcelas, 2, '.', '');
 $valors = number_format($valor, 2, '.', '');
 $op = GetModuleVariable('checkout_moip','jurosde');
 if($j==1 OR $op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>moip</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>moip</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>moip</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>moip</span> ";
 }
 }
 }
@@ -474,9 +474,9 @@ $valors = number_format($valor, 2, '.', '');
 
 $op = GetModuleVariable('checkout_pagamentodigital','jurosde');
 if($j==1 OR $op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>Pagamento Digital</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>Pagamento Digital</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>Pagamento Digital</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>Pagamento Digital</span> ";
 }
 }
 }
@@ -527,9 +527,9 @@ $valors = number_format($valor, 2, '.', '');
 $op = GetModuleVariable('checkout_pagseguro','jurosde');
 if($div==$j){
 if($j==1 OR $op>=$j) {
-$msg .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</destaque> sem juros no <destaque>Pagseguro</destaque> ";
+$msg .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valors/$j, 1, 0)."</span> sem juros no <span class='destaque'>Pagseguro</span> ";
 }else{
-$msg1 .=" ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</destaque> com juros no <destaque>Pagseguro</destaque> ";
+$msg1 .=" ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($parcelas, 1, 0)."</span> com juros no <span class='destaque'>Pagseguro</span> ";
 }
 }
 }
@@ -547,11 +547,11 @@ $desc = GetModuleVariable('addon_parcelas','descboleto');
 $valordoproduto = ValorProduto($produto);
 if($desc<=0){
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque> ".$preco."</destaque> no <destaque>boleto</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'> ".$preco."</span> no <span class='destaque'>boleto</span> ";
 } else {
 $valven = ($valordoproduto/100)*$desc;
 $preco = CurrencyConvertFormatPrice($valordoproduto-$valven, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque>".$preco."</destaque> com <destaque>".$desc."%</destaque> de desconto no <destaque>boleto</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'>".$preco."</span> com <span class='destaque'>".$desc."%</span> de desconto no <span class='destaque'>boleto</span> ";
 }
 //inicio do codigo do parcelamento
 $parcelador .= $msg.'</br>';
@@ -571,7 +571,7 @@ $msg = "";
 $valordoproduto = ValorProduto($produto);
 $msg = "";
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg .= " ou <destaque>1x</destaque> de <destaque> ".$preco."</destaque> no <destaque>bradesco online</destaque> ";
+$msg .= " ou <span class='destaque'>1x</span> de <span class='destaque'> ".$preco."</span> no <span class='destaque'>bradesco online</span> ";
 //inicio do codigo do parcelamento
 $parcelador .= $msg.'</br>';
 //fim do codigo de parcelamento
@@ -592,7 +592,7 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 if($juros<=0 OR empty($juros)){
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg = " ou <destaque>1x</destaque> de <destaque> ".$preco."</destaque> sem juros no <destaque>cheque</destaque> ";
+$msg = " ou <span class='destaque'>1x</span> de <span class='destaque'> ".$preco."</span> sem juros no <span class='destaque'>cheque</span> ";
 } else {
 $msg = '';
 $msg1 = '';
@@ -606,9 +606,9 @@ for ($j=1;$j<=$div;$j++) {
 if($div==$j){
 if ($jde<=$j and $jde<='50') {
 $valven = ($valordoproduto/100)*$juros;
-$msg1 .= " ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice(($valordoproduto+$valven)/$j, 1, 0)."</destaque> com juros no <destaque>cheque</destaque> ";
+$msg1 .= " ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice(($valordoproduto+$valven)/$j, 1, 0)."</span> com juros no <span class='destaque'>cheque</span> ";
 }else{
-$msg .= " ou <destaque>".$j."x</destaque> de <destaque>".CurrencyConvertFormatPrice($valordoproduto/$j, 1, 0)."</destaque>sem juros no <destaque>cheque</destaque> ";
+$msg .= " ou <span class='destaque'>".$j."x</span> de <span class='destaque'>".CurrencyConvertFormatPrice($valordoproduto/$j, 1, 0)."</span>sem juros no <span class='destaque'>cheque</span> ";
 }
 }
 }
@@ -629,11 +629,11 @@ if(!empty($ativo)) {
 $valordoproduto = ValorProduto($produto);
 if($desc<=0 OR empty($desc)){
 $preco = CurrencyConvertFormatPrice($valordoproduto, 1, 0);
-$msg = " ou <destaque>".$preco."</destaque> a Vista no <destaque>Deposito</destaque> ";
+$msg = " ou <span class='destaque'>".$preco."</span> a Vista no <span class='destaque'>Deposito</span> ";
 } else {
 $valven = ($valordoproduto/100)*$desc;
 $preco = CurrencyConvertFormatPrice($valordoproduto-$valven, 1, 0);
-$msg = " ou <destaque>".$preco."</destaque> com <destaque>".$desc."%</destaque> de Desconto no <destaque>Depósito em conta</destaque> ";
+$msg = " ou <span class='destaque'>".$preco."</span> com <span class='destaque'>".$desc."%</span> de Desconto no <span class='destaque'>Depósito em conta</span> ";
 }
 //inicio do codigo do parcelamento
 $parcelador .= $msg;

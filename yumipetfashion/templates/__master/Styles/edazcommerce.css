@@ -439,7 +439,7 @@ li.separador_links_footer{
 .ProductPriceRating { margin: 5px 0; }
 .produto_indisponivel{ bottom: 0; color: #FF4748; font-weight: bold; margin: 15px auto; position: absolute; width: 200px; }
 .ProductList .parcelamento_label_produto{ color: gray;	font-family: Tahoma;	font-size: 12px; }
-.ProductList .parcelamento_label_produto destaque{	color: #D04AA3;	font-family: Tahoma;	font-size: 12px; font-weight: bold; }
+.ProductList .parcelamento_label_produto .destaque{	color: #D04AA3;	font-family: Tahoma;	font-size: 12px; font-weight: bold; }
 .PrimaryProductDetails .YouSave { font-weight: bold; margin-top: 3px; display: block; }
 .top_imagem_produto_div{ width: 177px; height: 18px; background: url(../images/top_imagem_produto.png) no-repeat; }
 .middle_imagem_produto_div{ width: 169px; height: auto;	position: relative; text-align: center; padding: 4px; background: url(../images/middle_imagem_produto.png) repeat-y; }
