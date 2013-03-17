@@ -90,28 +90,42 @@
 		 * Atualiza o Preço por Atacado nos Produtos do Carrinho
 		 */
 		public function atualizaPrecoAtacadoProdutosCarrinho($arrayItems){
+			$precoProdutoGeral 	  = 0;
+			$precoEspecialAtacado = 0;
+			
 			if($this->isHabilitadoModulo()){
-				$qtdeProdutosAtacado = $this->getQtdeProdutoAtacado();
-				$descontoPorcentagem = $this->getDescontoPorcentagem();
+				$qtdeProdutosTotalCarrinho = 0;
+				$qtdeProdutosAtacado 	   = $this->getQtdeProdutoAtacado();
+				$descontoPorcentagem 	   = $this->getDescontoPorcentagem();
 				
 				foreach($arrayItems as $item){
-					if($item->getQuantity() >= $qtdeProdutosAtacado){
-						$productData 							= $item->getProductData();
-						
-						/* Verifica se Produto Usa Variação */
-						if(isset($productData['variation']) && !empty($productData['variation'])){
-							$descontoValor 						= (string) ($productData['variation']['vcprice'] * $descontoPorcentagem / 100);
-							$productData['variation']['vcprice']= $productData['variation']['vcprice'] - $descontoValor;
-						
-						}else{
-							$descontoValor 						= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
-							$productData['prodcalculatedprice'] = $productData['prodcalculatedprice'] - $descontoValor;
-						}
-						
-						$productData['ProdutoVendaAtacado']		= true;
-						$productData['PorcentagemVendaAtacado'] = $descontoPorcentagem;
-						$item->setProductData($productData);
+					$qtdeProdutosTotalCarrinho += $item->getQuantity();
+				}
+				
+				foreach($arrayItems as $item){
+					$productData = $item->getProductData();
+					
+					/* Verifica se Produto Usa Variação */
+					if(isset($productData['variation']) && !empty($productData['variation'])){
+						$descontoValor 						= (string) ($productData['variation']['vcprice'] * $descontoPorcentagem / 100);
+						$precoProdutoGeral					= $productData['variation']['vcprice'];
+						$precoEspecialAtacado				= $precoProdutoGeral - $descontoValor;
+						//$productData['variation']['vcprice']= $precoEspecialAtacado;
+					}else{
+						$descontoValor 						= (string) ($productData['prodcalculatedprice'] * $descontoPorcentagem / 100);
+						$precoProdutoGeral					= $productData['prodcalculatedprice'];
+						$precoEspecialAtacado				= $precoProdutoGeral - $descontoValor;
+						//$productData['prodcalculatedprice'] = $precoEspecialAtacado;
 					}
+					
+					// Setando Valores
+					$productData['PrecoProdutoGeral']			= $precoProdutoGeral;
+					if($qtdeProdutosTotalCarrinho >= $qtdeProdutosAtacado){
+						$productData['ProdutoVendaAtacado']		= true;
+						$productData['PrecoEspecialAtacado']	= $precoEspecialAtacado;
+						$productData['PorcentagemVendaAtacado'] = $descontoPorcentagem;
+					}
+					$item->setProductData($productData);
 				}
 			}
 
@@ -160,6 +174,3 @@
 		}
 		
 	}
-	
-	
-	
