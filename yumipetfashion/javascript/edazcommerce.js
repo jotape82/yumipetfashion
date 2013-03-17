@@ -55,6 +55,7 @@ $(document).ready(function() {
 	/* ===== FIM - Menu de Categorias ===== */
 	
 	/* ===== SCROLL EM MENSAGEM DE AVISO NA TELA ===== */
+	/*
 	if($('.InfoMessage').length || $('.SuccessMessage').length || $('.ErrorMessage').length){
 		var campoMensagem;
 		
@@ -67,6 +68,7 @@ $(document).ready(function() {
 		}
 		$('html,body').animate({scrollTop: $(campoMensagem).offset().top - 35}, 1500);
 	}
+	*/
 	
 	/* ===== INICIO - CHECKOUT CIELO ===== */
 	/*

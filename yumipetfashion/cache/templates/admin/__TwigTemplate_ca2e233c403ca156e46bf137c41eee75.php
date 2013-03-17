@@ -38,12 +38,12 @@ class __TwigTemplate_ca2e233c403ca156e46bf137c41eee75 extends Twig_Template
         echo twig_safe_filter((isset($context['ModuloAtacadoCamposDisplay']) ? $context['ModuloAtacadoCamposDisplay'] : null));
         echo ";\">
 \t\t\t\t<div class=\"novaLinha\">
-\t\t\t\t\t<label class=\"width310\">Ativar venda por atacado a partir da compra de</label>
+\t\t\t\t\t<label class=\"width310\">Ativar venda por atacado a partir de</label>
 \t\t\t\t\t<input type=\"text\" name=\"qtde_produto_atacado\" size=\"5\" maxlength=\"3\" value=\"";
         // line 24
         echo twig_safe_filter((isset($context['qtde_produto_atacado']) ? $context['qtde_produto_atacado'] : null));
         echo "\" onkeypress=\"Formato('NUMEROS', event, this);\">
-\t\t\t\t\t<label> unidades do produto</label>
+\t\t\t\t\t<label> produtos no carrinho</label>
 \t\t\t\t</div>
 \t\t\t\t<div class=\"novaLinha\">
 \t\t\t\t\t<label class=\"width310\">Porcentagem de desconto no valor do produto</label>
