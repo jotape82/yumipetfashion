@@ -20,9 +20,9 @@
 			</div>
 			<div class="camposVendaAtacado" style="display: {{ModuloAtacadoCamposDisplay|safe}};">
 				<div class="novaLinha">
-					<label class="width310">Ativar venda por atacado a partir da compra de</label>
+					<label class="width310">Ativar venda por atacado a partir de</label>
 					<input type="text" name="qtde_produto_atacado" size="5" maxlength="3" value="{{qtde_produto_atacado|safe}}" onkeypress="Formato('NUMEROS', event, this);">
-					<label> unidades do produto</label>
+					<label> produtos no carrinho</label>
 				</div>
 				<div class="novaLinha">
 					<label class="width310">Porcentagem de desconto no valor do produto</label>

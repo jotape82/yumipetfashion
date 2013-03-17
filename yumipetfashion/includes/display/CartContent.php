@@ -113,10 +113,13 @@ class ISC_CARTCONTENT_PANEL extends PANEL
 			$GLOBALS['ProductQuantity'] = $quantity;
 			
 			/* EDAZCOMMERCE - Propriedades - Compra por Atacado no Carrinho */
+			$productData = $item->getProductData();
 			if($item->isProdutoVendaAtacado()){
+				$item->setBasePrice($productData['PrecoEspecialAtacado'], true);
 				$GLOBALS['DisplayImgProdutoAtacado'] = 'block;';
 				$GLOBALS['PorcentagemDescontoOFF']   = $item->getPorcentagemVendaAtacado()."%";
 			}else{
+				$item->setBasePrice($productData['PrecoProdutoGeral'], true);
 				$GLOBALS['DisplayImgProdutoAtacado'] = 'none;';
 			}
 			
@@ -170,6 +173,7 @@ class ISC_CARTCONTENT_PANEL extends PANEL
 			}
 
 			$price = $item->getPrice($this->displayIncludingTax);
+			//die();
 			$total = $item->getTotal($this->displayIncludingTax);
 
 			$GLOBALS['ProductPrice'] = currencyConvertFormatPrice($price);
